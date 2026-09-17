@@ -5,64 +5,79 @@
 @layer base {
   :root {
     --bg-page: #FFFFFF;
-    --text-primary: #0F172A;
-    --text-secondary: #475569;
+    --text-primary: #1E293B;
+    --text-secondary: #64748B;
     --card-bg: #FFFFFF;
     --card-border: #E2E8F0;
+    --card-hover-border: #93C5FD;
   }
 
   .dark {
     --bg-page: #081522;
     --text-primary: #F8FAFC;
     --text-secondary: #94A3B8;
-    --card-bg: rgba(11, 31, 58, 0.75);
-    --card-border: rgba(0, 198, 255, 0.15);
+    --card-bg: #0B1F3A;
+    --card-border: rgba(30, 94, 255, 0.2);
+    --card-hover-border: rgba(0, 198, 255, 0.5);
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
     background-color: var(--bg-page);
     color: var(--text-primary);
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.025em;
+    font-weight: 700;
   }
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #F1F5F9;
   }
   .dark ::-webkit-scrollbar-track {
     background: #081522;
   }
   ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #CBD5E1;
     border-radius: 4px;
   }
   .dark ::-webkit-scrollbar-thumb {
-    background: #1e3a5f;
+    background: #1E3A5F;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #0050AE;
   }
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #00c6ff;
+    background: #00C6FF;
   }
 }
 
 @layer utilities {
-  .glass-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-  }
-
-  .text-gradient-mandiri {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] to-[#0284C7];
-  }
-
   .dot-pattern {
     background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
     background-size: 16px 16px;
+  }
+
+  .corporate-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    transition: all 0.2s ease-in-out;
+  }
+  .corporate-card:hover {
+    border-color: var(--card-hover-border);
   }
 }
