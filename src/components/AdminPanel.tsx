@@ -980,10 +980,10 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
                   </div>
                   <div>
                     <ImageImporter
-                      label="Foto / Gambar Dokumentasi Proyek *"
-                      value={editingProject.image}
+                      label="Foto / Gambar Dokumentasi Proyek (Opsional)"
+                      value={editingProject.image || ''}
                       onChange={(newImg) => setEditingProject({ ...editingProject, image: newImg })}
-                      helperText="Anda dapat mengimpor file gambar langsung dari komputer atau memasukkan URL gambar."
+                      helperText="Anda dapat mengimpor file gambar dari komputer atau membiarkan kosong untuk menggunakan logo instansi otomatis."
                     />
                   </div>
                 </div>

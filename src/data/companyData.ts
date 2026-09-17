@@ -4,7 +4,7 @@ export interface Project {
   client: string;
   category: 'maritime' | 'government' | 'energy' | 'enterprise' | 'infrastructure';
   location: string;
-  image: string;
+  image?: string;
   summary: {
     en: string;
     id: string;
@@ -127,6 +127,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
     level: "National Professional Standard",
     badgeColor: "#7C3AED",
+    image: "/logos/bnsp.png",
   },
   {
     code: "BNSP Electrical",
@@ -134,6 +135,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "BNSP - Construction & Safety Services",
     level: "Critical Infrastructure Inspector",
     badgeColor: "#0D9488",
+    image: "/logos/bnsp.png",
   },
 ];
 
@@ -558,7 +560,6 @@ export const PROJECTS_LIST: Project[] = [
     client: "PT. Pertamina Power Indonesia",
     category: "energy",
     location: "Pertamina Power Headquarters, Jakarta",
-    image: "/extracted/img_047.jpg",
     summary: {
       en: "High-voltage transmission, distribution, and renewable energy modeling using DIgSILENT PowerFactory alongside solar irradiation analytics.",
       id: "Pemodelan berbagai jenis jaringan listrik termasuk transmisi, distribusi, pembangkitan energi terbarukan, serta studi kualitas daya.",
@@ -585,7 +586,6 @@ export const PROJECTS_LIST: Project[] = [
     client: "Universitas Pertamina",
     category: "enterprise",
     location: "Simprug Campus, Gedung Pemuda MTC, Gedung Perwira KP",
-    image: "/extracted/img_043.jpg",
     summary: {
       en: "Comprehensive technical audit, physical cable tracing, topology redesign, and modernization report for aging campus network systems.",
       id: "Pengecekan kualitas perangkat dan jaringan, analisis uji kelayakan sistem IT, dan pembuatan cetak biru peta topologi efisien.",
@@ -693,7 +693,6 @@ export const PROJECTS_LIST: Project[] = [
     client: "PT. Pertamina International Shipping",
     category: "maritime",
     location: "30 Branch Offices Across Indonesia",
-    image: "/extracted/img_035.jpg",
     summary: {
       en: "Provisioning and software integration of 30 Hytera PNC380 Push-to-Talk Over Cellular (PoC) terminals connected via POCStars central dispatch.",
       id: "Pengadaan hardware dan software 30 unit radio GSM Hytera PNC380 beserta pengembangan dashboard POCStars untuk komunikasi antar kantor cabang.",
@@ -1013,3 +1012,22 @@ export const TECH_PARTNERS = [
   { name: "Hytera", category: "Digital PoC Tactical Radio", logo: "/logos/hytera.png" },
   { name: "LG Business Solutions", category: "Commercial Video Wall", logo: "/logos/lg.png" },
 ];
+
+export const getClientLogo = (clientName: string): string => {
+  const lower = (clientName || '').toLowerCase();
+  if (lower.includes('shipping') || lower.includes('pis')) return '/logos/pertamina-shipping.png';
+  if (lower.includes('pertamina power')) return '/logos/pertamina.png';
+  if (lower.includes('universitas pertamina')) return '/logos/univ-pertamina.png';
+  if (lower.includes('pertamina')) return '/logos/pertamina.png';
+  if (lower.includes('bumn')) return '/logos/bumn.png';
+  if (lower.includes('pupr') || lower.includes('pekerjaan umum') || lower.includes('bbws')) return '/logos/pupr.png';
+  if (lower.includes('airkon')) return '/logos/airkon.png';
+  if (lower.includes('bmkg')) return '/logos/bmkg.png';
+  if (lower.includes('cisco')) return '/logos/cisco.png';
+  if (lower.includes('ruijie')) return '/logos/ruijie.png';
+  if (lower.includes('hytera')) return '/logos/hytera.png';
+  if (lower.includes('lg')) return '/logos/lg.png';
+  if (lower.includes('honeywell')) return '/logos/honeywell.png';
+  if (lower.includes('mikrotik')) return '/logos/mikrotik.png';
+  return '/logo-mnk.png';
+};

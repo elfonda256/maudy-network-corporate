@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, CheckCircle2, ShieldAlert, Lightbulb, TrendingUp, Cpu, FileCheck, MapPin } from 'lucide-react';
 import type { Project } from '../data/companyData';
+import { getClientLogo } from '../data/companyData';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -27,14 +28,33 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
       {/* Modal Container */}
       <div className="relative z-10 w-full max-w-4xl glass-card rounded-2xl border border-cyan-500/40 shadow-2xl overflow-hidden bg-[#0B1F3A]/95 my-8 animate-fadeIn">
-        {/* Modal Header with Image */}
-        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-900">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/60 to-transparent"></div>
+        {/* Modal Header with Image or Branded Client Banner */}
+        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+          {project.image ? (
+            <>
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-[#0B1F3A]/60 to-transparent"></div>
+            </>
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#061426] via-[#0B1F3A] to-[#040C18] flex flex-col items-center justify-center p-8 relative">
+              <div className="absolute inset-0 bg-[radial-gradient(#00C6FF_1px,transparent_1px)] [background-size:16px_16px] opacity-15"></div>
+              <div className="w-20 h-20 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-2xl border border-white/20 mb-3 z-10">
+                <img
+                  src={getClientLogo(project.client)}
+                  alt={project.client}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+              <span className="text-xs font-tech text-cyan-400 font-bold z-10 uppercase tracking-widest">
+                {project.category} ENGAGEMENT
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B1F3A] via-transparent to-transparent"></div>
+            </div>
+          )}
 
           {/* Close button */}
           <button
