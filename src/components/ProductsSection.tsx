@@ -21,18 +21,18 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{lang === 'en' ? 'PROPRIETARY INNOVATIONS' : 'PRODUK & TEKNOLOGI MANDIRI'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Engineered In-House for <span className="text-[#0050AE] dark:text-cyan-400">Absolute Control</span>
+                Engineered In-House for <span className="text-gradient-ocean dark:text-gradient-creative">Absolute Control</span>
               </>
             ) : (
               <>
-                Ekosistem Digital Mandiri untuk <span className="text-[#0050AE] dark:text-cyan-400">Kendali Penuh</span>
+                Ekosistem Digital Mandiri untuk <span className="text-gradient-ocean dark:text-gradient-creative">Kendali Penuh</span>
               </>
             )}
           </h2>
@@ -49,9 +49,9 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
             <button
               key={prod.id}
               onClick={() => setActiveProductId(prod.id)}
-              className={`px-5 py-2.5 rounded-full text-xs font-semibold transition-all ${
+              className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all ${
                 activeProductId === prod.id
-                  ? 'bg-[#0050AE] text-white shadow-md'
+                  ? 'bg-gradient-brand text-white shadow-md shadow-blue-500/20'
                   : 'bg-white dark:bg-[#0B1F3A]/70 text-slate-600 dark:text-slate-400 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-800'
               }`}
             >
@@ -61,7 +61,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
         </div>
 
         {/* Active Product Detailed Card */}
-        <div className="bg-white dark:bg-[#0B1F3A]/90 rounded-3xl border border-slate-200 dark:border-cyan-500/30 p-6 sm:p-10 mb-16 shadow-lg">
+        <div className="bg-white dark:bg-[#0B1F3A]/90 rounded-3xl border border-slate-200 dark:border-cyan-500/30 gradient-border-top p-6 sm:p-10 mb-16 shadow-lg">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left: Product Screenshot */}
             <div className="lg:col-span-6 relative group">
@@ -75,7 +75,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
 
               {/* Overlay Badge */}
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 rounded-md text-[10px] font-mono font-bold bg-white/95 dark:bg-slate-950/85 text-[#0050AE] dark:text-cyan-300 shadow">
+                <span className="px-3 py-1 rounded-full text-[10px] font-bold bg-white/95 dark:bg-slate-950/85 text-[#0050AE] dark:text-cyan-300 shadow">
                   {activeProduct.category}
                 </span>
               </div>
@@ -84,7 +84,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
             {/* Right: Product Features & Metrics */}
             <div className="lg:col-span-6 space-y-5">
               <div>
-                <span className="text-xs font-mono font-bold text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider">
                   {activeProduct.tagline}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-bold text-[#002D62] dark:text-white mt-1">
@@ -115,8 +115,8 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
                 {Object.entries(activeProduct.liveMetrics).map(([key, val], mIdx) => (
                   <div key={mIdx} className="p-2.5 rounded-xl bg-slate-50 dark:bg-[#0B1F3A]/70 border border-slate-200 dark:border-slate-800 text-center">
-                    <div className="text-xs font-bold font-mono text-[#0050AE] dark:text-cyan-300">{val}</div>
-                    <div className="text-[9px] font-mono text-slate-500 dark:text-slate-400 uppercase mt-0.5 truncate">
+                    <div className="text-xs font-bold text-gradient-ocean dark:text-gradient-creative">{val}</div>
+                    <div className="text-[9px] font-medium text-slate-500 dark:text-slate-400 uppercase mt-0.5 truncate">
                       {key.replace(/([A-Z])/g, ' $1')}
                     </div>
                   </div>
@@ -126,7 +126,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
               <div className="pt-2">
                 <button
                   onClick={onOpenConsultation}
-                  className="px-6 py-2.5 rounded-full bg-[#0050AE] hover:bg-[#004294] text-white text-xs font-bold shadow-md transition-all flex items-center space-x-2"
+                  className="px-6 py-2.5 rounded-full bg-gradient-brand hover:opacity-95 text-white text-xs font-bold shadow-md transition-all flex items-center space-x-2"
                 >
                   <span>{lang === 'en' ? `Request ${activeProduct.name} Deployment Plan` : `Pelajari Implementasi ${activeProduct.name}`}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

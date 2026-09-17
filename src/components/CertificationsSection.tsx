@@ -12,18 +12,18 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
             <Shield className="w-3.5 h-3.5" />
             <span>{lang === 'en' ? 'WORLD-CLASS CREDENTIALS' : 'SERTIFIKASI INTERNASIONAL & ORGANISASI'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Certified Engineering <span className="text-[#0050AE] dark:text-cyan-400">Organization</span>
+                Certified Engineering <span className="text-gradient-ocean dark:text-gradient-creative">Organization</span>
               </>
             ) : (
               <>
-                Struktur Organisasi & <span className="text-[#0050AE] dark:text-cyan-400">Sertifikasi Global</span>
+                Struktur Organisasi & <span className="text-gradient-ocean dark:text-gradient-creative">Sertifikasi Global</span>
               </>
             )}
           </h2>
@@ -37,7 +37,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
         {/* Global Certifications Grid with authentic badges */}
         <div className="mb-20">
           <div className="text-center mb-8">
-            <h3 className="text-lg font-bold text-[#002D62] dark:text-white font-mono flex items-center justify-center space-x-2">
+            <h3 className="text-lg font-bold text-[#002D62] dark:text-white flex items-center justify-center space-x-2">
               <Award className="w-5 h-5 text-[#0050AE] dark:text-cyan-400" />
               <span>{lang === 'en' ? 'Elite Engineering Accreditations' : 'Daftar Sertifikasi Kompetensi Insinyur'}</span>
             </h3>
@@ -47,7 +47,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
             {CERTIFICATIONS_LIST.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-md group"
+                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 gradient-border-top transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-md group"
               >
                 <div>
                   {cert.image ? (
@@ -59,20 +59,20 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
                       />
                     </div>
                   ) : (
-                    <div className="h-16 w-full mb-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-500/20 flex items-center justify-center text-[#0050AE] dark:text-cyan-400 font-mono font-bold text-xs">
+                    <div className="h-16 w-full mb-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-500/20 flex items-center justify-center text-[#0050AE] dark:text-cyan-400 font-bold text-xs">
                       {cert.code}
                     </div>
                   )}
 
-                  <div className="text-xs font-bold text-[#002D62] dark:text-white mb-1 group-hover:text-[#0050AE] dark:group-hover:text-cyan-300 transition-colors">
+                  <div className="text-xs font-bold text-[#002D62] dark:text-white mb-1 group-hover:text-gradient-ocean dark:group-hover:text-gradient-creative transition-colors">
                     {cert.code}
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                     {cert.issuer}
                   </div>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 text-[10px] font-mono font-semibold text-[#0050AE] dark:text-cyan-400 truncate">
+                <div className="mt-3 pt-2 border-t border-slate-200 dark:border-slate-800 text-[10px] font-semibold text-[#0050AE] dark:text-cyan-400 truncate">
                   {cert.level}
                 </div>
               </div>
@@ -83,7 +83,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
         {/* Technical Organization Tree / Hierarchy */}
         <div className="mb-20">
           <div className="text-center mb-10">
-            <h3 className="text-lg font-bold text-[#002D62] dark:text-white font-mono flex items-center justify-center space-x-2">
+            <h3 className="text-lg font-bold text-[#002D62] dark:text-white flex items-center justify-center space-x-2">
               <Network className="w-5 h-5 text-[#0050AE] dark:text-blue-400" />
               <span>{lang === 'en' ? 'Technical Organization Structure' : 'Bagan Struktur Organisasi Teknis'}</span>
             </h3>
@@ -98,8 +98,8 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
           <div className="max-w-4xl mx-auto space-y-6">
             {/* Level 1: Director */}
             <div className="flex justify-center">
-              <div className="bg-white dark:bg-[#0B1F3A] p-4 rounded-2xl border border-blue-200 dark:border-cyan-500/50 text-center w-64 shadow-md">
-                <div className="text-xs font-mono text-[#0050AE] dark:text-cyan-400 font-bold uppercase">Executive Leadership</div>
+              <div className="bg-white dark:bg-[#0B1F3A] p-4 rounded-2xl border border-blue-200 dark:border-cyan-500/50 gradient-border-top text-center w-64 shadow-md">
+                <div className="text-xs text-[#0050AE] dark:text-cyan-400 font-bold uppercase">Executive Leadership</div>
                 <div className="text-base font-bold text-[#002D62] dark:text-white mt-0.5">Yahya Hidayatullah</div>
                 <div className="text-xs text-slate-500 dark:text-slate-300">Director & CEO</div>
               </div>

@@ -104,17 +104,17 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-mono font-bold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'OUR COMPETITIVE ADVANTAGE' : 'KEUNGGULAN STRATEGIS MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Why Global Enterprises & Government Trust <span className="text-[#0050AE] dark:text-cyan-400">MNK</span>
+                Why Global Enterprises & Government Trust <span className="text-gradient-ocean dark:text-gradient-creative">MNK</span>
               </>
             ) : (
               <>
-                Mengapa Institusi Pemerintah & Korporasi Memilih <span className="text-[#0050AE] dark:text-cyan-400">MNK</span>
+                Mengapa Institusi Pemerintah & Korporasi Memilih <span className="text-gradient-ocean dark:text-gradient-creative">MNK</span>
               </>
             )}
           </h2>
@@ -132,19 +132,19 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
             return (
               <div
                 key={idx}
-                className="bg-white dark:bg-[#0B1F3A]/70 p-6 rounded-2xl flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="bg-white dark:bg-[#0B1F3A]/70 p-6 rounded-2xl flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 gradient-border-top shadow-sm hover:shadow-md transition-all duration-300 group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <div className={`p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 ${feat.iconColor} group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 border border-blue-200 dark:border-blue-700/40">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 border border-blue-200 dark:border-blue-700/40">
                       {feat.badge}
                     </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-[#0050AE] dark:group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-gradient-ocean dark:group-hover:text-gradient-creative transition-colors">
                     {feat.title[lang]}
                   </h3>
 
@@ -153,7 +153,7 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-1.5 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center space-x-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
                   <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-cyan-400" />
                   <span>{lang === 'en' ? 'Enterprise Ready' : 'Standar Korporasi'}</span>
                 </div>

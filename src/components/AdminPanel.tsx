@@ -14,6 +14,13 @@ import {
   Search,
   ExternalLink,
   ShieldAlert,
+  Lock,
+  LogOut,
+  KeyRound,
+  Eye,
+  EyeOff,
+  User,
+  ShieldCheck,
 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 import type { ClientItem, Inquiry } from '../context/CmsContext';
@@ -45,8 +52,46 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
     resetToDefaults,
   } = useCms();
 
+  // Authentication State
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    return typeof window !== 'undefined' && sessionStorage.getItem('mnk_admin_auth') === 'true';
+  });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [authError, setAuthError] = useState('');
+
   const [activeTab, setActiveTab] = useState<'projects' | 'services' | 'clients' | 'inquiries' | 'settings'>('projects');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    const validUsers = ['admin', 'mnk-admin', 'yahya', 'direksi'];
+    const validPass = ['admin123', 'mnk2024', 'maudy2024'];
+
+    if (validUsers.includes(username.trim().toLowerCase()) && validPass.includes(password.trim())) {
+      sessionStorage.setItem('mnk_admin_auth', 'true');
+      setIsAuthenticated(true);
+      setAuthError('');
+      showToast('Autentikasi Berhasil! Selamat datang di Panel CMS MNK.');
+    } else {
+      setAuthError('Kredensial salah! Pastikan Username dan Password benar.');
+    }
+  };
+
+  const handleLogout = () => {
+    sessionStorage.removeItem('mnk_admin_auth');
+    setIsAuthenticated(false);
+    setUsername('');
+    setPassword('');
+    showToast('Sesi ditutup. Anda telah keluar dari Panel CMS.');
+  };
+
+  const autofillDemoCredentials = () => {
+    setUsername('admin');
+    setPassword('admin123');
+    setAuthError('');
+  };
 
   // Search filters
   const [projectSearch, setProjectSearch] = useState('');
@@ -133,40 +178,154 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#081522]/80 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-[#081522]/85 backdrop-blur-md transition-opacity"
         onClick={onClose}
       ></div>
 
-      {/* Main CMS Container */}
-      <div className="relative z-10 w-full max-w-6xl bg-white dark:bg-[#0B1F3A] rounded-3xl border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-        {/* Top Header */}
-        <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-[#081522]/90">
-          <div className="flex items-center space-x-3">
-            <div className="p-2.5 rounded-2xl bg-[#0050AE] text-white shadow-sm">
-              <Layers className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="flex items-center space-x-2">
-                <h2 className="text-lg sm:text-xl font-bold text-[#002D62] dark:text-white">
-                  MNK Corporate CMS & Web Manager
-                </h2>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-mono font-bold">
-                  LIVE CRUD
-                </span>
+      {/* Security Gate / Login Screen */}
+      {!isAuthenticated ? (
+        <div className="relative z-10 w-full max-w-md bg-white dark:bg-[#0B1F3A] rounded-3xl border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden animate-fadeIn my-auto">
+          {/* Top Gradient Banner */}
+          <div className="p-6 bg-gradient-brand text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 dot-pattern opacity-25 pointer-events-none"></div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20">
+                <Lock className="w-6 h-6 text-cyan-300" />
               </div>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Kelola konten proyek, layanan, direktori logo klien, dan tinjau pesan masuk secara real-time
-              </p>
+              <button
+                onClick={onClose}
+                className="p-1.5 rounded-lg text-white/70 hover:text-white hover:bg-white/10 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
+            <h2 className="text-xl font-bold tracking-tight">Portal Akses CMS MNK</h2>
+            <p className="text-xs text-white/80 mt-1">
+              Area terbatas khusus Administrator & Direksi Maudy Network Komunikasi
+            </p>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          {/* Login Form */}
+          <form onSubmit={handleLogin} className="p-6 space-y-4">
+            {authError && (
+              <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 flex items-center space-x-2.5 text-xs text-red-600 dark:text-red-400">
+                <ShieldAlert className="w-4 h-4 flex-shrink-0" />
+                <span>{authError}</span>
+              </div>
+            )}
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
+                Username / ID Administrator
+              </label>
+              <div className="relative">
+                <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input
+                  type="text"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="admin"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:border-[#0050AE] dark:focus:border-cyan-400"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">
+                Password / Kunci Akses
+              </label>
+              <div className="relative">
+                <KeyRound className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-800 dark:text-slate-100 focus:outline-none focus:border-[#0050AE] dark:focus:border-cyan-400"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1"
+                >
+                  {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 rounded-xl bg-gradient-brand text-white font-bold text-xs shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+            >
+              <ShieldCheck className="w-4 h-4 text-cyan-300" />
+              <span>Buka Panel Kontrol CMS</span>
+            </button>
+
+            {/* Helper Credential Box */}
+            <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+              <div className="bg-blue-50/70 dark:bg-blue-950/40 p-3 rounded-xl border border-blue-100 dark:border-blue-900/40 text-[11px] text-slate-600 dark:text-slate-300 space-y-1.5">
+                <div className="font-bold text-[#0050AE] dark:text-cyan-400 flex items-center justify-between">
+                  <span>Kredensial Bawaan:</span>
+                  <button
+                    type="button"
+                    onClick={autofillDemoCredentials}
+                    className="text-[10px] text-blue-600 dark:text-cyan-300 underline font-semibold hover:text-blue-800"
+                  >
+                    Klik Isi Otomatis
+                  </button>
+                </div>
+                <div className="flex justify-between font-mono text-[10px]">
+                  <span>User: <strong className="text-slate-800 dark:text-white">admin</strong></span>
+                  <span>Pass: <strong className="text-slate-800 dark:text-white">admin123</strong></span>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
+      ) : (
+        /* Authenticated Main CMS Container */
+        <div className="relative z-10 w-full max-w-6xl bg-white dark:bg-[#0B1F3A] rounded-3xl border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+          {/* Top Header */}
+          <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-[#081522]/90">
+            <div className="flex items-center space-x-3">
+              <div className="p-2.5 rounded-2xl bg-[#0050AE] text-white shadow-sm">
+                <Layers className="w-6 h-6" />
+              </div>
+              <div>
+                <div className="flex items-center space-x-2">
+                  <h2 className="text-lg sm:text-xl font-bold text-[#002D62] dark:text-white">
+                    MNK Corporate CMS & Web Manager
+                  </h2>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold flex items-center space-x-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>TERAUTENTIKASI</span>
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Kelola konten proyek, layanan, direktori logo klien, dan tinjau pesan masuk secara real-time
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={handleLogout}
+                className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 text-xs font-bold text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors"
+                title="Keluar dari sesi CMS"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
 
         {/* Tab Switcher & Metrics Summary */}
         <div className="px-6 pt-4 pb-2 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1F3A] flex flex-wrap items-center justify-between gap-4">
@@ -883,7 +1042,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
 
         {/* Modal Footer */}
         <div className="p-4 bg-slate-50 dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500">
-          <span className="font-mono">
+          <span>
             Perubahan otomatis tersimpan di LocalStorage browser ini
           </span>
           <button
@@ -894,6 +1053,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
           </button>
         </div>
       </div>
+      )}
     </div>
   );
 };

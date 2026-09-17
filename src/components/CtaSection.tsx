@@ -28,11 +28,11 @@ export const CtaSection: React.FC<CtaSectionProps> = ({
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
               {lang === 'en' ? (
                 <>
-                  Let’s Build Your Next <span className="text-[#FFB800]">Digital Infrastructure</span>
+                  Let’s Build Your Next <span className="text-gradient-gold">Digital Infrastructure</span>
                 </>
               ) : (
                 <>
-                  Wujudkan Keandalan <span className="text-[#FFB800]">Infrastruktur Digital</span> Anda
+                  Wujudkan Keandalan <span className="text-gradient-gold">Infrastruktur Digital</span> Anda
                 </>
               )}
             </h2>

@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({
                   {lang === 'en' ? 'Infrastructure' : 'Komunikasi'}
                 </span>
               </h1>
-              <div className="mt-2 text-lg sm:text-xl font-bold text-gradient-ocean dark:text-gradient-cyan font-mono tracking-tight">
+              <div className="mt-2 text-lg sm:text-xl font-bold text-gradient-ocean dark:text-gradient-creative tracking-tight">
                 #BeyondInfrastructure
               </div>
             </div>
@@ -60,18 +60,18 @@ export const Hero: React.FC<HeroProps> = ({
                 : "Solusi Teknologi Terpadu: Arsitektur Jaringan Enterprise, Internet Satelit Kapal (VSAT), Keamanan Siber Fortinet NSE 7, Telemetri IoT Industri, CCTV AI, dan Rekayasa Perangkat Lunak Strategis."}
             </p>
 
-            {/* Pill-shaped Action Buttons with Soft Shadows */}
+            {/* Pill-shaped Action Buttons with Soft Shadows & Gradients */}
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={onOpenConsultation}
-                className="px-7 py-3 rounded-full bg-[#0050AE] hover:bg-[#004294] text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200"
+                className="px-7 py-3 rounded-full bg-gradient-brand hover:opacity-95 text-white font-bold text-sm shadow-md hover:shadow-cyan-500/20 transition-all duration-200"
               >
                 {lang === 'en' ? 'Get Consultation' : 'Konsultasi Teknis'}
               </button>
 
               <button
                 onClick={onExploreProjects}
-                className="px-6 py-3 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-700 hover:border-slate-300 transition-colors"
+                className="px-6 py-3 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#0050AE] dark:hover:text-cyan-300 border border-slate-200 dark:border-slate-700 hover:border-[#0050AE] transition-colors"
               >
                 {lang === 'en' ? 'Explore Flagship Projects →' : 'Jelajahi Portofolio →'}
               </button>

@@ -49,10 +49,10 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-mono font-bold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'ABOUT MAUDY NETWORK KOMUNIKASI' : 'TENTANG MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
                 Engineered for <span className="text-gradient-ocean dark:text-gradient-creative">Reliability</span>, Secured by{' '}
@@ -242,9 +242,9 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
             {milestones.map((m, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 transition-all shadow-xs hover:shadow-md"
+                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 gradient-border-top transition-all shadow-xs hover:shadow-md"
               >
-                <div className="text-2xl font-mono font-black text-[#0050AE] dark:text-cyan-400 mb-2">
+                <div className="text-2xl font-bold tracking-tight text-gradient-creative mb-2">
                   {m.year}
                 </div>
                 <h4 className="text-sm font-bold text-[#002D62] dark:text-white mb-2">

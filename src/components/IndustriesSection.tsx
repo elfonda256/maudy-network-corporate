@@ -124,17 +124,17 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-mono font-bold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'STRATEGIC SECTORS SERVED' : 'SEKTOR INDUSTRI STRATEGIS'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Engineered for <span className="text-[#0050AE] dark:text-cyan-400">Critical Industries</span>
+                Engineered for <span className="text-gradient-ocean dark:text-gradient-creative">Critical Industries</span>
               </>
             ) : (
               <>
-                Solusi Khusus untuk <span className="text-[#0050AE] dark:text-cyan-400">Sektor Berisiko Tinggi</span>
+                Solusi Khusus untuk <span className="text-gradient-ocean dark:text-gradient-creative">Sektor Berisiko Tinggi</span>
               </>
             )}
           </h2>
@@ -158,7 +158,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                   onClick={() => setActiveIdx(idx)}
                   className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border ${
                     isSelected
-                      ? 'bg-[#0050AE] text-white border-[#0050AE] shadow-lg'
+                      ? 'bg-gradient-brand text-white border-transparent shadow-lg'
                       : 'bg-white dark:bg-[#0B1F3A]/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-300 dark:hover:border-slate-700 shadow-xs'
                   }`}
                 >
@@ -193,7 +193,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
           {/* Right: Detailed Card */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0B1F3A]/90 p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/30 shadow-xl relative overflow-hidden animate-fadeIn">
+            <div className="bg-white dark:bg-[#0B1F3A]/90 p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/30 gradient-border-top shadow-xl relative overflow-hidden animate-fadeIn">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
                 <div className="flex items-center space-x-3">
                   <div className="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-400 border border-blue-100 dark:border-blue-800">
@@ -203,7 +203,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                     <h3 className="text-xl font-bold text-[#002D62] dark:text-white">
                       {selectedIndustry.name[lang]}
                     </h3>
-                    <span className="text-xs font-mono font-bold text-[#0050AE] dark:text-cyan-400">
+                    <span className="text-xs font-bold text-[#0050AE] dark:text-cyan-400">
                       {lang === 'en' ? 'Verified Client Engagement: ' : 'Klien Strategis Terbukti: '}
                       <strong className="text-slate-900 dark:text-white">{selectedIndustry.clientRef}</strong>
                     </span>
@@ -213,7 +213,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
               {/* Delivery Scope */}
               <div className="mb-6">
-                <div className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 font-bold">
+                <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 font-bold">
                   {lang === 'en' ? 'Field-Delivered Scope:' : 'Cakupan Pekerjaan Terlaksana:'}
                 </div>
                 <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
@@ -223,7 +223,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
               {/* Features */}
               <div className="mb-8">
-                <div className="text-xs font-mono text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-bold">
+                <div className="text-xs text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-bold">
                   {lang === 'en' ? 'Architectural Highlights & Moats:' : 'Spesifikasi & Keunggulan Desain:'}
                 </div>
                 <div className="space-y-2.5">
@@ -238,7 +238,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
               {/* Footer */}
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                   {lang === 'en' ? 'Official Documentation & BAST Available' : 'Dokumen Kontrak & BAST Resmi Terlampir'}
                 </span>
                 <button
