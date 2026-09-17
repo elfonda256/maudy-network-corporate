@@ -15,11 +15,19 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
   const currentList = activeTab === 'clients' ? clientInstitutions : techPartners;
 
   return (
-    <section className="py-20 bg-slate-50 dark:bg-[#06101B] border-y border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 bg-slate-50/70 dark:bg-[#06101B]/70 backdrop-blur-md border-y border-slate-200/80 dark:border-slate-800/80 transition-colors overflow-hidden">
+      {/* Decorative High-Tech Corner Crosshairs */}
+      <div className="absolute top-4 left-6 text-slate-400/40 dark:text-cyan-400/20 text-[10px] font-mono select-none">
+        ┌ CLIENT_REGISTRY: BUMN_TIER_1 ┐
+      </div>
+      <div className="absolute top-4 right-6 text-slate-400/40 dark:text-cyan-400/20 text-[10px] font-mono select-none">
+        ┌ STATUS: VERIFIED_ENGAGEMENTS ┐
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
             <span>
               {lang === 'en'
                 ? 'VERIFIED CLIENT ENGAGEMENTS & OEM PARTNERS'
@@ -46,7 +54,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
 
         {/* Tab Switcher */}
         <div className="flex justify-center mb-8">
-          <div className="inline-flex p-1 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs text-xs font-semibold">
+          <div className="inline-flex p-1 rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-sm text-xs font-semibold">
             <button
               onClick={() => setActiveTab('clients')}
               className={`px-4 py-2 rounded-lg transition-all flex items-center space-x-2 ${
@@ -72,12 +80,12 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Clean Corporate Directory Grid */}
+        {/* Clean Corporate Directory Grid with Interactive Hover Lift */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {currentList.map((item, idx) => (
             <div
               key={idx}
-              className="bg-white dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-red-500/50 gradient-border-top shadow-xs hover:shadow-md transition-all duration-200 flex flex-col justify-between"
+              className="bg-white/90 dark:bg-[#0B1F3A]/80 backdrop-blur-sm p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-red-500/50 gradient-border-top shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-start justify-between gap-3 mb-3">

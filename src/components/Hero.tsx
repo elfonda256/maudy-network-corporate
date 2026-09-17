@@ -30,8 +30,16 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const [activeDevice, setActiveDevice] = useState<'both' | 'bot' | 'molinar'>('both');
   return (
-    <section className="relative pt-32 sm:pt-36 pb-16 lg:pb-24 overflow-hidden bg-white dark:bg-[#081522] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative pt-32 sm:pt-36 pb-16 lg:pb-24 overflow-hidden bg-transparent transition-colors">
+      {/* Floating High-Tech Top Badge */}
+      <div className="absolute top-28 right-8 lg:right-16 hidden xl:flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-lg text-[11px] font-tech text-slate-700 dark:text-slate-200 animate-float-slow z-20">
+        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span className="font-bold text-slate-800 dark:text-white">NOC STATUS:</span>
+        <span className="text-red-600 dark:text-cyan-400 font-bold">24/7 OPERATIONAL</span>
+        <span className="text-slate-400">• SLA 99.98%</span>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Breadcrumb Trail (Mandiri Style) */}
         <div className="flex items-center space-x-2 text-xs text-slate-400 dark:text-slate-500 mb-8 font-medium">
           <a href="#" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Home</a>
@@ -50,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Left Column (Clean Corporate Typography & Brand CTA) */}
           <div className="lg:col-span-6 space-y-6">
             <div>
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill mb-4 border border-red-500/20 text-xs font-tech font-bold text-red-600 dark:text-red-400">
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill mb-4 border border-red-500/20 text-xs font-tech font-bold text-red-600 dark:text-red-400 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                 <span>MISSION-CRITICAL ENTERPRISE INFRASTRUCTURE</span>
               </div>
@@ -76,22 +84,22 @@ export const Hero: React.FC<HeroProps> = ({
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={onOpenConsultation}
-                className="px-7 py-3 rounded-full bg-gradient-brand hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-red-600/20 hover:shadow-red-600/30 transition-all duration-200"
+                className="px-7 py-3 rounded-full bg-gradient-brand hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-red-600/25 hover:shadow-red-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
               >
                 {lang === 'en' ? 'Get Technical Consultation' : 'Konsultasi Teknis'}
               </button>
 
               <button
                 onClick={onExploreProjects}
-                className="px-6 py-3 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-[#0050AE] dark:hover:text-cyan-300 border border-slate-300 dark:border-slate-700 hover:border-red-500 transition-colors"
+                className="px-6 py-3 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-cyan-300 border border-slate-300 dark:border-slate-700 hover:border-red-500 hover:-translate-y-0.5 active:translate-y-0 bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm transition-all"
               >
                 {lang === 'en' ? 'Explore Flagship Projects →' : 'Jelajahi Portofolio →'}
               </button>
             </div>
 
-            {/* Soft, Harmonious Badges */}
+            {/* Interactive Animated Badges */}
             <div className="pt-4 flex flex-wrap items-center gap-2.5">
-              <div className="px-3.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs">
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-blue-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
                 <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-cyan-400" />
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">CERTIFIED</span>
@@ -99,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs">
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-red-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
                 <Lock className="w-4 h-4 text-red-600 dark:text-red-400" />
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">SECURITY</span>
@@ -107,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs">
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">NATIONAL</span>

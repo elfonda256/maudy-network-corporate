@@ -39,20 +39,20 @@ export const StatsBar: React.FC<StatsBarProps> = ({ lang }) => {
 
   return (
     <section className="relative z-20 -mt-8 sm:-mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white dark:bg-[#0B1F3A]/95 rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-200 dark:border-cyan-500/20 gradient-border-top transition-colors">
+      <div className="bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl border border-slate-200/90 dark:border-blue-500/20 gradient-border-top transition-all">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 dark:divide-slate-800">
           {stats.map((stat, idx) => {
             const Icon = stat.icon;
             return (
               <div
                 key={idx}
-                className={`pt-4 sm:pt-0 ${idx > 0 ? 'sm:pl-6 lg:pl-8' : ''} flex flex-col justify-between`}
+                className={`pt-4 sm:pt-0 ${idx > 0 ? 'sm:pl-6 lg:pl-8' : ''} flex flex-col justify-between group cursor-default transition-all duration-300 hover:-translate-y-1`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl sm:text-4xl font-extrabold font-tech tracking-tight text-gradient-brand">
+                  <span className="text-3xl sm:text-4xl font-extrabold font-tech tracking-tight text-gradient-brand group-hover:scale-105 transition-transform origin-left">
                     {stat.value}
                   </span>
-                  <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/50">
+                  <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/50 group-hover:border-red-500/50 group-hover:scale-110 transition-all duration-300">
                     <Icon className={`w-5 h-5 ${stat.color}`} />
                   </div>
                 </div>

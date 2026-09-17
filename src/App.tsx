@@ -18,6 +18,7 @@ import { ConsultationModal } from './components/ConsultationModal';
 import { GovernanceDrawer } from './components/GovernanceDrawer';
 import { FloatingActions } from './components/FloatingActions';
 import { AdminPanel } from './components/AdminPanel';
+import { AtmosphericBackground } from './components/AtmosphericBackground';
 import { CmsProvider } from './context/CmsContext';
 
 function AppContent() {
@@ -43,7 +44,10 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#081522] text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors selection:bg-[#0050AE] selection:text-white">
+    <div className="relative min-h-screen text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors selection:bg-red-600 selection:text-white overflow-x-hidden">
+      {/* Interactive Atmospheric Background with Cyber Grids and Glow Orbs */}
+      <AtmosphericBackground />
+
       {/* Sticky Enterprise Navigation Bar with Top Utility Micro-Bar */}
       <Navbar
         lang={lang}
@@ -55,9 +59,9 @@ function AppContent() {
         onOpenAdmin={() => setAdminOpen(true)}
       />
 
-      {/* Main Content Sections */}
-      <main className="flex-grow">
-        {/* Fullscreen Hero Section (Bank Mandiri Livin' Style) */}
+      {/* Main Content Sections with Relative Z-Index */}
+      <main className="relative z-10 flex-grow">
+        {/* Fullscreen Hero Section */}
         <Hero
           lang={lang}
           onOpenConsultation={() => setConsultationOpen(true)}

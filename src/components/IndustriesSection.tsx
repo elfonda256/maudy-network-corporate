@@ -120,25 +120,34 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
   const ActiveIcon = selectedIndustry.icon;
 
   return (
-    <section id="industries" className="py-24 bg-slate-50 dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="industries" className="py-24 bg-slate-50/60 dark:bg-[#06101B]/60 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+      {/* Top Animated Beam Sweep Divider */}
+      <div className="beam-divider opacity-60 mb-12"></div>
+
+      {/* Decorative High-Tech Background Watermark */}
+      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
+        [SECTOR_MATRIX // CRITICAL_INFRASTRUCTURE_V2]
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
             <span>{lang === 'en' ? 'STRATEGIC SECTORS SERVED' : 'SEKTOR INDUSTRI STRATEGIS'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Engineered for <span className="text-gradient-ocean dark:text-gradient-creative">Critical Industries</span>
+                Engineered for <span className="text-gradient-brand">Critical Industries</span>
               </>
             ) : (
               <>
-                Solusi Khusus untuk <span className="text-gradient-ocean dark:text-gradient-creative">Sektor Berisiko Tinggi</span>
+                Solusi Khusus untuk <span className="text-gradient-brand">Sektor Berisiko Tinggi</span>
               </>
             )}
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
               ? 'Our field-proven architectures meet the rigorous demands of national infrastructure, offshore exploration, and ministerial governance.'
               : 'Arsitektur kami dirancang khusus menjawab standar ketat infrastruktur nasional, pelayaran lepas pantai, dan kementerian negara.'}
@@ -158,8 +167,8 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                   onClick={() => setActiveIdx(idx)}
                   className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border ${
                     isSelected
-                      ? 'bg-gradient-brand text-white border-transparent shadow-lg'
-                      : 'bg-white dark:bg-[#0B1F3A]/60 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-300 dark:hover:border-slate-700 shadow-xs'
+                      ? 'bg-gradient-brand text-white border-transparent shadow-lg shadow-red-500/15 scale-[1.02]'
+                      : 'bg-white/80 dark:bg-[#0B1F3A]/60 backdrop-blur-sm border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-red-400/50 dark:hover:border-slate-700 shadow-xs hover:translate-x-1'
                   }`}
                 >
                   <div className="flex items-center space-x-3.5">
@@ -167,7 +176,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                       className={`p-2.5 rounded-xl ${
                         isSelected
                           ? 'bg-white/20 text-white'
-                          : 'bg-blue-50 dark:bg-slate-900 text-[#0050AE] dark:text-cyan-400'
+                          : 'bg-slate-100 dark:bg-slate-900 text-red-600 dark:text-cyan-400'
                       }`}
                     >
                       <Icon className="w-5 h-5" />
@@ -193,19 +202,19 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
           {/* Right: Detailed Card */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0B1F3A]/90 p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/30 gradient-border-top shadow-xl relative overflow-hidden animate-fadeIn">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
+            <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl p-8 rounded-3xl border border-slate-200/80 dark:border-cyan-500/30 gradient-border-top shadow-xl relative overflow-hidden animate-fadeIn">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800/80">
                 <div className="flex items-center space-x-3">
-                  <div className="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-400 border border-blue-100 dark:border-blue-800">
+                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-blue-900/30 text-red-600 dark:text-cyan-400 border border-slate-200 dark:border-blue-800">
                     <ActiveIcon className="w-7 h-7" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-[#002D62] dark:text-white">
                       {selectedIndustry.name[lang]}
                     </h3>
-                    <span className="text-xs font-bold text-[#0050AE] dark:text-cyan-400">
-                      {lang === 'en' ? 'Verified Client Engagement: ' : 'Klien Strategis Terbukti: '}
-                      <strong className="text-slate-900 dark:text-white">{selectedIndustry.clientRef}</strong>
+                    <span className="text-xs font-bold text-red-600 dark:text-cyan-400 font-tech">
+                      {lang === 'en' ? 'VERIFIED CLIENT ENGAGEMENT: ' : 'KLIEN STRATEGIS TERBUKTI: '}
+                      <strong className="text-[#002D62] dark:text-white font-sans">{selectedIndustry.clientRef}</strong>
                     </span>
                   </div>
                 </div>
@@ -213,23 +222,23 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
               {/* Delivery Scope */}
               <div className="mb-6">
-                <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 font-bold">
+                <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 font-tech font-bold">
                   {lang === 'en' ? 'Field-Delivered Scope:' : 'Cakupan Pekerjaan Terlaksana:'}
                 </div>
-                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal bg-slate-50/80 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
                   {selectedIndustry.delivered[lang]}
                 </p>
               </div>
 
               {/* Features */}
               <div className="mb-8">
-                <div className="text-xs text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-bold">
+                <div className="text-xs text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-tech font-bold">
                   {lang === 'en' ? 'Architectural Highlights & Moats:' : 'Spesifikasi & Keunggulan Desain:'}
                 </div>
                 <div className="space-y-2.5">
                   {selectedIndustry.keyFeatures.map((feat, fIdx) => (
                     <div key={fIdx} className="flex items-center space-x-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                      <CheckCircle className="w-4 h-4 text-[#0050AE] dark:text-cyan-400 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-cyan-400 flex-shrink-0" />
                       <span>{feat[lang]}</span>
                     </div>
                   ))}
@@ -243,7 +252,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                 </span>
                 <button
                   onClick={onExploreProjects}
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 dark:bg-blue-600/30 text-[#0050AE] dark:text-cyan-300 text-xs font-bold transition-colors"
+                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-blue-600/30 text-[#0050AE] dark:text-cyan-300 text-xs font-bold transition-all hover:scale-105"
                 >
                   <span>{lang === 'en' ? 'View Case Studies' : 'Lihat Portofolio Sektor'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

@@ -45,8 +45,13 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
   ];
 
   return (
-    <section id="about" className="py-24 bg-white dark:bg-[#081522] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="relative py-24 bg-transparent transition-colors overflow-hidden">
+      {/* Decorative High-Tech Circuit Accent */}
+      <div className="absolute top-10 right-10 text-slate-400/30 dark:text-cyan-400/20 text-xs font-mono font-bold select-none">
+        [SYS_CORE: MNK_HQ_SEMARANG]
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
@@ -242,12 +247,12 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
             {milestones.map((m, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-red-500/50 gradient-border-top transition-all shadow-xs hover:shadow-md"
+                className="bg-white/85 dark:bg-[#0B1F3A]/75 backdrop-blur-sm p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-red-500/50 gradient-border-top transition-all duration-300 shadow-xs hover:shadow-xl hover:-translate-y-2 group cursor-default"
               >
-                <div className="text-2xl font-extrabold font-tech tracking-tight text-gradient-brand mb-2">
+                <div className="text-2xl font-extrabold font-tech tracking-tight text-gradient-brand mb-2 group-hover:scale-105 transition-transform origin-left">
                   {m.year}
                 </div>
-                <h4 className="text-sm font-bold text-[#002D62] dark:text-white mb-2">
+                <h4 className="text-sm font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-red-600 dark:group-hover:text-cyan-400 transition-colors">
                   {m.title[lang]}
                 </h4>
                 <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">

@@ -106,25 +106,34 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
   const StepIcon = currentStep.icon;
 
   return (
-    <section id="process" className="py-24 bg-slate-50 dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="process" className="py-24 bg-slate-50/60 dark:bg-[#06101B]/60 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+      {/* Top Animated Beam Sweep Divider */}
+      <div className="beam-divider opacity-60 mb-12"></div>
+
+      {/* Decorative High-Tech Background Watermark */}
+      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
+        [FRAMEWORK: 8_STAGE_METHODOLOGY_PIPELINE // AUDITED]
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-semibold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
             <span>{lang === 'en' ? 'ENGINEERING METHODOLOGY' : 'METODOLOGI PEKERJAAN MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                The 8-Stage <span className="text-[#0050AE] dark:text-cyan-400">Infrastructure Delivery</span> Lifecycle
+                The 8-Stage <span className="text-gradient-brand">Infrastructure Delivery</span> Lifecycle
               </>
             ) : (
               <>
-                8 Tahapan <span className="text-[#0050AE] dark:text-cyan-400">Eksekusi Proyek</span> Berstandar Industri
+                8 Tahapan <span className="text-gradient-brand">Eksekusi Proyek</span> Berstandar Industri
               </>
             )}
           </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
               ? 'A disciplined engineering process from initial conceptualization to formal ministerial BAST sign-off and 24/7 proactive surveillance.'
               : 'Alur kerja terstruktur dan disiplin tinggi dari tahap asesmen awal hingga serah terima resmi BAST dan pemantauan 24/7.'}
@@ -142,12 +151,12 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
                 onClick={() => setSelectedStep(idx)}
                 className={`p-3 rounded-2xl text-left transition-all border flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-[#0050AE] text-white border-[#0050AE] shadow-md'
-                    : 'bg-white dark:bg-[#0B1F3A]/50 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-blue-300'
+                    ? 'bg-gradient-brand text-white border-transparent shadow-lg shadow-red-500/20 scale-105'
+                    : 'bg-white/80 dark:bg-[#0B1F3A]/60 backdrop-blur-sm border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-red-400/40 hover:scale-102'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`text-xs font-mono font-bold ${isSelected ? 'text-blue-100' : 'text-[#0050AE] dark:text-cyan-400'}`}>
+                  <span className={`text-xs font-tech font-bold ${isSelected ? 'text-white' : 'text-red-600 dark:text-cyan-400'}`}>
                     {step.num}
                   </span>
                   <Icon
@@ -165,17 +174,17 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
         </div>
 
         {/* Selected Step Card */}
-        <div className="bg-white dark:bg-[#0B1F3A]/90 rounded-3xl border border-slate-200 dark:border-cyan-500/30 p-6 sm:p-8 max-w-4xl mx-auto shadow-lg animate-fadeIn">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800">
+        <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl rounded-3xl border border-slate-200/80 dark:border-cyan-500/30 gradient-border-top p-6 sm:p-8 max-w-4xl mx-auto shadow-2xl relative overflow-hidden animate-fadeIn">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800/80">
             <div className="flex items-center space-x-4">
-              <div className="p-3.5 rounded-2xl bg-blue-50 dark:bg-cyan-500/15 border border-blue-100 dark:border-cyan-500/30 text-[#0050AE] dark:text-cyan-400">
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-cyan-500/15 border border-slate-200 dark:border-cyan-500/30 text-red-600 dark:text-cyan-400 shadow-xs">
                 <StepIcon className="w-8 h-8" />
               </div>
               <div>
-                <div className="text-xs font-mono text-[#0050AE] dark:text-cyan-400 font-bold uppercase">
+                <div className="text-xs font-tech text-red-600 dark:text-cyan-400 font-bold uppercase tracking-wider">
                   {lang === 'en' ? `Stage ${currentStep.num} Execution` : `Tahap ${currentStep.num}`}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#002D62] dark:text-white mt-0.5">
+                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002D62] dark:text-white mt-0.5">
                   {currentStep.title[lang]}
                 </h3>
               </div>

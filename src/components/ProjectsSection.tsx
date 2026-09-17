@@ -32,11 +32,20 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       : projects.filter((p) => p.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 bg-white dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-24 bg-transparent relative overflow-hidden transition-colors">
+      {/* Top Animated Beam Sweep Divider */}
+      <div className="beam-divider opacity-60 mb-12"></div>
+
+      {/* Decorative High-Tech Background Watermark */}
+      <div className="absolute top-12 left-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
+        [ENGAGEMENTS: BUMN_AND_MINISTRIES_ARCHIVE // TIER_1]
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
             <span>{lang === 'en' ? 'PROVEN FIELD EXECUTION' : 'PORTOFOLIO PEKERJAAN STRATEGIS'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
@@ -50,7 +59,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </>
             )}
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
               ? 'Real-world deployments across Pertamina oceanic tankers, 22-floor ministerial complexes, national irrigation dams, and enterprise command centers.'
               : 'Implementasi nyata di kapal tanker Pertamina, menara 22 lantai kementerian, bendungan irigasi nasional, hingga ruang kendali eksekutif.'}
@@ -65,8 +74,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-brand text-white shadow-md shadow-red-500/20'
-                  : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-800'
+                  ? 'bg-gradient-brand text-white shadow-md shadow-red-500/20 scale-105'
+                  : 'bg-white/70 dark:bg-slate-900/80 backdrop-blur-sm text-slate-600 dark:text-slate-400 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-800 hover:scale-102'
               }`}
             >
               {cat.label[lang]}
@@ -76,11 +85,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredProjects.map((project) => (
+          {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
               onClick={() => setActiveProject(project)}
-              className="bg-white dark:bg-[#0B1F3A]/70 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-red-500/60 dark:hover:border-red-500/60 gradient-border-top shadow-sm hover:shadow-xl hover:shadow-red-500/5 cursor-pointer flex flex-col justify-between transition-all duration-300 group"
+              className="interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl cursor-pointer flex flex-col justify-between transition-all duration-300 group relative"
             >
               <div>
                 {/* Image Container */}
@@ -88,13 +97,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
                   {/* Client Tag */}
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-white/95 dark:bg-slate-950/85 text-[#0050AE] dark:text-cyan-300 shadow">
+                    <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-white/95 dark:bg-slate-950/90 text-[#0050AE] dark:text-cyan-300 shadow-md backdrop-blur-sm">
                       {project.client}
                     </span>
                   </div>
@@ -102,7 +111,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   {/* Verified ref tag */}
                   {project.documentRef && (
                     <div className="absolute top-3 right-3">
-                      <span className="p-1.5 rounded-md bg-emerald-600 text-white flex items-center text-[10px] shadow">
+                      <span className="p-1.5 rounded-md bg-emerald-600/90 text-white flex items-center text-[10px] shadow-md backdrop-blur-sm">
                         <FileCheck className="w-3 h-3" />
                       </span>
                     </div>
@@ -113,6 +122,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     <MapPin className="w-3 h-3 mr-1 text-red-400 dark:text-cyan-400" />
                     <span className="line-clamp-1">{project.location}</span>
                   </div>
+
+                  {/* Index badge */}
+                  <div className="absolute bottom-2.5 right-3 text-[9px] font-tech text-white/60">
+                    PRJ_0{idx + 1}
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -121,16 +135,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-normal mb-4 line-clamp-3">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-4 line-clamp-3">
                     {project.summary[lang]}
                   </p>
 
                   {/* Key Tech tags */}
                   <div className="flex flex-wrap gap-1 mb-2">
-                    {project.technologies.slice(0, 3).map((tech, idx) => (
+                    {project.technologies.slice(0, 3).map((tech, tIdx) => (
                       <span
-                        key={idx}
-                        className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800"
+                        key={tIdx}
+                        className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800"
                       >
                         {tech}
                       </span>
@@ -145,7 +159,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </div>
 
               {/* Card Footer */}
-              <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-[#081522]/40 flex items-center justify-between text-xs font-bold text-red-600 dark:text-cyan-400 group-hover:text-[#0050AE] transition-colors">
+              <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-[#081522]/60 flex items-center justify-between text-xs font-bold text-red-600 dark:text-cyan-400 group-hover:text-[#0050AE] transition-colors">
                 <span>{lang === 'en' ? 'Deep-Dive Case Study' : 'Detail Studi Kasus'}</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

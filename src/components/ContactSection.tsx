@@ -44,11 +44,20 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-50 dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-transparent relative overflow-hidden transition-colors">
+      {/* Top Animated Beam Sweep Divider */}
+      <div className="beam-divider opacity-60 mb-12"></div>
+
+      {/* Decorative High-Tech Background Watermark */}
+      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
+        [COMMUNICATION: ENCRYPTED_NOC_DISPATCH // SEMARANG_HQ]
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold mb-3 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
             <span>{lang === 'en' ? 'DIRECT TECHNICAL DIALOGUE' : 'HUBUNGI KAMI'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
@@ -62,7 +71,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
               </>
             )}
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base">
+          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
               ? 'Connect directly with our senior network architects and engineering directors for technical evaluation and quotation.'
               : 'Hubungi kami untuk konsultasi teknis, survei lokasi, dan evaluasi jaringan korporat Anda.'}
@@ -72,9 +81,9 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           {/* Left: Contact Info & Map */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-white dark:bg-[#0B1F3A]/80 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-6">
-              <h3 className="text-base font-bold text-[#002D62] dark:text-white font-mono uppercase tracking-wider flex items-center">
-                <Building className="w-4 h-4 mr-2 text-[#0050AE] dark:text-cyan-400" />
+            <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xl space-y-6">
+              <h3 className="text-base font-bold text-[#002D62] dark:text-white font-tech uppercase tracking-wider flex items-center">
+                <Building className="w-4 h-4 mr-2 text-red-600 dark:text-cyan-400" />
                 <span>{lang === 'en' ? 'Headquarters & NOC Center' : 'Kantor Pusat & Pusat NOC'}</span>
               </h3>
 
@@ -169,20 +178,20 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
           {/* Right: Technical Consultation Request Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0B1F3A]/80 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 gradient-border-top shadow-md">
+            <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 gradient-border-top shadow-2xl relative overflow-hidden">
               <h3 className="text-lg font-bold text-[#002D62] dark:text-white mb-2 flex items-center space-x-2">
                 <ShieldCheck className="w-5 h-5 text-red-600 dark:text-cyan-400" />
                 <span>{lang === 'en' ? 'Schedule Infrastructure Consultation' : 'Formulir Pengajuan Evaluasi Teknis'}</span>
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 font-normal">
+              <p className="text-xs text-slate-500 dark:text-slate-300 mb-6 font-normal">
                 {lang === 'en'
                   ? 'Provide your project requirements below. A certified lead engineer will review and respond within 2 business hours.'
                   : 'Isi spesifikasi kebutuhan Anda di bawah ini. Tim insinyur bersertifikasi kami akan merespon dalam 2 jam kerja.'}
               </p>
 
               {submitted ? (
-                <div className="p-8 text-center bg-emerald-50 dark:bg-emerald-950/30 rounded-2xl border border-emerald-200 dark:border-emerald-500/40">
-                  <CheckCircle className="w-12 h-12 text-emerald-600 dark:text-emerald-400 mx-auto mb-3" />
+                <div className="p-8 text-center bg-emerald-50/90 dark:bg-emerald-950/40 rounded-2xl border border-emerald-200 dark:border-emerald-500/40 shadow-inner">
+                  <CheckCircle className="w-12 h-12 text-emerald-600 dark:text-emerald-400 mx-auto mb-3 animate-bounce" />
                   <h4 className="text-lg font-bold text-[#002D62] dark:text-white mb-1">
                     {lang === 'en' ? 'Consultation Request Dispatched' : 'Permohonan Berhasil Dikirim'}
                   </h4>
@@ -193,7 +202,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="mt-6 px-4 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs text-[#0050AE] dark:text-cyan-300 font-bold"
+                    className="mt-6 px-5 py-2.5 rounded-xl bg-gradient-brand text-xs text-white font-bold shadow-md hover:scale-105 transition-all"
                   >
                     {lang === 'en' ? 'Submit Another Technical Brief' : 'Kirim Permintaan Baru'}
                   </button>
@@ -202,7 +211,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
                       </label>
                       <input
@@ -211,11 +220,11 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Hadi Prabowo"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Organization / Institution *' : 'Instansi / Perusahaan *'}
                       </label>
                       <input
@@ -224,14 +233,14 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                         placeholder="e.g. PT Pertamina / Kementerian"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Corporate Email *' : 'Email Kantor *'}
                       </label>
                       <input
@@ -240,11 +249,11 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="name@pertamina.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Phone / WhatsApp *' : 'Nomor WhatsApp *'}
                       </label>
                       <input
@@ -253,20 +262,20 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="+62 812-xxxx-xxxx"
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Primary Scope of Work' : 'Ruang Lingkup Kebutuhan'}
                       </label>
                       <select
                         value={formData.serviceScope}
                         onChange={(e) => setFormData({ ...formData, serviceScope: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       >
                         <option>Enterprise Network & Data Center</option>
                         <option>Marine Vessel VSAT & Satellite QoS</option>
@@ -282,13 +291,13 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                      <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                         {lang === 'en' ? 'Operational Terrain / Environment' : 'Lokasi & Medan Operasional'}
                       </label>
                       <select
                         value={formData.terrain}
                         onChange={(e) => setFormData({ ...formData, terrain: e.target.value })}
-                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                        className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                       >
                         <option>Onshore Corporate / Data Center</option>
                         <option>Offshore Maritime / Vessel Tanker</option>
@@ -300,7 +309,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono font-semibold text-slate-700 dark:text-slate-300 mb-1">
+                    <label className="block text-xs font-tech font-semibold text-slate-700 dark:text-slate-300 mb-1">
                       {lang === 'en' ? 'Technical Specifications / Project Details' : 'Keterangan Kebutuhan Teknis'}
                     </label>
                     <textarea
@@ -312,13 +321,13 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                           ? 'Describe existing infrastructure bottlenecks, number of nodes, desired timeline, or required compliance standards...'
                           : 'Jelaskan kendala jaringan saat ini, jumlah titik perangkat, estimasi waktu, atau standar kepatuhan yang dibutuhkan...'
                       }
-                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#081522] border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-[#0050AE] dark:focus:border-cyan-400 focus:outline-none"
+                      className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50/90 dark:bg-[#081522]/90 border border-slate-200/90 dark:border-slate-700 text-slate-900 dark:text-white text-xs focus:border-red-500/60 focus:ring-2 focus:ring-red-500/20 dark:focus:border-cyan-400 dark:focus:ring-cyan-400/20 focus:outline-none transition-all"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-gradient-brand hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-red-500/20 transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 rounded-xl bg-gradient-brand hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-xl shadow-red-500/20 hover:scale-[1.02] active:scale-[0.99] transition-all flex items-center justify-center space-x-2"
                   >
                     <Send className="w-4 h-4" />
                     <span>{lang === 'en' ? 'Submit Technical Consultation Request' : 'Kirim Pengajuan Konsultasi'}</span>
