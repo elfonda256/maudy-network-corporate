@@ -118,7 +118,7 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
             return (
               <div
                 key={service.id}
-                className="interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
+                className="card-3d-tilt interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl transition-all duration-300 group relative overflow-hidden"
               >
                 {/* Tech Badge */}
                 <div className="absolute top-2 right-3 text-[9px] font-tech text-slate-300 dark:text-slate-600 group-hover:text-red-500/60 dark:group-hover:text-cyan-400/60 transition-colors">

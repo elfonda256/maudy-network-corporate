@@ -355,4 +355,75 @@
   .animate-tech-ping {
     animation: techPingSlow 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
+
+  /* Infinite Smooth Marquee for Client & Partner Logos */
+  @keyframes marqueeLeft {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marqueeRight {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee-left {
+    display: flex;
+    width: max-content;
+    animation: marqueeLeft 32s linear infinite;
+  }
+  .animate-marquee-left:hover {
+    animation-play-state: paused;
+  }
+
+  .animate-marquee-right {
+    display: flex;
+    width: max-content;
+    animation: marqueeRight 32s linear infinite;
+  }
+  .animate-marquee-right:hover {
+    animation-play-state: paused;
+  }
+
+  /* 3D Card Hover Perspective & Depth */
+  .card-3d-tilt {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  .card-3d-tilt:hover {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 48px -12px rgba(220, 38, 38, 0.18), 0 16px 32px -8px rgba(0, 80, 174, 0.22);
+  }
+  .dark .card-3d-tilt:hover {
+    box-shadow: 0 24px 48px -12px rgba(0, 198, 255, 0.2), 0 16px 32px -8px rgba(220, 38, 38, 0.25);
+  }
+
+  /* Punchy Pop-Up Scale Animation */
+  @keyframes popUpSpring {
+    0% {
+      opacity: 0;
+      transform: scale(0.88) translateY(12px);
+    }
+    70% {
+      opacity: 1;
+      transform: scale(1.03) translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-pop-up {
+    animation: popUpSpring 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
 }
+

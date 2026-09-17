@@ -89,7 +89,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <div
               key={project.id}
               onClick={() => setActiveProject(project)}
-              className="interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl cursor-pointer flex flex-col justify-between transition-all duration-300 group relative"
+              className="card-3d-tilt interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl cursor-pointer flex flex-col justify-between transition-all duration-300 group relative"
             >
               <div>
                 {/* Image Container */}
