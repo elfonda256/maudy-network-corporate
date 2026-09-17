@@ -58,6 +58,16 @@ const DEFAULT_CLIENTS: ClientItem[] = [
     type: 'client',
   },
   {
+    id: 'bbws-cimancis',
+    name: "BBWS Cimanuk Cisanggarung (PUPR)",
+    category: { en: "Water Resources & Dam Telemetry", id: "Pengelolaan SDA & Telemetri Bendungan" },
+    scope: { en: "Rentang Irrigation Modernization GIS & Dam Telemetry DSS", id: "Web GIS & DSS Modernisasi Irigasi Rentang" },
+    logoFile: "bbws-cimancis.png",
+    brandColor: "#0A0A0A",
+    initials: "BBWS",
+    type: 'client',
+  },
+  {
     id: 'pupr',
     name: "Kementerian PUPR Republik Indonesia",
     category: { en: "Public Works & Water Resources", id: "Kementerian Pekerjaan Umum & SDA" },
@@ -240,7 +250,28 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [clients, setClients] = useState<ClientItem[]>(() => {
     try {
       const saved = localStorage.getItem('mnk_clients');
-      return saved ? JSON.parse(saved) : DEFAULT_CLIENTS;
+      if (saved) {
+        const parsed: ClientItem[] = JSON.parse(saved);
+        const officialLogos: Record<string, string> = {
+          'pertamina': 'pertamina.png',
+          'pertamina-shipping': 'pertamina-shipping.png',
+          'bumn': 'bumn.png',
+          'bbws-cimancis': 'bbws-cimancis.png',
+          'ruijie': 'ruijie.png',
+        };
+        const merged = DEFAULT_CLIENTS.map((def) => {
+          const match = parsed.find((p) => p.id === def.id);
+          if (!match) return def;
+          return {
+            ...match,
+            logoFile: officialLogos[def.id] || match.logoFile || def.logoFile,
+            name: match.name || def.name,
+          };
+        });
+        const customItems = parsed.filter((p) => !DEFAULT_CLIENTS.some((def) => def.id === p.id));
+        return [...merged, ...customItems];
+      }
+      return DEFAULT_CLIENTS;
     } catch {
       return DEFAULT_CLIENTS;
     }

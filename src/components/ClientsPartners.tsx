@@ -151,7 +151,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                   {/* Standardized Logo / Initials Badge */}
                   <div className="flex items-center space-x-3.5">
                     {item.logoFile && (item.logoFile.startsWith('data:image') || item.logoFile.startsWith('http') || item.logoFile.includes('.')) ? (
-                      <div className="w-13 h-13 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-1.5 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform">
+                      <div className="w-14 h-14 rounded-2xl bg-white border border-slate-200/90 dark:border-slate-700/80 p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">
                         <img
                           src={item.logoFile.startsWith('data:image') || item.logoFile.startsWith('http') || item.logoFile.startsWith('/') ? item.logoFile : `/logos/${item.logoFile}`}
                           alt={item.name}
@@ -163,7 +163,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                       </div>
                     ) : (
                       <div
-                        className="w-13 h-13 rounded-2xl flex items-center justify-center font-bold font-tech text-sm text-white shadow-sm flex-shrink-0 group-hover:scale-110 transition-transform"
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center font-bold font-tech text-sm text-white shadow-sm flex-shrink-0 group-hover:scale-105 transition-transform"
                         style={{ backgroundColor: item.brandColor }}
                       >
                         {item.initials}
@@ -222,7 +222,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
             {/* Modal Header */}
             <div className="flex items-center space-x-4 mb-6">
               {selectedClient.logoFile && (selectedClient.logoFile.startsWith('data:image') || selectedClient.logoFile.startsWith('http') || selectedClient.logoFile.includes('.')) ? (
-                <div className="w-16 h-16 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
+                <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 dark:border-slate-700 p-2 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
                   <img
                     src={selectedClient.logoFile.startsWith('data:image') || selectedClient.logoFile.startsWith('http') || selectedClient.logoFile.startsWith('/') ? selectedClient.logoFile : `/logos/${selectedClient.logoFile}`}
                     alt={selectedClient.name}
