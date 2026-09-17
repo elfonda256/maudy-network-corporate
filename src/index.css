@@ -21,8 +21,8 @@
     --card-hover-border: rgba(0, 198, 255, 0.5);
   }
 
-  html, body, input, button, select, textarea {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -31,15 +31,21 @@
   body {
     background-color: var(--bg-page);
     color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
     letter-spacing: -0.015em;
     transition: background-color 0.25s ease, color 0.25s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-family: 'Plus Jakarta Sans', 'Manrope', system-ui, sans-serif;
     letter-spacing: -0.03em;
     font-weight: 700;
+  }
+
+  code, kbd, samp, pre, .font-mono, .font-tech {
+    font-family: 'Space Grotesk', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    letter-spacing: -0.01em;
   }
 
   /* Custom scrollbar */
@@ -60,52 +66,62 @@
     background: #1E3A5F;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #0050AE;
+    background: #DC2626;
   }
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #00C6FF;
+    background: #EF4444;
   }
 }
 
 @layer utilities {
-  /* Creative Gradient Typography - Expanded Suite */
-  .text-gradient-ocean {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#0284C7] to-[#00C6FF];
+  /* Signature MNK Red - Corporate Blue - Red Gradient Suite */
+  .text-gradient-brand {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-[#0050AE] to-red-600;
+  }
+
+  .text-gradient-mnk {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#EF4444];
   }
 
   .text-gradient-creative {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#3B82F6] to-[#00C6FF];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#E11D48];
+  }
+
+  .text-gradient-ocean {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#0284C7];
   }
 
   .text-gradient-vibrant {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#7C3AED] to-[#06B6D4];
-  }
-
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#D97706] via-[#F59E0B] to-[#FFB800];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#E11D48] via-[#2563EB] to-[#DC2626];
   }
 
   .text-gradient-dark-cyan {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-[#00C6FF];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-rose-200 to-[#EF4444];
   }
 
-  /* Gradient Background Utilities */
+  /* Red - Blue - Red Gradient Backgrounds & Buttons */
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #0050AE 0%, #0284C7 50%, #002D62 100%);
+    background: linear-gradient(135deg, #DC2626 0%, #0050AE 50%, #B91C1C 100%);
   }
 
-  .bg-gradient-brand-light {
-    background: linear-gradient(135deg, rgba(0, 80, 174, 0.08) 0%, rgba(0, 198, 255, 0.08) 100%);
+  .bg-gradient-brand-smooth {
+    background: linear-gradient(135deg, #DC2626 0%, #1E5EFF 100%);
+  }
+
+  .bg-gradient-brand-subtle {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(0, 80, 174, 0.08) 50%, rgba(239, 68, 68, 0.08) 100%);
   }
 
   .bg-gradient-pill {
-    background: linear-gradient(135deg, rgba(0, 80, 174, 0.12) 0%, rgba(2, 132, 199, 0.12) 50%, rgba(0, 198, 255, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(0, 80, 174, 0.1) 50%, rgba(239, 68, 68, 0.1) 100%);
+    border: 1px solid rgba(220, 38, 38, 0.2);
   }
 
   .bg-gradient-card-hover {
-    background: linear-gradient(135deg, rgba(0, 80, 174, 0.03) 0%, rgba(0, 198, 255, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.03) 0%, rgba(0, 80, 174, 0.04) 50%, rgba(220, 38, 38, 0.03) 100%);
   }
 
+  /* Red - Blue - Red Top Accent Line for Cards */
   .gradient-border-top {
     position: relative;
   }
@@ -116,7 +132,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #0050AE 0%, #0284C7 50%, #00C6FF 100%);
+    background: linear-gradient(90deg, #DC2626 0%, #0050AE 50%, #DC2626 100%);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
   }

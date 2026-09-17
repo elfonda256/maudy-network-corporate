@@ -64,17 +64,17 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'COMPREHENSIVE CAPABILITIES' : 'LAYANAN TERPADU MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Mission-Critical <span className="text-gradient-ocean dark:text-gradient-creative">Technology Services</span>
+                Mission-Critical <span className="text-gradient-brand">Technology Services</span>
               </>
             ) : (
               <>
-                Layanan Teknologi <span className="text-gradient-ocean dark:text-gradient-creative">Infrastruktur Strategis</span>
+                Layanan Teknologi <span className="text-gradient-brand">Infrastruktur Strategis</span>
               </>
             )}
           </h2>
@@ -93,7 +93,7 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-brand text-white shadow-md shadow-blue-500/20'
+                  ? 'bg-gradient-brand text-white shadow-md shadow-red-500/20'
                   : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-800'
               }`}
             >
@@ -109,19 +109,19 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
             return (
               <div
                 key={service.id}
-                className="bg-white dark:bg-[#0B1F3A]/70 p-6 rounded-2xl flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 gradient-border-top shadow-sm hover:shadow-md transition-all duration-300 group"
+                className="bg-white dark:bg-[#0B1F3A]/70 p-6 rounded-2xl flex flex-col justify-between border border-slate-200 dark:border-slate-800 hover:border-red-500/60 dark:hover:border-red-500/60 gradient-border-top shadow-sm hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-blue-50 dark:bg-[#0B1F3A] border border-blue-100 dark:border-cyan-500/20 text-[#0050AE] dark:text-cyan-400 group-hover:scale-110 transition-all duration-300">
+                    <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-red-600 dark:text-red-400 group-hover:scale-110 group-hover:text-[#0050AE] transition-all duration-300">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 border border-blue-200 dark:border-blue-700/40 uppercase tracking-wider">
+                    <span className="text-[10px] font-tech font-bold px-2.5 py-1 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 border border-red-500/20 uppercase tracking-wider">
                       {service.category}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#002D62] dark:text-white mb-2.5 group-hover:text-gradient-ocean dark:group-hover:text-gradient-creative transition-colors">
+                  <h3 className="text-lg font-bold text-[#002D62] dark:text-white mb-2.5 group-hover:text-gradient-brand transition-colors">
                     {service.title[lang]}
                   </h3>
 
@@ -131,12 +131,12 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
 
                   {/* Key Benefits List */}
                   <div className="space-y-2 mb-5">
-                    <div className="text-[11px] text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider font-bold">
+                    <div className="text-[11px] text-[#0050AE] dark:text-cyan-400 uppercase font-tech tracking-wider font-bold">
                       {lang === 'en' ? 'Key Deliverables & Benefits:' : 'Keunggulan & Manfaat:'}
                     </div>
                     {service.benefits[lang].map((benefit, bIdx) => (
                       <div key={bIdx} className="flex items-start space-x-2 text-xs text-slate-600 dark:text-slate-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#0050AE] dark:text-cyan-400 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-red-600 dark:text-cyan-400 mt-0.5 flex-shrink-0" />
                         <span>{benefit}</span>
                       </div>
                     ))}

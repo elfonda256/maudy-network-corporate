@@ -8,6 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
+        brand: {
+          red: '#DC2626',
+          redLight: '#EF4444',
+          redDark: '#B91C1C',
+          blue: '#0050AE',
+          blueLight: '#1E5EFF',
+          cyan: '#00C6FF',
+          navy: '#002D62',
+          darkNavy: '#0B1F3A',
+          obsidian: '#081522',
+        },
         mandiri: {
           blue: '#0050AE',
           darkBlue: '#002D62',
@@ -20,6 +31,7 @@ export default {
           primary: '#0B1F3A',
           secondary: '#1E5EFF',
           accent: '#00C6FF',
+          red: '#DC2626',
           bg: '#F8FAFC',
           dark: '#081522',
           surface: '#0F2744',
@@ -31,10 +43,15 @@ export default {
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
-        display: ['Manrope', '"Plus Jakarta Sans"', 'sans-serif'],
-        mono: ['Space Grotesk', 'monospace'],
+        heading: ['"Plus Jakarta Sans"', 'Manrope', 'sans-serif'],
+        display: ['"Plus Jakarta Sans"', 'Manrope', 'sans-serif'],
+        mono: ['"Space Grotesk"', 'ui-monospace', 'monospace'],
+        tech: ['"Space Grotesk"', 'sans-serif'],
       },
       boxShadow: {
+        'brand-glow': '0 0 25px rgba(220, 38, 38, 0.2), 0 0 35px rgba(0, 80, 174, 0.25)',
+        'red-glow': '0 0 20px rgba(220, 38, 38, 0.35)',
+        'blue-glow': '0 0 20px rgba(0, 80, 174, 0.35)',
         'glow-sm': '0 0 15px rgba(0, 198, 255, 0.25)',
         'glow-md': '0 0 30px rgba(30, 94, 255, 0.35)',
         'glow-lg': '0 0 50px rgba(0, 198, 255, 0.25)',

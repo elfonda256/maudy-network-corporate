@@ -161,12 +161,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               {isDarkMode ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5 text-slate-600" />}
             </button>
 
-            {/* Golden Amber CTA Button (Mandiri Log In Style) */}
+            {/* Enterprise Red-Blue Brand Gradient CTA Button */}
             <button
               onClick={onOpenConsultation}
-              className="flex items-center space-x-1.5 px-4 py-1.5 rounded-lg bg-[#FFB800] hover:bg-[#F59E0B] text-[#002D62] font-bold text-xs shadow-sm transition-all duration-200 group"
+              className="flex items-center space-x-1.5 px-4 py-1.5 rounded-lg bg-gradient-brand hover:opacity-95 text-white font-bold text-xs shadow-md shadow-red-500/20 transition-all duration-200 group"
             >
-              <Lock className="w-3 h-3 text-[#002D62]" />
+              <Lock className="w-3 h-3 text-white/90" />
               <span>{lang === 'en' ? 'Consultation' : 'Konsultasi'}</span>
               <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
             </button>
@@ -259,7 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="w-full py-2.5 rounded-lg bg-[#FFB800] text-[#002D62] font-bold text-sm shadow"
+              className="w-full py-2.5 rounded-lg bg-gradient-brand text-white font-bold text-sm shadow-md"
             >
               {lang === 'en' ? 'Get Technical Consultation' : 'Mulai Konsultasi'}
             </button>

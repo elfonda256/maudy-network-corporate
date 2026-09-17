@@ -33,7 +33,7 @@ export const StatsBar: React.FC<StatsBarProps> = ({ lang }) => {
       label: { en: 'Global Tier-1 Certifications', id: 'Sertifikasi Global Tingkat Elit' },
       detail: { en: 'Cisco CCNP, Fortinet NSE 7, MikroTik MTCINE', id: 'Cisco CCNP, Fortinet NSE 7, MTCINE' },
       icon: Award,
-      color: 'text-[#FFB800] dark:text-amber-400',
+      color: 'text-red-600 dark:text-red-400',
     },
   ];
 
@@ -49,7 +49,7 @@ export const StatsBar: React.FC<StatsBarProps> = ({ lang }) => {
                 className={`pt-4 sm:pt-0 ${idx > 0 ? 'sm:pl-6 lg:pl-8' : ''} flex flex-col justify-between`}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-gradient-ocean dark:text-gradient-creative">
+                  <span className="text-3xl sm:text-4xl font-extrabold font-tech tracking-tight text-gradient-brand">
                     {stat.value}
                   </span>
                   <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700/50">

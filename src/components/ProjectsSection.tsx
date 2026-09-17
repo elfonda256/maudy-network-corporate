@@ -36,17 +36,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'PROVEN FIELD EXECUTION' : 'PORTOFOLIO PEKERJAAN STRATEGIS'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Mission-Critical <span className="text-gradient-ocean dark:text-gradient-creative">Project Showcase</span>
+                Mission-Critical <span className="text-gradient-brand">Project Showcase</span>
               </>
             ) : (
               <>
-                Studi Kasus & <span className="text-gradient-ocean dark:text-gradient-creative">Rekam Jejak Eksekusi</span>
+                Studi Kasus & <span className="text-gradient-brand">Rekam Jejak Eksekusi</span>
               </>
             )}
           </h2>
@@ -65,7 +65,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-brand text-white shadow-md shadow-blue-500/20'
+                  ? 'bg-gradient-brand text-white shadow-md shadow-red-500/20'
                   : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:text-[#0050AE] dark:hover:text-white border border-slate-200 dark:border-slate-800'
               }`}
             >
@@ -80,7 +80,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <div
               key={project.id}
               onClick={() => setActiveProject(project)}
-              className="bg-white dark:bg-[#0B1F3A]/70 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/50 gradient-border-top shadow-sm hover:shadow-xl cursor-pointer flex flex-col justify-between transition-all duration-300 group"
+              className="bg-white dark:bg-[#0B1F3A]/70 rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-red-500/60 dark:hover:border-red-500/60 gradient-border-top shadow-sm hover:shadow-xl hover:shadow-red-500/5 cursor-pointer flex flex-col justify-between transition-all duration-300 group"
             >
               <div>
                 {/* Image Container */}
@@ -110,14 +110,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                   {/* Location badge */}
                   <div className="absolute bottom-2.5 left-3 flex items-center text-[11px] font-medium text-white">
-                    <MapPin className="w-3 h-3 mr-1 text-[#FFB800] dark:text-cyan-400" />
+                    <MapPin className="w-3 h-3 mr-1 text-red-400 dark:text-cyan-400" />
                     <span className="line-clamp-1">{project.location}</span>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="p-5">
-                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-gradient-ocean dark:group-hover:text-gradient-creative transition-colors line-clamp-2">
+                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-gradient-brand transition-colors line-clamp-2">
                     {project.title}
                   </h3>
 
@@ -136,7 +136,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-[10px] px-1.5 py-0.5 text-[#0050AE] dark:text-cyan-400 font-bold">
+                      <span className="text-[10px] px-1.5 py-0.5 text-red-600 dark:text-cyan-400 font-bold font-tech">
                         +{project.technologies.length - 3}
                       </span>
                     )}
@@ -145,7 +145,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </div>
 
               {/* Card Footer */}
-              <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-[#081522]/40 flex items-center justify-between text-xs font-bold text-[#0050AE] dark:text-cyan-400 group-hover:text-blue-700 transition-colors">
+              <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-[#081522]/40 flex items-center justify-between text-xs font-bold text-red-600 dark:text-cyan-400 group-hover:text-[#0050AE] transition-colors">
                 <span>{lang === 'en' ? 'Deep-Dive Case Study' : 'Detail Studi Kasus'}</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

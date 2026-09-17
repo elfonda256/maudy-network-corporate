@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-slate-100 dark:bg-[#050B14] border-t border-slate-200 dark:border-slate-800 pt-16 pb-12 text-slate-600 dark:text-slate-400 text-xs transition-colors">
+    <footer className="relative bg-slate-100 dark:bg-[#050B14] border-t border-slate-200 dark:border-slate-800 gradient-border-top pt-16 pb-12 text-slate-600 dark:text-slate-400 text-xs transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200 dark:border-slate-800">
@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({
                 : 'PT. Maudy Network Komunikasi (MNK) adalah penyedia solusi IT infrastruktur, jaringan satelit kapal, dan IoT telemetri industri berkeandalan tinggi di seluruh Indonesia.'}
             </p>
 
-            <div className="pt-2 flex items-center space-x-2 text-[#0050AE] dark:text-cyan-400 font-mono text-[11px] font-bold">
+            <div className="pt-2 flex items-center space-x-2 text-red-600 dark:text-cyan-400 font-tech text-[11px] font-bold">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>24/7/365 NOC CENTER ACTIVE</span>
             </div>
@@ -44,9 +44,9 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="pt-2">
               <button
                 onClick={onOpenCredentials}
-                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 text-[#0050AE] dark:text-cyan-300 transition-colors text-[11px] font-mono font-bold shadow-xs"
+                className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 text-red-600 dark:text-cyan-300 transition-colors text-[11px] font-tech font-bold shadow-xs"
               >
-                <FileCheck className="w-3.5 h-3.5 text-[#0050AE] dark:text-cyan-400" />
+                <FileCheck className="w-3.5 h-3.5 text-red-600 dark:text-cyan-400" />
                 <span>{lang === 'en' ? 'Verified Contracts & BAST' : 'Lihat Berita Acara & Kontrak'}</span>
               </button>
             </div>

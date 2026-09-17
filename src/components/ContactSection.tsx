@@ -48,17 +48,17 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-[#0050AE] dark:text-cyan-300 text-xs font-mono font-bold mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold mb-3">
             <span>{lang === 'en' ? 'DIRECT TECHNICAL DIALOGUE' : 'HUBUNGI KAMI'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Ready to Secure <span className="text-gradient-ocean dark:text-gradient-creative">Your Infrastructure?</span>
+                Ready to Secure <span className="text-gradient-brand">Your Infrastructure?</span>
               </>
             ) : (
               <>
-                Konsultasikan <span className="text-gradient-ocean dark:text-gradient-creative">Infrastruktur Anda</span>
+                Konsultasikan <span className="text-gradient-brand">Infrastruktur Anda</span>
               </>
             )}
           </h2>
@@ -169,9 +169,9 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
           {/* Right: Technical Consultation Request Form */}
           <div className="lg:col-span-7">
-            <div className="bg-white dark:bg-[#0B1F3A]/80 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md">
+            <div className="bg-white dark:bg-[#0B1F3A]/80 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 gradient-border-top shadow-md">
               <h3 className="text-lg font-bold text-[#002D62] dark:text-white mb-2 flex items-center space-x-2">
-                <ShieldCheck className="w-5 h-5 text-[#0050AE] dark:text-cyan-400" />
+                <ShieldCheck className="w-5 h-5 text-red-600 dark:text-cyan-400" />
                 <span>{lang === 'en' ? 'Schedule Infrastructure Consultation' : 'Formulir Pengajuan Evaluasi Teknis'}</span>
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 font-normal">
@@ -318,7 +318,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 rounded-xl bg-[#0050AE] hover:bg-[#004294] text-white font-bold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center space-x-2"
+                    className="w-full py-3.5 rounded-xl bg-gradient-brand hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-lg shadow-red-500/20 transition-all flex items-center justify-center space-x-2"
                   >
                     <Send className="w-4 h-4" />
                     <span>{lang === 'en' ? 'Submit Technical Consultation Request' : 'Kirim Pengajuan Konsultasi'}</span>

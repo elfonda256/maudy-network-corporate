@@ -49,19 +49,19 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-[#0050AE] dark:text-cyan-300 text-xs font-bold tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3">
             <span>{lang === 'en' ? 'ABOUT MAUDY NETWORK KOMUNIKASI' : 'TENTANG MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Engineered for <span className="text-gradient-ocean dark:text-gradient-creative">Reliability</span>, Secured by{' '}
-                <span className="text-gradient-gold">Global Expertise</span>
+                Engineered for <span className="text-gradient-brand">Reliability</span>, Secured by{' '}
+                <span className="text-gradient-brand">Global Expertise</span>
               </>
             ) : (
               <>
-                Dirancang untuk <span className="text-gradient-ocean dark:text-gradient-creative">Keandalan</span>, Dilindungi oleh{' '}
-                <span className="text-gradient-gold">Keahlian Global</span>
+                Dirancang untuk <span className="text-gradient-brand">Keandalan</span>, Dilindungi oleh{' '}
+                <span className="text-gradient-brand">Keahlian Global</span>
               </>
             )}
           </h2>
@@ -98,7 +98,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                       </div>
                     </div>
                   </div>
-                  <span className="px-2.5 py-1 rounded bg-[#0050AE] text-white text-xs font-mono font-bold shadow-xs">
+                  <span className="px-2.5 py-1 rounded bg-gradient-brand text-white text-xs font-tech font-bold shadow-xs">
                     SLA 99.9%
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
 
           {/* Right: Vision, Mission & Values */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="text-xs font-mono font-bold text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider">
+            <div className="text-xs font-tech font-bold text-red-600 dark:text-cyan-400 uppercase tracking-wider">
               {lang === 'en' ? 'Beyond Conventional IT Integration' : 'Bukan Sekadar Integrator Konvensional'}
             </div>
             <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
@@ -124,7 +124,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                   onClick={() => setActiveTab('vision')}
                   className={`pb-1 transition-all ${
                     activeTab === 'vision'
-                      ? 'text-[#0050AE] dark:text-cyan-400 border-b-2 border-[#0050AE] dark:border-cyan-400 font-extrabold'
+                      ? 'text-red-600 dark:text-red-400 border-b-2 border-red-600 dark:border-red-400 font-extrabold'
                       : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}
                 >
@@ -134,7 +134,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                   onClick={() => setActiveTab('mission')}
                   className={`pb-1 transition-all ${
                     activeTab === 'mission'
-                      ? 'text-[#0050AE] dark:text-cyan-400 border-b-2 border-[#0050AE] dark:border-cyan-400 font-extrabold'
+                      ? 'text-red-600 dark:text-red-400 border-b-2 border-red-600 dark:border-red-400 font-extrabold'
                       : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}
                 >
@@ -144,7 +144,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                   onClick={() => setActiveTab('values')}
                   className={`pb-1 transition-all ${
                     activeTab === 'values'
-                      ? 'text-[#0050AE] dark:text-cyan-400 border-b-2 border-[#0050AE] dark:border-cyan-400 font-extrabold'
+                      ? 'text-red-600 dark:text-red-400 border-b-2 border-red-600 dark:border-red-400 font-extrabold'
                       : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                   }`}
                 >
@@ -155,7 +155,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
               {activeTab === 'vision' && (
                 <div className="animate-fadeIn">
                   <div className="flex items-start space-x-3">
-                    <Target className="w-5 h-5 text-[#0050AE] dark:text-cyan-400 mt-0.5 flex-shrink-0" />
+                    <Target className="w-5 h-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
                     <p className="text-sm text-slate-700 dark:text-slate-200 italic font-medium">
                       "
                       {lang === 'en'
@@ -222,7 +222,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
 
             <button
               onClick={onOpenConsultation}
-              className="inline-flex items-center space-x-2 text-xs font-bold text-[#0050AE] dark:text-cyan-400 hover:underline"
+              className="inline-flex items-center space-x-2 text-xs font-bold text-red-600 dark:text-cyan-400 hover:underline"
             >
               <span>{lang === 'en' ? 'Consult with our Chief Architect' : 'Konsultasikan Kebutuhan Anda'}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -233,7 +233,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
         {/* Milestones Timeline */}
         <div className="pt-12 border-t border-slate-200 dark:border-slate-800">
           <div className="text-center mb-10">
-            <h3 className="text-xl font-bold text-[#002D62] dark:text-white">
+            <h3 className="text-xl font-extrabold text-[#002D62] dark:text-white">
               {lang === 'en' ? 'Track Record of Proven Execution' : 'Rekam Jejak Keberhasilan Strategis'}
             </h3>
           </div>
@@ -242,9 +242,9 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
             {milestones.map((m, idx) => (
               <div
                 key={idx}
-                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-[#0050AE] dark:hover:border-cyan-500/40 gradient-border-top transition-all shadow-xs hover:shadow-md"
+                className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-red-500/50 gradient-border-top transition-all shadow-xs hover:shadow-md"
               >
-                <div className="text-2xl font-bold tracking-tight text-gradient-creative mb-2">
+                <div className="text-2xl font-extrabold font-tech tracking-tight text-gradient-brand mb-2">
                   {m.year}
                 </div>
                 <h4 className="text-sm font-bold text-[#002D62] dark:text-white mb-2">
