@@ -45,11 +45,11 @@ export const Hero: React.FC<HeroProps> = ({
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#002D62] dark:text-white tracking-tight leading-[1.15]">
                 {lang === 'en' ? "Empowering Critical" : 'Maudy Network'}
                 <br />
-                <span className="text-[#0050AE] dark:text-[#00C6FF]">
+                <span className="text-gradient-creative">
                   {lang === 'en' ? 'Infrastructure' : 'Komunikasi'}
                 </span>
               </h1>
-              <div className="mt-2 text-lg sm:text-xl font-bold text-[#0050AE] dark:text-cyan-400 font-mono tracking-tight">
+              <div className="mt-2 text-lg sm:text-xl font-bold text-gradient-ocean dark:text-gradient-cyan font-mono tracking-tight">
                 #BeyondInfrastructure
               </div>
             </div>

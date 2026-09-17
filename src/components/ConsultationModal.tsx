@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { X, Send, CheckCircle, ShieldCheck, PhoneCall, Building2 } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 
 interface ConsultationModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
+  const { addInquiry } = useCms();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -26,6 +28,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    addInquiry({
+      name: formData.name,
+      organization: formData.company,
+      email: formData.email,
+      phone: formData.phone,
+      serviceScope: formData.scope,
+      message: formData.notes,
+    });
     setSubmitted(true);
   };
 

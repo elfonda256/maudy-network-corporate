@@ -11,7 +11,9 @@ import {
   Menu,
   X,
   FileCheck,
+  Sliders,
 } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 
 interface NavbarProps {
   lang: 'en' | 'id';
@@ -20,6 +22,7 @@ interface NavbarProps {
   setIsDarkMode: (val: boolean) => void;
   onOpenConsultation: () => void;
   onOpenCredentials: () => void;
+  onOpenAdmin: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -29,7 +32,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   setIsDarkMode,
   onOpenConsultation,
   onOpenCredentials,
+  onOpenAdmin,
 }) => {
+  const { inquiries } = useCms();
+  const newInquiriesCount = inquiries.filter((i) => i.status === 'new').length;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -131,6 +137,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>{lang === 'en' ? 'Contracts & BAST' : 'Kontrak & BAST'}</span>
             </button>
 
+            {/* In-Browser CMS Admin Button */}
+            <button
+              onClick={onOpenAdmin}
+              className="flex items-center space-x-1.5 px-2.5 py-1 rounded-md bg-blue-50 dark:bg-slate-800 border border-blue-200 dark:border-slate-700 text-[11px] font-bold text-[#0050AE] dark:text-cyan-400 hover:bg-blue-100 dark:hover:bg-slate-700 transition-colors shadow-2xs group"
+              title="Open In-Browser CMS (CRUD for Projects, Services, Clients/Logos, Inquiries)"
+            >
+              <Sliders className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform" />
+              <span>CMS Admin</span>
+              {newInquiriesCount > 0 && (
+                <span className="px-1.5 py-0.2 text-[10px] font-black rounded-full bg-red-500 text-white animate-pulse">
+                  {newInquiriesCount}
+                </span>
+              )}
+            </button>
+
             {/* Light / Dark Mode Toggle */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
@@ -217,6 +238,21 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-cyan-300"
             >
               {lang === 'en' ? 'Verified Contracts & BAST' : 'Lihat Berita Acara & Kontrak'}
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenAdmin();
+              }}
+              className="w-full py-2.5 rounded-lg bg-blue-50 dark:bg-slate-800 border border-blue-200 dark:border-slate-700 text-xs font-bold text-[#0050AE] dark:text-cyan-400 flex items-center justify-center space-x-2"
+            >
+              <Sliders className="w-3.5 h-3.5" />
+              <span>{lang === 'en' ? 'In-Browser CMS Admin' : 'Kelola Konten (CMS Admin)'}</span>
+              {newInquiriesCount > 0 && (
+                <span className="px-1.5 py-0.2 text-[10px] font-black rounded-full bg-red-500 text-white">
+                  {newInquiriesCount}
+                </span>
+              )}
             </button>
             <button
               onClick={() => {

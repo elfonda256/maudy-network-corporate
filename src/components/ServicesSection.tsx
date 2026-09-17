@@ -15,8 +15,8 @@ import {
   CheckCircle2,
   ArrowRight,
 } from 'lucide-react';
-import { SERVICES_LIST } from '../data/companyData';
 import type { Service } from '../data/companyData';
+import { useCms } from '../context/CmsContext';
 
 interface ServicesProps {
   lang: 'en' | 'id';
@@ -24,6 +24,7 @@ interface ServicesProps {
 }
 
 export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultation }) => {
+  const { services } = useCms();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const iconMap: Record<string, React.ElementType> = {
@@ -53,8 +54,8 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
 
   const filteredServices =
     selectedCategory === 'all'
-      ? SERVICES_LIST
-      : SERVICES_LIST.filter(
+      ? services
+      : services.filter(
           (s) => s.category.toLowerCase() === selectedCategory.toLowerCase()
         );
 
@@ -69,11 +70,11 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
           <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Mission-Critical <span className="text-[#0050AE] dark:text-cyan-400">Technology Services</span>
+                Mission-Critical <span className="text-gradient-ocean dark:text-gradient-creative">Technology Services</span>
               </>
             ) : (
               <>
-                Layanan Teknologi <span className="text-[#0050AE] dark:text-cyan-400">Infrastruktur Strategis</span>
+                Layanan Teknologi <span className="text-gradient-ocean dark:text-gradient-creative">Infrastruktur Strategis</span>
               </>
             )}
           </h2>

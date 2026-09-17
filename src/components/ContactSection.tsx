@@ -10,12 +10,14 @@ import {
   Building,
   ShieldCheck,
 } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 
 interface ContactProps {
   lang: 'en' | 'id';
 }
 
 export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
+  const { addInquiry } = useCms();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -29,6 +31,15 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    addInquiry({
+      name: formData.name,
+      organization: formData.organization,
+      email: formData.email,
+      phone: formData.phone,
+      serviceScope: formData.serviceScope,
+      terrain: formData.terrain,
+      message: formData.message,
+    });
     setSubmitted(true);
   };
 
@@ -43,11 +54,11 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
           <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Ready to Secure <span className="text-[#0050AE] dark:text-cyan-400">Your Infrastructure?</span>
+                Ready to Secure <span className="text-gradient-ocean dark:text-gradient-creative">Your Infrastructure?</span>
               </>
             ) : (
               <>
-                Konsultasikan <span className="text-[#0050AE] dark:text-cyan-400">Infrastruktur Anda</span>
+                Konsultasikan <span className="text-gradient-ocean dark:text-gradient-creative">Infrastruktur Anda</span>
               </>
             )}
           </h2>

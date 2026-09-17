@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { PROJECTS_LIST } from '../data/companyData';
 import type { Project } from '../data/companyData';
 import { ProjectModal } from './ProjectModal';
 import { ArrowUpRight, MapPin, FileCheck } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 
 interface ProjectsSectionProps {
   lang: 'en' | 'id';
@@ -13,6 +13,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   lang,
   onOpenConsultation,
 }) => {
+  const { projects } = useCms();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
@@ -27,8 +28,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
   const filteredProjects =
     selectedCategory === 'all'
-      ? PROJECTS_LIST
-      : PROJECTS_LIST.filter((p) => p.category === selectedCategory);
+      ? projects
+      : projects.filter((p) => p.category === selectedCategory);
 
   return (
     <section id="projects" className="py-24 bg-white dark:bg-[#081522] border-t border-slate-200 dark:border-slate-800 transition-colors">
@@ -41,11 +42,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
           <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Mission-Critical <span className="text-[#0050AE] dark:text-cyan-400">Project Showcase</span>
+                Mission-Critical <span className="text-gradient-ocean dark:text-gradient-creative">Project Showcase</span>
               </>
             ) : (
               <>
-                Studi Kasus & <span className="text-[#0050AE] dark:text-cyan-400">Rekam Jejak Eksekusi</span>
+                Studi Kasus & <span className="text-gradient-ocean dark:text-gradient-creative">Rekam Jejak Eksekusi</span>
               </>
             )}
           </h2>

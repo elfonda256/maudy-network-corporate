@@ -67,6 +67,31 @@
 }
 
 @layer utilities {
+  /* Creative Gradient Typography */
+  .text-gradient-ocean {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#0284C7] to-[#00C6FF];
+  }
+
+  .text-gradient-creative {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#7C3AED] to-[#EC4899];
+  }
+
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#F59E0B] via-[#FFB800] to-[#EA580C];
+  }
+
+  .text-gradient-dark-cyan {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-cyan-200 to-[#00C6FF];
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 20px rgba(0, 198, 255, 0.4);
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 20px rgba(0, 80, 174, 0.3);
+  }
+
   .dot-pattern {
     background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
     background-size: 16px 16px;

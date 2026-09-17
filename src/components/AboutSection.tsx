@@ -55,13 +55,13 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
           <h2 className="text-3xl sm:text-4xl font-black text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Engineered for <span className="text-[#0050AE] dark:text-cyan-400">Reliability</span>, Secured by{' '}
-                <span className="text-[#FFB800] dark:text-blue-400">Global Expertise</span>
+                Engineered for <span className="text-gradient-ocean dark:text-gradient-creative">Reliability</span>, Secured by{' '}
+                <span className="text-gradient-gold">Global Expertise</span>
               </>
             ) : (
               <>
-                Dirancang untuk <span className="text-[#0050AE] dark:text-cyan-400">Keandalan</span>, Dilindungi oleh{' '}
-                <span className="text-[#FFB800] dark:text-blue-400">Keahlian Global</span>
+                Dirancang untuk <span className="text-gradient-ocean dark:text-gradient-creative">Keandalan</span>, Dilindungi oleh{' '}
+                <span className="text-gradient-gold">Keahlian Global</span>
               </>
             )}
           </h2>

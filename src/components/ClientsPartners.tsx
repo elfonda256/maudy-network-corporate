@@ -1,141 +1,18 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Building2, Cpu, CheckCircle2, Image as ImageIcon } from 'lucide-react';
+import { useCms } from '../context/CmsContext';
 
 interface ClientsPartnersProps {
   lang: 'en' | 'id';
 }
 
-interface PartnerItem {
-  name: string;
-  category: { en: string; id: string };
-  scope: { en: string; id: string };
-  logoFile: string;
-  brandColor: string;
-  initials: string;
-}
-
 export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
+  const { clients } = useCms();
   const [activeTab, setActiveTab] = useState<'clients' | 'tech'>('clients');
 
-  const clientsList: PartnerItem[] = [
-    {
-      name: "PT Pertamina (Persero)",
-      category: { en: "State-Owned Energy Enterprise", id: "BUMN Energi Nasional" },
-      scope: { en: "Outdoor Land Monitoring & Corporate Summits HA", id: "Monitoring Lahan Aset & Jaringan Event KTT" },
-      logoFile: "pertamina.png",
-      brandColor: "#0072CE",
-      initials: "PTM",
-    },
-    {
-      name: "PT Pertamina International Shipping",
-      category: { en: "Maritime & Tanker Fleet Logistics", id: "Armada Pelayaran & Tanker Maritim" },
-      scope: { en: "Marine VSAT 512Kbps SLA & PIS_BOT Network Sentinel", id: "VSAT Satelit Kapal 512Kbps & Bot Alarm PIS" },
-      logoFile: "pertamina-shipping.png",
-      brandColor: "#ED1C24",
-      initials: "PIS",
-    },
-    {
-      name: "Kementerian BUMN Republik Indonesia",
-      category: { en: "Government Ministry", id: "Kementerian Lembaga Negara" },
-      scope: { en: "180 Honeywell CCTV Maintenance across 22-Story Tower", id: "Pemeliharaan 180 CCTV Menara 22 Lantai" },
-      logoFile: "bumn.png",
-      brandColor: "#0050AE",
-      initials: "BUMN",
-    },
-    {
-      name: "Kementerian PUPR Republik Indonesia",
-      category: { en: "Public Works & Water Resources", id: "Kementerian Pekerjaan Umum & SDA" },
-      scope: { en: "Rentang Irrigation Modernization GIS & Dam Telemetry DSS", id: "Web GIS & DSS Modernisasi Irigasi Rentang" },
-      logoFile: "pupr.png",
-      brandColor: "#FFC72C",
-      initials: "PUPR",
-    },
-    {
-      name: "Universitas Pertamina",
-      category: { en: "Higher Education & Research Campus", id: "Institusi Pendidikan Tinggi" },
-      scope: { en: "Campus-Wide IT Infrastructure Assessment & Redesign", id: "Audit Kelaikan Jaringan 3 Kampus & Desain FO" },
-      logoFile: "univ-pertamina.png",
-      brandColor: "#0072CE",
-      initials: "UPER",
-    },
-    {
-      name: "PT Airkon Pratama",
-      category: { en: "HVAC & Engineering Enterprise", id: "Tata Udara Komersial & Industri" },
-      scope: { en: "AP Portal: Custom ERP WebApps & SLA Dispatch System", id: "Aplikasi ERP Web Portal AP & 900+ Tiket Servis" },
-      logoFile: "airkon.png",
-      brandColor: "#10B981",
-      initials: "AP",
-    },
-    {
-      name: "BMKG",
-      category: { en: "Meteorology, Climatology & Geophysics", id: "Badan Meteorologi & Geofisika" },
-      scope: { en: "Real-Time Climatology & Weather API Integration for DSS", id: "Integrasi API Cuaca Real-Time untuk DSS Irigasi" },
-      logoFile: "bmkg.png",
-      brandColor: "#0284C7",
-      initials: "BMKG",
-    },
-  ];
-
-  const techPartners: PartnerItem[] = [
-    {
-      name: "Cisco Systems",
-      category: { en: "Enterprise Routing & Core Switching", id: "Core Routing & Switch Carrier-Grade" },
-      scope: { en: "CCNP Enterprise & Service Provider Architecture", id: "Arsitektur CCNP Enterprise & Service Provider" },
-      logoFile: "cisco.png",
-      brandColor: "#049FD9",
-      initials: "CISCO",
-    },
-    {
-      name: "Fortinet",
-      category: { en: "Perimeter Cybersecurity & NGFW", id: "Keamanan Siber & Firewall Generasi Baru" },
-      scope: { en: "Fortinet NSE 7 Network Security Architect Standard", id: "Standar Arsitektur Fortinet NSE 7 Architect" },
-      logoFile: "fortinet.png",
-      brandColor: "#DA291C",
-      initials: "FTNT",
-    },
-    {
-      name: "MikroTik",
-      category: { en: "Carrier Traffic Control & Bandwidth Shaping", id: "Manajemen Bandwidth & QoS Satelit" },
-      scope: { en: "MTCINE & MTCTCE Certified Engineering", id: "Sertifikasi Tertinggi MTCINE & MTCTCE" },
-      logoFile: "mikrotik.png",
-      brandColor: "#E0292B",
-      initials: "MTIK",
-    },
-    {
-      name: "Ruijie Networks",
-      category: { en: "High-Density Wi-Fi 6 & Campus Access", id: "Wi-Fi 6 Berdensitas Tinggi & Switch Kampus" },
-      scope: { en: "Ruijie Specialist Engineer (RSE) Deployments", id: "Implementasi Ruijie Specialist Engineer (RSE)" },
-      logoFile: "ruijie.png",
-      brandColor: "#E60012",
-      initials: "RUIJIE",
-    },
-    {
-      name: "Honeywell",
-      category: { en: "Enterprise CCTV & Physical Security", id: "Kamera Pengawas CCTV Industrial" },
-      scope: { en: "180 High-Rise Surveillance Cameras & 14 NVRs", id: "Audit 180 Kamera & 14 NVR Server" },
-      logoFile: "honeywell.png",
-      brandColor: "#EE3124",
-      initials: "HONEY",
-    },
-    {
-      name: "Hytera",
-      category: { en: "Push-to-Talk Over Cellular (PoC)", id: "Radio Komunikasi Digital PoC Seluler" },
-      scope: { en: "Hytera PNC380 GSM Terminals & POCStars Console", id: "30 Unit HT PoC Hytera & Dashboard Lokasi" },
-      logoFile: "hytera.png",
-      brandColor: "#0050AE",
-      initials: "HYTERA",
-    },
-    {
-      name: "LG Business Solutions",
-      category: { en: "Commercial Displays & Video Wall", id: "Panel Video Wall Layar Lebar" },
-      scope: { en: "LG 49VL5B 2x3 Matrix & iBase Processors", id: "Susunan Layar Video Wall 2x3 & Prosesor iBase" },
-      logoFile: "lg.png",
-      brandColor: "#A50034",
-      initials: "LG",
-    },
-  ];
-
-  const currentList = activeTab === 'clients' ? clientsList : techPartners;
+  const clientInstitutions = clients.filter((c) => c.type === 'client');
+  const techPartners = clients.filter((c) => c.type === 'partner');
+  const currentList = activeTab === 'clients' ? clientInstitutions : techPartners;
 
   return (
     <section className="py-20 bg-slate-50 dark:bg-[#06101B] border-y border-slate-200 dark:border-slate-800 transition-colors">
@@ -153,11 +30,11 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
           <h2 className="text-2xl sm:text-3xl font-bold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Companies & Institutions That <span className="text-[#0050AE] dark:text-cyan-400">Trust Maudy</span>
+                Companies & Institutions That <span className="text-gradient-ocean dark:text-gradient-creative">Trust Maudy</span>
               </>
             ) : (
               <>
-                Daftar Perusahaan & Instansi Yang <span className="text-[#0050AE] dark:text-cyan-400">Mempercayai Maudy</span>
+                Daftar Perusahaan & Instansi Yang <span className="text-gradient-ocean dark:text-gradient-creative">Mempercayai Maudy</span>
               </>
             )}
           </h2>

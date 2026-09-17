@@ -17,12 +17,15 @@ import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { GovernanceDrawer } from './components/GovernanceDrawer';
 import { FloatingActions } from './components/FloatingActions';
+import { AdminPanel } from './components/AdminPanel';
+import { CmsProvider } from './context/CmsContext';
 
-export function App() {
+function AppContent() {
   const [lang, setLang] = useState<'en' | 'id'>('id');
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [credentialsOpen, setCredentialsOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -49,6 +52,7 @@ export function App() {
         setIsDarkMode={setIsDarkMode}
         onOpenConsultation={() => setConsultationOpen(true)}
         onOpenCredentials={() => setCredentialsOpen(true)}
+        onOpenAdmin={() => setAdminOpen(true)}
       />
 
       {/* Main Content Sections */}
@@ -141,7 +145,22 @@ export function App() {
         onClose={() => setCredentialsOpen(false)}
         lang={lang}
       />
+
+      {/* In-Browser CMS & Admin Control Panel */}
+      <AdminPanel
+        isOpen={adminOpen}
+        onClose={() => setAdminOpen(false)}
+        lang={lang}
+      />
     </div>
+  );
+}
+
+export function App() {
+  return (
+    <CmsProvider>
+      <AppContent />
+    </CmsProvider>
   );
 }
 
