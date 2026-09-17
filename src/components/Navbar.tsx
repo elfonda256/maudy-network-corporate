@@ -203,6 +203,26 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {link.label[lang]}
               </a>
             ))}
+
+            {/* Direct Link Quick Chips */}
+            <div className="flex items-center space-x-1.5 pl-2 border-l border-slate-200 dark:border-slate-800">
+              <a
+                href="#xtur"
+                title="Direct link to XTUR AI Vision"
+                className="px-2.5 py-1 rounded-md text-[11px] font-tech font-bold bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/20 hover:scale-105 transition-all flex items-center"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-1 animate-ping"></span>
+                XTUR AI
+              </a>
+              <a
+                href="#aegis"
+                title="Direct link to Aegis Maritime Suite"
+                className="px-2.5 py-1 rounded-md text-[11px] font-tech font-bold bg-cyan-500/10 hover:bg-cyan-500/20 text-[#0050AE] dark:text-cyan-300 border border-cyan-500/20 hover:scale-105 transition-all flex items-center"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-1"></span>
+                Aegis
+              </a>
+            </div>
           </nav>
 
           {/* Mobile hamburger menu toggle */}

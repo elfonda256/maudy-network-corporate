@@ -744,6 +744,78 @@ export const PROJECTS_LIST: Project[] = [
 
 export const PRODUCTS_LIST = [
   {
+    id: "xtur-ai",
+    name: "XTUR AI Vision Surveillance",
+    tagline: "Autonomous Multi-Stream AI Computer Vision & Neural Edge Analytics",
+    category: "AI Vision & Surveillance",
+    image: "/xtur/xtur-overview-poster.jpg",
+    gallery: [
+      "/xtur/01-dashboard-overview.png",
+      "/xtur/02-detection-logs.png",
+      "/xtur/03-cameras-monitor.png",
+      "/xtur/06-engine-health.png"
+    ],
+    directUrl: "/#xtur",
+    hashAlias: ["xtur", "xtur-ai"],
+    description: {
+      en: "Enterprise-grade autonomous AI computer vision platform engineered by MNK. Powers multi-camera video analytics with sub-5ms neural edge inference, 57-region ANPR/ALPR automated license recognition, perimeter intrusion alerts, and HSE safety compliance (PPE hardhat/vest detection) across 64+ RTSP camera streams.",
+      id: "Platform pengawasan CCTV kecerdasan buatan (AI Vision) otonom kelas enterprise rancangan MNK. Menyajikan analisis video multi-kamera dengan inferensi edge saraf <5ms, pengenalan plat nomor otomatis (ANPR) 57 wilayah, radar intrusi perimeter, dan audit kepatuhan K3 keselamatan kerja pada 64+ kamera serentak."
+    },
+    capabilities: [
+      {
+        title: { en: "Sub-5ms Neural Edge Inference", id: "Inferensi Saraf Edge Sub-5ms" },
+        desc: { en: "Hardware-accelerated YOLO & TensorRT computer vision models executing real-time multi-target classification and tracking at 4.2ms GPU latency.", id: "Akselerasi inferensi YOLO & TensorRT pada edge GPU berkecepatan 4.2ms tanpa bergantung pada latensi cloud eksternal." }
+      },
+      {
+        title: { en: "57-Region ANPR & Vehicle Telemetry", id: "ANPR 57 Wilayah & Telemetri Kendaraan" },
+        desc: { en: "Autonomous license plate recognition with instantaneous character extraction, vehicle class identification, speed estimation, and blacklist hotlist alarms.", id: "Identifikasi otomatis nomor polisi kendaraan di 57 kode wilayah nasional, klasifikasi tipe kendaraan, dan alarm instan daftar hitam (blacklist)." }
+      },
+      {
+        title: { en: "Industrial HSE & Zone Intrusion Matrix", id: "Kepatuhan K3 & Intrusi Perimeter Digital" },
+        desc: { en: "Automated optical inspection for safety helmets, high-vis vests, fire/smoke anomalies, and forbidden zone breach detection with instantaneous webhook dispatch.", id: "Deteksi otomatis kepatuhan APD (helm proyek, rompi), anomali asap/api, serta peringatan pelanggaran batas zona bahaya via webhook instan." }
+      }
+    ],
+    liveMetrics: {
+      inferenceLatency: "4.2 ms",
+      cameraStreams: "64+ RTSP",
+      detectionAccuracy: "99.2%",
+      edgeArchitecture: "TensorRT / GPU"
+    }
+  },
+  {
+    id: "aegis-maritime",
+    name: "Aegis Maritime Suite",
+    tagline: "Zero-Trust Maritime Cyber-Defense & Satellite Bandwidth QoS Suite",
+    category: "Maritime Cyber Defense",
+    image: "/products/aegis-maritime.jpg",
+    directUrl: "/#aegis",
+    hashAlias: ["aegis", "aegis-maritime"],
+    description: {
+      en: "Mission-critical maritime cyber-defense ecosystem deployed across oceanic fleets and VLCC crude tankers (including Pertamina International Shipping). Integrates Fortinet NSE 7 zero-trust NGFW perimeter isolation, deep packet inspection at sea, and intelligent VSAT/Starlink satellite QoS bandwidth optimization.",
+      id: "Suite pertahanan siber kemaritiman misi kritis yang dioperasikan pada armada kapal tanker samudra dan VLCC (termasuk PT Pertamina International Shipping). Memadukan firewall zero-trust Fortinet NSE 7, inspeksi paket mendalam di laut lepas, dan orkestrasi QoS satelit VSAT/Starlink cerdas."
+    },
+    capabilities: [
+      {
+        title: { en: "Zero-Trust Fleet Perimeter Defense", id: "Perlindungan Perimeter Kapal Zero-Trust" },
+        desc: { en: "Isolates operational OT shipboard navigation (ECDIS, gyro, engine telemetry) from crew entertainment networks with military-grade firewalling and automated quarantine.", id: "Memisahkan jaringan OT navigasi kritis kapal (ECDIS, gyro, telemetri mesin) dari jaringan internet kru dengan isolasi VLAN militer dan karantina malware otomatis." }
+      },
+      {
+        title: { en: "Mission-Critical VSAT Satellite QoS", id: "Manajemen QoS Bandwidth Satelit VSAT" },
+        desc: { en: "Dynamic bandwidth traffic shaping that guarantees mission-critical navigation and corporate VoIP packet delivery even on congested 512Kbps maritime satellite channels.", id: "Shaping traffic dinamis yang menjamin prioritas paket navigasi resmi dan VoIP darurat tetap lancar meski di bandwidth satelit terbatas 512Kbps." }
+      },
+      {
+        title: { en: "Multi-Orbit Failover Telemetry", id: "Telemetri Failover Multi-Orbit Satelit" },
+        desc: { en: "Sub-second automated failover orchestrator switching between Starlink LEO, Inmarsat GEO, and coastal 4G/5G cellular modems with continuous packet health telemetry.", id: "Orkestrator failover otomatis sub-detik antara satelit Starlink LEO, Inmarsat GEO, dan seluler pesisir 4G/5G dengan pantauan kesehatan paket konstan." }
+      }
+    ],
+    liveMetrics: {
+      vesselsProtected: "30+ Tankers",
+      satelliteSLA: "99.98%",
+      failoverSpeed: "< 800 ms",
+      securityStandard: "IMO 2021 & NIST"
+    }
+  },
+  {
     id: "molinar-id",
     name: "Molinar.id",
     tagline: "Proprietary End-to-End Industrial IoT & Telemetry Platform",

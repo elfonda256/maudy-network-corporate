@@ -100,6 +100,18 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
             <ul className="space-y-2">
               <li>
+                <a href="#xtur" className="text-red-600 dark:text-cyan-400 font-bold hover:underline transition-colors flex items-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5"></span>
+                  XTUR AI Vision (#xtur)
+                </a>
+              </li>
+              <li>
+                <a href="#aegis" className="text-[#0050AE] dark:text-cyan-300 font-bold hover:underline transition-colors flex items-center">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-1.5"></span>
+                  Aegis Maritime Suite (#aegis)
+                </a>
+              </li>
+              <li>
                 <a href="#products" className="hover:text-[#0050AE] dark:hover:text-cyan-400 transition-colors">
                   Molinar.id (IoT Telemetry)
                 </a>
@@ -117,11 +129,6 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <a href="#products" className="hover:text-[#0050AE] dark:hover:text-cyan-400 transition-colors">
                   PIS_BOT Sentinel Daemon
-                </a>
-              </li>
-              <li>
-                <a href="#products" className="hover:text-[#0050AE] dark:hover:text-cyan-400 transition-colors">
-                  POCStars Hytera Radio Dispatch
                 </a>
               </li>
             </ul>
