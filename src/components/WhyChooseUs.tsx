@@ -92,8 +92,8 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
       title: { en: 'Trusted by Government & SOEs', id: 'Dipercaya BUMN & Kementerian' },
       badge: 'Audited & Compliant',
       desc: {
-        en: 'Official procurement compliance with rigorous HSE standards, validated BAST deliverables, and sustained relationships with Pertamina & Ministries.',
-        id: 'Kepatuhan tata kelola pengadaan resmi BUMN, kepatuhan K3/HSE, serta penerimaan dokumen BAST resmi dari institusi pemerintah.',
+        en: 'Official procurement compliance with rigorous HSE standards, validated contract deliverables, and sustained relationships with strategic SOEs & Ministries.',
+        id: 'Kepatuhan tata kelola pengadaan resmi BUMN, kepatuhan K3/HSE, serta pemenuhan kontrak kerja resmi dari institusi pemerintah dan BUMN.',
       },
       iconColor: 'text-teal-600 dark:text-teal-400',
     },

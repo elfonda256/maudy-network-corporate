@@ -71,7 +71,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Cisco Systems",
     level: "Elite Enterprise Architecture",
     badgeColor: "#1E5EFF",
-    image: "/extracted/img_002.jpg",
+    image: "/logos/cisco.png",
   },
   {
     code: "CCNP SP",
@@ -79,6 +79,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Cisco Systems",
     level: "Carrier-Grade Core Routing",
     badgeColor: "#0284C7",
+    image: "/logos/cisco.png",
   },
   {
     code: "NSE 7 Architect",
@@ -86,7 +87,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Fortinet",
     level: "Tier-1 Enterprise Defense",
     badgeColor: "#DC2626",
-    image: "/extracted/img_006.jpg",
+    image: "/logos/fortinet.png",
   },
   {
     code: "NSE 4 / NSE 1",
@@ -94,6 +95,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Fortinet",
     level: "NGFW & Perimeter Security",
     badgeColor: "#EA580C",
+    image: "/logos/fortinet.png",
   },
   {
     code: "MTCINE",
@@ -101,7 +103,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "MikroTik",
     level: "Top Routing & BGP Authority",
     badgeColor: "#D97706",
-    image: "/extracted/img_004.jpg",
+    image: "/logos/mikrotik.png",
   },
   {
     code: "MTCTCE",
@@ -109,6 +111,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "MikroTik",
     level: "QoS & Bandwidth Optimization",
     badgeColor: "#059669",
+    image: "/logos/mikrotik.png",
   },
   {
     code: "RSE",
@@ -116,7 +119,7 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Ruijie Networks",
     level: "Enterprise Switching & Wi-Fi 6",
     badgeColor: "#2563EB",
-    image: "/extracted/img_005.jpg",
+    image: "/logos/ruijie.png",
   },
   {
     code: "BNSP WebDev",
@@ -124,7 +127,6 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
     level: "National Professional Standard",
     badgeColor: "#7C3AED",
-    image: "/extracted/img_007.jpg",
   },
   {
     code: "BNSP Electrical",
@@ -132,7 +134,6 @@ export const CERTIFICATIONS_LIST: Certification[] = [
     issuer: "BNSP - Construction & Safety Services",
     level: "Critical Infrastructure Inspector",
     badgeColor: "#0D9488",
-    image: "/extracted/img_008.jpg",
   },
 ];
 
@@ -468,7 +469,7 @@ export const PROJECTS_LIST: Project[] = [
     },
     technologies: ["Marine VSAT", "MikroTik Core Router", "Cloud Fleet Dashboard", "Captive Portal"],
     specs: ["512 Kbps Satellite Link", "30+ Active Vessel Crew", "24/7 Cloud Remote Auditing"],
-    documentRef: "BAST-2023-07-12-2576434 & Kontrak Core Network HA",
+    documentRef: "Kontrak Pengadaan & Instalasi Core Network HA",
   },
   {
     id: "pertamina-pis-monitoring-bot",
@@ -495,7 +496,7 @@ export const PROJECTS_LIST: Project[] = [
     },
     technologies: ["Telegram Bot API", "Network Daemon", "ICMP Telemetry", "Automated Traceroute Engine"],
     specs: ["Sub-second polling interval", "Automated 15-hop traceroute analysis", "Monthly SLA compliance reporting"],
-    documentRef: "SPK No. 130/P15124000/2020-S0 & BAST",
+    documentRef: "SPMP No. 130/P15124000/2020-S0 (Monitoring & Alert System)",
   },
   {
     id: "bumn-cctv-maintenance",
@@ -598,12 +599,12 @@ export const PROJECTS_LIST: Project[] = [
       id: "Melakukan audit menyeluruh pada 3 kompleks gedung, penelusuran jalur kabel, dan perancangan kembali arsitektur fiber optik modular.",
     },
     businessImpact: {
-      en: "Delivered a certified Network Assessment & Modernization Blueprint accepted with formal BAST by university ICT leadership.",
-      id: "Memberikan panduan restrukturisasi jaringan resmi (BAST disahkan) yang mengeliminasi bottleneck jaringan civitas akademika.",
+      en: "Delivered a certified Network Assessment & Modernization Blueprint approved by university ICT leadership.",
+      id: "Memberikan panduan restrukturisasi jaringan resmi terverifikasi yang mengeliminasi bottleneck jaringan civitas akademika.",
     },
     technologies: ["Cisco Switching", "Fiber Optic Backbone", "Network Topology Mapping", "Fluke Cable Certification"],
     specs: ["3 Campus Multi-Story Facilities", "Complete Cable Tracing", "Engineered Topology Redesign"],
-    documentRef: "BAST-2023-03-10-2901417 & PO/SO PO-2022-12-15-2901417",
+    documentRef: "PO-2022-12-15-2901417 & Rekomendasi Audit Jaringan",
   },
   {
     id: "airkon-pratama-erp-portal",
@@ -942,18 +943,6 @@ export const PRODUCTS_LIST = [
 ];
 
 export const CONTRACT_EVIDENCE = [
-  {
-    id: "bast-vessel",
-    title: { en: "BAST - Vessel Network Infrastructure", id: "Berita Acara Serah Terima Infrastruktur Jaringan Kapal" },
-    client: "PT. Pertamina (Persero) / PT. Pertamina International Shipping",
-    code: "BAST-2023-07-12-2576434",
-    date: "12 Juli 2023",
-    description: {
-      en: "Formal acceptance and sign-off for IT and satellite communication ecosystem deployment across oceanic tanker vessels.",
-      id: "Dokumen Berita Acara Serah Terima resmi pekerjaan instalasi jaringan IT dan satelit kapal Pertamina."
-    },
-    image: "/extracted/img_073.jpg"
-  },
   {
     id: "spk-monitoring",
     title: { en: "Work Order - Develop System Monitoring & Alert", id: "Surat Perintah Kerja Sistem Monitoring & Alert" },

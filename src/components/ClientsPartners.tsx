@@ -64,8 +64,8 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
           </h2>
           <p className="mt-2 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             {lang === 'en'
-              ? 'Click on any institution card below to inspect verified engagement scopes, BAST deliverables, and contract details.'
-              : 'Klik kartu instansi di bawah untuk melihat detail ruang lingkup pekerjaan, status BAST terverifikasi, dan studi kasus proyek.'}
+              ? 'Click on any institution card below to inspect verified engagement scopes, project deliverables, and contract details.'
+              : 'Klik kartu instansi di bawah untuk melihat detail ruang lingkup pekerjaan, status kemitraan terverifikasi, dan studi kasus proyek.'}
           </p>
         </div>
 

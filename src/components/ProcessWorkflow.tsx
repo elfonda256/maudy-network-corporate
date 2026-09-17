@@ -73,11 +73,11 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
     {
       num: '06',
       icon: Rocket,
-      title: { en: 'Official Commissioning (Go-Live)', id: 'Operasional Penuh & BAST' },
-      shortDesc: { en: 'Formal handover, training & administrative sign-off', id: 'Serah terima resmi, pelatihan staf & penandatanganan BAST' },
+      title: { en: 'Official Commissioning (Go-Live)', id: 'Operasional Penuh & Serah Terima' },
+      shortDesc: { en: 'Formal handover, training & administrative sign-off', id: 'Serah terima operasional resmi, pelatihan staf & penandatanganan penugasan' },
       deliverables: {
-        en: ['Formal BAST handover document', 'As-Built Documentation & schematics', 'Administrator handover workshop'],
-        id: ['Dokumen resmi Berita Acara Serah Terima (BAST)', 'Dokumentasi As-Built Drawing', 'Pelatihan teknis bagi tim klien'],
+        en: ['Formal project handover document', 'As-Built Documentation & schematics', 'Administrator handover workshop'],
+        id: ['Dokumen resmi Berita Acara Serah Terima Pekerjaan', 'Dokumentasi As-Built Drawing & Skema', 'Pelatihan teknis bagi tim klien'],
       },
     },
     {
@@ -135,8 +135,8 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
           </h2>
           <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
             {lang === 'en'
-              ? 'A disciplined engineering process from initial conceptualization to formal ministerial BAST sign-off and 24/7 proactive surveillance.'
-              : 'Alur kerja terstruktur dan disiplin tinggi dari tahap asesmen awal hingga serah terima resmi BAST dan pemantauan 24/7.'}
+              ? 'A disciplined engineering process from initial conceptualization to formal project handover and 24/7 proactive surveillance.'
+              : 'Alur kerja terstruktur dan disiplin tinggi dari tahap asesmen awal hingga serah terima resmi operasional dan pemantauan 24/7.'}
           </p>
         </div>
 

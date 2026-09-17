@@ -79,15 +79,60 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
 
         {/* Two-Column Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
-          {/* Left: Authentic Datacenter / Engineering Imagery */}
+          {/* Left: Official Maudy Network Brand Identity Showcase Card */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-3xl overflow-hidden border border-slate-200 dark:border-cyan-500/30 shadow-xl group">
-              <img
-                src="/extracted/img_001.jpg"
-                alt="MNK Enterprise Data Center Engineering"
-                className="w-full h-[380px] sm:h-[420px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 dark:border-slate-800 bg-white/95 dark:bg-[#081522]/90 backdrop-blur-md p-8 sm:p-10 shadow-xl group flex flex-col justify-between min-h-[380px] sm:min-h-[420px]">
+              {/* High-tech accent background glow */}
+              <div className="absolute -top-24 -left-24 w-64 h-64 bg-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+              {/* Card Header Tag */}
+              <div className="flex items-center justify-between z-10 border-b border-slate-100 dark:border-slate-800/80 pb-4">
+                <div className="flex items-center space-x-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-[11px] font-tech font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                    OPERATIONAL INTEGRATOR HQ
+                  </span>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-tech font-bold bg-gradient-pill text-red-600 dark:text-cyan-400">
+                  EST. 2020
+                </span>
+              </div>
+
+              {/* Center: High-Res Official Logo with subtle elevation */}
+              <div className="my-auto py-8 flex flex-col items-center justify-center text-center z-10">
+                <div className="p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-md transition-transform group-hover:scale-105 duration-300 mb-5 max-w-[280px] sm:max-w-[320px]">
+                  <img
+                    src="/logo-mnk.png"
+                    alt="Maudy Network Komunikasi"
+                    className="max-h-16 sm:max-h-20 w-auto object-contain mx-auto"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-[#002D62] dark:text-white tracking-tight mb-1">
+                  PT Maudy Network Komunikasi
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-tech font-semibold">
+                  Enterprise ICT • Maritime VSAT • IoT Smart Infrastructure
+                </p>
+              </div>
+
+              {/* Card Footer: Verified Credentials Pills */}
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 z-10">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-center text-[10px] font-tech">
+                  <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/70 dark:border-slate-800">
+                    <span className="block text-slate-400">Kantor Pusat</span>
+                    <span className="font-bold text-[#002D62] dark:text-white">Semarang, Jateng</span>
+                  </div>
+                  <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/70 dark:border-slate-800">
+                    <span className="block text-slate-400">Legalitas Usaha</span>
+                    <span className="font-bold text-emerald-600 dark:text-emerald-400">NIB 1284000320491</span>
+                  </div>
+                  <div className="col-span-2 sm:col-span-1 p-2 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/70 dark:border-slate-800">
+                    <span className="block text-slate-400">Status Pajak</span>
+                    <span className="font-bold text-red-600 dark:text-cyan-400">PKP Terdaftar</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

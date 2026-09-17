@@ -189,7 +189,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={lang === 'en' ? 'Type to search services, VSAT, XTUR, CCTV...' : 'Cari layanan, VSAT, XTUR, CCTV, BAST...'}
+                placeholder={lang === 'en' ? 'Type to search services, VSAT, XTUR, CCTV...' : 'Cari layanan, VSAT, XTUR, CCTV, SPK...'}
                 className="w-full pl-9 pr-8 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-[#0050AE] dark:focus:border-cyan-400"
               />
               {searchQuery && (
@@ -275,7 +275,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="hidden lg:flex items-center space-x-1 text-[11px] font-semibold text-[#0050AE] dark:text-cyan-400 hover:underline"
             >
               <FileCheck className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'Contracts & BAST' : 'Kontrak & BAST'}</span>
+              <span>{lang === 'en' ? 'Contracts & SPK' : 'Kontrak & SPK'}</span>
             </button>
 
             {/* Official PDF Download Quick Trigger */}
@@ -410,7 +410,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="w-full py-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-cyan-300"
             >
-              {lang === 'en' ? 'Verified Contracts & BAST' : 'Lihat Berita Acara & Kontrak'}
+              {lang === 'en' ? 'Verified Contracts & SPK' : 'Dokumen Kontrak & SPK Resmi'}
             </button>
             <button
               onClick={() => {

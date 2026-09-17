@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({
                 className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 text-red-600 dark:text-cyan-300 transition-colors text-[11px] font-tech font-bold shadow-xs"
               >
                 <FileCheck className="w-3.5 h-3.5 text-red-600 dark:text-cyan-400" />
-                <span>{lang === 'en' ? 'Verified Contracts & BAST' : 'Lihat Berita Acara & Kontrak'}</span>
+                <span>{lang === 'en' ? 'Verified Contracts & SPK' : 'Dokumen Kontrak & SPK Resmi'}</span>
               </button>
             </div>
           </div>

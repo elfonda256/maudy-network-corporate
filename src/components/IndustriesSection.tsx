@@ -61,7 +61,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
       keyFeatures: [
         { en: 'Check-and-recheck audits of 14 enterprise NVRs', id: 'Audit berkala kesehatan rekaman 14 NVR' },
         { en: 'Video wall synchronization for security NOC', id: 'Sinkronisasi video wall ruang komando' },
-        { en: 'Formal BAST administrative compliance', id: 'Kepatuhan berita acara serah terima resmi (BAST)' },
+        { en: 'Formal contract & SLA compliance', id: 'Kepatuhan tata kelola SPK & SLA resmi' },
       ],
       clientRef: 'Kementerian BUMN RI',
     },
@@ -248,7 +248,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
               {/* Footer */}
               <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
                 <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                  {lang === 'en' ? 'Official Documentation & BAST Available' : 'Dokumen Kontrak & BAST Resmi Terlampir'}
+                  {lang === 'en' ? 'Official Documentation & Contracts Available' : 'Dokumen Kontrak & SPK Resmi Terlampir'}
                 </span>
                 <button
                   onClick={onExploreProjects}

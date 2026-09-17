@@ -58,8 +58,8 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
               </div>
               <p className="text-xs text-slate-400">
                 {lang === 'en'
-                  ? 'Authentic public works, state-owned enterprise, and Pertamina Group signed procurement documents & PDF brochures'
-                  : 'Dokumen asli penugasan resmi, SPK, BAST Pertamina & BUMN, perizinan NIB, serta katalog PDF resmi'}
+                  ? 'Authentic public works, state-owned enterprise, and strategic group signed procurement documents & PDF brochures'
+                  : 'Dokumen asli penugasan resmi, SPK Kementerian BUMN & Kontrak Resmi, perizinan NIB, serta katalog PDF resmi'}
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
-            <span>{lang === 'en' ? 'Contracts & BAST' : 'Kontrak & BAST Pertamina'}</span>
+            <span>{lang === 'en' ? 'Contracts & SPK' : 'Dokumen Kontrak & SPK'}</span>
           </button>
 
           <button
@@ -324,7 +324,7 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
 
         {/* Footer */}
         <div className="p-4 bg-[#081522] border-t border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Perlindungan kerahasiaan BAST & lampiran kontrak teknis berlaku di bawah NDA</span>
+          <span>Perlindungan kerahasiaan lampiran kontrak teknis & dokumen operasional berlaku di bawah NDA</span>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-lg bg-slate-800 text-slate-200 hover:text-white"
