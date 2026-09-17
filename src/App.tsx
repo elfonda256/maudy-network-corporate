@@ -37,6 +37,33 @@ function AppContent() {
     }
   }, [isDarkMode]);
 
+  // Global smooth scroll-reveal animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px',
+      }
+    );
+
+    const targets = document.querySelectorAll('section, footer');
+    targets.forEach((el) => {
+      if (!el.classList.contains('hero-section')) {
+        el.classList.add('reveal-on-scroll');
+        observer.observe(el);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   const scrollToProjects = () => {
     const el = document.getElementById('projects');
     if (el) {

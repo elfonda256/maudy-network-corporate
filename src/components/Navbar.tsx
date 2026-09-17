@@ -150,8 +150,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Signature Merah - Biru - Putih Top Border Stripe */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-white shadow-xs"></div>
+      {/* Signature Corporate Red - Blue Top Border Stripe */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#DC2626] shadow-xs"></div>
 
       {/* Top Utility Micro-Bar (Mandiri Style) */}
       <div className="bg-white dark:bg-[#06101B] border-b border-slate-200 dark:border-slate-800/80 transition-colors">

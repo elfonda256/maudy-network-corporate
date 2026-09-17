@@ -88,54 +88,54 @@
 }
 
 @layer utilities {
-  /* Signature MNK Red - Corporate Blue - Pure White (Merah, Biru, Putih) Gradient Suite */
+  /* Signature MNK Ultra-Crisp Corporate Gradient Suite (High-Contrast, No Fading to White) */
   .text-gradient-brand {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-slate-100 dark:to-white;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#002D62] dark:from-[#EF4444] dark:via-[#38BDF8] dark:to-[#60A5FA];
   }
 
   .text-gradient-mnk {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#FFFFFF];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#1E40AF] dark:from-[#F87171] dark:via-[#38BDF8] dark:to-[#818CF8];
   }
 
   .text-gradient-creative {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-slate-100;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#1D4ED8] dark:from-[#F43F5E] dark:via-[#0284C7] dark:to-[#38BDF8];
   }
 
   .text-gradient-ocean {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-[#FFFFFF];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#0284C7] to-[#0369A1] dark:from-[#38BDF8] dark:via-[#60A5FA] dark:to-[#93C5FD];
   }
 
   .text-gradient-vibrant {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#0050AE] to-white;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#DC2626] via-[#2563EB] to-[#002D62] dark:from-[#EF4444] dark:via-[#38BDF8] dark:to-[#60A5FA];
   }
 
   .text-gradient-dark-cyan {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-[#DC2626];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-[#0050AE] to-[#DC2626] dark:from-white dark:via-sky-200 dark:to-cyan-400;
   }
 
-  /* Red - Blue - White (Merah, Biru, Putih) Gradient Backgrounds & Buttons */
+  /* Solid Premium Red-Blue Gradient Backgrounds & Buttons (Crisp & High Contrast) */
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #DC2626 0%, #0050AE 58%, #FFFFFF 98%);
+    background: linear-gradient(135deg, #DC2626 0%, #0050AE 100%);
   }
 
   .bg-gradient-brand-smooth {
-    background: linear-gradient(135deg, #DC2626 0%, #0050AE 52%, #FFFFFF 100%);
+    background: linear-gradient(135deg, #DC2626 0%, #1E40AF 100%);
   }
 
   .bg-gradient-brand-subtle {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.12) 0%, rgba(0, 80, 174, 0.12) 50%, rgba(255, 255, 255, 0.25) 100%);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(0, 80, 174, 0.08) 100%);
   }
 
   .bg-gradient-pill {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.14) 0%, rgba(0, 80, 174, 0.14) 50%, rgba(255, 255, 255, 0.3) 100%);
-    border: 1px solid rgba(0, 80, 174, 0.25);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08) 0%, rgba(0, 80, 174, 0.08) 100%);
+    border: 1px solid rgba(0, 80, 174, 0.2);
   }
 
   .bg-gradient-card-hover {
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(0, 80, 174, 0.05) 50%, rgba(255, 255, 255, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.03) 0%, rgba(0, 80, 174, 0.03) 100%);
   }
 
-  /* Red - Blue - White (Merah, Biru, Putih) Top Accent Line for Cards */
+  /* High-Contrast Red - Blue Top Accent Line for Cards */
   .gradient-border-top {
     position: relative;
   }
@@ -146,9 +146,22 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #DC2626 0%, #0050AE 50%, #FFFFFF 100%);
+    background: linear-gradient(90deg, #DC2626 0%, #0050AE 100%);
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
+  }
+
+  /* Smooth Scroll-Triggered Reveal Animations */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .text-glow-cyan {
