@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ChevronRight,
   ShieldCheck,
@@ -8,6 +8,13 @@ import {
   Anchor,
   CheckCircle2,
   Lock,
+  Radio,
+  Activity,
+  Cpu,
+  Smartphone,
+  Navigation,
+  Sparkles,
+  Zap,
 } from 'lucide-react';
 
 interface HeroProps {
@@ -21,6 +28,7 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenConsultation,
   onExploreProjects,
 }) => {
+  const [activeDevice, setActiveDevice] = useState<'both' | 'bot' | 'molinar'>('both');
   return (
     <section className="relative pt-32 sm:pt-36 pb-16 lg:pb-24 overflow-hidden bg-white dark:bg-[#081522] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,103 +132,306 @@ export const Hero: React.FC<HeroProps> = ({
             </div>
           </div>
 
-          {/* Right Column: Asymmetric Curved Royal Blue Container (Mandiri Livin Graphic Card) */}
+          {/* Right Column: Ultra-Creative Red-Blue-Red Showcase (Signature MNK PDF Gradient) */}
           <div className="lg:col-span-6 relative">
-            <div className="relative w-full rounded-[36px] sm:rounded-[44px] bg-gradient-to-br from-[#0050AE] via-[#004294] to-[#002D62] p-8 sm:p-12 overflow-hidden shadow-2xl">
-              {/* Dot Matrix Pattern in Top-Right Corner */}
-              <div className="absolute top-0 right-0 w-56 h-56 dot-pattern opacity-40 pointer-events-none"></div>
+            <div
+              className="relative w-full rounded-[36px] sm:rounded-[44px] p-6 sm:p-10 overflow-hidden shadow-2xl border border-white/20 transition-all duration-500"
+              style={{
+                background: 'linear-gradient(135deg, #DC2626 0%, #991B1B 14%, #0050AE 46%, #081522 60%, #991B1B 84%, #DC2626 100%)',
+              }}
+            >
+              {/* Organic Signature Red-Blue-Red Flowing Wave Overlay (from PDF Brand Identity) */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none opacity-35 mix-blend-overlay"
+                viewBox="0 0 700 700"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  <linearGradient id="mnkBrandWave" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#EF4444" stopOpacity="0.9" />
+                    <stop offset="48%" stopColor="#0050AE" stopOpacity="0.8" />
+                    <stop offset="80%" stopColor="#1E3A8A" stopOpacity="0.9" />
+                    <stop offset="100%" stopColor="#DC2626" stopOpacity="0.95" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,180 C200,60 350,320 700,160 L700,700 L0,700 Z"
+                  fill="url(#mnkBrandWave)"
+                />
+              </svg>
 
-              {/* Floating Circular Feature Badges */}
-              <div className="absolute top-6 left-6 w-11 h-11 rounded-full bg-white text-[#0050AE] shadow-lg flex items-center justify-center animate-bounce duration-1000">
-                <Anchor className="w-5 h-5 text-[#0050AE]" />
-              </div>
+              {/* High-Tech Dot Matrix Pattern */}
+              <div className="absolute top-0 right-0 w-72 h-72 dot-pattern opacity-30 pointer-events-none"></div>
 
-              <div className="absolute top-10 right-8 w-11 h-11 rounded-full bg-white text-blue-500 shadow-lg flex items-center justify-center">
-                <BarChart3 className="w-5 h-5 text-blue-600" />
-              </div>
+              {/* Glowing Ambient Light Orbs */}
+              <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full bg-rose-600/40 blur-3xl pointer-events-none"></div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-blue-600/30 blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-amber-500/30 blur-2xl pointer-events-none"></div>
 
-              <div className="absolute top-28 left-4 w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center">
-                <Send className="w-4 h-4 text-cyan-500" />
-              </div>
-
-              <div className="absolute top-36 right-4 w-11 h-11 rounded-full bg-white text-blue-600 shadow-lg flex items-center justify-center">
-                <Wifi className="w-5 h-5 text-[#0050AE]" />
-              </div>
-
-              <div className="absolute bottom-28 left-6 w-11 h-11 rounded-full bg-white text-emerald-600 shadow-md flex items-center justify-center">
-                <ShieldCheck className="w-5 h-5 text-emerald-500" />
-              </div>
-
-              {/* Central Smartphone Mockups */}
-              <div className="relative z-10 flex items-center justify-center pt-8 pb-4">
-                {/* Back Phone: PIS_BOT Network Sentinel */}
-                <div className="relative w-44 sm:w-52 h-96 bg-slate-950 rounded-[32px] p-2.5 border-4 border-slate-800 shadow-2xl -rotate-6 transform hover:rotate-0 transition-transform duration-500">
-                  <div className="w-16 h-3 bg-slate-800 rounded-full mx-auto mb-2"></div>
-                  <div className="w-full h-[330px] rounded-[22px] bg-[#0A1626] p-3 text-white font-mono text-[10px] overflow-hidden">
-                    <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-                      <span className="text-cyan-400 font-bold">PIS_BOT</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                    </div>
-                    <div className="mt-3 space-y-2 text-[9px]">
-                      <div className="bg-slate-900 p-2 rounded border border-slate-800">
-                        <div className="text-slate-400">VESSEL STATUS</div>
-                        <div className="text-emerald-400 font-bold">Tanker Prime: ONLINE</div>
-                        <div className="text-slate-500">VSAT 512Kbps SLA: 99.9%</div>
-                      </div>
-                      <div className="bg-slate-900 p-2 rounded border border-slate-800">
-                        <div className="text-slate-400">CORE NETWORK</div>
-                        <div className="text-cyan-400 font-bold">Master WAN: Active</div>
-                        <div className="text-slate-500">Auto-failover: Standby</div>
-                      </div>
-                    </div>
+              {/* Top Interactive Mode Switcher (Glass Pill) */}
+              <div className="relative z-20 flex items-center justify-between mb-6 pb-3 border-b border-white/15">
+                <div className="flex items-center space-x-2">
+                  <div className="p-1.5 rounded-lg bg-white/15 backdrop-blur-md border border-white/20 text-white">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                   </div>
+                  <span className="text-xs font-bold text-white tracking-wide">
+                    Live Tech Simulator
+                  </span>
                 </div>
 
-                {/* Front Phone: Molinar.id IoT Telemetry App */}
-                <div className="relative -ml-16 sm:-ml-20 w-48 sm:w-56 h-[420px] bg-slate-950 rounded-[36px] p-3 border-4 border-slate-700 shadow-2xl rotate-3 transform hover:rotate-0 transition-transform duration-500">
-                  <div className="w-20 h-3.5 bg-slate-800 rounded-full mx-auto mb-2.5"></div>
-                  <div className="w-full h-[350px] rounded-[24px] bg-white text-slate-800 p-3.5 text-xs overflow-hidden flex flex-col justify-between shadow-inner">
+                {/* Interactive Toggles */}
+                <div className="inline-flex p-1 rounded-full bg-black/30 backdrop-blur-md border border-white/15 text-[10px] font-bold">
+                  <button
+                    onClick={() => setActiveDevice('bot')}
+                    className={`px-2.5 py-1 rounded-full transition-all ${
+                      activeDevice === 'bot'
+                        ? 'bg-rose-600 text-white shadow-sm'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    PIS_BOT
+                  </button>
+                  <button
+                    onClick={() => setActiveDevice('molinar')}
+                    className={`px-2.5 py-1 rounded-full transition-all ${
+                      activeDevice === 'molinar'
+                        ? 'bg-[#0050AE] text-white shadow-sm'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Molinar.id
+                  </button>
+                  <button
+                    onClick={() => setActiveDevice('both')}
+                    className={`px-2.5 py-1 rounded-full transition-all ${
+                      activeDevice === 'both'
+                        ? 'bg-gradient-to-r from-rose-600 to-blue-600 text-white shadow-sm'
+                        : 'text-white/70 hover:text-white'
+                    }`}
+                  >
+                    Dual Sync
+                  </button>
+                </div>
+              </div>
+
+              {/* Floating Holographic 3D Glass Badges */}
+              {/* Top-Left: VSAT Maritime Satellite Badge */}
+              <div className="absolute top-16 left-3 sm:left-6 z-20 bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2.5 shadow-xl hover:scale-105 transition-transform hidden sm:flex items-center space-x-2 text-white">
+                <div className="p-1.5 rounded-xl bg-blue-500/30 text-cyan-300 border border-cyan-400/30">
+                  <Radio className="w-4 h-4 animate-pulse" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold text-white leading-tight">VSAT Oceanic Satellite</div>
+                  <div className="text-[9px] text-emerald-300 font-semibold flex items-center space-x-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>SLA 99.98% Locked</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top-Right: Fortinet Cybersecurity Badge */}
+              <div className="absolute top-16 right-3 sm:right-6 z-20 bg-white/15 backdrop-blur-md border border-white/25 rounded-2xl p-2.5 shadow-xl hover:scale-105 transition-transform hidden sm:flex items-center space-x-2 text-white">
+                <div className="p-1.5 rounded-xl bg-rose-500/30 text-rose-300 border border-rose-400/30">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-bold text-white leading-tight">Fortinet NSE 7</div>
+                  <div className="text-[9px] text-cyan-300 font-semibold">Zero-Trust Active</div>
+                </div>
+              </div>
+
+              {/* Central Smartphones Container */}
+              <div className="relative z-10 flex items-center justify-center pt-4 pb-6 sm:pb-8">
+                {/* Back / Left Phone: PIS_BOT Maritime Network Sentinel */}
+                <div
+                  className={`relative w-48 sm:w-56 h-[390px] sm:h-[430px] bg-slate-950 rounded-[36px] p-3 border-4 border-slate-700 shadow-2xl transition-all duration-500 ${
+                    activeDevice === 'bot'
+                      ? 'scale-105 z-30 rotate-0 shadow-cyan-500/20'
+                      : activeDevice === 'molinar'
+                      ? 'scale-90 opacity-60 -rotate-12 translate-x-4'
+                      : '-rotate-6 hover:rotate-0 z-10'
+                  }`}
+                >
+                  {/* Dynamic Island Speaker Bar */}
+                  <div className="w-20 h-3.5 bg-slate-800 rounded-full mx-auto mb-2 flex items-center justify-center space-x-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-900"></span>
+                    <span className="w-2 h-1 rounded-full bg-slate-900"></span>
+                  </div>
+
+                  {/* Phone Screen: PIS_BOT Dark Maritime Command */}
+                  <div className="w-full h-[330px] sm:h-[370px] rounded-[24px] bg-[#071322] p-3 text-white text-[10px] overflow-hidden flex flex-col justify-between border border-cyan-500/20">
                     <div>
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                        <div>
-                          <div className="text-[10px] font-bold text-slate-400">MOLINAR.ID</div>
-                          <div className="text-xs font-bold text-[#0050AE]">IoT Telemetry</div>
+                      {/* Top Header */}
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                        <div className="flex items-center space-x-1.5">
+                          <div className="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></div>
+                          <span className="text-cyan-400 font-bold tracking-wider">PIS_BOT SENTINEL</span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[9px] font-bold">
-                          LIVE
+                        <span className="px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 text-[8px] font-bold">
+                          VSAT 512K
                         </span>
                       </div>
 
-                      <div className="mt-3 space-y-2">
-                        <div className="bg-blue-50 p-2 rounded-lg border border-blue-100">
-                          <div className="text-[9px] text-slate-500 font-medium">CABINET TEMP</div>
-                          <div className="text-sm font-bold text-[#0050AE]">26.4 °C</div>
-                          <div className="text-[8px] text-emerald-600 font-medium">Optimal Range</div>
+                      {/* Radar Simulation Sweep */}
+                      <div className="my-2.5 p-2 rounded-xl bg-slate-900/80 border border-slate-800 relative overflow-hidden flex items-center space-x-2.5">
+                        <div className="relative w-9 h-9 rounded-full bg-slate-950 border border-cyan-500/40 flex items-center justify-center flex-shrink-0">
+                          <div className="absolute inset-0 rounded-full border border-cyan-500/20"></div>
+                          <Navigation className="w-4 h-4 text-cyan-400 animate-spin duration-3000" />
+                        </div>
+                        <div>
+                          <div className="text-[8px] text-slate-400 uppercase font-bold">Vessel Navigation</div>
+                          <div className="text-[10px] font-bold text-white">05°14'S, 106°48'E</div>
+                          <div className="text-[8px] text-emerald-400 font-semibold">Java Sea • Route Active</div>
+                        </div>
+                      </div>
+
+                      {/* Bot Dialogue Log */}
+                      <div className="space-y-1.5">
+                        <div className="bg-slate-900/90 p-2 rounded-xl border border-slate-800">
+                          <div className="text-[8px] text-slate-400 font-semibold flex items-center justify-between">
+                            <span>TELEMETRY BOT</span>
+                            <span className="text-cyan-400">14:22 WIB</span>
+                          </div>
+                          <p className="text-[9px] text-slate-200 mt-0.5 leading-snug">
+                            All 12 Tanker Nodes synced with Telkomsat Ku-Band. Bandwidth QoS shaping active.
+                          </p>
                         </div>
 
-                        <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-                          <div className="text-[9px] text-slate-500 font-medium">SHELTER VOLTAGE</div>
-                          <div className="text-sm font-bold text-slate-800">223.8 V</div>
-                          <div className="text-[8px] text-slate-500 font-medium">Nominal 220V</div>
-                        </div>
-
-                        <div className="bg-emerald-50 p-2 rounded-lg border border-emerald-100">
-                          <div className="text-[9px] text-slate-500 font-medium">PERIMETER ACCESS</div>
-                          <div className="text-xs font-bold text-emerald-700">DOOR SECURED</div>
+                        {/* Bandwidth Equalizer Bars */}
+                        <div className="bg-slate-900/70 p-2 rounded-xl border border-slate-800 flex items-center justify-between">
+                          <span className="text-[8px] text-slate-400">QoS Traffic:</span>
+                          <div className="flex items-end space-x-1 h-3.5">
+                            <span className="w-1 bg-cyan-400 h-2 rounded-full animate-pulse"></span>
+                            <span className="w-1 bg-cyan-400 h-3.5 rounded-full"></span>
+                            <span className="w-1 bg-cyan-400 h-1.5 rounded-full animate-pulse"></span>
+                            <span className="w-1 bg-cyan-400 h-3 rounded-full"></span>
+                            <span className="w-1 bg-cyan-400 h-2.5 rounded-full animate-pulse"></span>
+                          </div>
+                          <span className="text-[8px] font-bold text-cyan-300">512 Kbps</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-400 font-mono">
-                      <span>4G LTE: -68 dBm</span>
-                      <span className="text-[#0050AE] font-bold">MNK Cloud</span>
+                    {/* Bottom Status */}
+                    <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[8px] text-slate-400">
+                      <span className="flex items-center space-x-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        <span>Failover: Standby</span>
+                      </span>
+                      <span className="text-cyan-400 font-bold">MNK NOC 24/7</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Front / Right Phone: Molinar.id IoT Telemetry App */}
+                <div
+                  className={`relative -ml-16 sm:-ml-20 w-52 sm:w-60 h-[420px] sm:h-[460px] bg-slate-950 rounded-[38px] p-3.5 border-4 border-slate-600 shadow-2xl transition-all duration-500 ${
+                    activeDevice === 'molinar'
+                      ? 'scale-105 z-30 rotate-0 shadow-blue-500/30'
+                      : activeDevice === 'bot'
+                      ? 'scale-90 opacity-60 rotate-12 -translate-x-4'
+                      : 'rotate-3 hover:rotate-0 z-20'
+                  }`}
+                >
+                  {/* Dynamic Island with Camera */}
+                  <div className="w-24 h-4 bg-slate-800 rounded-full mx-auto mb-2 flex items-center justify-between px-2.5">
+                    <span className="w-2 h-2 rounded-full bg-slate-950"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  </div>
+
+                  {/* Phone Screen: Molinar.id Clean Modern Telemetry */}
+                  <div className="w-full h-[360px] sm:h-[395px] rounded-[24px] bg-white text-slate-800 p-3.5 text-xs overflow-hidden flex flex-col justify-between shadow-inner">
+                    <div>
+                      {/* App Header */}
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <div>
+                          <div className="text-[9px] font-bold text-slate-400 tracking-wider">MOLINAR.ID</div>
+                          <div className="text-xs font-bold text-[#0050AE] leading-tight">Industrial Telemetry</div>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[9px] font-bold flex items-center space-x-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span>ONLINE</span>
+                        </span>
+                      </div>
+
+                      {/* Sensor Cards */}
+                      <div className="mt-2.5 space-y-2">
+                        {/* Cabinet Temp with dial */}
+                        <div className="bg-blue-50/70 p-2.5 rounded-xl border border-blue-100/80 flex items-center justify-between">
+                          <div>
+                            <div className="text-[9px] text-slate-500 font-medium">SHELTER TEMPERATURE</div>
+                            <div className="text-sm font-bold text-[#0050AE]">26.4 °C</div>
+                            <div className="text-[8px] text-emerald-600 font-semibold">Optimal Range • Fan Normal</div>
+                          </div>
+                          <div className="w-8 h-8 rounded-full bg-blue-100 border border-blue-200 flex items-center justify-center text-[#0050AE] font-bold text-[10px]">
+                            26°
+                          </div>
+                        </div>
+
+                        {/* Shelter Voltage with Real Sparkline Graph */}
+                        <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/80">
+                          <div className="flex items-center justify-between">
+                            <div className="text-[9px] text-slate-500 font-medium">LINE VOLTAGE STABILIZER</div>
+                            <span className="text-[9px] font-bold text-slate-800">223.8 V</span>
+                          </div>
+                          {/* Live SVG Sparkline Wave */}
+                          <div className="mt-1.5 h-5 w-full">
+                            <svg className="w-full h-full" viewBox="0 0 100 20" preserveAspectRatio="none">
+                              <path
+                                d="M0,10 L15,10 L25,4 L35,16 L45,10 L60,10 L70,3 L80,17 L90,10 L100,10"
+                                fill="none"
+                                stroke="#0050AE"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                              />
+                            </svg>
+                          </div>
+                          <div className="flex justify-between text-[8px] text-slate-400 mt-0.5">
+                            <span>Nominal 220V</span>
+                            <span className="text-emerald-600 font-bold">Stable (0.2% Var)</span>
+                          </div>
+                        </div>
+
+                        {/* Perimeter Access Security */}
+                        <div className="bg-emerald-50/80 p-2 rounded-xl border border-emerald-200/80 flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <div className="p-1 rounded-lg bg-emerald-200/70 text-emerald-800">
+                              <Lock className="w-3.5 h-3.5" />
+                            </div>
+                            <div>
+                              <div className="text-[9px] text-emerald-900 font-bold leading-tight">PERIMETER ACCESS</div>
+                              <div className="text-[8px] text-emerald-700">Magnetic Door Sensor Locked</div>
+                            </div>
+                          </div>
+                          <span className="text-[9px] font-bold text-emerald-700">SECURE</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Footer Signal Status */}
+                    <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-500">
+                      <span className="flex items-center space-x-1">
+                        <Wifi className="w-3 h-3 text-[#0050AE]" />
+                        <span>LTE: -68 dBm</span>
+                      </span>
+                      <span className="text-[#0050AE] font-bold">MNK Cloud IoT</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom-Right Golden Wave Accent */}
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-[#FFB800] blur-[2px] opacity-90 pointer-events-none"></div>
+              {/* Bottom Holographic Badges */}
+              {/* Bottom-Left: Maritime Fleet Sync */}
+              <div className="absolute bottom-4 left-4 z-20 bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl px-3 py-1.5 shadow-lg hidden sm:flex items-center space-x-2 text-white text-[10px]">
+                <Anchor className="w-3.5 h-3.5 text-cyan-300" />
+                <span className="font-bold">Pertamina Maritime Fleet Sentinel</span>
+              </div>
+
+              {/* Bottom-Right: Molinar.id IoT Sync */}
+              <div className="absolute bottom-4 right-4 z-20 bg-white/15 backdrop-blur-md border border-white/20 rounded-2xl px-3 py-1.5 shadow-lg hidden sm:flex items-center space-x-2 text-white text-[10px]">
+                <Activity className="w-3.5 h-3.5 text-amber-300" />
+                <span className="font-bold">Molinar.id Smart Telemetry Engine</span>
+              </div>
             </div>
           </div>
         </div>
