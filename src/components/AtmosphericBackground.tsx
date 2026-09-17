@@ -248,27 +248,6 @@ export const AtmosphericBackground: React.FC = () => {
 
       {/* Deep Bottom Crimson Glow */}
       <div className="absolute bottom-[5%] right-[10%] w-[450px] h-[450px] rounded-full bg-red-600/8 dark:bg-red-600/12 blur-[110px] animate-pulse-aura"></div>
-
-      {/* Floating AI & High-Tech HUD Telemetry along sides */}
-      <div className="hidden xl:block absolute top-[18%] left-6 text-slate-400/50 dark:text-cyan-400/30 text-[10px] font-tech font-bold tracking-widest">
-        <div>[AI_CORE: TENSOR_ENGINE_v4.2]</div>
-        <div className="text-[8px] text-slate-400/40 mt-0.5">INFERENCE_LATENCY: 0.8ms</div>
-      </div>
-
-      <div className="hidden xl:block absolute top-[18%] right-6 text-slate-400/50 dark:text-cyan-400/30 text-[10px] font-tech font-bold tracking-widest text-right">
-        <div>[SYNAPSE_MESH: 2,048 NODES]</div>
-        <div className="text-[8px] text-slate-400/40 mt-0.5">VISION_AI: OBJECT_DETECT_ON</div>
-      </div>
-
-      <div className="hidden xl:block absolute top-[58%] left-6 text-slate-400/50 dark:text-red-400/30 text-[10px] font-tech font-bold tracking-widest">
-        <div>[VSAT SATELLITE: KU-BAND]</div>
-        <div className="text-[8px] text-slate-400/40 mt-0.5">07°00'16"S • 110°20'45"E</div>
-      </div>
-
-      <div className="hidden xl:block absolute top-[58%] right-6 text-slate-400/50 dark:text-red-400/30 text-[10px] font-tech font-bold tracking-widest text-right">
-        <div>[NOC_SENTINEL: 24/7 ACTIVE]</div>
-        <div className="text-[8px] text-slate-400/40 mt-0.5">SLA COMPLIANCE: 99.98%</div>
-      </div>
     </div>
   );
 };
