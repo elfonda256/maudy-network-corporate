@@ -8,6 +8,25 @@ interface FooterProps {
   onOpenCredentials: () => void;
 }
 
+const ALL_PARTNER_LOGOS = [
+  { name: 'Cisco', file: '/logos/cisco.png', title: 'Cisco Systems (CCNP Enterprise & SP)' },
+  { name: 'Fortinet', file: '/logos/fortinet.png', title: 'Fortinet Network Security Expert (NSE 7)' },
+  { name: 'MikroTik', file: '/logos/mikrotik.png', title: 'MikroTik Certified Engineer (MTCINE / MTCTCE)' },
+  { name: 'Ruijie', file: '/logos/ruijie.png', title: 'Ruijie Networks (RSE Certified)' },
+  { name: 'BNSP', file: '/logos/bnsp.png', title: 'Badan Nasional Sertifikasi Profesi (BNSP RI)' },
+  { name: 'Honeywell', file: '/logos/honeywell.png', title: 'Honeywell Industrial Surveillance' },
+  { name: 'Hytera', file: '/logos/hytera.png', title: 'Hytera Tactical PoC Communications' },
+  { name: 'LG', file: '/logos/lg.png', title: 'LG Commercial Video Wall Solutions' },
+  { name: 'Pertamina', file: '/logos/pertamina.png', title: 'PT Pertamina (Persero)' },
+  { name: 'Pertamina Shipping', file: '/logos/pertamina-shipping.png', title: 'PT Pertamina International Shipping' },
+  { name: 'BUMN', file: '/logos/bumn.png', title: 'Kementerian BUMN Republik Indonesia' },
+  { name: 'PUPR', file: '/logos/pupr.png', title: 'Kementerian PUPR Republik Indonesia' },
+  { name: 'BBWS Cimancis', file: '/logos/bbws-cimancis.png', title: 'BBWS Cimanuk Cisanggarung' },
+  { name: 'BMKG', file: '/logos/bmkg.png', title: 'Badan Meteorologi, Klimatologi, dan Geofisika' },
+  { name: 'Univ Pertamina', file: '/logos/univ-pertamina.png', title: 'Universitas Pertamina' },
+  { name: 'Airkon', file: '/logos/airkon.png', title: 'PT Airkon Pratama' },
+];
+
 export const Footer: React.FC<FooterProps> = ({
   lang,
   onOpenCredentials,
@@ -162,28 +181,38 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 dark:text-slate-400 text-[11px] font-mono">
+        {/* All 16 Verified Client & Technology Partner Logos - Compact & Elegant */}
+        <div className="pt-8 border-t border-slate-200/70 dark:border-slate-800/80 mt-2">
+          <div className="text-center mb-3">
+            <span className="text-[10px] font-tech uppercase tracking-widest text-slate-400 dark:text-slate-500 font-semibold">
+              {lang === 'en' ? 'Verified Enterprise Principals, Clients & Accreditations' : 'Mitra Prinsipal, Klien Strategis & Akreditasi Resmi'}
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+            {ALL_PARTNER_LOGOS.map((logo, idx) => (
+              <div
+                key={idx}
+                className="h-6 sm:h-6.5 px-2 py-0.5 rounded-md bg-white border border-slate-200 dark:border-slate-700/70 shadow-2xs flex items-center justify-center hover:scale-105 hover:border-slate-300 transition-all cursor-default"
+                title={logo.title}
+              >
+                <img
+                  src={logo.file}
+                  alt={logo.name}
+                  className="max-h-3 sm:max-h-3.5 max-w-[44px] sm:max-w-[50px] w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Copyright & Top Bar */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 dark:text-slate-400 text-[11px] font-mono">
           <div>
             &copy; {new Date().getFullYear()} PT. Maudy Network Komunikasi. All rights reserved.
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Cisco Certified Network Professional">
-              <img src="/logos/cisco.png" alt="Cisco" className="h-4 sm:h-4.5 w-auto object-contain" />
-            </div>
-            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Fortinet Network Security Expert">
-              <img src="/logos/fortinet.png" alt="Fortinet" className="h-3.5 sm:h-4 w-auto object-contain" />
-            </div>
-            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="MikroTik Certified Engineer">
-              <img src="/logos/mikrotik.png" alt="MikroTik" className="h-3 sm:h-3.5 w-auto object-contain" />
-            </div>
-            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Ruijie Networks Certified">
-              <img src="/logos/ruijie.png" alt="Ruijie" className="h-3.5 sm:h-4 w-auto object-contain" />
-            </div>
-            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Badan Nasional Sertifikasi Profesi (BNSP)">
-              <img src="/logos/bnsp.png" alt="BNSP" className="h-4.5 sm:h-5 w-auto object-contain" />
-            </div>
+          <div className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">
+            {lang === 'en' ? 'Engineered for High-Reliability Operations' : 'Infrastruktur Kritis Berstandar Nasional & Internasional'}
           </div>
 
           <button

@@ -115,24 +115,30 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Interactive Animated Badges */}
             <div className="pt-4 flex flex-wrap items-center gap-2.5">
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-blue-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <ShieldCheck className="w-4 h-4 text-blue-600 dark:text-cyan-400" />
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-blue-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
+                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+                  <img src="/logos/cisco.png" alt="Cisco" className="max-h-full max-w-full object-contain" />
+                </div>
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">CERTIFIED</span>
                   <span className="font-bold text-xs">Cisco CCNP</span>
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-red-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <Lock className="w-4 h-4 text-red-600 dark:text-red-400" />
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-red-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
+                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+                  <img src="/logos/fortinet.png" alt="Fortinet" className="max-h-full max-w-full object-contain" />
+                </div>
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">SECURITY</span>
                   <span className="font-bold text-xs">Fortinet NSE 7</span>
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 hover:-translate-y-1 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
+                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+                  <img src="/logos/bnsp.png" alt="BNSP" className="max-h-full max-w-full object-contain" />
+                </div>
                 <div>
                   <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">NATIONAL</span>
                   <span className="font-bold text-xs">BNSP Standard</span>

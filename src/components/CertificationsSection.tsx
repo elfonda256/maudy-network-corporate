@@ -54,11 +54,11 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
               >
                 <div>
                   {cert.image ? (
-                    <div className="h-16 w-full mb-3 rounded-xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 p-1 flex items-center justify-center shadow-inner">
+                    <div className="h-14 w-full mb-3 rounded-xl overflow-hidden bg-white border border-slate-200 dark:border-slate-700/60 p-2 flex items-center justify-center shadow-xs">
                       <img
                         src={cert.image}
                         alt={cert.code}
-                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                        className="max-h-9 max-w-[85%] object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
                   ) : (
