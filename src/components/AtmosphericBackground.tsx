@@ -7,7 +7,7 @@ interface NodeParticle {
   vy: number;
   radius: number;
   baseRadius: number;
-  colorType: 'cyan' | 'red' | 'blue';
+  colorType: 'white' | 'red' | 'blue';
 }
 
 interface PulsePacket {
@@ -53,10 +53,10 @@ export const AtmosphericBackground: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseout', handleMouseLeave);
 
-    // Initialize AI Neural Network Nodes
+    // Initialize AI Neural Network Nodes in Merah, Biru, Putih
     const nodeCount = Math.min(width < 768 ? 28 : 55, 60);
     const nodes: NodeParticle[] = [];
-    const colors = ['cyan', 'blue', 'red'] as const;
+    const colors = ['red', 'blue', 'white'] as const;
 
     for (let i = 0; i < nodeCount; i++) {
       const colorType = colors[i % colors.length];
@@ -72,7 +72,7 @@ export const AtmosphericBackground: React.FC = () => {
       });
     }
 
-    // Synaptic Data Pulse Packets
+    // Synaptic Data Pulse Packets in Merah, Biru, Putih
     const pulses: PulsePacket[] = [];
     let lastPulseTime = 0;
 
@@ -86,12 +86,14 @@ export const AtmosphericBackground: React.FC = () => {
         const dy = nodes[from].y - nodes[j].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 130 && dist > 20) {
+          const rand = Math.random();
+          const pColor = rand > 0.66 ? '#FFFFFF' : rand > 0.33 ? '#0050AE' : '#DC2626';
           pulses.push({
             fromNode: from,
             toNode: j,
             progress: 0,
             speed: 0.015 + Math.random() * 0.02,
-            color: Math.random() > 0.5 ? '#00C6FF' : '#FF4D4D',
+            color: pColor,
           });
           break;
         }
@@ -147,12 +149,12 @@ export const AtmosphericBackground: React.FC = () => {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        if (node.colorType === 'cyan') {
-          ctx.fillStyle = 'rgba(0, 198, 255, 0.7)';
+        if (node.colorType === 'white') {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
         } else if (node.colorType === 'red') {
-          ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.8)';
         } else {
-          ctx.fillStyle = 'rgba(30, 94, 255, 0.7)';
+          ctx.fillStyle = 'rgba(0, 80, 174, 0.85)';
         }
         ctx.fill();
 
@@ -168,7 +170,7 @@ export const AtmosphericBackground: React.FC = () => {
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(0, 160, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(0, 80, 174, ${alpha})`;
             ctx.lineWidth = 0.75;
             ctx.stroke();
           }
@@ -226,28 +228,31 @@ export const AtmosphericBackground: React.FC = () => {
       <div className="absolute inset-0 tech-matrix-grid opacity-55 dark:opacity-45"></div>
       <div className="absolute inset-0 tech-grid-pattern opacity-30 dark:opacity-20"></div>
 
-      {/* Interactive Mouse Reactive Light Glow */}
+      {/* Interactive Mouse Reactive Light Glow in Merah, Biru, Putih */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-30 dark:opacity-25 pointer-events-none mix-blend-screen"
+        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-35 dark:opacity-30 pointer-events-none mix-blend-screen"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`,
-          background: 'radial-gradient(circle, rgba(220, 38, 38, 0.22) 0%, rgba(0, 198, 255, 0.25) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(220, 38, 38, 0.28) 0%, rgba(0, 80, 174, 0.28) 40%, rgba(255, 255, 255, 0.25) 70%, transparent 80%)',
         }}
       />
 
-      {/* Floating Volumetric Radiant Orbs */}
-      {/* Top Left Crimson Ambient Pulse */}
-      <div className="absolute top-[5%] -left-[140px] w-[520px] h-[520px] rounded-full bg-red-600/10 dark:bg-red-600/15 blur-[120px] animate-pulse-aura"></div>
+      {/* Floating Volumetric Radiant Orbs in Merah, Biru, Putih */}
+      {/* 1. Top Left Crimson Red Ambient Pulse */}
+      <div className="absolute top-[5%] -left-[140px] w-[540px] h-[540px] rounded-full bg-red-600/12 dark:bg-red-600/18 blur-[130px] animate-pulse-aura"></div>
 
-      {/* Center Right Royal Blue Luminescence */}
-      <div className="absolute top-[32%] -right-[150px] w-[600px] h-[600px] rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-[140px] animate-float-slow"></div>
+      {/* 2. Center Right Deep Corporate Blue Luminescence */}
+      <div className="absolute top-[32%] -right-[150px] w-[620px] h-[620px] rounded-full bg-blue-600/12 dark:bg-[#0050AE]/22 blur-[140px] animate-float-slow"></div>
 
-      {/* Bottom Left AI Cyan Radiance */}
-      <div className="absolute top-[65%] -left-[100px] w-[550px] h-[550px] rounded-full bg-cyan-500/10 dark:bg-cyan-500/15 blur-[130px] animate-float-delayed"></div>
+      {/* 3. Center Luminous Pure White Radiance */}
+      <div className="absolute top-[50%] left-[25%] w-[480px] h-[480px] rounded-full bg-white/20 dark:bg-white/10 blur-[140px] animate-float-delayed pointer-events-none"></div>
 
-      {/* Deep Bottom Crimson Glow */}
-      <div className="absolute bottom-[5%] right-[10%] w-[450px] h-[450px] rounded-full bg-red-600/8 dark:bg-red-600/12 blur-[110px] animate-pulse-aura"></div>
+      {/* 4. Bottom Left Deep Corporate Blue Aura */}
+      <div className="absolute top-[68%] -left-[100px] w-[550px] h-[550px] rounded-full bg-blue-700/10 dark:bg-blue-700/15 blur-[130px] animate-float-delayed"></div>
+
+      {/* 5. Deep Bottom Crimson Red Glow */}
+      <div className="absolute bottom-[4%] right-[10%] w-[480px] h-[480px] rounded-full bg-red-600/10 dark:bg-red-600/15 blur-[120px] animate-pulse-aura"></div>
     </div>
   );
 };
