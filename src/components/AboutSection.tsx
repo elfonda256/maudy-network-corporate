@@ -87,27 +87,7 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                 alt="MNK Enterprise Data Center Engineering"
                 className="w-full h-[380px] sm:h-[420px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-
-              {/* Floating Live Telemetry Card */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/95 dark:bg-[#0B1F3A]/90 p-4 rounded-2xl border border-slate-200 dark:border-cyan-500/30 backdrop-blur-md shadow-lg">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-3">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-                    <div>
-                      <div className="text-xs font-mono font-bold text-[#002D62] dark:text-white">
-                        {lang === 'en' ? 'Critical Systems Online' : 'Sistem Kritis Aktif'}
-                      </div>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-300">
-                        {lang === 'en' ? 'Semarang HQ • Nationwide Nodes' : 'Kantor Pusat Semarang • Titik Operasi Nasional'}
-                      </div>
-                    </div>
-                  </div>
-                  <span className="px-2.5 py-1 rounded bg-gradient-brand text-white text-xs font-tech font-bold shadow-xs">
-                    SLA 99.9%
-                  </span>
-                </div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             </div>
           </div>
 

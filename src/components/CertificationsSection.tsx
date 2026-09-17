@@ -1,6 +1,6 @@
 import React from 'react';
 import { CERTIFICATIONS_LIST, TEAM_MEMBERS } from '../data/companyData';
-import { Award, Shield, Users, Network } from 'lucide-react';
+import { Award, Shield, Users } from 'lucide-react';
 
 interface CertificationsProps {
   lang: 'en' | 'id';
@@ -14,7 +14,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
 
       {/* Decorative High-Tech Background Watermark */}
       <div className="absolute top-12 left-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [CREDENTIALS: GLOBAL_ACCREDITATIONS_ORG_MAP // TIER_1]
+        [CREDENTIALS: GLOBAL_ENGINEERING_ACCREDITATIONS // TIER_1]
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -22,16 +22,16 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
             <Shield className="w-3.5 h-3.5 mr-1 text-red-600 dark:text-cyan-400" />
-            <span>{lang === 'en' ? 'WORLD-CLASS CREDENTIALS' : 'SERTIFIKASI INTERNASIONAL & ORGANISASI'}</span>
+            <span>{lang === 'en' ? 'WORLD-CLASS CREDENTIALS' : 'SERTIFIKASI INTERNASIONAL RESMI'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
             {lang === 'en' ? (
               <>
-                Certified Engineering <span className="text-gradient-brand">Organization</span>
+                Certified Engineering <span className="text-gradient-brand">Accreditations</span>
               </>
             ) : (
               <>
-                Struktur Organisasi & <span className="text-gradient-brand">Sertifikasi Global</span>
+                Sertifikasi Kompetensi & <span className="text-gradient-brand">Akreditasi Global</span>
               </>
             )}
           </h2>
@@ -85,85 +85,6 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Technical Organization Tree / Hierarchy */}
-        <div className="mb-20">
-          <div className="text-center mb-10">
-            <h3 className="text-lg font-bold text-[#002D62] dark:text-white flex items-center justify-center space-x-2">
-              <Network className="w-5 h-5 text-[#0050AE] dark:text-blue-400" />
-              <span>{lang === 'en' ? 'Technical Organization Structure' : 'Bagan Struktur Organisasi Teknis'}</span>
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              {lang === 'en'
-                ? 'Direct executive oversight connecting operational managers with specialized field divisions'
-                : 'Struktur komando terpadu dari direktur hingga spesialis lapangan'}
-            </p>
-          </div>
-
-          {/* Org Chart Visualization */}
-          <div className="max-w-4xl mx-auto space-y-6">
-            {/* Level 1: Director */}
-            <div className="flex justify-center">
-              <div className="bg-white dark:bg-[#0B1F3A] p-4 rounded-2xl border border-blue-200 dark:border-cyan-500/50 gradient-border-top text-center w-64 shadow-md">
-                <div className="text-xs text-[#0050AE] dark:text-cyan-400 font-bold uppercase">Executive Leadership</div>
-                <div className="text-base font-bold text-[#002D62] dark:text-white mt-0.5">Yahya Hidayatullah</div>
-                <div className="text-xs text-slate-500 dark:text-slate-300">Director & CEO</div>
-              </div>
-            </div>
-
-            {/* Connecting Vertical Line */}
-            <div className="w-0.5 h-6 bg-blue-300 dark:bg-cyan-500/50 mx-auto"></div>
-
-            {/* Level 2: Two Managers */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto relative">
-              {/* Branch 1: Operations */}
-              <div className="bg-white dark:bg-slate-900/90 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-center shadow-xs">
-                <div className="text-[10px] font-mono text-[#FFB800] font-bold uppercase">Operations Division</div>
-                <div className="text-sm font-bold text-[#002D62] dark:text-white mt-0.5">Muhammad Yusuf Choirullah</div>
-                <div className="text-xs text-slate-500 dark:text-slate-300">Operations Manager</div>
-                <div className="text-[10px] text-slate-400 font-mono mt-1">BNSP Electrical Inspector</div>
-              </div>
-
-              {/* Branch 2: Engineering */}
-              <div className="bg-white dark:bg-slate-900/90 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-center shadow-xs">
-                <div className="text-[10px] font-mono text-[#0050AE] dark:text-cyan-400 font-bold uppercase">Engineering Division</div>
-                <div className="text-sm font-bold text-[#002D62] dark:text-white mt-0.5">Ikhwanul Kurnia Rahman</div>
-                <div className="text-xs text-slate-500 dark:text-slate-300">Technical & Engineering Manager</div>
-                <div className="text-[10px] text-[#0050AE] dark:text-cyan-400 font-mono mt-1 font-bold">CCNP • NSE 7 • MTCINE</div>
-              </div>
-            </div>
-
-            {/* Connecting Vertical Line */}
-            <div className="w-0.5 h-6 bg-blue-300 dark:bg-cyan-500/50 mx-auto"></div>
-
-            {/* Level 3: Specialized Technical Team Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                <div className="text-xs font-bold text-[#002D62] dark:text-white">Irfan Ardian</div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-300">Software & Web Dev</div>
-                <div className="text-[9px] font-mono text-purple-600 dark:text-purple-400 mt-1 font-bold">BNSP WebDev</div>
-              </div>
-
-              <div className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                <div className="text-xs font-bold text-[#002D62] dark:text-white">Bagus M Rizqiandaru</div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-300">NOC & Support Analyst</div>
-                <div className="text-[9px] font-mono text-[#0050AE] dark:text-cyan-400 mt-1 font-bold">24/7 Telemetry Lead</div>
-              </div>
-
-              <div className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                <div className="text-xs font-bold text-[#002D62] dark:text-white">Elfano Sultan S.</div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-300">Infrastructure Engineer</div>
-                <div className="text-[9px] font-mono text-blue-600 dark:text-blue-400 mt-1 font-bold">Fiber & Grounding</div>
-              </div>
-
-              <div className="bg-slate-50 dark:bg-[#0B1F3A]/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                <div className="text-xs font-bold text-[#002D62] dark:text-white">Tomi Saputra</div>
-                <div className="text-[10px] text-slate-500 dark:text-slate-300">Network & Security</div>
-                <div className="text-[9px] font-mono text-emerald-600 dark:text-emerald-400 mt-1 font-bold">Ruijie Specialist</div>
-              </div>
-            </div>
           </div>
         </div>
 

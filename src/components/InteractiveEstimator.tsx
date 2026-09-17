@@ -228,57 +228,57 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
             </div>
 
             {/* Right: Calculated Architecture & Capacity Blueprint */}
-            <div className="lg:col-span-5 bg-slate-950 text-white p-6 sm:p-8 rounded-3xl border border-cyan-500/40 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:col-span-5 bg-gradient-to-br from-slate-50 via-white to-blue-50/40 dark:from-slate-950 dark:to-[#050C16] text-slate-800 dark:text-white p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/40 shadow-2xl flex flex-col justify-between relative overflow-hidden transition-all">
               <div className="cyber-scanline"></div>
 
               <div className="space-y-5">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span className="text-[11px] font-tech text-cyan-400 flex items-center">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                  <span className="text-[11px] font-tech text-[#0050AE] dark:text-cyan-400 flex items-center font-bold">
                     <Sparkles className="w-3.5 h-3.5 mr-1 text-red-500" />
                     ESTIMATED BLUEPRINT
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-tech font-bold">
+                  <span className="px-2 py-0.5 rounded bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-[10px] font-tech font-bold border border-emerald-500/30">
                     OPTIMIZED // TENSORRT
                   </span>
                 </div>
 
                 {/* Metric Summary Grid */}
                 <div className="grid grid-cols-2 gap-3 font-tech text-xs">
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">GPU VRAM DEMAND</div>
-                    <div className="text-lg font-bold text-red-500 mt-0.5">{estimatedVramGB} GB VRAM</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">GPU VRAM DEMAND</div>
+                    <div className="text-lg font-bold text-red-600 dark:text-red-500 mt-0.5">{estimatedVramGB} GB VRAM</div>
                     <div className="text-[9px] text-slate-500">Dedicated Tensor Core</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">INFERENCE LATENCY</div>
-                    <div className="text-lg font-bold text-cyan-400 mt-0.5">4.2 ms / frame</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">INFERENCE LATENCY</div>
+                    <div className="text-lg font-bold text-[#0050AE] dark:text-cyan-400 mt-0.5">4.2 ms / frame</div>
                     <div className="text-[9px] text-slate-500">Zero Cloud Lag</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">LOCAL LAN TRAFFIC</div>
-                    <div className="text-lg font-bold text-emerald-400 mt-0.5">~{estimatedBandwidthMbps} Mbps</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">LOCAL LAN TRAFFIC</div>
+                    <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">~{estimatedBandwidthMbps} Mbps</div>
                     <div className="text-[9px] text-slate-500">H.265 Efficient Codec</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">STORAGE (30 DAYS)</div>
-                    <div className="text-lg font-bold text-purple-400 mt-0.5">~{estimatedStorageTB} TB</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">STORAGE (30 DAYS)</div>
+                    <div className="text-lg font-bold text-purple-600 dark:text-purple-400 mt-0.5">~{estimatedStorageTB} TB</div>
                     <div className="text-[9px] text-slate-500">Event & Log Archival</div>
                   </div>
                 </div>
 
                 {/* Recommended Hardware */}
-                <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1.5">
-                  <div className="text-[10px] font-tech text-cyan-400 uppercase tracking-wider flex items-center">
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-1.5 shadow-sm">
+                  <div className="text-[10px] font-tech text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider flex items-center font-bold">
                     <HardDrive className="w-3.5 h-3.5 mr-1" />
                     Rekomendasi Spesifikasi Hardware Server
                   </div>
-                  <div className="text-xs font-bold text-white font-mono leading-relaxed">
+                  <div className="text-xs font-bold text-[#002D62] dark:text-white font-mono leading-relaxed">
                     {recommendedHardware}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-800 mt-6">
+              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 mt-6">
                 <button
                   onClick={onOpenConsultation}
                   className="w-full py-3 px-4 rounded-xl bg-gradient-brand text-white font-tech font-bold text-xs hover:scale-102 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-500/20"
@@ -353,53 +353,53 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
             </div>
 
             {/* Right: Aegis Result Blueprint */}
-            <div className="lg:col-span-5 bg-slate-950 text-white p-6 sm:p-8 rounded-3xl border border-cyan-500/40 shadow-2xl flex flex-col justify-between relative overflow-hidden">
+            <div className="lg:col-span-5 bg-gradient-to-br from-slate-50 via-white to-blue-50/40 dark:from-slate-950 dark:to-[#050C16] text-slate-800 dark:text-white p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-cyan-500/40 shadow-2xl flex flex-col justify-between relative overflow-hidden transition-all">
               <div className="space-y-5">
-                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                  <span className="text-[11px] font-tech text-cyan-400 flex items-center">
-                    <Anchor className="w-3.5 h-3.5 mr-1 text-[#0050AE]" />
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                  <span className="text-[11px] font-tech text-[#0050AE] dark:text-cyan-400 flex items-center font-bold">
+                    <Anchor className="w-3.5 h-3.5 mr-1 text-[#0050AE] dark:text-cyan-400" />
                     AEGIS FLEET TELEMETRY
                   </span>
-                  <span className="px-2 py-0.5 rounded bg-blue-500/20 text-cyan-300 text-[10px] font-tech font-bold">
+                  <span className="px-2 py-0.5 rounded bg-blue-500/10 dark:bg-blue-500/20 text-[#0050AE] dark:text-cyan-300 text-[10px] font-tech font-bold border border-blue-500/20">
                     FORTINET NSE 7 // IMO 2021
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 font-tech text-xs">
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">TOTAL FLEET BANDWIDTH</div>
-                    <div className="text-base font-bold text-cyan-400 mt-0.5 truncate">{totalProtectedBandwidth}</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">TOTAL FLEET BANDWIDTH</div>
+                    <div className="text-base font-bold text-[#0050AE] dark:text-cyan-400 mt-0.5 truncate">{totalProtectedBandwidth}</div>
                     <div className="text-[9px] text-slate-500">{vesselCount} Tanker Ships</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">GUARANTEED ECDIS</div>
-                    <div className="text-base font-bold text-emerald-400 mt-0.5 truncate">{guaranteedEcdis}</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">GUARANTEED ECDIS</div>
+                    <div className="text-base font-bold text-emerald-600 dark:text-emerald-400 mt-0.5 truncate">{guaranteedEcdis}</div>
                     <div className="text-[9px] text-slate-500">Zero-Drop Navigation</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">QoS TRAFFIC SAVING</div>
-                    <div className="text-lg font-bold text-red-500 mt-0.5">{dataSavedPercent} Efisiensi</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">QoS TRAFFIC SAVING</div>
+                    <div className="text-lg font-bold text-red-600 dark:text-red-500 mt-0.5">{dataSavedPercent} Efisiensi</div>
                     <div className="text-[9px] text-slate-500">Kompresi Paket Cerdas</div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-900/90 border border-slate-800">
-                    <div className="text-slate-400 text-[10px]">FAILOVER TIME</div>
-                    <div className="text-lg font-bold text-cyan-400 mt-0.5">&lt; 800 ms</div>
+                  <div className="p-3 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div className="text-slate-500 dark:text-slate-400 text-[10px] font-semibold">FAILOVER TIME</div>
+                    <div className="text-lg font-bold text-[#0050AE] dark:text-cyan-400 mt-0.5">&lt; 800 ms</div>
                     <div className="text-[9px] text-slate-500">Multi-Orbit Handover</div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-                  <div className="text-[10px] font-tech text-emerald-400 uppercase tracking-wider flex items-center">
+                <div className="p-4 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 space-y-1 shadow-sm">
+                  <div className="text-[10px] font-tech text-emerald-600 dark:text-emerald-400 uppercase tracking-wider flex items-center font-bold">
                     <ShieldCheck className="w-3.5 h-3.5 mr-1" />
                     Perlindungan Perimeter Sesuai Standar Maritim
                   </div>
-                  <div className="text-xs text-slate-300 font-mono">
+                  <div className="text-xs text-slate-600 dark:text-slate-300 font-mono">
                     Zero-Trust VLAN Isolasi, Pemisahan Jaringan Kru Kapal vs OT Mesin, serta Firewall Karantina Malware Lepas Pantai.
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-slate-800 mt-6">
+              <div className="pt-6 border-t border-slate-200 dark:border-slate-800 mt-6">
                 <button
                   onClick={onOpenConsultation}
                   className="w-full py-3 px-4 rounded-xl bg-gradient-brand text-white font-tech font-bold text-xs hover:scale-102 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/20"

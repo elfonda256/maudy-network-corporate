@@ -267,7 +267,7 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
                       Company Profile PT. Maudy Network Komunikasi
                     </h4>
                     <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                      Dokumen profil korporat resmi memuat riwayat perusahaan, struktur organisasi, daftar sertifikasi internasional (Fortinet, Cisco, Mikrotik, BNSP), dan portofolio proyek strategis.
+                      Dokumen profil korporat resmi memuat riwayat perusahaan, legalitas resmi, daftar sertifikasi internasional (Fortinet, Cisco, Mikrotik, BNSP), dan portofolio proyek strategis.
                     </p>
                   </div>
 

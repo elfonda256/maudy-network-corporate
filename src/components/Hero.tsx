@@ -159,28 +159,28 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Right Column: Tidied Up, Elegant, Ultra-Crisp Simulator */}
           <div className="lg:col-span-6 relative">
-            <div className="relative w-full rounded-[36px] bg-[#071322] dark:bg-[#071322] p-5 sm:p-7 overflow-hidden shadow-2xl border border-slate-700/80 gradient-border-top">
+            <div className="relative w-full rounded-[36px] bg-white/95 dark:bg-[#071322] p-5 sm:p-7 overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700/80 gradient-border-top transition-colors">
               {/* Subtle Ambient Red & Blue Corner Glow */}
-              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-red-600/15 blur-3xl pointer-events-none"></div>
-              <div className="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
+              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-red-600/10 dark:bg-red-600/15 blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-3xl pointer-events-none"></div>
 
               {/* Top Navigation Bar of the Simulator */}
-              <div className="relative z-20 flex items-center justify-between mb-5 pb-3 border-b border-slate-800">
+              <div className="relative z-20 flex items-center justify-between mb-5 pb-3 border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
-                  <span className="text-xs font-tech font-bold text-white tracking-wide">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping"></div>
+                  <span className="text-xs font-tech font-bold text-[#002D62] dark:text-white tracking-wide">
                     MNK LIVE SIMULATOR
                   </span>
                 </div>
 
                 {/* Segmented Device Selector */}
-                <div className="inline-flex p-1 rounded-xl bg-slate-900/90 border border-slate-700 text-xs font-bold">
+                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700 text-xs font-bold">
                   <button
                     onClick={() => setActiveDevice('bot')}
                     className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1.5 ${
                       activeDevice === 'bot' || activeDevice === 'both'
                         ? 'bg-gradient-brand text-white shadow-sm'
-                        : 'text-slate-400 hover:text-white'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
                     }`}
                   >
                     <Navigation className="w-3.5 h-3.5" />
@@ -191,7 +191,7 @@ export const Hero: React.FC<HeroProps> = ({
                     className={`px-3 py-1.5 rounded-lg transition-all flex items-center space-x-1.5 ${
                       activeDevice === 'molinar'
                         ? 'bg-gradient-brand text-white shadow-sm'
-                        : 'text-slate-400 hover:text-white'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
                     }`}
                   >
                     <Activity className="w-3.5 h-3.5" />
@@ -202,7 +202,7 @@ export const Hero: React.FC<HeroProps> = ({
 
               {/* Central Phone Mockup - Clean, Crisp, Not Overlapping */}
               <div className="relative z-10 flex items-center justify-center py-2">
-                <div className="relative w-64 sm:w-72 h-[440px] sm:h-[470px] bg-slate-950 rounded-[38px] p-3 border-4 border-slate-700 shadow-2xl">
+                <div className="relative w-64 sm:w-72 h-[440px] sm:h-[470px] bg-slate-900 dark:bg-slate-950 rounded-[38px] p-3 border-4 border-slate-300 dark:border-slate-700 shadow-2xl">
                   {/* Dynamic Island Speaker Bar */}
                   <div className="w-24 h-4 bg-slate-800 rounded-full mx-auto mb-2 flex items-center justify-between px-2.5">
                     <span className="w-2 h-2 rounded-full bg-slate-950"></span>
@@ -356,12 +356,12 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
 
               {/* Bottom Subtle Status Badges */}
-              <div className="relative z-20 pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-400 font-tech">
-                <div className="flex items-center space-x-1 text-slate-300">
-                  <Radio className="w-3.5 h-3.5 text-blue-400" />
+              <div className="relative z-20 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-tech">
+                <div className="flex items-center space-x-1 text-slate-600 dark:text-slate-300">
+                  <Radio className="w-3.5 h-3.5 text-[#0050AE] dark:text-blue-400" />
                   <span>Pertamina Tanker VSAT Fleet</span>
                 </div>
-                <div className="flex items-center space-x-1 text-emerald-400 font-bold">
+                <div className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>SLA 99.98% Guaranteed</span>
                 </div>
