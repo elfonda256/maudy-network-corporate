@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, ArrowUp } from 'lucide-react';
+import { 
+  MessageCircle, 
+  ArrowUp, 
+  X, 
+  PhoneCall, 
+  ShieldAlert, 
+  Cpu, 
+  Anchor, 
+  Send, 
+  Headphones 
+} from 'lucide-react';
 
 export const FloatingActions: React.FC = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,35 +27,163 @@ export const FloatingActions: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const openWhatsApp = (customMessage?: string) => {
+    const defaultMsg = 'Halo Maudy Network Komunikasi, saya ingin berkonsultasi mengenai kebutuhan infrastruktur IT.';
+    const text = encodeURIComponent(customMessage || defaultMsg);
+    window.open(`https://wa.me/6285727487507?text=${text}`, '_blank');
+  };
+
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center space-y-3">
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
       {/* Scroll to Top (Mandiri Style Orange Circle with Arrow) */}
       {showScroll && (
         <button
           onClick={scrollToTop}
           aria-label="Scroll to top"
-          className="w-12 h-12 rounded-full bg-[#FFB800] hover:bg-[#F59E0B] text-white shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+          className="w-11 h-11 rounded-full bg-[#FFB800] hover:bg-[#F59E0B] text-white shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
         >
           <ArrowUp className="w-5 h-5 stroke-[2.5]" />
         </button>
       )}
 
-      {/* WhatsApp Direct Chat (Mandiri Style Green Floating Button) */}
-      <a
-        href="https://wa.me/6285727487507?text=Halo%20Maudy%20Network%20Komunikasi,%20saya%20ingin%20berkonsultasi%20mengenai%20kebutuhan%20infrastruktur%20IT."
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat on WhatsApp"
+      {/* Floating Chat Box Popup (Enterprise NOC & B2B) */}
+      {chatOpen && (
+        <div className="w-[340px] sm:w-[380px] rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden mb-2 animate-in fade-in slide-in-from-bottom-5 duration-300">
+          {/* Header */}
+          <div className="p-4 bg-gradient-brand text-white flex items-center justify-between relative overflow-hidden">
+            <div className="flex items-center space-x-3 relative z-10">
+              <div className="w-10 h-10 rounded-full bg-white/15 p-1 border border-white/20 flex items-center justify-center flex-shrink-0">
+                <img src="/logo-mnk.png" alt="MNK" className="h-6 w-auto object-contain" />
+              </div>
+              <div>
+                <h4 className="text-xs font-black tracking-wide">MNK Direct Enterprise Desk</h4>
+                <div className="flex items-center text-[10px] text-rose-100 font-tech">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+                  <span>24/7/365 NOC Engineers Online</span>
+                </div>
+              </div>
+            </div>
+            <button
+              onClick={() => setChatOpen(false)}
+              className="p-1 rounded-full hover:bg-white/20 text-white transition-colors relative z-10"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* Quick Consultation Options */}
+          <div className="p-4 space-y-2.5 max-h-[360px] overflow-y-auto text-xs">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium pb-1">
+              Pilih topik untuk langsung terhubung dengan tim teknisi atau representatif resmi MNK:
+            </p>
+
+            <button
+              onClick={() => openWhatsApp('Halo MNK, saya ingin konsultasi mengenai implementasi sistem CCTV cerdas XTUR AI Vision Surveillance untuk fasilitas kami.')}
+              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-red-500 dark:hover:border-red-500 text-left transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center space-x-2.5">
+                <div className="p-1.5 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400">
+                  <Cpu className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-red-600 dark:group-hover:text-cyan-300">
+                    XTUR AI Vision Surveillance
+                  </div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Konsultasi ANPR & Kamera AI Edge</div>
+                </div>
+              </div>
+              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-red-500" />
+            </button>
+
+            <button
+              onClick={() => openWhatsApp('Halo MNK, kami memerlukan solusi jaringan satelit maritim VSAT dan proteksi siber kapal Aegis Suite untuk armada kapal kami.')}
+              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center space-x-2.5">
+                <div className="p-1.5 rounded-lg bg-cyan-500/10 text-[#0050AE] dark:text-cyan-300">
+                  <Anchor className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-[#0050AE] dark:group-hover:text-cyan-300">
+                    Aegis Maritime & Satelit Kapal
+                  </div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">VSAT QoS, Starlink & Zero-Trust IMO</div>
+                </div>
+              </div>
+              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0050AE]" />
+            </button>
+
+            <button
+              onClick={() => openWhatsApp('URGENT: Kami memerlukan eskalasi darurat tim NOC Maudy Network Komunikasi untuk kendala jaringan operasional.')}
+              className="w-full p-2.5 rounded-xl border border-red-500/30 bg-red-500/5 hover:bg-red-500/10 text-left transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center space-x-2.5">
+                <div className="p-1.5 rounded-lg bg-red-600 text-white">
+                  <ShieldAlert className="w-4 h-4 animate-pulse" />
+                </div>
+                <div>
+                  <div className="font-bold text-red-600 dark:text-red-400">
+                    Incident Response NOC Darurat
+                  </div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Eskalasi kendala kritis jaringan 24/7</div>
+                </div>
+              </div>
+              <Send className="w-3.5 h-3.5 text-red-500" />
+            </button>
+
+            <button
+              onClick={() => openWhatsApp()}
+              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-emerald-500 text-left transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center space-x-2.5">
+                <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600">
+                  <Headphones className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-emerald-600">
+                    Konsultasi Umum & Pengadaan
+                  </div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Tanya jawab proposal proyek & B2B</div>
+                </div>
+              </div>
+              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-500" />
+            </button>
+          </div>
+
+          {/* Footer Call Link */}
+          <div className="p-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] font-tech">
+            <span className="text-slate-500 dark:text-slate-400">Panggilan Langsung:</span>
+            <a
+              href="tel:+6285727487507"
+              className="text-[#0050AE] dark:text-cyan-400 font-bold hover:underline flex items-center"
+            >
+              <PhoneCall className="w-3 h-3 mr-1" />
+              +62 857-2748-7507
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Main WhatsApp Trigger Button */}
+      <button
+        onClick={() => setChatOpen(!chatOpen)}
+        aria-label="Konsultasi WhatsApp 24/7"
         className="relative group w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110"
       >
         <span className="absolute -inset-1 rounded-full bg-[#25D366] opacity-30 animate-ping pointer-events-none"></span>
-        <MessageCircle className="w-7 h-7 fill-white text-[#25D366]" />
+        {chatOpen ? (
+          <X className="w-7 h-7" />
+        ) : (
+          <MessageCircle className="w-7 h-7 fill-white text-[#25D366]" />
+        )}
 
         {/* Hover Tooltip */}
-        <span className="absolute right-16 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg pointer-events-none">
-          Konsultasi WhatsApp 24/7
-        </span>
-      </a>
+        {!chatOpen && (
+          <span className="absolute right-16 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg pointer-events-none">
+            Hubungi NOC / Konsultasi 24/7
+          </span>
+        )}
+      </button>
     </div>
   );
 };

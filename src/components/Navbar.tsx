@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Search,
   Smartphone,
@@ -12,7 +12,10 @@ import {
   X,
   FileCheck,
   Sliders,
+  Download,
+  ArrowRight,
 } from 'lucide-react';
+import { PRODUCTS_LIST, SERVICES_LIST, PROJECTS_LIST, CERTIFICATIONS_LIST } from '../data/companyData';
 import { useCms } from '../context/CmsContext';
 
 interface NavbarProps {
@@ -57,6 +60,94 @@ export const Navbar: React.FC<NavbarProps> = ({
     { href: '#contact', label: { en: 'Support & NOC', id: 'Bantuan & NOC' } },
   ];
 
+  // Live search filtering across Products, Services, Projects, and Certifications
+  const searchResults = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    if (q.length < 2) return [];
+
+    const results: Array<{
+      category: 'Product' | 'Service' | 'Project' | 'Certification';
+      title: string;
+      subtitle: string;
+      action: () => void;
+    }> = [];
+
+    // Products
+    PRODUCTS_LIST.forEach((prod) => {
+      const nameMatch = prod.name.toLowerCase().includes(q);
+      const taglineMatch = prod.tagline.toLowerCase().includes(q);
+      const descMatch = prod.description[lang].toLowerCase().includes(q);
+      if (nameMatch || taglineMatch || descMatch) {
+        results.push({
+          category: 'Product',
+          title: prod.name,
+          subtitle: prod.tagline,
+          action: () => {
+            const alias = (prod as any).hashAlias?.[0] || prod.id;
+            window.location.hash = alias;
+            const el = document.getElementById('products');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            setSearchQuery('');
+          },
+        });
+      }
+    });
+
+    // Services
+    SERVICES_LIST.forEach((srv: any) => {
+      const titleMatch = srv.title[lang].toLowerCase().includes(q);
+      const descMatch = srv.description[lang].toLowerCase().includes(q);
+      if (titleMatch || descMatch) {
+        results.push({
+          category: 'Service',
+          title: srv.title[lang],
+          subtitle: srv.category,
+          action: () => {
+            const el = document.getElementById('services');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            setSearchQuery('');
+          },
+        });
+      }
+    });
+
+    // Projects
+    PROJECTS_LIST.forEach((proj: any) => {
+      const titleMatch = proj.title.toLowerCase().includes(q);
+      const clientMatch = proj.client.toLowerCase().includes(q);
+      if (titleMatch || clientMatch) {
+        results.push({
+          category: 'Project',
+          title: proj.title,
+          subtitle: proj.client,
+          action: () => {
+            const el = document.getElementById('projects');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+            setSearchQuery('');
+          },
+        });
+      }
+    });
+
+    // Certifications
+    CERTIFICATIONS_LIST.forEach((cert: any) => {
+      const nameMatch = cert.name.toLowerCase().includes(q) || cert.code.toLowerCase().includes(q);
+      if (nameMatch) {
+        results.push({
+          category: 'Certification',
+          title: `${cert.code} - ${cert.name}`,
+          subtitle: cert.issuer,
+          action: () => {
+            onOpenCredentials();
+            setSearchQuery('');
+          },
+        });
+      }
+    });
+
+    return results.slice(0, 8);
+  }, [searchQuery, lang, onOpenCredentials]);
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
       {/* Top Utility Micro-Bar (Mandiri Style) */}
@@ -87,18 +178,65 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </div>
 
-          {/* Center: Search Box (Mandiri Style) */}
-          <div className="hidden md:flex items-center flex-1 max-w-md mx-6">
+          {/* Center: Search Box (Mandiri Style with Live Dropdown) */}
+          <div className="hidden md:flex items-center flex-1 max-w-md mx-6 relative">
             <div className="relative w-full">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={lang === 'en' ? 'Type to search services, VSAT, CCTV...' : 'Ketik untuk mencari layanan, VSAT, CCTV...'}
-                className="w-full pl-9 pr-4 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-[#0050AE] dark:focus:border-cyan-400"
+                placeholder={lang === 'en' ? 'Type to search services, VSAT, XTUR, CCTV...' : 'Cari layanan, VSAT, XTUR, CCTV, BAST...'}
+                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 text-xs text-slate-700 dark:text-slate-200 placeholder-slate-400 focus:outline-none focus:border-[#0050AE] dark:focus:border-cyan-400"
               />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
+
+            {/* Live Search Results Dropdown */}
+            {searchResults.length > 0 && (
+              <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl bg-white dark:bg-[#071322] border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="px-3.5 py-2 bg-slate-50 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 text-[10px] font-tech text-slate-500 dark:text-cyan-400 flex items-center justify-between">
+                  <span>{lang === 'en' ? 'SEARCH RESULTS' : 'HASIL PENCARIAN SISTEM'}</span>
+                  <span>{searchResults.length} {lang === 'en' ? 'MATCHES' : 'DITEMUKAN'}</span>
+                </div>
+                <div className="divide-y divide-slate-100 dark:divide-slate-800/60 max-h-72 overflow-y-auto">
+                  {searchResults.map((item, idx) => (
+                    <button
+                      key={idx}
+                      onClick={item.action}
+                      className="w-full p-2.5 hover:bg-red-50/50 dark:hover:bg-slate-800/80 text-left transition-colors flex items-center justify-between group"
+                    >
+                      <div className="flex-1 pr-2">
+                        <div className="flex items-center space-x-2">
+                          <span className={`px-1.5 py-0.2 rounded text-[9px] font-tech font-bold ${
+                            item.category === 'Product' ? 'bg-red-500/10 text-red-600 dark:text-red-400' :
+                            item.category === 'Service' ? 'bg-blue-500/10 text-[#0050AE] dark:text-cyan-300' :
+                            item.category === 'Project' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' :
+                            'bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                          }`}>
+                            {item.category}
+                          </span>
+                          <span className="text-xs font-bold text-[#002D62] dark:text-white group-hover:text-red-600 dark:group-hover:text-cyan-300">
+                            {item.title}
+                          </span>
+                        </div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5 truncate pl-1">
+                          {item.subtitle}
+                        </div>
+                      </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-red-500 transition-colors flex-shrink-0" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right: Quick Utilities & Consultation Action */}
@@ -135,6 +273,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <FileCheck className="w-3.5 h-3.5" />
               <span>{lang === 'en' ? 'Contracts & BAST' : 'Kontrak & BAST'}</span>
+            </button>
+
+            {/* Official PDF Download Quick Trigger */}
+            <button
+              onClick={onOpenCredentials}
+              className="hidden sm:flex items-center space-x-1 text-[11px] font-bold text-red-600 dark:text-red-400 hover:underline"
+              title="Unduh Company Profile & Brosur XTUR PDF"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>PDF</span>
             </button>
 
             {/* In-Browser CMS Admin Button */}

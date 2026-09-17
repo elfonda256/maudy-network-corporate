@@ -15,6 +15,7 @@ import {
   Navigation,
   Sparkles,
   Zap,
+  Download,
 } from 'lucide-react';
 
 interface HeroProps {
@@ -81,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({
             </p>
 
             {/* Pill-shaped Action Buttons with Soft Shadows & Gradients */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-3.5">
               <button
                 onClick={onOpenConsultation}
                 className="px-7 py-3 rounded-full bg-gradient-brand hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-red-600/25 hover:shadow-red-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
@@ -93,8 +94,20 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onExploreProjects}
                 className="px-6 py-3 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-cyan-300 border border-slate-300 dark:border-slate-700 hover:border-red-500 hover:-translate-y-0.5 active:translate-y-0 bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm transition-all"
               >
-                {lang === 'en' ? 'Explore Flagship Projects →' : 'Jelajahi Portofolio →'}
+                {lang === 'en' ? 'Explore Projects →' : 'Jelajahi Portofolio →'}
               </button>
+
+              <a
+                href="/downloads/MNK-Company-Profile-Official.pdf"
+                download="PT-Maudy-Network-Komunikasi-Company-Profile.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={lang === 'en' ? 'Download Official MNK Company Profile (PDF 2.9MB)' : 'Unduh Profil Perusahaan Resmi PT. MNK (PDF 2.9MB)'}
+                className="px-5 py-3 rounded-full text-xs font-tech font-bold text-red-600 dark:text-cyan-400 border border-red-500/30 dark:border-cyan-500/30 hover:border-red-500 bg-red-500/10 dark:bg-slate-900/60 hover:-translate-y-0.5 transition-all flex items-center space-x-1.5 shadow-sm"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>{lang === 'en' ? 'Company Profile (PDF)' : 'Unduh Profil (PDF)'}</span>
+              </a>
             </div>
 
             {/* Interactive Animated Badges */}

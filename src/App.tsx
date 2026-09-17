@@ -19,6 +19,7 @@ import { GovernanceDrawer } from './components/GovernanceDrawer';
 import { FloatingActions } from './components/FloatingActions';
 import { AdminPanel } from './components/AdminPanel';
 import { AtmosphericBackground } from './components/AtmosphericBackground';
+import { InteractiveEstimator } from './components/InteractiveEstimator';
 import { CmsProvider } from './context/CmsContext';
 
 function AppContent() {
@@ -103,6 +104,12 @@ function AppContent() {
 
         {/* Proprietary Products & Interactive Live Simulator */}
         <ProductsSection
+          lang={lang}
+          onOpenConsultation={() => setConsultationOpen(true)}
+        />
+
+        {/* Interactive Architecture & Capacity Estimator (XTUR & Aegis Maritime) */}
+        <InteractiveEstimator
           lang={lang}
           onOpenConsultation={() => setConsultationOpen(true)}
         />
