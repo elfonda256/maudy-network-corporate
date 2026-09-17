@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Airkon Pratama Mark -->
+  <g transform="translate(10, 8)">
+    <circle cx="22" cy="22" r="18" fill="#10B981" />
+    <path d="M12 28 C16 16 28 16 32 28" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <circle cx="22" cy="18" r="4" fill="#FFFFFF" />
+  </g>
+  <text x="56" y="32" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="18" fill="#047857" letter-spacing="0.5">
+    AIRKON
+  </text>
+  <text x="56" y="45" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="700" font-size="9" fill="#64748B" letter-spacing="2">
+    PRATAMA
+  </text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <!-- Pertamina Parallelograms -->
+  <g transform="translate(10, 8)">
+    <path d="M12 38 L32 38 L42 22 L22 22 Z" fill="#0072CE" />
+    <path d="M25 18 L45 18 L55 2 L35 2 Z" fill="#ED1C24" />
+    <path d="M4 18 L24 18 L34 2 L14 2 Z" fill="#78BE20" />
+  </g>
+  <!-- Text -->
+  <text x="75" y="34" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="20" fill="#002D62" letter-spacing="1">
+    PERTAMINA
+  </text>
+  <text x="75" y="46" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="600" font-size="9" fill="#64748B" letter-spacing="2">
+    INDONESIA
+  </text>
+</svg>

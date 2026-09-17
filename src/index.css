@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-page: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --card-bg: #FFFFFF;
+    --card-border: #E2E8F0;
+  }
+
+  .dark {
+    --bg-page: #081522;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --card-bg: rgba(11, 31, 58, 0.75);
+    --card-border: rgba(0, 198, 255, 0.15);
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: #081522;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #1e3a5f;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0050AE;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #00c6ff;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+  }
+
+  .text-gradient-mandiri {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] to-[#0284C7];
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+  }
+}

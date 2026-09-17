@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <!-- Universitas Pertamina Emblem -->
+  <g transform="translate(10, 8)">
+    <path d="M6 10 L22 2 L38 10 L38 28 C38 38 22 43 22 43 C22 43 6 38 6 28 Z" fill="#0072CE" />
+    <path d="M22 6 L34 12 L34 26 C34 33 22 38 22 38 Z" fill="#ED1C24" />
+    <path d="M22 14 L28 22 L22 28 L16 22 Z" fill="#FFC72C" />
+  </g>
+  <text x="56" y="28" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="14" fill="#002D62" letter-spacing="0.5">
+    UNIVERSITAS
+  </text>
+  <text x="56" y="44" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="16" fill="#ED1C24" letter-spacing="1">
+    PERTAMINA
+  </text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 110" fill="none">
+  <!-- Geometric Tech Slanted Bars -->
+  <g transform="skewX(-20)">
+    <path d="M25 75 L45 25 L65 25 L45 75 Z" fill="#EF4444" />
+    <path d="M48 75 L68 25 L88 25 L68 75 Z" fill="#1E293B" />
+    <path d="M71 75 L91 25 L111 25 L91 75 Z" fill="#00C6FF" />
+  </g>
+  
+  <!-- Text Elements -->
+  <text x="110" y="48" font-family="'Space Grotesk', 'Inter', sans-serif" font-weight="800" font-size="34" fill="#FFFFFF" letter-spacing="-0.5">
+    Maudy
+  </text>
+  <text x="110" y="74" font-family="'Inter', sans-serif" font-weight="900" font-size="20" fill="#00C6FF" letter-spacing="3.5">
+    NETWORK
+  </text>
+  <text x="110" y="94" font-family="'Inter', sans-serif" font-weight="700" font-size="14" fill="#94A3B8" letter-spacing="5">
+    KOMUNIKASI
+  </text>
+  
+  <!-- Subtle High-Tech Connection Nodes -->
+  <circle cx="255" cy="40" r="3" fill="#00C6FF" />
+  <circle cx="270" cy="40" r="2" fill="#1E5EFF" />
+  <line x1="255" y1="40" x2="270" y2="40" stroke="#00C6FF" stroke-width="1.5" stroke-dasharray="2 2" />
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <!-- Fortinet Grid -->
+  <g fill="#DA291C" transform="translate(10, 10)">
+    <rect x="2" y="2" width="9" height="9" rx="1" />
+    <rect x="14" y="2" width="9" height="9" rx="1" />
+    <rect x="26" y="2" width="9" height="9" rx="1" />
+    <rect x="2" y="14" width="9" height="9" rx="1" />
+    <rect x="26" y="14" width="9" height="9" rx="1" />
+    <rect x="2" y="26" width="9" height="9" rx="1" />
+    <rect x="14" y="26" width="9" height="9" rx="1" />
+    <rect x="26" y="26" width="9" height="9" rx="1" />
+  </g>
+  <text x="56" y="34" font-family="'Plus Jakarta Sans', 'Arial', sans-serif" font-weight="900" font-size="18" fill="#DA291C" letter-spacing="1.5">
+    FORTINET
+  </text>
+</svg>
