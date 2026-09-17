@@ -1,64 +1,273 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+interface NodeParticle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  radius: number;
+  baseRadius: number;
+  colorType: 'cyan' | 'red' | 'blue';
+}
+
+interface PulsePacket {
+  fromNode: number;
+  toNode: number;
+  progress: number;
+  speed: number;
+  color: string;
+}
 
 export const AtmosphericBackground: React.FC = () => {
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: -500, y: -500 });
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 });
 
   useEffect(() => {
     let animationFrameId: number;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    const handleResize = () => {
+      if (!canvas) return;
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Track mouse coordinates for interactive AI magnetism & synaptic connections
     const handleMouseMove = (e: MouseEvent) => {
-      animationFrameId = requestAnimationFrame(() => {
-        setMousePos({ x: e.clientX, y: e.clientY });
-      });
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseLeave = () => {
+      setMousePos({ x: -1000, y: -1000 });
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseout', handleMouseLeave);
+
+    // Initialize AI Neural Network Nodes
+    const nodeCount = Math.min(width < 768 ? 28 : 55, 60);
+    const nodes: NodeParticle[] = [];
+    const colors = ['cyan', 'blue', 'red'] as const;
+
+    for (let i = 0; i < nodeCount; i++) {
+      const colorType = colors[i % colors.length];
+      const r = Math.random() * 1.8 + 1.2;
+      nodes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        radius: r,
+        baseRadius: r,
+        colorType,
+      });
+    }
+
+    // Synaptic Data Pulse Packets
+    const pulses: PulsePacket[] = [];
+    let lastPulseTime = 0;
+
+    const spawnPulse = () => {
+      if (nodes.length < 2) return;
+      const from = Math.floor(Math.random() * nodes.length);
+      // Find a near neighbor
+      for (let j = 0; j < nodes.length; j++) {
+        if (from === j) continue;
+        const dx = nodes[from].x - nodes[j].x;
+        const dy = nodes[from].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130 && dist > 20) {
+          pulses.push({
+            fromNode: from,
+            toNode: j,
+            progress: 0,
+            speed: 0.015 + Math.random() * 0.02,
+            color: Math.random() > 0.5 ? '#00C6FF' : '#FF4D4D',
+          });
+          break;
+        }
+      }
+    };
+
+    // Animation Render Loop
+    const maxConnectionDistance = 125;
+    const mouseRadius = 160;
+
+    const render = (time: number) => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Periodically spawn AI tensor data pulses
+      if (time - lastPulseTime > 400 && pulses.length < 12) {
+        spawnPulse();
+        lastPulseTime = time;
+      }
+
+      // 1. Update and draw nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i];
+        node.x += node.vx;
+        node.y += node.vy;
+
+        // Bounce gently at screen edges
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+
+        // Mouse interaction: subtle pull / swell
+        const dxMouse = mousePos.x - node.x;
+        const dyMouse = mousePos.y - node.y;
+        const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
+
+        if (distMouse < mouseRadius) {
+          node.radius = node.baseRadius * 1.8;
+          // Gentle attraction toward mouse
+          node.x += (dxMouse / distMouse) * 0.4;
+          node.y += (dyMouse / distMouse) * 0.4;
+
+          // Connect directly to cursor with neural beam
+          const alpha = (1 - distMouse / mouseRadius) * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(mousePos.x, mousePos.y);
+          ctx.strokeStyle = node.colorType === 'red' ? `rgba(220, 38, 38, ${alpha})` : `rgba(0, 198, 255, ${alpha})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        } else {
+          node.radius = node.baseRadius;
+        }
+
+        // Draw node
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        if (node.colorType === 'cyan') {
+          ctx.fillStyle = 'rgba(0, 198, 255, 0.7)';
+        } else if (node.colorType === 'red') {
+          ctx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+        } else {
+          ctx.fillStyle = 'rgba(30, 94, 255, 0.7)';
+        }
+        ctx.fill();
+
+        // 2. Connect to neighboring nodes
+        for (let j = i + 1; j < nodes.length; j++) {
+          const other = nodes[j];
+          const dx = node.x - other.x;
+          const dy = node.y - other.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxConnectionDistance) {
+            const alpha = (1 - dist / maxConnectionDistance) * 0.22;
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.strokeStyle = `rgba(0, 160, 255, ${alpha})`;
+            ctx.lineWidth = 0.75;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // 3. Draw travelling synaptic pulse packets
+      for (let pIdx = pulses.length - 1; pIdx >= 0; pIdx--) {
+        const p = pulses[pIdx];
+        p.progress += p.speed;
+
+        if (p.progress >= 1) {
+          pulses.splice(pIdx, 1);
+          continue;
+        }
+
+        const nFrom = nodes[p.fromNode];
+        const nTo = nodes[p.toNode];
+        if (!nFrom || !nTo) continue;
+
+        const currentX = nFrom.x + (nTo.x - nFrom.x) * p.progress;
+        const currentY = nFrom.y + (nTo.y - nFrom.y) * p.progress;
+
+        ctx.beginPath();
+        ctx.arc(currentX, currentY, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    animationFrameId = requestAnimationFrame(render);
+
     return () => {
+      window.removeEventListener('resize', handleResize);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseout', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [mousePos.x, mousePos.y]);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* High-Tech Cyber Grid Matrix Layer */}
-      <div className="absolute inset-0 tech-matrix-grid opacity-75 dark:opacity-60"></div>
-      <div className="absolute inset-0 tech-grid-pattern opacity-40 dark:opacity-30"></div>
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
+      {/* Interactive AI Neural Constellation Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full opacity-65 dark:opacity-85 pointer-events-none"
+      />
 
-      {/* Interactive Cursor Reactive Light Glow */}
+      {/* Cyber Grid & Circuit Matrix Layers */}
+      <div className="absolute inset-0 tech-matrix-grid opacity-55 dark:opacity-45"></div>
+      <div className="absolute inset-0 tech-grid-pattern opacity-30 dark:opacity-20"></div>
+
+      {/* Interactive Mouse Reactive Light Glow */}
       <div
-        className="absolute w-[550px] h-[550px] rounded-full transition-transform duration-100 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-35 dark:opacity-25 pointer-events-none mix-blend-screen"
+        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-30 dark:opacity-25 pointer-events-none mix-blend-screen"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`,
-          background: 'radial-gradient(circle, rgba(220, 38, 38, 0.2) 0%, rgba(0, 80, 174, 0.25) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(220, 38, 38, 0.22) 0%, rgba(0, 198, 255, 0.25) 40%, transparent 70%)',
         }}
       />
 
       {/* Floating Volumetric Radiant Orbs */}
       {/* Top Left Crimson Ambient Pulse */}
-      <div className="absolute top-[8%] -left-[120px] w-[500px] h-[500px] rounded-full bg-red-600/10 dark:bg-red-600/15 blur-[120px] animate-pulse-aura"></div>
+      <div className="absolute top-[5%] -left-[140px] w-[520px] h-[520px] rounded-full bg-red-600/10 dark:bg-red-600/15 blur-[120px] animate-pulse-aura"></div>
 
       {/* Center Right Royal Blue Luminescence */}
-      <div className="absolute top-[35%] -right-[150px] w-[600px] h-[600px] rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-[140px] animate-float-slow"></div>
+      <div className="absolute top-[32%] -right-[150px] w-[600px] h-[600px] rounded-full bg-blue-600/10 dark:bg-blue-600/20 blur-[140px] animate-float-slow"></div>
 
-      {/* Bottom Left High-Tech Cyan Radiance */}
+      {/* Bottom Left AI Cyan Radiance */}
       <div className="absolute top-[65%] -left-[100px] w-[550px] h-[550px] rounded-full bg-cyan-500/10 dark:bg-cyan-500/15 blur-[130px] animate-float-delayed"></div>
 
       {/* Deep Bottom Crimson Glow */}
       <div className="absolute bottom-[5%] right-[10%] w-[450px] h-[450px] rounded-full bg-red-600/8 dark:bg-red-600/12 blur-[110px] animate-pulse-aura"></div>
 
-      {/* Decorative High-Tech Crosshairs along the sides */}
-      <div className="hidden xl:block absolute top-[20%] left-6 text-slate-400/40 dark:text-cyan-400/20 text-xs font-mono font-bold select-none">
-        + 07°00'16"S
+      {/* Floating AI & High-Tech HUD Telemetry along sides */}
+      <div className="hidden xl:block absolute top-[18%] left-6 text-slate-400/50 dark:text-cyan-400/30 text-[10px] font-tech font-bold tracking-widest">
+        <div>[AI_CORE: TENSOR_ENGINE_v4.2]</div>
+        <div className="text-[8px] text-slate-400/40 mt-0.5">INFERENCE_LATENCY: 0.8ms</div>
       </div>
-      <div className="hidden xl:block absolute top-[20%] right-6 text-slate-400/40 dark:text-cyan-400/20 text-xs font-mono font-bold select-none text-right">
-        110°20'45"E +
+
+      <div className="hidden xl:block absolute top-[18%] right-6 text-slate-400/50 dark:text-cyan-400/30 text-[10px] font-tech font-bold tracking-widest text-right">
+        <div>[SYNAPSE_MESH: 2,048 NODES]</div>
+        <div className="text-[8px] text-slate-400/40 mt-0.5">VISION_AI: OBJECT_DETECT_ON</div>
       </div>
-      <div className="hidden xl:block absolute top-[55%] left-6 text-slate-400/40 dark:text-red-400/20 text-xs font-mono font-bold select-none">
-        + VSAT KU-BAND
+
+      <div className="hidden xl:block absolute top-[58%] left-6 text-slate-400/50 dark:text-red-400/30 text-[10px] font-tech font-bold tracking-widest">
+        <div>[VSAT SATELLITE: KU-BAND]</div>
+        <div className="text-[8px] text-slate-400/40 mt-0.5">07°00'16"S • 110°20'45"E</div>
       </div>
-      <div className="hidden xl:block absolute top-[55%] right-6 text-slate-400/40 dark:text-red-400/20 text-xs font-mono font-bold select-none text-right">
-        NOC ACTIVE +
+
+      <div className="hidden xl:block absolute top-[58%] right-6 text-slate-400/50 dark:text-red-400/30 text-[10px] font-tech font-bold tracking-widest text-right">
+        <div>[NOC_SENTINEL: 24/7 ACTIVE]</div>
+        <div className="text-[8px] text-slate-400/40 mt-0.5">SLA COMPLIANCE: 99.98%</div>
       </div>
     </div>
   );

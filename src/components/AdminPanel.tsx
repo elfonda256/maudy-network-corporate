@@ -21,10 +21,143 @@ import {
   EyeOff,
   User,
   ShieldCheck,
+  Upload,
+  Image as ImageIcon,
+  Link as LinkIcon,
 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 import type { ClientItem, Inquiry } from '../context/CmsContext';
 import type { Project, Service } from '../data/companyData';
+
+interface ImageImporterProps {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  helperText?: string;
+  placeholder?: string;
+}
+
+const ImageImporter: React.FC<ImageImporterProps> = ({
+  label,
+  value,
+  onChange,
+  helperText,
+  placeholder = 'https://... atau /extracted/img_xxx.jpg',
+}) => {
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+  const [dragOver, setDragOver] = React.useState(false);
+
+  const handleFile = (file: File) => {
+    if (!file || !file.type.startsWith('image/')) {
+      alert('Format file tidak didukung. Harap pilih file gambar (PNG, JPG, WebP, SVG).');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const result = e.target?.result as string;
+      if (result) {
+        onChange(result);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragOver(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <label className="block font-semibold text-xs text-slate-700 dark:text-slate-300">
+          {label}
+        </label>
+        {value && (
+          <button
+            type="button"
+            onClick={() => onChange('')}
+            className="text-[11px] text-rose-500 hover:underline flex items-center space-x-1"
+          >
+            <Trash2 className="w-3 h-3" />
+            <span>Hapus Gambar</span>
+          </button>
+        )}
+      </div>
+
+      {/* Upload Dropzone / Preview Area */}
+      <div
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={handleDrop}
+        className={`p-3 rounded-xl border-2 border-dashed transition-all flex flex-col sm:flex-row items-center gap-3 ${
+          dragOver
+            ? 'border-red-500 bg-red-50/50 dark:bg-red-950/20'
+            : 'border-slate-300 dark:border-slate-700 bg-slate-50/70 dark:bg-slate-900/60'
+        }`}
+      >
+        {/* Preview Thumbnail */}
+        {value ? (
+          <div className="w-16 h-16 rounded-lg bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-1 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-xs">
+            <img
+              src={value.startsWith('data:image') || value.startsWith('http') || value.startsWith('/') ? value : `/logos/${value}`}
+              alt="Preview"
+              className="max-h-full max-w-full object-contain"
+            />
+          </div>
+        ) : (
+          <div className="w-16 h-16 rounded-lg bg-slate-200/70 dark:bg-slate-800 flex items-center justify-center text-slate-400 flex-shrink-0">
+            <ImageIcon className="w-7 h-7" />
+          </div>
+        )}
+
+        <div className="flex-1 text-center sm:text-left space-y-1">
+          <input
+            type="file"
+            ref={fileInputRef}
+            accept="image/*"
+            className="hidden"
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                handleFile(e.target.files[0]);
+              }
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="px-3 py-1.5 rounded-lg bg-gradient-brand hover:opacity-90 text-white text-xs font-bold shadow-xs flex items-center space-x-1.5 mx-auto sm:mx-0"
+          >
+            <Upload className="w-3.5 h-3.5" />
+            <span>{value ? 'Ganti File dari Komputer' : 'Import Gambar dari Komputer'}</span>
+          </button>
+          <div className="text-[10px] text-slate-400">
+            Mendukung PNG, JPG, WebP, SVG (atau drag & drop langsung ke sini)
+          </div>
+        </div>
+      </div>
+
+      {/* Manual URL / Path Input fallback */}
+      <div className="flex items-center space-x-2 pt-1">
+        <LinkIcon className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className="w-full px-3 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-[#0050AE]"
+        />
+      </div>
+      {helperText && <p className="text-[10px] text-slate-400">{helperText}</p>}
+    </div>
+  );
+};
 
 interface AdminPanelProps {
   isOpen: boolean;
@@ -835,7 +968,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label className="block font-semibold mb-1">Lokasi Proyek</label>
                     <input
@@ -846,12 +979,11 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold mb-1">Path Gambar (URL atau /extracted/img_xxx.jpg)</label>
-                    <input
-                      type="text"
+                    <ImageImporter
+                      label="Foto / Gambar Dokumentasi Proyek *"
                       value={editingProject.image}
-                      onChange={(e) => setEditingProject({ ...editingProject, image: e.target.value })}
-                      className="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-[#0050AE]"
+                      onChange={(newImg) => setEditingProject({ ...editingProject, image: newImg })}
+                      helperText="Anda dapat mengimpor file gambar langsung dari komputer atau memasukkan URL gambar."
                     />
                   </div>
                 </div>
@@ -982,18 +1114,7 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block font-semibold mb-1">Nama File Logo (di public/logos/) *</label>
-                    <input
-                      type="text"
-                      required
-                      value={editingClient.logoFile}
-                      onChange={(e) => setEditingClient({ ...editingClient, logoFile: e.target.value })}
-                      placeholder="contoh: pertamina.png"
-                      className="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-[#0050AE]"
-                    />
-                  </div>
+                <div className="grid grid-cols-1 gap-4">
                   <div>
                     <label className="block font-semibold mb-1">Warna Brand (Hex)</label>
                     <input
@@ -1002,6 +1123,16 @@ export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang })
                       onChange={(e) => setEditingClient({ ...editingClient, brandColor: e.target.value })}
                       placeholder="#0072CE"
                       className="w-full px-3 py-2 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs focus:outline-none focus:border-[#0050AE]"
+                    />
+                  </div>
+
+                  <div>
+                    <ImageImporter
+                      label="Logo Instansi / Perusahaan (Import dari PC atau URL) *"
+                      value={editingClient.logoFile}
+                      onChange={(newLogo) => setEditingClient({ ...editingClient, logoFile: newLogo })}
+                      placeholder="contoh: pertamina.png atau https://..."
+                      helperText="Pilih file logo dari komputer Anda atau masukkan nama file / URL gambar."
                     />
                   </div>
                 </div>

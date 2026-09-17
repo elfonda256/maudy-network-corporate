@@ -183,11 +183,13 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center space-x-3 group">
-            <img
-              src="/logo-mnk.svg"
-              alt="Maudy Network Komunikasi"
-              className="h-9 sm:h-11 w-auto transition-transform group-hover:scale-105"
-            />
+            <div className="px-2.5 py-1 rounded-xl bg-white/95 dark:bg-white shadow-xs border border-slate-200/60 dark:border-white/40 flex items-center transition-transform group-hover:scale-105">
+              <img
+                src="/logo-mnk.png"
+                alt="Maudy Network Komunikasi"
+                className="h-8 sm:h-9 w-auto object-contain"
+              />
+            </div>
           </a>
 
           {/* Desktop Links */}

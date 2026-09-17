@@ -91,12 +91,25 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                 <div className="flex items-start justify-between gap-3 mb-3">
                   {/* Standardized Logo / Initials Badge */}
                   <div className="flex items-center space-x-3">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center font-bold font-tech text-xs text-white shadow-xs flex-shrink-0"
-                      style={{ backgroundColor: item.brandColor }}
-                    >
-                      {item.initials}
-                    </div>
+                    {item.logoFile && (item.logoFile.startsWith('data:image') || item.logoFile.startsWith('http') || item.logoFile.includes('.')) ? (
+                      <div className="w-12 h-12 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-1 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-xs">
+                        <img
+                          src={item.logoFile.startsWith('data:image') || item.logoFile.startsWith('http') || item.logoFile.startsWith('/') ? item.logoFile : `/logos/${item.logoFile}`}
+                          alt={item.name}
+                          className="max-h-full max-w-full object-contain"
+                          onError={(e) => {
+                            (e.target as HTMLElement).style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className="w-12 h-12 rounded-xl flex items-center justify-center font-bold font-tech text-xs text-white shadow-xs flex-shrink-0"
+                        style={{ backgroundColor: item.brandColor }}
+                      >
+                        {item.initials}
+                      </div>
+                    )}
                     <div>
                       <h4 className="text-sm font-bold text-[#002D62] dark:text-white leading-snug">
                         {item.name}

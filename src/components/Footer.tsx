@@ -24,11 +24,13 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Col 1: Corporate Brand */}
           <div className="lg:col-span-2 space-y-4">
             <a href="#" className="inline-block">
-              <img
-                src="/logo-mnk.svg"
-                alt="Maudy Network Komunikasi"
-                className="h-10 w-auto"
-              />
+              <div className="inline-flex px-3 py-1.5 rounded-xl bg-white shadow-xs border border-slate-200">
+                <img
+                  src="/logo-mnk.png"
+                  alt="Maudy Network Komunikasi"
+                  className="h-9 sm:h-10 w-auto object-contain"
+                />
+              </div>
             </a>
             <p className="text-slate-500 dark:text-slate-400 font-normal leading-relaxed max-w-sm">
               {lang === 'en'
