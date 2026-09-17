@@ -168,14 +168,22 @@ export const Footer: React.FC<FooterProps> = ({
             &copy; {new Date().getFullYear()} PT. Maudy Network Komunikasi. All rights reserved.
           </div>
 
-          <div className="flex items-center space-x-3">
-            <span className="text-slate-700 dark:text-slate-300 font-bold">Cisco CCNP</span>
-            <span>•</span>
-            <span className="text-slate-700 dark:text-slate-300 font-bold">Fortinet NSE 7</span>
-            <span>•</span>
-            <span className="text-slate-700 dark:text-slate-300 font-bold">MikroTik MTCINE</span>
-            <span>•</span>
-            <span className="text-slate-700 dark:text-slate-300 font-bold">BNSP Standard</span>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Cisco Certified Network Professional">
+              <img src="/logos/cisco.png" alt="Cisco" className="h-4 sm:h-4.5 w-auto object-contain" />
+            </div>
+            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Fortinet Network Security Expert">
+              <img src="/logos/fortinet.png" alt="Fortinet" className="h-3.5 sm:h-4 w-auto object-contain" />
+            </div>
+            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="MikroTik Certified Engineer">
+              <img src="/logos/mikrotik.png" alt="MikroTik" className="h-3 sm:h-3.5 w-auto object-contain" />
+            </div>
+            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Ruijie Networks Certified">
+              <img src="/logos/ruijie.png" alt="Ruijie" className="h-3.5 sm:h-4 w-auto object-contain" />
+            </div>
+            <div className="h-7 px-2.5 py-1 rounded-md bg-white border border-slate-200 dark:border-slate-700/60 shadow-xs flex items-center justify-center transition-all hover:border-slate-300" title="Badan Nasional Sertifikasi Profesi (BNSP)">
+              <img src="/logos/bnsp.png" alt="BNSP" className="h-4.5 sm:h-5 w-auto object-contain" />
+            </div>
           </div>
 
           <button
