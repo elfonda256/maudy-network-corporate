@@ -258,6 +258,11 @@ export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           'bumn': 'bumn.png',
           'bbws-cimancis': 'bbws-cimancis.png',
           'ruijie': 'ruijie.png',
+          'pupr': 'pupr.png',
+          'airkon': 'airkon.png',
+          'bmkg': 'bmkg.png',
+          'mikrotik': 'mikrotik.png',
+          'honeywell': 'honeywell.png',
         };
         const merged = DEFAULT_CLIENTS.map((def) => {
           const match = parsed.find((p) => p.id === def.id);

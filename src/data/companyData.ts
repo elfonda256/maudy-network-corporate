@@ -1009,18 +1009,18 @@ export const CLIENT_LOGOS = [
   { name: "PT Pertamina International Shipping", category: "Maritime & Tankers", logo: "/logos/pertamina-shipping.png" },
   { name: "Kementerian BUMN RI", category: "Government Ministry", logo: "/logos/bumn.png" },
   { name: "BBWS Cimanuk Cisanggarung (PUPR)", category: "Water Resources & Dam Telemetry", logo: "/logos/bbws-cimancis.png" },
-  { name: "Kementerian PUPR RI", category: "Public Works Ministry", logo: "/logos/pupr.svg" },
+  { name: "Kementerian PUPR RI", category: "Public Works Ministry", logo: "/logos/pupr.png" },
   { name: "Universitas Pertamina", category: "Higher Education", logo: "/logos/univ-pertamina.svg" },
-  { name: "PT Airkon Pratama", category: "HVAC & Engineering", logo: "/logos/airkon.svg" },
-  { name: "BMKG", category: "Meteorology & Climate", logo: "/logos/bmkg.svg" },
+  { name: "PT Airkon Pratama", category: "HVAC & Engineering", logo: "/logos/airkon.png" },
+  { name: "BMKG", category: "Meteorology & Climate", logo: "/logos/bmkg.png" },
 ];
 
 export const TECH_PARTNERS = [
   { name: "Ruijie Networks", category: "Enterprise Wi-Fi 6 & Switching", logo: "/logos/ruijie.png" },
   { name: "Cisco Systems", category: "Enterprise Routing & Core", logo: "/logos/cisco.svg" },
   { name: "Fortinet", category: "NSE 7 Network Security", logo: "/logos/fortinet.svg" },
-  { name: "MikroTik", category: "Carrier Traffic & Routing", logo: "/logos/mikrotik.svg" },
-  { name: "Honeywell", category: "Industrial Surveillance", logo: "/logos/honeywell.svg" },
+  { name: "MikroTik", category: "Carrier Traffic & Routing", logo: "/logos/mikrotik.png" },
+  { name: "Honeywell", category: "Industrial Surveillance", logo: "/logos/honeywell.png" },
   { name: "Hytera", category: "Digital PoC Tactical Radio", logo: "/logos/hytera.svg" },
   { name: "LG Business Solutions", category: "Commercial Video Wall", logo: "/logos/lg.svg" },
 ];
