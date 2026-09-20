@@ -36,7 +36,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="relative bg-[#F5F5F7] dark:bg-[#000000] border-t border-black/[0.08] dark:border-white/[0.12] pt-16 pb-12 text-[#6E6E73] dark:text-[#A1A1A6] text-xs transition-colors">
+    <footer className="relative bg-[#07090E] border-t border-white/[0.12] pt-16 pb-12 text-[#A1A1A6] text-xs transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main 4-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-black/[0.08] dark:border-white/[0.08]">

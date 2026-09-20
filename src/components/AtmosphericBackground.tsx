@@ -7,7 +7,7 @@ interface NodeParticle {
   vy: number;
   radius: number;
   baseRadius: number;
-  colorType: 'cyan' | 'red' | 'blue';
+  colorType: 'cyan' | 'indigo' | 'blue';
 }
 
 interface PulsePacket {
@@ -56,7 +56,7 @@ export const AtmosphericBackground: React.FC = () => {
     // Initialize AI Neural Network Nodes
     const nodeCount = Math.min(width < 768 ? 28 : 55, 60);
     const nodes: NodeParticle[] = [];
-    const colors = ['red', 'blue', 'cyan'] as const;
+    const colors = ['indigo', 'blue', 'cyan'] as const;
 
     for (let i = 0; i < nodeCount; i++) {
       const colorType = colors[i % colors.length];
@@ -87,7 +87,7 @@ export const AtmosphericBackground: React.FC = () => {
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist < 130 && dist > 20) {
           const rand = Math.random();
-          const pColor = rand > 0.5 ? '#0050AE' : '#DC2626';
+          const pColor = rand > 0.5 ? '#0071E3' : '#2997FF';
           pulses.push({
             fromNode: from,
             toNode: j,
@@ -139,7 +139,7 @@ export const AtmosphericBackground: React.FC = () => {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(mousePos.x, mousePos.y);
-          ctx.strokeStyle = node.colorType === 'red' ? `rgba(220, 38, 38, ${alpha})` : `rgba(0, 198, 255, ${alpha})`;
+          ctx.strokeStyle = node.colorType === 'indigo' ? `rgba(99, 102, 241, ${alpha})` : node.colorType === 'cyan' ? `rgba(0, 198, 255, ${alpha})` : `rgba(0, 113, 227, ${alpha})`;
           ctx.lineWidth = 1.2;
           ctx.stroke();
         } else {
@@ -150,11 +150,11 @@ export const AtmosphericBackground: React.FC = () => {
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         if (node.colorType === 'cyan') {
-          ctx.fillStyle = 'rgba(0, 198, 255, 0.75)';
-        } else if (node.colorType === 'red') {
-          ctx.fillStyle = 'rgba(220, 38, 38, 0.8)';
+          ctx.fillStyle = 'rgba(0, 198, 255, 0.8)';
+        } else if (node.colorType === 'indigo') {
+          ctx.fillStyle = 'rgba(99, 102, 241, 0.85)';
         } else {
-          ctx.fillStyle = 'rgba(0, 80, 174, 0.85)';
+          ctx.fillStyle = 'rgba(0, 113, 227, 0.9)';
         }
         ctx.fill();
 
@@ -218,31 +218,31 @@ export const AtmosphericBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
-      {/* Interactive AI Neural Constellation Canvas (Dark mode only or ultra-faint in light) */}
+      {/* Interactive AI Neural Constellation Canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-0 dark:opacity-65 pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 w-full h-full opacity-65 pointer-events-none transition-opacity duration-500"
       />
 
-      {/* Cyber Grid & Circuit Matrix Layers (Zero noise in light mode for Apple-grade clarity) */}
-      <div className="absolute inset-0 tech-matrix-grid opacity-0 dark:opacity-35"></div>
-      <div className="absolute inset-0 tech-grid-pattern opacity-0 dark:opacity-20"></div>
+      {/* Cyber Grid & Circuit Matrix Layers */}
+      <div className="absolute inset-0 tech-matrix-grid opacity-25"></div>
+      <div className="absolute inset-0 tech-grid-pattern opacity-15"></div>
 
       {/* Interactive Mouse Reactive Light Glow */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-0 dark:opacity-20 pointer-events-none mix-blend-screen"
+        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-25 pointer-events-none mix-blend-screen"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`,
-          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, rgba(0, 80, 174, 0.08) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.22) 0%, rgba(99, 102, 241, 0.12) 40%, transparent 70%)',
         }}
       />
 
-      {/* Floating Volumetric Radiant Orbs (Apple-grade subtle ambient diffusion) */}
-      <div className="absolute top-[5%] -left-[140px] w-[500px] h-[500px] rounded-full bg-blue-500/[0.02] dark:bg-red-600/12 blur-[140px] animate-pulse-aura"></div>
-      <div className="absolute top-[32%] -right-[150px] w-[580px] h-[580px] rounded-full bg-blue-500/[0.03] dark:bg-[#0050AE]/18 blur-[150px] animate-float-slow"></div>
-      <div className="absolute top-[68%] -left-[100px] w-[500px] h-[500px] rounded-full bg-blue-600/[0.02] dark:bg-blue-700/12 blur-[140px] animate-float-delayed"></div>
-      <div className="absolute bottom-[4%] right-[10%] w-[450px] h-[450px] rounded-full bg-blue-500/[0.02] dark:bg-red-600/10 blur-[130px] animate-pulse-aura"></div>
+      {/* Floating Volumetric Radiant Orbs (Sapphire, Azure, Indigo & Cyan Atmosphere) */}
+      <div className="absolute top-[5%] -left-[140px] w-[500px] h-[500px] rounded-full bg-[#0071E3]/15 blur-[140px] animate-pulse-aura"></div>
+      <div className="absolute top-[32%] -right-[150px] w-[580px] h-[580px] rounded-full bg-[#0050AE]/20 blur-[150px] animate-float-slow"></div>
+      <div className="absolute top-[68%] -left-[100px] w-[500px] h-[500px] rounded-full bg-[#6366F1]/15 blur-[140px] animate-float-delayed"></div>
+      <div className="absolute bottom-[4%] right-[10%] w-[450px] h-[450px] rounded-full bg-[#00C6FF]/12 blur-[130px] animate-pulse-aura"></div>
     </div>
   );
 };

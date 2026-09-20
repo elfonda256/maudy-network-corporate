@@ -49,8 +49,8 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate }
   return (
     <header className={`sticky top-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-[#000000]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl py-2.5' 
-        : 'bg-[#000000]/70 backdrop-blur-xl border-b border-white/[0.04] py-3.5'
+        ? 'bg-[#07090E]/85 backdrop-blur-2xl border-b border-white/[0.08] shadow-2xl py-2.5' 
+        : 'bg-[#07090E]/70 backdrop-blur-xl border-b border-white/[0.04] py-3.5'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">

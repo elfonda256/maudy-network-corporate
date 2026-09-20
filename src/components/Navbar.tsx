@@ -6,8 +6,6 @@ import {
   Headphones,
   Lock,
   ChevronDown,
-  Sun,
-  Moon,
   Menu,
   X,
   FileCheck,
@@ -21,8 +19,6 @@ import { useCms } from '../context/CmsContext';
 interface NavbarProps {
   lang: 'en' | 'id';
   setLang: (lang: 'en' | 'id') => void;
-  isDarkMode: boolean;
-  setIsDarkMode: (val: boolean) => void;
   onOpenConsultation: () => void;
   onOpenCredentials: () => void;
   onOpenAdmin: () => void;
@@ -32,8 +28,6 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   lang,
   setLang,
-  isDarkMode,
-  setIsDarkMode,
   onOpenConsultation,
   onOpenCredentials,
   onOpenAdmin,
@@ -156,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="h-[2px] w-full bg-[#0071E3]"></div>
 
       {/* Top Utility Micro-Bar */}
-      <div className="bg-[#FBFBFD]/90 dark:bg-[#161617]/90 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] transition-colors">
+      <div className="bg-[#07090E]/90 backdrop-blur-xl border-b border-white/[0.08] transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between text-xs">
           {/* Left: Language Switcher */}
           <div className="flex items-center space-x-2 font-medium">
@@ -305,15 +299,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               )}
             </button>
 
-            {/* Light / Dark Mode Toggle */}
-            <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="p-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] text-[#1D1D1F] dark:text-[#F5F5F7] transition-colors cursor-pointer"
-              title={isDarkMode ? 'Switch to Clean Light Mode' : 'Switch to Dark Mode'}
-            >
-              {isDarkMode ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5 text-[#1D1D1F]" />}
-            </button>
-
             {/* Apple Blue Pill CTA Button */}
             <button
               onClick={onOpenConsultation}
@@ -329,8 +314,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Navigation Bar */}
       <div
-        className={`bg-[#FBFBFD]/80 dark:bg-[#161617]/80 backdrop-blur-xl transition-all duration-300 ${
-          scrolled ? 'shadow-xs py-2 border-b border-black/[0.08] dark:border-white/[0.08]' : 'py-3 border-b border-black/[0.06] dark:border-white/[0.06]'
+        className={`bg-[#07090E]/85 backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? 'shadow-xs py-2 border-b border-white/[0.08]' : 'py-3 border-b border-white/[0.06]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">

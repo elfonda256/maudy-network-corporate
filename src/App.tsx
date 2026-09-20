@@ -64,7 +64,6 @@ export function App() {
 
   // Corporate Portal States
   const [lang, setLang] = useState<'en' | 'id'>('id');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [credentialsOpen, setCredentialsOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -74,20 +73,10 @@ export function App() {
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [prefilledProduct, setPrefilledProduct] = useState<string | undefined>(undefined);
 
-  // Synchronize Dark Mode based on portal
+  // Enforce Single Unified Apple Dark-Keynote Theme permanently across both portals
   useEffect(() => {
-    if (activePortal === 'aegis-ai') {
-      // Aegis AI is dark keynote cinematic theme
-      document.documentElement.classList.add('dark');
-    } else {
-      // Corporate respects user preference
-      if (isDarkMode) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    }
-  }, [activePortal, isDarkMode]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
   // URL Hash Synchronizer
   useEffect(() => {
@@ -131,13 +120,13 @@ export function App() {
         {/* ========================================================================= */}
         {/* Persistent Apple-Style Floating Portal Switcher (Centered Apple Dock Style)*/}
         {/* ========================================================================= */}
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center bg-white/90 dark:bg-[#161617]/90 backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.12] rounded-full p-1.5 shadow-xl transition-all hover:scale-102">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center bg-[#101422]/90 backdrop-blur-2xl border border-white/[0.12] rounded-full p-1.5 shadow-2xl transition-all hover:scale-102">
           <button
             onClick={() => switchPortal('corporate')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
               activePortal === 'corporate'
-                ? 'bg-[#0071E3] text-white shadow-xs'
-                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
+                ? 'bg-[#0071E3] text-white shadow-sm'
+                : 'text-[#A1A1A6] hover:text-white hover:bg-white/[0.08]'
             }`}
           >
             <span>🏢</span>
@@ -148,8 +137,8 @@ export function App() {
             onClick={() => switchPortal('aegis-ai')}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
               activePortal === 'aegis-ai'
-                ? 'bg-[#0071E3] text-white shadow-xs'
-                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
+                ? 'bg-[#0071E3] text-white shadow-sm'
+                : 'text-[#A1A1A6] hover:text-white hover:bg-white/[0.08]'
             }`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -161,7 +150,7 @@ export function App() {
         {/* PORTAL 1: PT MAUDY NETWORK NUSANTARA (CORPORATE PORTAL)                   */}
         {/* ========================================================================= */}
         {activePortal === 'corporate' && (
-          <div className="relative min-h-screen text-[#1D1D1F] dark:text-[#F5F5F7] flex flex-col font-sans transition-colors overflow-x-hidden">
+          <div className="relative min-h-screen text-[#F5F5F7] flex flex-col font-sans transition-colors overflow-x-hidden">
             {/* Interactive Atmospheric Background with Cyber Grids and Glow Orbs */}
             <AtmosphericBackground />
 
@@ -169,8 +158,6 @@ export function App() {
             <Navbar
               lang={lang}
               setLang={setLang}
-              isDarkMode={isDarkMode}
-              setIsDarkMode={setIsDarkMode}
               onOpenConsultation={() => setConsultationOpen(true)}
               onOpenCredentials={() => setCredentialsOpen(true)}
               onOpenAdmin={() => setAdminOpen(true)}
@@ -287,7 +274,7 @@ export function App() {
         {/* PORTAL 2: AEGIS TECHNOLOGY (ENTERPRISE AI & AUTOMATION PLATFORM)          */}
         {/* ========================================================================= */}
         {activePortal === 'aegis-ai' && (
-          <div className="relative min-h-screen bg-[#000000] text-slate-100 font-sans selection:bg-[#0050AE] selection:text-white overflow-x-hidden">
+          <div className="relative min-h-screen bg-[#07090E] text-slate-100 font-sans selection:bg-[#0071E3] selection:text-white overflow-x-hidden">
             {/* Apple-grade Atmospheric Ambient Background Layer */}
             <AppleAtmosphericBackground />
 

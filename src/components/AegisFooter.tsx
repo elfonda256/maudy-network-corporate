@@ -13,7 +13,7 @@ export const AegisFooter: React.FC = () => {
   };
 
   return (
-    <footer className="relative bg-[#000000] border-t border-white/[0.08] text-[#86868B] font-sans text-xs text-left">
+    <footer className="relative bg-[#07090E] border-t border-white/[0.08] text-[#86868B] font-sans text-xs text-left">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Main Columns */}

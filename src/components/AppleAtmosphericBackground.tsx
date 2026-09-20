@@ -144,7 +144,7 @@ export const AppleAtmosphericBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#000000]">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#07090E]">
       {/* 1. Silky Apple Ambient Diffused Mesh Gradients */}
       <div 
         className="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[1100px] h-[750px] rounded-full opacity-40 blur-[190px] pointer-events-none animate-pulseGlow"
