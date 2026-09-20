@@ -1,204 +1,138 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { StatsBar } from './components/StatsBar';
-import { AboutSection } from './components/AboutSection';
-import { WhyChooseUs } from './components/WhyChooseUs';
-import { ServicesSection } from './components/ServicesSection';
-import { IndustriesSection } from './components/IndustriesSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { ProductsSection } from './components/ProductsSection';
-import { CertificationsSection } from './components/CertificationsSection';
-import { ClientsPartners } from './components/ClientsPartners';
-import { ProcessWorkflow } from './components/ProcessWorkflow';
-import { CtaSection } from './components/CtaSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { ConsultationModal } from './components/ConsultationModal';
-import { GovernanceDrawer } from './components/GovernanceDrawer';
-import { FloatingActions } from './components/FloatingActions';
-import { AdminPanel } from './components/AdminPanel';
-import { AtmosphericBackground } from './components/AtmosphericBackground';
-import { InteractiveEstimator } from './components/InteractiveEstimator';
-import { CmsProvider } from './context/CmsContext';
+import { AegisNavbar } from './components/AegisNavbar';
+import { AppleAtmosphericBackground } from './components/AppleAtmosphericBackground';
+import { AegisHero } from './components/AegisHero';
+import { AegisCompanyValue } from './components/AegisCompanyValue';
+import { AegisProductEcosystem } from './components/AegisProductEcosystem';
+import { AegisFlagshipMaritime } from './components/AegisFlagshipMaritime';
+import { AegisProductPortfolio } from './components/AegisProductPortfolio';
+import { AegisIndustrySection } from './components/AegisIndustrySection';
+import { AegisTechnologySection } from './components/AegisTechnologySection';
+import { AegisPrivateAiSection } from './components/AegisPrivateAiSection';
+import { AegisSecuritySection } from './components/AegisSecuritySection';
+import { AegisHowItWorks } from './components/AegisHowItWorks';
+import { AegisBenefitsSection } from './components/AegisBenefitsSection';
+import { AegisUseCases } from './components/AegisUseCases';
+import { AegisCompanySection } from './components/AegisCompanySection';
+import { AegisContactSection } from './components/AegisContactSection';
+import { AegisFooter } from './components/AegisFooter';
+import { AegisProductModal } from './components/AegisProductModal';
+import { AegisContactModal } from './components/AegisContactModal';
+import { PRODUCTS, type ProductItem } from './data/aegisData';
 
-function AppContent() {
-  const [lang, setLang] = useState<'en' | 'id'>('id');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  const [consultationOpen, setConsultationOpen] = useState(false);
-  const [credentialsOpen, setCredentialsOpen] = useState(false);
-  const [adminOpen, setAdminOpen] = useState(false);
+export function App() {
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
+  const [prefilledProduct, setPrefilledProduct] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDarkMode]);
-
-  // Global smooth scroll-reveal animation observer
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      {
-        threshold: 0.08,
-        rootMargin: '0px 0px -40px 0px',
-      }
-    );
-
-    const targets = document.querySelectorAll('section, footer');
-    targets.forEach((el) => {
-      if (!el.classList.contains('hero-section')) {
-        el.classList.add('reveal-on-scroll');
-        observer.observe(el);
-      }
-    });
-
-    return () => observer.disconnect();
+    // Force dark mode for dark cinematic enterprise theme
+    document.documentElement.classList.add('dark');
   }, []);
 
-  const scrollToProjects = () => {
-    const el = document.getElementById('projects');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleOpenDemo = (productName?: string) => {
+    setPrefilledProduct(productName);
+    setDemoModalOpen(true);
+  };
+
+  const handleOpenProductDetail = (productId: string) => {
+    setSelectedProductId(productId);
+  };
+
+  const selectedProduct: ProductItem | null = selectedProductId 
+    ? PRODUCTS.find(p => p.id === selectedProductId) || null 
+    : null;
+
+  const scrollToSolutions = () => {
+    const el = document.getElementById('solusi');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="relative min-h-screen text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors selection:bg-red-600 selection:text-white overflow-x-hidden">
-      {/* Interactive Atmospheric Background with Cyber Grids and Glow Orbs */}
-      <AtmosphericBackground />
+    <div className="relative min-h-screen bg-[#000000] text-slate-100 font-sans selection:bg-[#0050AE] selection:text-white overflow-x-hidden">
+      {/* Apple-grade Atmospheric Ambient Background Layer */}
+      <AppleAtmosphericBackground />
 
-      {/* Sticky Enterprise Navigation Bar with Top Utility Micro-Bar */}
-      <Navbar
-        lang={lang}
-        setLang={setLang}
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-        onOpenConsultation={() => setConsultationOpen(true)}
-        onOpenCredentials={() => setCredentialsOpen(true)}
-        onOpenAdmin={() => setAdminOpen(true)}
-      />
+      {/* 1. Sticky Navigation */}
+      <AegisNavbar onOpenDemo={handleOpenDemo} />
 
-      {/* Main Content Sections with Relative Z-Index */}
-      <main className="relative z-10 flex-grow">
-        {/* Fullscreen Hero Section */}
-        <Hero
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-          onExploreProjects={scrollToProjects}
+      {/* Main Content Sections */}
+      <main className="relative z-10">
+        {/* 2. Hero Section */}
+        <AegisHero 
+          onOpenDemo={() => handleOpenDemo()}
+          onExploreSolutions={scrollToSolutions}
         />
 
-        {/* Operational Statistics Bar */}
-        <StatsBar lang={lang} />
+        {/* 3. Company Value: AI yang Dibangun untuk Dunia Nyata */}
+        <AegisCompanyValue />
 
-        {/* Real Brand Logos of Companies that Trust Maudy */}
-        <ClientsPartners lang={lang} />
+        {/* 4. Product Ecosystem (Visual Hierarchy) */}
+        <AegisProductEcosystem />
 
-        {/* Corporate About & Storytelling */}
-        <AboutSection
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
+        {/* 5. Flagship Spotlight: Aegis Maritime */}
+        <AegisFlagshipMaritime 
+          onOpenDemo={handleOpenDemo}
+          onOpenProductDetail={handleOpenProductDetail}
         />
 
-        {/* Why Choose MNK - Competitive Moats */}
-        <WhyChooseUs lang={lang} />
-
-        {/* Comprehensive Services Suite (12 Core Offerings) */}
-        <ServicesSection
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
+        {/* 6. Product Portfolio: All 12 Products */}
+        <AegisProductPortfolio 
+          onOpenDemo={handleOpenDemo}
+          onOpenProductDetail={handleOpenProductDetail}
         />
 
-        {/* Critical Industries & Tailored Solutions */}
-        <IndustriesSection
-          lang={lang}
-          onExploreProjects={scrollToProjects}
+        {/* 7. Industry Section: AI untuk Berbagai Industri */}
+        <AegisIndustrySection 
+          onSelectProduct={handleOpenProductDetail}
+          onOpenDemo={handleOpenDemo}
         />
 
-        {/* Flagship Projects & Case Studies */}
-        <ProjectsSection
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-        />
+        {/* 8. Technology: Technology Behind the Intelligence */}
+        <AegisTechnologySection />
 
-        {/* Proprietary Products & Interactive Live Simulator */}
-        <ProductsSection
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-        />
+        {/* 9. Private AI: Ketika Data Adalah Aset Strategis */}
+        <AegisPrivateAiSection onOpenDemo={handleOpenDemo} />
 
-        {/* Interactive Architecture & Capacity Estimator (XTUR & Aegis Maritime) */}
-        <InteractiveEstimator
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-        />
+        {/* 10. Security: Arsitektur Keamanan Enterprise */}
+        <AegisSecuritySection />
 
-        {/* Global Certifications & Organization Leadership */}
-        <CertificationsSection lang={lang} />
+        {/* 11. How It Works: 6-Step Pipeline */}
+        <AegisHowItWorks />
 
-        {/* 8-Stage Engineering Delivery Workflow */}
-        <ProcessWorkflow
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-        />
+        {/* 12. Business Benefits: Dampak Kualitatif */}
+        <AegisBenefitsSection />
 
-        {/* High-Conversion Enterprise CTA Banner */}
-        <CtaSection
-          lang={lang}
-          onOpenConsultation={() => setConsultationOpen(true)}
-        />
+        {/* 13. Real Use Cases */}
+        <AegisUseCases />
 
-        {/* Direct Contact, Map Visualizer & Technical Form */}
-        <ContactSection lang={lang} />
+        {/* 14. Company Section: Tentang Kami */}
+        <AegisCompanySection />
+
+        {/* 15. Contact / Request Demo Section */}
+        <AegisContactSection prefilledProduct={prefilledProduct} />
       </main>
 
-      {/* Comprehensive Enterprise Footer */}
-      <Footer
-        lang={lang}
-        onOpenConsultation={() => setConsultationOpen(true)}
-        onOpenCredentials={() => setCredentialsOpen(true)}
+      {/* 16. Comprehensive Footer */}
+      <AegisFooter />
+
+      {/* Interactive Product Deep-Dive Modal */}
+      <AegisProductModal 
+        product={selectedProduct}
+        onClose={() => setSelectedProductId(null)}
+        onOpenDemo={(pName) => {
+          setSelectedProductId(null);
+          handleOpenDemo(pName);
+        }}
       />
 
-      {/* Floating Action Buttons (WhatsApp & Scroll to top) */}
-      <FloatingActions />
-
-      {/* Global Consultation Modal */}
-      <ConsultationModal
-        isOpen={consultationOpen}
-        onClose={() => setConsultationOpen(false)}
-        lang={lang}
-      />
-
-      {/* Verified Contracts & Governance Drawer */}
-      <GovernanceDrawer
-        isOpen={credentialsOpen}
-        onClose={() => setCredentialsOpen(false)}
-        lang={lang}
-      />
-
-      {/* In-Browser CMS & Admin Control Panel */}
-      <AdminPanel
-        isOpen={adminOpen}
-        onClose={() => setAdminOpen(false)}
-        lang={lang}
+      {/* Interactive Global Demo Consultation Modal */}
+      <AegisContactModal 
+        isOpen={demoModalOpen}
+        onClose={() => setDemoModalOpen(false)}
+        prefilledProduct={prefilledProduct}
       />
     </div>
-  );
-}
-
-export function App() {
-  return (
-    <CmsProvider>
-      <AppContent />
-    </CmsProvider>
   );
 }
 
