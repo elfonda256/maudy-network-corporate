@@ -334,22 +334,22 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
               </div>
             </div>
 
-            {/* Live Terminal Log Stream */}
-            <div className="bg-slate-900 dark:bg-slate-950 rounded-2xl p-4 border border-slate-800 dark:border-cyan-500/20 font-tech text-xs space-y-1.5 shadow-inner">
-              <div className="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1.5">
+            {/* Live Terminal Log Stream (Apple Developer Console Style) */}
+            <div className="bg-black/[0.03] dark:bg-black/60 rounded-2xl p-4 border border-black/[0.08] dark:border-white/[0.08] font-mono text-xs space-y-1.5 shadow-2xs">
+              <div className="flex items-center justify-between text-[10px] text-[#6E6E73] dark:text-[#A1A1A6] border-b border-black/[0.06] dark:border-white/[0.08] pb-2 font-medium">
                 <span>DAEMON CONSOLE OUTPUT // LIVE STREAM</span>
-                <span className="text-emerald-400">STATUS: STREAMING</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">STATUS: STREAMING</span>
               </div>
-              <div className="space-y-1 max-h-32 overflow-y-auto pt-1 font-mono text-[11px]">
+              <div className="space-y-1.5 max-h-32 overflow-y-auto pt-1 font-mono text-[11px]">
                 {botLogs.map((log, lIdx) => (
                   <div
                     key={lIdx}
                     className={`${
                       log.includes('CRITICAL')
-                        ? 'text-red-400 font-bold'
+                        ? 'text-red-600 dark:text-red-400 font-semibold'
                         : log.includes('AUTONOMOUS')
-                        ? 'text-cyan-300 font-bold'
-                        : 'text-slate-400'
+                        ? 'text-[#0071E3] dark:text-[#2997FF] font-semibold'
+                        : 'text-[#1D1D1F] dark:text-[#E5E5EA]'
                     }`}
                   >
                     {log}

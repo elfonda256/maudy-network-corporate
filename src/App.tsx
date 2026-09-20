@@ -126,18 +126,18 @@ export function App() {
 
   return (
     <CmsProvider>
-      <div className="relative min-h-screen selection:bg-red-600 selection:text-white">
+      <div className="relative min-h-screen selection:bg-[#0071E3] selection:text-white">
         
         {/* ========================================================================= */}
-        {/* Persistent Apple-Style Floating Portal Switcher (Visible in both portals) */}
+        {/* Persistent Apple-Style Floating Portal Switcher (Centered Apple Dock Style)*/}
         {/* ========================================================================= */}
-        <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center bg-slate-900/90 dark:bg-black/90 backdrop-blur-2xl border border-white/20 rounded-full p-1.5 shadow-2xl transition-transform hover:scale-105">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center bg-white/90 dark:bg-[#161617]/90 backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.12] rounded-full p-1.5 shadow-xl transition-all hover:scale-102">
           <button
             onClick={() => switchPortal('corporate')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
               activePortal === 'corporate'
-                ? 'bg-red-600 text-white shadow-md'
-                : 'text-slate-300 hover:text-white hover:bg-white/10'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
             }`}
           >
             <span>🏢</span>
@@ -146,10 +146,10 @@ export function App() {
           
           <button
             onClick={() => switchPortal('aegis-ai')}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
               activePortal === 'aegis-ai'
-                ? 'bg-[#0071E3] text-white shadow-md'
-                : 'text-slate-300 hover:text-white hover:bg-white/10'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.08]'
             }`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>

@@ -93,14 +93,9 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
   };
 
   return (
-    <section id="products" className="py-24 bg-slate-50/60 dark:bg-[#06101B]/70 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+    <section id="products" className="py-24 bg-transparent transition-colors relative overflow-hidden">
       {/* Top Animated Beam Sweep Divider */}
       <div className="beam-divider opacity-60 mb-12"></div>
-
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [PROPRIETARY R&D // AUTONOMOUS_AI_&_DEFENSE_SUITE]
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -207,7 +202,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left: Product Screenshot with Cyber Scanline & Mini Gallery */}
             <div className="lg:col-span-6 space-y-3">
-              <div className="relative rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-slate-950 shadow-sm group">
+              <div className="relative rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] bg-black/[0.04] dark:bg-black/60 shadow-sm group">
                 <img
                   src={selectedGalleryImg || activeProduct.image}
                   alt={activeProduct.name}

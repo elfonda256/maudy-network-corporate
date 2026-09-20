@@ -29,7 +29,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       {/* Modal Container */}
       <div className="relative z-10 w-full max-w-4xl rounded-3xl border border-black/[0.08] dark:border-white/[0.12] shadow-2xl overflow-hidden bg-white dark:bg-[#161617] my-8 animate-fadeIn">
         {/* Modal Header with Image or Branded Client Banner */}
-        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-950 flex items-center justify-center">
+        <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-black/[0.04] dark:bg-black/60 flex items-center justify-center">
           {project.image ? (
             <>
               <img
@@ -37,21 +37,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 alt={project.title}
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
             </>
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-950 to-black flex flex-col items-center justify-center p-8 relative">
-              <div className="w-20 h-20 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-2xl border border-white/20 mb-3 z-10">
+            <div className="w-full h-full bg-gradient-to-br from-[#F5F5F7] via-[#E5E5EA] to-[#D1D1D6] dark:from-[#061426] dark:via-[#0B1F3A] dark:to-[#040C18] flex flex-col items-center justify-center p-8 relative">
+              <div className="w-20 h-20 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-md border border-black/[0.08] dark:border-white/20 mb-3 z-10">
                 <img
                   src={getClientLogo(project.client)}
                   alt={project.client}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <span className="text-xs font-mono text-[#2997FF] font-medium z-10 uppercase tracking-widest">
+              <span className="text-xs font-mono text-[#0071E3] dark:text-[#2997FF] font-semibold z-10 uppercase tracking-widest">
                 {project.category} ENGAGEMENT
               </span>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 dark:from-black/85 via-black/20 to-transparent"></div>
             </div>
           )}
 

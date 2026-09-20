@@ -120,14 +120,9 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
   const ActiveIcon = selectedIndustry.icon;
 
   return (
-    <section id="industries" className="py-24 bg-slate-50/60 dark:bg-[#06101B]/60 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+    <section id="industries" className="py-24 bg-transparent border-t border-black/[0.06] dark:border-white/[0.08] transition-colors relative overflow-hidden">
       {/* Top Animated Beam Sweep Divider */}
       <div className="beam-divider opacity-60 mb-12"></div>
-
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [SECTOR_MATRIX // CRITICAL_INFRASTRUCTURE_V2]
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

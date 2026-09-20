@@ -106,14 +106,9 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
   const StepIcon = currentStep.icon;
 
   return (
-    <section id="process" className="py-24 bg-slate-50/60 dark:bg-[#06101B]/60 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+    <section id="process" className="py-24 bg-transparent transition-colors relative overflow-hidden">
       {/* Top Animated Beam Sweep Divider */}
       <div className="beam-divider opacity-60 mb-12"></div>
-
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute top-12 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [FRAMEWORK: 8_STAGE_METHODOLOGY_PIPELINE // AUDITED]
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

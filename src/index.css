@@ -82,46 +82,46 @@
     background: #1E3A5F;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #DC2626;
+    background: #0071E3;
   }
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: #EF4444;
+    background: #2997FF;
   }
 }
 
 @layer utilities {
-  /* Signature MNK Ultra-Crisp Corporate Gradient Suite (High-Contrast, WCAG AAA) */
+  /* Signature Apple-Grade Corporate Gradient Suite (Harmonious, High-Contrast, WCAG AAA) */
   .text-gradient-brand {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#002D62] via-[#0050AE] to-[#DC2626] dark:from-[#EF4444] dark:via-[#38BDF8] dark:to-[#60A5FA];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0071E3] via-[#0077ED] to-[#2997FF] dark:from-[#2997FF] dark:via-[#70B4FF] dark:to-[#A8D4FF];
   }
 
   .text-gradient-mnk {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#002D62] via-[#0050AE] to-[#1D4ED8] dark:from-[#F87171] dark:via-[#38BDF8] dark:to-[#818CF8];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1D1D1F] via-[#1D1D1F] to-[#0071E3] dark:from-white dark:via-white dark:to-[#2997FF];
   }
 
   .text-gradient-creative {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#002D62] via-[#0050AE] to-[#1D4ED8] dark:from-[#F43F5E] dark:via-[#0284C7] dark:to-[#38BDF8];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0071E3] to-[#00C7FF] dark:from-[#2997FF] dark:to-[#70D7FF];
   }
 
   .text-gradient-ocean {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#0284C7] to-[#0369A1] dark:from-[#38BDF8] dark:via-[#60A5FA] dark:to-[#93C5FD];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0050AE] via-[#0071E3] to-[#2997FF] dark:from-[#38BDF8] dark:via-[#60A5FA] dark:to-[#93C5FD];
   }
 
   .text-gradient-vibrant {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#002D62] via-[#2563EB] to-[#DC2626] dark:from-[#EF4444] dark:via-[#38BDF8] dark:to-[#60A5FA];
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0071E3] via-[#0077ED] to-[#2997FF] dark:from-[#2997FF] dark:via-[#70B4FF] dark:to-[#A8D4FF];
   }
 
   .text-gradient-dark-cyan {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1D1D1F] via-[#0050AE] to-[#002D62] dark:from-white dark:via-sky-200 dark:to-cyan-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1D1D1F] via-[#1D1D1F] to-[#0071E3] dark:from-white dark:via-white dark:to-[#2997FF];
   }
 
-  /* Solid Premium Red-Blue Gradient Backgrounds & Buttons (Crisp & High Contrast) */
+  /* Solid Premium Apple Blue Backgrounds & Buttons (Crisp & High Contrast) */
   .bg-gradient-brand {
-    background: linear-gradient(135deg, #0050AE 0%, #0071E3 100%);
+    background: linear-gradient(135deg, #0071E3 0%, #0077ED 100%);
   }
 
   .bg-gradient-brand-smooth {
-    background: linear-gradient(135deg, #002D62 0%, #0050AE 100%);
+    background: linear-gradient(135deg, #0050AE 0%, #0071E3 100%);
   }
 
   .bg-gradient-brand-subtle {
@@ -138,7 +138,7 @@
   }
 
   .bg-gradient-card-hover {
-    background: linear-gradient(135deg, rgba(0, 113, 227, 0.02) 0%, rgba(220, 38, 38, 0.02) 100%);
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.02) 0%, rgba(0, 113, 227, 0.04) 100%);
   }
 
   /* Apple-Style Refined Subtle Accent Border for Cards */
@@ -206,16 +206,19 @@
     box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.08), 0 0 20px -2px rgba(0, 113, 227, 0.08);
   }
   .dark .interactive-card:hover {
-    box-shadow: 0 20px 40px -10px rgba(0, 198, 255, 0.15), 0 10px 30px -5px rgba(220, 38, 38, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(0, 113, 227, 0.2), 0 10px 30px -5px rgba(41, 151, 255, 0.15);
   }
 
-  /* Decorative Ambient Beam Separator */
+  /* Decorative Ambient Beam Separator (Apple Subtle Hairline Sweep) */
   .beam-divider {
-    height: 1.5px;
+    height: 1px;
     width: 100%;
-    background: linear-gradient(90deg, transparent 0%, rgba(220, 38, 38, 0.4) 30%, rgba(0, 80, 174, 0.6) 70%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 113, 227, 0.2) 30%, rgba(0, 113, 227, 0.4) 50%, rgba(0, 113, 227, 0.2) 70%, transparent 100%);
     position: relative;
     overflow: hidden;
+  }
+  .dark .beam-divider {
+    background: linear-gradient(90deg, transparent 0%, rgba(41, 151, 255, 0.25) 30%, rgba(41, 151, 255, 0.45) 50%, rgba(41, 151, 255, 0.25) 70%, transparent 100%);
   }
   .beam-divider::after {
     content: '';
@@ -299,9 +302,9 @@
     position: absolute;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.8), rgba(0, 198, 255, 0.95), transparent);
-    box-shadow: 0 0 14px rgba(0, 198, 255, 0.7), 0 0 4px rgba(220, 38, 38, 0.8);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.7), rgba(41, 151, 255, 0.95), transparent);
+    box-shadow: 0 0 12px rgba(41, 151, 255, 0.6), 0 0 4px rgba(0, 113, 227, 0.5);
     pointer-events: none;
     animation: cyberScanline 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
@@ -320,7 +323,7 @@
     position: absolute;
     inset: 0;
     border-radius: 9999px;
-    background: conic-gradient(from 0deg, rgba(0, 198, 255, 0.3) 0deg, transparent 65deg, transparent 360deg);
+    background: conic-gradient(from 0deg, rgba(0, 113, 227, 0.25) 0deg, transparent 65deg, transparent 360deg);
     animation: radarSweep 3.5s linear infinite;
   }
 
@@ -335,7 +338,7 @@
   }
 
   .shimmer-text {
-    background: linear-gradient(90deg, #DC2626 0%, #0050AE 25%, #00C6FF 50%, #0050AE 75%, #DC2626 100%);
+    background: linear-gradient(90deg, #0071E3 0%, #0077ED 25%, #2997FF 50%, #0077ED 75%, #0071E3 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -420,10 +423,10 @@
   }
   .card-3d-tilt:hover {
     transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateY(-8px) scale(1.02);
-    box-shadow: 0 24px 48px -12px rgba(220, 38, 38, 0.18), 0 16px 32px -8px rgba(0, 80, 174, 0.22);
+    box-shadow: 0 24px 48px -12px rgba(0, 113, 227, 0.12), 0 16px 32px -8px rgba(0, 80, 174, 0.15);
   }
   .dark .card-3d-tilt:hover {
-    box-shadow: 0 24px 48px -12px rgba(0, 198, 255, 0.2), 0 16px 32px -8px rgba(220, 38, 38, 0.25);
+    box-shadow: 0 24px 48px -12px rgba(0, 113, 227, 0.2), 0 16px 32px -8px rgba(41, 151, 255, 0.22);
   }
 
   /* Punchy Pop-Up Scale Animation */

@@ -85,7 +85,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             >
               <div>
                 {/* Image Container with Fallback to Official Client Logo Banner */}
-                <div className="relative h-48 w-full overflow-hidden bg-slate-900 flex items-center justify-center">
+                <div className="relative h-48 w-full overflow-hidden bg-black/[0.04] dark:bg-black/60 flex items-center justify-center">
                   {project.image ? (
                     <>
                       <img
@@ -99,19 +99,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
                     </>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#061426] via-[#0B1F3A] to-[#040C18] flex flex-col items-center justify-center p-6 text-center relative">
-                      <div className="absolute inset-0 bg-[radial-gradient(#00C6FF_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
-                      <div className="w-16 h-16 rounded-2xl bg-white p-2 flex items-center justify-center shadow-lg border border-white/20 mb-2 z-10 group-hover:scale-110 transition-transform">
+                    <div className="w-full h-full bg-black/[0.02] dark:bg-gradient-to-br dark:from-[#061426] dark:via-[#0B1F3A] dark:to-[#040C18] border-b border-black/[0.06] dark:border-white/[0.08] flex flex-col items-center justify-center p-6 text-center relative">
+                      <div className="w-16 h-16 rounded-2xl bg-white p-2.5 flex items-center justify-center shadow-xs border border-black/[0.08] dark:border-white/20 mb-2 z-10 group-hover:scale-105 transition-transform">
                         <img
                           src={getClientLogo(project.client)}
                           alt={project.client}
                           className="max-h-full max-w-full object-contain"
                         />
                       </div>
-                      <span className="text-[10px] font-mono text-[#2997FF] font-semibold z-10 uppercase tracking-widest">
+                      <span className="text-[10px] font-mono text-[#0071E3] dark:text-[#2997FF] font-semibold z-10 uppercase tracking-widest">
                         {project.category}
                       </span>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                     </div>
                   )}
 
@@ -132,13 +130,17 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   )}
 
                   {/* Location badge */}
-                  <div className="absolute bottom-2.5 left-3 flex items-center text-[11px] font-medium text-white z-10">
-                    <MapPin className="w-3 h-3 mr-1 text-[#2997FF]" />
+                  <div className={`absolute bottom-2.5 left-3 flex items-center text-[11px] font-medium z-10 ${
+                    project.image ? 'text-white' : 'text-[#6E6E73] dark:text-[#A1A1A6]'
+                  }`}>
+                    <MapPin className="w-3 h-3 mr-1 text-[#0071E3] dark:text-[#2997FF]" />
                     <span className="line-clamp-1">{project.location}</span>
                   </div>
 
                   {/* Index badge */}
-                  <div className="absolute bottom-2.5 right-3 text-[9px] font-mono text-white/70 z-10">
+                  <div className={`absolute bottom-2.5 right-3 text-[9px] font-mono z-10 ${
+                    project.image ? 'text-white/80' : 'text-[#86868B]'
+                  }`}>
                     PRJ_0{idx + 1}
                   </div>
                 </div>

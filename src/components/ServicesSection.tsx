@@ -64,11 +64,6 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
       {/* Top Animated Beam Sweep Divider */}
       <div className="beam-divider opacity-60 mb-12"></div>
 
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute top-12 left-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [CATALOG: FULL_SPECTRUM_DEPLOYMENT // ARCH_SPEC_v4.2]
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">

@@ -46,11 +46,6 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
 
   return (
     <section id="about" className="relative py-24 bg-transparent transition-colors overflow-hidden">
-      {/* Decorative High-Tech Circuit Accent */}
-      <div className="absolute top-10 right-10 text-slate-400/30 dark:text-cyan-400/20 text-xs font-mono font-bold select-none">
-        [SYS_CORE: MNK_HQ_SEMARANG]
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">

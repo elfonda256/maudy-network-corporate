@@ -70,9 +70,9 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
   const dataSavedPercent = satType === 'hybridStarlink' ? '45%' : '35%';
 
   return (
-    <section id="estimator" className="py-20 bg-white/70 dark:bg-[#071322]/70 backdrop-blur-lg border-t border-slate-200/80 dark:border-slate-800/80 transition-colors relative overflow-hidden">
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-red-600/5 dark:bg-cyan-500/5 blur-3xl rounded-full pointer-events-none"></div>
+    <section id="estimator" className="py-24 bg-transparent relative overflow-hidden transition-colors">
+      {/* Top Animated Beam Sweep Divider */}
+      <div className="beam-divider opacity-60 mb-12"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -132,10 +132,10 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
             <div className="lg:col-span-7 bg-white dark:bg-[#161617] p-6 sm:p-8 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-sm space-y-6">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 font-tech">
+                  <label className="text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono">
                     1. {lang === 'en' ? 'Total RTSP Camera Streams' : 'Jumlah Kamera CCTV Terpasang'}
                   </label>
-                  <span className="text-base font-black font-tech text-red-600 dark:text-cyan-400">
+                  <span className="text-base font-bold font-mono text-[#0071E3] dark:text-[#2997FF]">
                     {cameraCount} Streams
                   </span>
                 </div>
@@ -244,7 +244,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                 <div className="grid grid-cols-2 gap-3 text-xs">
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">GPU VRAM DEMAND</div>
-                    <div className="text-lg font-semibold text-red-600 dark:text-red-400 mt-0.5">{estimatedVramGB} GB VRAM</div>
+                    <div className="text-lg font-semibold text-[#0071E3] dark:text-[#2997FF] mt-0.5">{estimatedVramGB} GB VRAM</div>
                     <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">Dedicated Tensor Core</div>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
@@ -376,7 +376,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">QoS TRAFFIC SAVING</div>
-                    <div className="text-lg font-bold text-red-600 dark:text-red-400 mt-0.5">{dataSavedPercent} Efisiensi</div>
+                    <div className="text-lg font-bold text-[#34C759] mt-0.5">{dataSavedPercent} Efisiensi</div>
                     <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">Kompresi Paket Cerdas</div>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">

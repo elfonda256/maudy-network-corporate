@@ -36,23 +36,23 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section className="hero-section relative pt-32 sm:pt-36 pb-16 lg:pb-24 overflow-hidden bg-transparent transition-colors">
       {/* Floating High-Tech Top Badge */}
-      <div className="absolute top-28 right-8 lg:right-16 hidden xl:flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border border-slate-200 dark:border-slate-800 shadow-lg text-[11px] font-tech text-slate-700 dark:text-slate-200 animate-float-slow z-20">
-        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span className="font-bold text-slate-800 dark:text-white">NOC STATUS:</span>
-        <span className="text-red-600 dark:text-cyan-400 font-bold">24/7 OPERATIONAL</span>
-        <span className="text-slate-400">• SLA 99.98%</span>
+      <div className="absolute top-28 right-8 lg:right-16 hidden xl:flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/90 dark:bg-[#161617]/90 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.1] shadow-sm text-[11px] font-mono text-[#1D1D1F] dark:text-[#F5F5F7] animate-float-slow z-20">
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span className="font-semibold text-[#1D1D1F] dark:text-white">NOC STATUS:</span>
+        <span className="text-emerald-600 dark:text-emerald-400 font-semibold">24/7 ONLINE</span>
+        <span className="text-[#6E6E73] dark:text-[#A1A1A6]">• SLA 99.98%</span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Breadcrumb Trail (Mandiri Style) */}
-        <div className="flex items-center space-x-2 text-xs text-slate-400 dark:text-slate-500 mb-8 font-medium">
-          <a href="#" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">Home</a>
+        {/* Breadcrumb Trail (Apple Style) */}
+        <div className="flex items-center space-x-2 text-xs text-[#6E6E73] dark:text-[#A1A1A6] mb-8 font-medium">
+          <a href="#" className="hover:text-[#1D1D1F] dark:hover:text-white transition-colors">Home</a>
           <ChevronRight className="w-3.5 h-3.5" />
-          <a href="#services" className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+          <a href="#services" className="hover:text-[#1D1D1F] dark:hover:text-white transition-colors">
             {lang === 'en' ? 'Enterprise IT' : 'Infrastruktur IT'}
           </a>
           <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-slate-700 dark:text-slate-300 font-semibold">
+          <span className="text-[#1D1D1F] dark:text-white font-medium">
             {lang === 'en' ? 'Critical Infrastructure Solutions' : 'Solusi Infrastruktur Strategis'}
           </span>
         </div>
@@ -247,7 +247,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <div className="absolute -right-[5px] top-[140px] w-[3.5px] h-[50px] bg-slate-400 dark:bg-slate-600 rounded-r-sm"></div>
 
                   {/* iPhone 17 Aerospace Titanium Chassis */}
-                  <div className="relative w-[300px] sm:w-[330px] h-[535px] sm:h-[565px] bg-gradient-to-b from-slate-300 via-slate-500 to-slate-400 dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 rounded-[52px] p-[3.5px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5),0_0_35px_rgba(0,80,174,0.18)] select-none">
+                  <div className="relative w-[300px] sm:w-[330px] h-[535px] sm:h-[565px] bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 rounded-[52px] p-[3.5px] shadow-2xl dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] select-none">
                     {/* Inner Chamfer Bezel Ring */}
                     <div className="w-full h-full bg-black rounded-[49px] p-[2.5px] relative overflow-hidden">
                       {/* Top Speaker Earpiece Mesh Slit */}
@@ -664,12 +664,12 @@ export const Hero: React.FC<HeroProps> = ({
               </div>
 
               {/* Bottom Subtle Status Badges */}
-              <div className="relative z-20 pt-3 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-tech">
-                <div className="flex items-center space-x-1 text-slate-600 dark:text-slate-300">
-                  <Radio className="w-3.5 h-3.5 text-[#0050AE] dark:text-blue-400" />
+              <div className="relative z-20 pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex flex-wrap items-center justify-between gap-2 text-[10px] text-[#6E6E73] dark:text-[#A1A1A6] font-mono">
+                <div className="flex items-center space-x-1.5 text-[#1D1D1F] dark:text-[#F5F5F7]">
+                  <Radio className="w-3.5 h-3.5 text-[#0071E3] dark:text-[#2997FF]" />
                   <span>Integrated Land, Sea & Agro Defense Fleet</span>
                 </div>
-                <div className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold">
+                <div className="flex items-center space-x-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>SLA 99.98% Guaranteed</span>
                 </div>

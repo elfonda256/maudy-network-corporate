@@ -12,7 +12,7 @@ export const StatsBar: React.FC<StatsBarProps> = ({ lang }) => {
       label: { en: 'Operational Availability SLA', id: 'Jaminan Ketersediaan SLA' },
       detail: { en: 'Zero-tolerance uptime for critical operations', id: 'Keandalan infrastruktur tanpa jeda' },
       icon: Server,
-      color: 'text-[#0050AE] dark:text-cyan-400',
+      color: 'text-[#0071E3] dark:text-[#2997FF]',
     },
     {
       value: '180+',
@@ -26,14 +26,14 @@ export const StatsBar: React.FC<StatsBarProps> = ({ lang }) => {
       label: { en: 'Vessel Bandwidth Optimization', id: 'Optimasi Bandwidth Satelit' },
       detail: { en: 'Empowering 30+ crew on oceanic tankers', id: 'Dikelola efisien untuk 30 awak kapal' },
       icon: Clock,
-      color: 'text-blue-600 dark:text-blue-400',
+      color: 'text-[#0071E3] dark:text-[#2997FF]',
     },
     {
       value: '10+',
       label: { en: 'Global Tier-1 Certifications', id: 'Sertifikasi Global Tingkat Elit' },
       detail: { en: 'Cisco CCNP, Fortinet NSE 7, MikroTik MTCINE', id: 'Cisco CCNP, Fortinet NSE 7, MTCINE' },
       icon: Award,
-      color: 'text-red-600 dark:text-red-400',
+      color: 'text-purple-600 dark:text-purple-400',
     },
   ];
 

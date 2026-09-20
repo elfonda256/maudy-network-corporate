@@ -85,7 +85,7 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
         en: 'Master and backup failover architecture designed to eliminate single points of failure across critical servers, corporate events, and data centers.',
         id: 'Arsitektur failover master & backup aktif untuk mengeliminasi titik kegagalan tunggal pada server kritis, siaran KTT, dan pusat data.',
       },
-      iconColor: 'text-rose-600 dark:text-rose-400',
+      iconColor: 'text-[#0071E3] dark:text-[#2997FF]',
     },
     {
       icon: Building,
@@ -100,14 +100,9 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
   ];
 
   return (
-    <section className="py-24 bg-slate-50/60 dark:bg-[#06101B]/60 backdrop-blur-md border-t border-slate-200/70 dark:border-slate-800/70 transition-colors relative overflow-hidden">
+    <section className="py-24 bg-transparent transition-colors relative overflow-hidden">
       {/* Top Animated Beam Sweep Divider */}
       <div className="beam-divider opacity-60 mb-12"></div>
-
-      {/* Decorative High-Tech Background Watermark */}
-      <div className="absolute top-10 right-8 text-[11px] font-tech text-slate-400/30 dark:text-cyan-500/10 select-none pointer-events-none tracking-widest hidden md:block">
-        [SYS_CORE: RELIABILITY_ARCH // MOAT_08]
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
