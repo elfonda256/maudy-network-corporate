@@ -43,23 +43,23 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-[#081522]/90 backdrop-blur-md transition-opacity"
+        className="fixed inset-0 bg-black/40 backdrop-blur-md transition-opacity"
         onClick={onClose}
       ></div>
 
       {/* Modal Container */}
-      <div className="relative z-10 w-full max-w-2xl glass-card rounded-2xl border border-cyan-500/40 shadow-2xl bg-[#0B1F3A]/98 my-8 animate-fadeIn overflow-hidden">
+      <div className="relative z-10 w-full max-w-2xl rounded-3xl border border-black/[0.08] dark:border-white/[0.12] shadow-2xl bg-white dark:bg-[#161617] my-8 animate-fadeIn overflow-hidden">
         {/* Header */}
-        <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-[#081522]/80">
+        <div className="p-6 border-b border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between bg-black/[0.02] dark:bg-white/[0.02]">
           <div className="flex items-center space-x-3">
-            <div className="p-2 rounded-xl bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+            <div className="p-2.5 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] border border-blue-500/20">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-base sm:text-lg font-semibold text-[#1D1D1F] dark:text-white tracking-tight">
                 {lang === 'en' ? 'Enterprise Technical Consultation' : 'Permohonan Konsultasi Teknis'}
               </h3>
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6]">
                 {lang === 'en'
                   ? 'Connect directly with Director Yahya Hidayatullah & Lead Engineering Team'
                   : 'Terhubung langsung dengan Direksi & Tim Ahli Jaringan MNK'}
@@ -69,21 +69,21 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-full text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 sm:p-8">
           {submitted ? (
-            <div className="p-8 text-center bg-emerald-950/30 rounded-xl border border-emerald-500/40">
-              <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto mb-3" />
-              <h4 className="text-lg font-bold text-white mb-2">
+            <div className="p-8 text-center bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl border border-emerald-200 dark:border-emerald-800/40">
+              <CheckCircle className="w-12 h-12 text-[#34C759] mx-auto mb-3" />
+              <h4 className="text-lg font-semibold text-[#1D1D1F] dark:text-white mb-2">
                 {lang === 'en' ? 'Consultation Request Sent' : 'Permintaan Berhasil Diterima'}
               </h4>
-              <p className="text-xs text-slate-300 max-w-md mx-auto leading-relaxed mb-6">
+              <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] max-w-md mx-auto leading-relaxed mb-6">
                 {lang === 'en'
                   ? 'Our Chief Network Architect will review your specifications and contact you shortly. You may also reach us directly via WhatsApp.'
                   : 'Spesifikasi proyek Anda sedang ditinjau oleh Arsitek Jaringan Utama kami. Anda juga dapat menghubungi langsung melalui WhatsApp.'}
@@ -93,14 +93,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   href="https://wa.me/6285727487507?text=Halo%20Maudy%20Network,%20saya%20sudah%20mengirim%20form%20konsultasi%20di%20website."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center space-x-2"
+                  className="px-6 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-medium flex items-center space-x-2 shadow-xs"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>Chat WhatsApp (+62 857-2748-7507)</span>
                 </a>
                 <button
                   onClick={onClose}
-                  className="px-4 py-2.5 rounded-lg bg-slate-800 text-slate-300 text-xs hover:bg-slate-700"
+                  className="px-5 py-2.5 rounded-full bg-black/[0.04] dark:bg-white/[0.08] text-[#1D1D1F] dark:text-white text-xs font-medium hover:bg-black/[0.08] dark:hover:bg-white/[0.12] cursor-pointer"
                 >
                   {lang === 'en' ? 'Close Window' : 'Tutup Jendela'}
                 </button>
@@ -110,7 +110,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                     {lang === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
                   </label>
                   <input
@@ -119,11 +119,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Hadi Prabowo"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                     {lang === 'en' ? 'Company / Ministry *' : 'Perusahaan / Lembaga *'}
                   </label>
                   <input
@@ -132,14 +132,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. PT Pertamina / Kementerian BUMN"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                     {lang === 'en' ? 'Email Address *' : 'Alamat Email *'}
                   </label>
                   <input
@@ -148,11 +148,11 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="director@pertamina.com"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono text-slate-300 mb-1">
+                  <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                     {lang === 'en' ? 'WhatsApp / Mobile *' : 'Nomor WhatsApp *'}
                   </label>
                   <input
@@ -161,19 +161,19 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+62 857-xxxx-xxxx"
-                    className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                    className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-300 mb-1">
+                <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                   {lang === 'en' ? 'Primary Scope of Interest' : 'Kategori Kebutuhan'}
                 </label>
                 <select
                   value={formData.scope}
                   onChange={(e) => setFormData({ ...formData, scope: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all"
                 >
                   <option>Marine Vessel VSAT & Fleet Telemetry</option>
                   <option>Enterprise Network Core Routing & Cabling</option>
@@ -188,7 +188,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-mono text-slate-300 mb-1">
+                <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
                   {lang === 'en' ? 'Initial Notes / Challenges' : 'Catatan Kebutuhan Singkat'}
                 </label>
                 <textarea
@@ -200,14 +200,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                       ? 'Specify number of nodes, vessel count, location, or urgent target date...'
                       : 'Sebutkan jumlah titik jaringan, kapal, lokasi, atau target waktu...'
                   }
-                  className="w-full px-3.5 py-2.5 rounded-lg bg-[#081522] border border-slate-700 text-white text-xs focus:border-cyan-400 focus:outline-none"
+                  className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                 ></textarea>
               </div>
 
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 text-white font-semibold text-xs shadow-glow-sm hover:shadow-glow-md transition-all flex items-center justify-center space-x-2"
+                  className="w-full py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs sm:text-sm shadow-xs transition-all flex items-center justify-center space-x-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>{lang === 'en' ? 'Send Consultation Brief' : 'Kirim Permohonan Konsultasi'}</span>

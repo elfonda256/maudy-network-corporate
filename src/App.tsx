@@ -161,7 +161,7 @@ export function App() {
         {/* PORTAL 1: PT MAUDY NETWORK NUSANTARA (CORPORATE PORTAL)                   */}
         {/* ========================================================================= */}
         {activePortal === 'corporate' && (
-          <div className="relative min-h-screen text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors overflow-x-hidden">
+          <div className="relative min-h-screen text-[#1D1D1F] dark:text-[#F5F5F7] flex flex-col font-sans transition-colors overflow-x-hidden">
             {/* Interactive Atmospheric Background with Cyber Grids and Glow Orbs */}
             <AtmosphericBackground />
 

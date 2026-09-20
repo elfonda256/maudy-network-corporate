@@ -118,11 +118,10 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <span>{lang === 'en' ? 'ENGINEERING METHODOLOGY' : 'METODOLOGI PEKERJAAN MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
             {lang === 'en' ? (
               <>
                 The 8-Stage <span className="text-gradient-brand">Infrastructure Delivery</span> Lifecycle
@@ -133,7 +132,7 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
               </>
             )}
           </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
             {lang === 'en'
               ? 'A disciplined engineering process from initial conceptualization to formal project handover and 24/7 proactive surveillance.'
               : 'Alur kerja terstruktur dan disiplin tinggi dari tahap asesmen awal hingga serah terima resmi operasional dan pemantauan 24/7.'}
@@ -141,7 +140,7 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
         </div>
 
         {/* 8-Step Selector */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5 mb-10">
           {steps.map((step, idx) => {
             const Icon = step.icon;
             const isSelected = selectedStep === idx;
@@ -149,23 +148,23 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
               <button
                 key={idx}
                 onClick={() => setSelectedStep(idx)}
-                className={`p-3 rounded-2xl text-left transition-all border flex flex-col justify-between ${
+                className={`p-3.5 rounded-2xl text-left transition-all border flex flex-col justify-between cursor-pointer ${
                   isSelected
-                    ? 'bg-gradient-brand text-white border-transparent shadow-lg shadow-red-500/20 scale-105'
-                    : 'bg-white/80 dark:bg-[#0B1F3A]/60 backdrop-blur-sm border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-400 hover:border-red-400/40 hover:scale-102'
+                    ? 'bg-[#0071E3] text-white border-transparent shadow-md scale-105'
+                    : 'bg-white dark:bg-[#161617] border-black/[0.08] dark:border-white/[0.08] text-[#1D1D1F] dark:text-white hover:border-[#0071E3]/40'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`text-xs font-tech font-bold ${isSelected ? 'text-white' : 'text-red-600 dark:text-cyan-400'}`}>
+                  <span className={`text-xs font-mono font-semibold ${isSelected ? 'text-white' : 'text-[#0071E3] dark:text-[#2997FF]'}`}>
                     {step.num}
                   </span>
                   <Icon
                     className={`w-4 h-4 ${
-                      isSelected ? 'text-white' : 'text-slate-400'
+                      isSelected ? 'text-white' : 'text-[#86868B]'
                     }`}
                   />
                 </div>
-                <div className="text-xs font-bold truncate">
+                <div className="text-xs font-semibold truncate">
                   {step.title[lang]}
                 </div>
               </button>
@@ -174,39 +173,39 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
         </div>
 
         {/* Selected Step Card */}
-        <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl rounded-3xl border border-slate-200/80 dark:border-cyan-500/30 gradient-border-top p-6 sm:p-8 max-w-4xl mx-auto shadow-2xl relative overflow-hidden animate-fadeIn">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-100 dark:border-slate-800/80">
+        <div className="bg-white dark:bg-[#161617] rounded-3xl border border-black/[0.08] dark:border-white/[0.08] p-6 sm:p-10 max-w-4xl mx-auto shadow-sm relative overflow-hidden animate-fadeIn">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-black/[0.06] dark:border-white/[0.08]">
             <div className="flex items-center space-x-4">
-              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-cyan-500/15 border border-slate-200 dark:border-cyan-500/30 text-red-600 dark:text-cyan-400 shadow-xs">
-                <StepIcon className="w-8 h-8" />
+              <div className="w-12 h-12 rounded-2xl bg-black/[0.03] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-[#0071E3] dark:text-[#2997FF] shadow-2xs">
+                <StepIcon className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-xs font-tech text-red-600 dark:text-cyan-400 font-bold uppercase tracking-wider">
+                <div className="text-xs font-mono text-[#0071E3] dark:text-[#2997FF] font-semibold uppercase tracking-wider">
                   {lang === 'en' ? `Stage ${currentStep.num} Execution` : `Tahap ${currentStep.num}`}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-extrabold text-[#002D62] dark:text-white mt-0.5">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[#1D1D1F] dark:text-white mt-0.5">
                   {currentStep.title[lang]}
                 </h3>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 text-xs font-mono font-bold border border-slate-200 dark:border-slate-700">
+            <span className="px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.08] text-[#1D1D1F] dark:text-white text-xs font-mono font-medium border border-black/[0.06] dark:border-white/[0.08]">
               {lang === 'en' ? 'Verified Protocol' : 'Standar Baku MNK'}
             </span>
           </div>
 
           <div className="py-6 space-y-4">
-            <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal">
+            <p className="text-sm text-[#1D1D1F] dark:text-slate-200 leading-relaxed font-normal">
               {currentStep.shortDesc[lang]}
             </p>
 
-            <div className="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
-              <div className="text-xs font-mono text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-bold">
+            <div className="bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
+              <div className="text-xs font-mono text-[#1D1D1F] dark:text-white uppercase tracking-wider mb-3 font-semibold">
                 {lang === 'en' ? 'Standard Deliverables at this Stage:' : 'Dokumen & Output Tahapan Ini:'}
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {currentStep.deliverables[lang].map((d, dIdx) => (
-                  <li key={dIdx} className="flex items-center space-x-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                    <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
+                  <li key={dIdx} className="flex items-center space-x-2.5 text-xs sm:text-sm text-[#1D1D1F] dark:text-slate-300">
+                    <CheckCircle className="w-4 h-4 text-[#0071E3] dark:text-[#2997FF] flex-shrink-0" />
                     <span>{d}</span>
                   </li>
                 ))}
@@ -214,13 +213,13 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+          <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] font-mono">
               {lang === 'en' ? 'Transparent tracking through each milestone' : 'Pelaporan berkala di setiap tahap pelaksanaan'}
             </span>
             <button
               onClick={onOpenConsultation}
-              className="px-6 py-2.5 rounded-full bg-[#0050AE] hover:bg-[#004294] text-white text-xs font-bold shadow-md transition-all flex items-center space-x-2"
+              className="px-6 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium shadow-none hover:shadow-sm transition-all flex items-center space-x-2 cursor-pointer"
             >
               <span>{lang === 'en' ? 'Initiate Stage 01 Consultation' : 'Mulai Tahap 01 Konsultasi'}</span>
               <ArrowRight className="w-3.5 h-3.5" />

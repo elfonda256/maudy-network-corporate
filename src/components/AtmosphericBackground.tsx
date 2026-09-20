@@ -218,38 +218,31 @@ export const AtmosphericBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none">
-      {/* Interactive AI Neural Constellation Canvas */}
+      {/* Interactive AI Neural Constellation Canvas (Dark mode only or ultra-faint in light) */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full opacity-65 dark:opacity-85 pointer-events-none"
+        className="absolute inset-0 w-full h-full opacity-0 dark:opacity-65 pointer-events-none transition-opacity duration-500"
       />
 
-      {/* Cyber Grid & Circuit Matrix Layers */}
-      <div className="absolute inset-0 tech-matrix-grid opacity-55 dark:opacity-45"></div>
-      <div className="absolute inset-0 tech-grid-pattern opacity-30 dark:opacity-20"></div>
+      {/* Cyber Grid & Circuit Matrix Layers (Zero noise in light mode for Apple-grade clarity) */}
+      <div className="absolute inset-0 tech-matrix-grid opacity-0 dark:opacity-35"></div>
+      <div className="absolute inset-0 tech-grid-pattern opacity-0 dark:opacity-20"></div>
 
       {/* Interactive Mouse Reactive Light Glow */}
       <div
-        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-25 dark:opacity-20 pointer-events-none mix-blend-screen"
+        className="absolute w-[600px] h-[600px] rounded-full transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 blur-3xl opacity-0 dark:opacity-20 pointer-events-none mix-blend-screen"
         style={{
           left: `${mousePos.x}px`,
           top: `${mousePos.y}px`,
-          background: 'radial-gradient(circle, rgba(0, 80, 174, 0.2) 0%, rgba(220, 38, 38, 0.15) 45%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.15) 0%, rgba(0, 80, 174, 0.08) 45%, transparent 70%)',
         }}
       />
 
-      {/* Floating Volumetric Radiant Orbs (Balanced, No Text-Washing) */}
-      {/* 1. Top Left Crimson Red Ambient Pulse */}
-      <div className="absolute top-[5%] -left-[140px] w-[500px] h-[500px] rounded-full bg-red-600/8 dark:bg-red-600/15 blur-[120px] animate-pulse-aura"></div>
-
-      {/* 2. Center Right Deep Corporate Blue Luminescence */}
-      <div className="absolute top-[32%] -right-[150px] w-[580px] h-[580px] rounded-full bg-blue-600/8 dark:bg-[#0050AE]/20 blur-[130px] animate-float-slow"></div>
-
-      {/* 3. Bottom Left Sky Blue Aura */}
-      <div className="absolute top-[68%] -left-[100px] w-[500px] h-[500px] rounded-full bg-blue-700/8 dark:bg-blue-700/15 blur-[120px] animate-float-delayed"></div>
-
-      {/* 4. Deep Bottom Crimson Red Glow */}
-      <div className="absolute bottom-[4%] right-[10%] w-[450px] h-[450px] rounded-full bg-red-600/8 dark:bg-red-600/12 blur-[110px] animate-pulse-aura"></div>
+      {/* Floating Volumetric Radiant Orbs (Apple-grade subtle ambient diffusion) */}
+      <div className="absolute top-[5%] -left-[140px] w-[500px] h-[500px] rounded-full bg-blue-500/[0.02] dark:bg-red-600/12 blur-[140px] animate-pulse-aura"></div>
+      <div className="absolute top-[32%] -right-[150px] w-[580px] h-[580px] rounded-full bg-blue-500/[0.03] dark:bg-[#0050AE]/18 blur-[150px] animate-float-slow"></div>
+      <div className="absolute top-[68%] -left-[100px] w-[500px] h-[500px] rounded-full bg-blue-600/[0.02] dark:bg-blue-700/12 blur-[140px] animate-float-delayed"></div>
+      <div className="absolute bottom-[4%] right-[10%] w-[450px] h-[450px] rounded-full bg-blue-500/[0.02] dark:bg-red-600/10 blur-[130px] animate-pulse-aura"></div>
     </div>
   );
 };

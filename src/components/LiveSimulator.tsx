@@ -158,40 +158,37 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
   };
 
   return (
-    <div className="bg-white/95 dark:bg-[#050C16] text-slate-800 dark:text-slate-100 rounded-3xl border border-slate-200 dark:border-cyan-500/40 p-5 sm:p-8 shadow-2xl relative overflow-hidden transition-all">
-      {/* Top Cyber Scanline Laser */}
-      <div className="cyber-scanline opacity-75"></div>
-
-      {/* High-Tech Telemetry HUD Header */}
-      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-5 border-b border-slate-200 dark:border-slate-800 relative z-10">
+    <div className="bg-white dark:bg-[#161617] text-[#1D1D1F] dark:text-white rounded-3xl border border-black/[0.08] dark:border-white/[0.12] p-5 sm:p-8 shadow-xs relative overflow-hidden transition-all">
+      {/* Telemetry HUD Header */}
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-5 border-b border-black/[0.08] dark:border-white/[0.08] relative z-10">
         <div className="flex items-center space-x-3">
-          <div className="p-2.5 rounded-xl bg-blue-50 dark:bg-cyan-500/10 text-[#0050AE] dark:text-cyan-400 border border-blue-200 dark:border-cyan-500/30">
-            <Terminal className="w-6 h-6 animate-pulse" />
+          <div className="p-2.5 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] border border-blue-500/20">
+            <Terminal className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="text-base font-black font-tech tracking-wider text-[#002D62] dark:text-white">
+              <span className="text-base font-semibold tracking-tight text-[#1D1D1F] dark:text-white">
                 MNK MISSION-CONTROL MULTI-ENGINE SIMULATOR
               </span>
-              <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-[10px] font-tech font-bold border border-emerald-500/30 flex items-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 mr-1.5 animate-tech-ping"></span>
+              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[#34C759] text-[10px] font-mono font-bold border border-emerald-500/20 flex items-center">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#34C759] mr-1.5 animate-pulse"></span>
                 ACTIVE DAEMON
               </span>
             </div>
-            <div className="text-[11px] font-tech text-slate-500 dark:text-slate-400 mt-0.5">
+            <div className="text-[11px] font-mono text-[#6E6E73] dark:text-[#A1A1A6] mt-0.5">
               CYCLE: #{systemCycle} • UPTIME: {formatUptime(systemUptimeSec)} • LATENCY BUFFER: 0.8ms • IOPS: 14,800
             </div>
           </div>
         </div>
 
-        {/* Engine Switcher Tabs */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-xs font-tech">
+        {/* Engine Switcher Tabs (Apple Pill Style) */}
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-xs">
           <button
             onClick={() => setActiveEngine('pisbot')}
-            className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center space-x-1.5 ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all flex items-center space-x-1.5 cursor-pointer ${
               activeEngine === 'pisbot'
-                ? 'bg-gradient-brand text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white'
             }`}
           >
             <Radio className="w-3.5 h-3.5" />
@@ -199,10 +196,10 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           </button>
           <button
             onClick={() => setActiveEngine('xtur')}
-            className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center space-x-1.5 ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all flex items-center space-x-1.5 cursor-pointer ${
               activeEngine === 'xtur'
-                ? 'bg-gradient-brand text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white'
             }`}
           >
             <Cpu className="w-3.5 h-3.5" />
@@ -210,10 +207,10 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           </button>
           <button
             onClick={() => setActiveEngine('aegis')}
-            className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center space-x-1.5 ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all flex items-center space-x-1.5 cursor-pointer ${
               activeEngine === 'aegis'
-                ? 'bg-gradient-brand text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white'
             }`}
           >
             <Anchor className="w-3.5 h-3.5" />
@@ -221,10 +218,10 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           </button>
           <button
             onClick={() => setActiveEngine('molinar')}
-            className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center space-x-1.5 ${
+            className={`px-4 py-1.5 rounded-full font-medium transition-all flex items-center space-x-1.5 cursor-pointer ${
               activeEngine === 'molinar'
-                ? 'bg-gradient-brand text-white shadow-md'
-                : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                ? 'bg-[#0071E3] text-white shadow-xs'
+                : 'text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
@@ -241,10 +238,10 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
             {/* Top Node Matrix & Latency Chart */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left: 5 Node Status Table */}
-              <div className="lg:col-span-7 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3 font-tech text-xs">
-                <div className="flex items-center justify-between text-[11px] text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2">
+              <div className="lg:col-span-7 bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] space-y-3 text-xs">
+                <div className="flex items-center justify-between text-[11px] font-mono text-[#0071E3] dark:text-[#2997FF] border-b border-black/[0.06] dark:border-white/[0.08] pb-2">
                   <span>ENTERPRISE DISTRIBUTED ICMP MONITOR (SUB-SECOND)</span>
-                  <span className="font-bold">5/5 NODES TRACKED</span>
+                  <span className="font-semibold">5/5 NODES TRACKED</span>
                 </div>
                 <div className="space-y-2">
                   {pisbotNodes.map((node) => {
@@ -254,31 +251,31 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                     return (
                       <div
                         key={node.id}
-                        className={`p-2.5 rounded-xl border transition-all flex items-center justify-between ${
+                        className={`p-3 rounded-2xl border transition-all flex items-center justify-between ${
                           isDropped
-                            ? 'bg-red-500/10 dark:bg-red-500/20 border-red-500 text-red-700 dark:text-red-300 animate-pulse'
+                            ? 'bg-red-500/10 border-red-500 text-red-700 dark:text-red-300 animate-pulse'
                             : isFailover
-                            ? 'bg-cyan-500/10 dark:bg-cyan-500/20 border-[#0050AE] dark:border-cyan-400 text-[#0050AE] dark:text-cyan-200'
-                            : 'bg-white dark:bg-slate-950/70 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 shadow-xs'
+                            ? 'bg-blue-500/10 border-[#0071E3] text-[#0071E3] dark:text-[#2997FF]'
+                            : 'bg-white dark:bg-black/40 border-black/[0.06] dark:border-white/[0.08] text-[#1D1D1F] dark:text-white shadow-2xs'
                         }`}
                       >
                         <div className="flex items-center space-x-2.5">
                           <span
                             className={`w-2 h-2 rounded-full ${
-                              isDropped ? 'bg-red-500' : isFailover ? 'bg-cyan-500 dark:bg-cyan-400' : 'bg-emerald-500 dark:bg-emerald-400'
+                              isDropped ? 'bg-red-500' : isFailover ? 'bg-[#0071E3]' : 'bg-[#34C759]'
                             }`}
                           ></span>
                           <div>
-                            <div className="font-bold text-[#002D62] dark:text-white text-xs">{node.name}</div>
-                            <div className="text-[10px] text-slate-500">{node.ip}</div>
+                            <div className="font-semibold text-[#1D1D1F] dark:text-white text-xs">{node.name}</div>
+                            <div className="text-[10px] font-mono text-[#6E6E73] dark:text-[#A1A1A6]">{node.ip}</div>
                           </div>
                         </div>
 
                         <div className="text-right">
-                          <div className={`font-bold ${isDropped ? 'text-red-600 dark:text-red-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                          <div className={`font-semibold ${isDropped ? 'text-red-600 dark:text-red-400' : 'text-[#34C759]'}`}>
                             {isDropped ? 'TIMEOUT (DROP)' : `${node.latency} ms`}
                           </div>
-                          <div className="text-[9px] text-slate-500">
+                          <div className="text-[9px] font-mono text-[#6E6E73] dark:text-[#A1A1A6]">
                             {isFailover ? 'STARLINK LEO BACKUP' : isDropped ? 'ALARM DISPATCHED' : 'PRIMARY CARRIER'}
                           </div>
                         </div>
@@ -289,28 +286,28 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
               </div>
 
               {/* Right: Interactive Diagnostics & Failover Trigger */}
-              <div className="lg:col-span-5 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4">
+              <div className="lg:col-span-5 bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] flex flex-col justify-between space-y-4">
                 <div>
-                  <div className="text-xs font-tech text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-2 flex items-center">
-                    <Zap className="w-3.5 h-3.5 mr-1 text-red-500" />
+                  <div className="text-xs font-mono text-[#0071E3] dark:text-[#2997FF] uppercase tracking-wider mb-2 flex items-center font-medium">
+                    <Zap className="w-3.5 h-3.5 mr-1 text-[#0071E3]" />
                     Simulasi Gangguan & Failover Otonom
                   </div>
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-3">
+                  <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal mb-3">
                     Uji keandalan algoritma PIS_BOT dalam mendeteksi putusnya saluran transmisi dan memindahkan rute paket satelit dalam &lt; 500ms tanpa henti.
                   </p>
 
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 font-tech text-[11px] space-y-1.5 shadow-xs">
+                  <div className="p-3.5 rounded-2xl bg-white dark:bg-black/40 border border-black/[0.06] dark:border-white/[0.08] font-mono text-[11px] space-y-1.5 shadow-2xs">
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Autonomous Traceroute:</span>
-                      <span className="text-[#0050AE] dark:text-cyan-300 font-bold">15 Hops Verified</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Autonomous Traceroute:</span>
+                      <span className="text-[#0071E3] dark:text-[#2997FF] font-semibold">15 Hops Verified</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Failover SLA:</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">&lt; 800 ms Guarantee</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Failover SLA:</span>
+                      <span className="text-[#34C759] font-semibold">&lt; 800 ms Guarantee</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Alarm Escalation:</span>
-                      <span className="text-red-600 dark:text-red-400 font-bold">Telegram / Webhook Direct</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Alarm Escalation:</span>
+                      <span className="text-red-600 dark:text-red-400 font-semibold">Telegram / Webhook Direct</span>
                     </div>
                   </div>
                 </div>
@@ -319,7 +316,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   <button
                     onClick={triggerFiberCutFailover}
                     disabled={isSimulatingFailover || failoverActive}
-                    className="flex-1 py-2.5 px-3 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-tech font-bold text-xs shadow-md transition-all flex items-center justify-center space-x-1.5"
+                    className="flex-1 py-2.5 px-4 rounded-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-medium text-xs shadow-xs transition-all flex items-center justify-center space-x-1.5 cursor-pointer"
                   >
                     <AlertTriangle className="w-3.5 h-3.5" />
                     <span>Simulasi Putus Link Satelit</span>
@@ -327,9 +324,9 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   {failoverActive && (
                     <button
                       onClick={resetPisbot}
-                      className="py-2.5 px-3 rounded-xl bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-cyan-300 font-tech font-bold text-xs border border-slate-300 dark:border-cyan-500/30 transition-all flex items-center space-x-1"
+                      className="py-2.5 px-4 rounded-full bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] text-[#1D1D1F] dark:text-white font-medium text-xs border border-black/[0.08] dark:border-white/[0.12] transition-all flex items-center space-x-1 cursor-pointer"
                     >
-                      <RotateCcw className="w-3.5 h-3.5" />
+                      <RotateCcw className="w-3 h-3" />
                       <span>Reset</span>
                     </button>
                   )}
@@ -368,21 +365,21 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           <div className="space-y-6 animate-in fade-in duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
               {/* Left: 4-Feed Camera RTSP Matrix Simulator */}
-              <div className="lg:col-span-8 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
-                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2 text-xs font-tech">
-                  <span className="text-[#0050AE] dark:text-cyan-400 flex items-center font-bold">
-                    <Camera className="w-3.5 h-3.5 mr-1.5 text-red-500" />
-                    XTUR EDGE MULTI-STREAM RTSP MATRIX (64 CAMS TOTAL)
+              <div className="lg:col-span-8 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-xs space-y-4">
+                <div className="flex items-center justify-between border-b border-black/[0.08] dark:border-white/[0.08] pb-3 text-xs">
+                  <span className="text-[#1D1D1F] dark:text-white flex items-center font-bold">
+                    <Camera className="w-3.5 h-3.5 mr-1.5 text-[#0071E3]" />
+                    XTUR EDGE MULTI-STREAM RTSP MATRIX (64 CAMS)
                   </span>
                   <div className="flex items-center space-x-1">
                     {[1, 2, 3, 4].map((cId) => (
                       <button
                         key={cId}
                         onClick={() => setActiveCamView(cId)}
-                        className={`px-2 py-0.5 rounded text-[10px] ${
+                        className={`px-2.5 py-1 rounded-full text-[10px] font-semibold transition-all ${
                           activeCamView === cId
-                            ? 'bg-red-600 text-white font-bold shadow-xs'
-                            : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                            ? 'bg-[#0071E3] text-white shadow-xs'
+                            : 'bg-black/[0.04] dark:bg-white/[0.08] text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white'
                         }`}
                       >
                         CAM 0{cId}
@@ -392,7 +389,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                 </div>
 
                 {/* Simulated CCTV Frame with AI Bounding Box HUD */}
-                <div className="relative h-64 sm:h-72 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center">
+                <div className="relative h-64 sm:h-72 rounded-2xl overflow-hidden bg-black border border-black/[0.08] dark:border-white/[0.1] flex items-center justify-center">
                   <img
                     src={
                       activeCamView === 1
@@ -404,7 +401,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                         : '/xtur/06-engine-health.png'
                     }
                     alt="CCTV Matrix"
-                    className="w-full h-full object-cover opacity-80"
+                    className="w-full h-full object-cover opacity-85"
                   />
 
                   {/* Laser Scanline */}
@@ -412,14 +409,14 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
 
                   {/* Bounding Box Simulation 1: ANPR Vehicle */}
                   <div
-                    className={`absolute top-10 left-12 p-2 border-2 rounded transition-all font-tech text-[10px] ${
+                    className={`absolute top-10 left-12 p-2.5 border-2 rounded-xl transition-all font-mono text-[10px] ${
                       xturBlacklist
                         ? 'border-red-500 bg-red-500/20 text-red-300 animate-pulse'
-                        : 'border-cyan-400 bg-cyan-500/15 text-cyan-200'
+                        : 'border-[#2997FF] bg-blue-500/20 text-white'
                     }`}
                   >
                     <div className="font-bold flex items-center">
-                      <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 mr-1"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#2997FF] mr-1"></span>
                       {xturBlacklist ? '[BLACKLIST FLAGGED]' : '[ANPR DETECTED]'}
                     </div>
                     <div>PLATE: B 1945 XYZ (57 Reg)</div>
@@ -427,7 +424,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   </div>
 
                   {/* Bounding Box Simulation 2: K3 Helmet/Vest */}
-                  <div className="absolute bottom-8 right-16 p-2 border-2 border-emerald-400 bg-emerald-500/15 rounded font-tech text-[10px] text-emerald-200">
+                  <div className="absolute bottom-8 right-16 p-2.5 border-2 border-emerald-400 bg-emerald-500/20 rounded-xl font-mono text-[10px] text-white">
                     <div className="font-bold flex items-center">
                       <CheckCircle2 className="w-3 h-3 mr-1 text-emerald-400" />
                       [HSE K3 COMPLIANT]
@@ -438,9 +435,9 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
 
                   {/* Simulated Intrusion Warning Box */}
                   {xturAlarm && (
-                    <div className="absolute inset-x-8 top-1/3 p-3 bg-red-600/90 border-2 border-white rounded-xl text-center text-white font-tech font-bold animate-bounce shadow-2xl">
+                    <div className="absolute inset-x-8 top-1/3 p-3 bg-red-600/90 border border-white/30 rounded-2xl text-center text-white font-mono font-bold animate-bounce shadow-2xl">
                       <div className="text-sm tracking-wider">⚠️ PERIMETER BREACH DETECTED!</div>
-                      <div className="text-xs font-normal">Cam_03 Zone B Restricted Line Crossed • Webhook Triggered</div>
+                      <div className="text-xs font-normal opacity-90">Cam_03 Zone B Restricted Line Crossed • Webhook Triggered</div>
                     </div>
                   )}
                 </div>
@@ -449,14 +446,14 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                 <div className="flex items-center space-x-3 pt-1">
                   <button
                     onClick={triggerIntrusionAlarm}
-                    className="flex-1 py-2 px-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-tech font-bold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs"
+                    className="flex-1 py-2.5 px-4 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer"
                   >
                     <AlertTriangle className="w-3.5 h-3.5" />
                     <span>Simulasi Alarm Intrusi Perimeter</span>
                   </button>
                   <button
                     onClick={triggerBlacklistPlate}
-                    className="flex-1 py-2 px-3 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-tech font-bold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs"
+                    className="flex-1 py-2.5 px-4 rounded-full bg-amber-600 hover:bg-amber-700 text-white font-semibold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer"
                   >
                     <Eye className="w-3.5 h-3.5" />
                     <span>Simulasi Deteksi Plat Blacklist</span>
@@ -465,23 +462,23 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
               </div>
 
               {/* Right: Real-Time GPU TensorRT Telemetry */}
-              <div className="lg:col-span-4 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-between space-y-4 font-tech text-xs">
+              <div className="lg:col-span-4 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-xs flex flex-col justify-between space-y-4 text-xs">
                 <div className="space-y-4">
-                  <div className="text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2 flex items-center justify-between text-[11px] font-bold">
+                  <div className="text-[#1D1D1F] dark:text-white border-b border-black/[0.08] dark:border-white/[0.08] pb-3 flex items-center justify-between text-[11px] font-bold">
                     <span>TENSORRT ENGINE HEALTH</span>
-                    <span className="text-emerald-600 dark:text-emerald-400">LATENCY: 4.2ms</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-mono">LATENCY: 4.2ms</span>
                   </div>
 
                   {/* GPU Load Gauge */}
                   <div>
-                    <div className="flex justify-between text-slate-600 dark:text-slate-400 mb-1">
+                    <div className="flex justify-between text-[#6E6E73] dark:text-[#A1A1A6] mb-1 font-mono text-[11px]">
                       <span>GPU TENSOR CORE LOAD</span>
-                      <span className="text-[#002D62] dark:text-white font-bold">{aiGpuLoad}%</span>
+                      <span className="text-[#1D1D1F] dark:text-white font-bold">{aiGpuLoad}%</span>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
                       <div
                         className={`h-full transition-all duration-500 ${
-                          aiGpuLoad > 90 ? 'bg-red-500' : 'bg-[#0050AE] dark:bg-cyan-400'
+                          aiGpuLoad > 90 ? 'bg-red-500' : 'bg-[#0071E3] dark:bg-[#2997FF]'
                         }`}
                         style={{ width: `${aiGpuLoad}%` }}
                       ></div>
@@ -490,33 +487,33 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
 
                   {/* VRAM Allocation */}
                   <div>
-                    <div className="flex justify-between text-slate-600 dark:text-slate-400 mb-1">
+                    <div className="flex justify-between text-[#6E6E73] dark:text-[#A1A1A6] mb-1 font-mono text-[11px]">
                       <span>VRAM ALLOCATION (16GB)</span>
-                      <span className="text-[#002D62] dark:text-white font-bold">5.4 GB (33%)</span>
+                      <span className="text-[#1D1D1F] dark:text-white font-bold">5.4 GB (33%)</span>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
                       <div className="h-full bg-purple-600 dark:bg-purple-500 w-[33%]"></div>
                     </div>
                   </div>
 
                   {/* Inference Metrics */}
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-2 text-[11px] shadow-xs">
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] space-y-2 text-[11px] font-mono">
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Detection Framework:</span>
-                      <span className="text-[#0050AE] dark:text-cyan-300 font-bold">YOLOv8x + ONNX</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Detection Framework:</span>
+                      <span className="text-[#0071E3] dark:text-[#2997FF] font-semibold">YOLOv8x + ONNX</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Stream FPS:</span>
-                      <span className="text-emerald-600 dark:text-emerald-400 font-bold">59.8 FPS Steady</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Stream FPS:</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-semibold">59.8 FPS Steady</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-500">Active Camera Matrix:</span>
-                      <span className="text-[#002D62] dark:text-white font-bold">64 RTSP Feeds</span>
+                      <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Active Camera Matrix:</span>
+                      <span className="text-[#1D1D1F] dark:text-white font-semibold">64 RTSP Feeds</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-3 rounded-xl bg-blue-50/80 dark:bg-cyan-950/40 border border-blue-200 dark:border-cyan-500/30 text-[#0050AE] dark:text-cyan-300 text-[10px]">
+                <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] text-[#0071E3] dark:text-[#2997FF] text-[11px]">
                   ✓ Algoritma inferensi berjalan 100% lokal on-premise tanpa bergantung pada bandwidth cloud eksternal.
                 </div>
               </div>
@@ -529,14 +526,14 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           <div className="space-y-6 animate-in fade-in duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               {/* Left: Interactive Rotating Radar */}
-              <div className="lg:col-span-6 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center space-y-4">
-                <div className="w-full flex items-center justify-between text-xs font-tech text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2 font-bold">
+              <div className="lg:col-span-6 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-xs flex flex-col items-center justify-center space-y-4">
+                <div className="w-full flex items-center justify-between text-xs text-[#1D1D1F] dark:text-white border-b border-black/[0.08] dark:border-white/[0.08] pb-3 font-bold">
                   <span>MALACCA STRAIT & JAVA SEA RADAR</span>
-                  <span className="text-emerald-600 dark:text-emerald-400">30+ TANKERS ON-GRID</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-mono">30+ TANKERS ON-GRID</span>
                 </div>
 
                 {/* Radar Scope */}
-                <div className="relative w-60 h-60 rounded-full border-2 border-cyan-500/40 bg-slate-950 flex items-center justify-center overflow-hidden shadow-inner">
+                <div className="relative w-60 h-60 rounded-full border border-black/[0.1] dark:border-white/[0.15] bg-[#071322] flex items-center justify-center overflow-hidden shadow-inner">
                   {/* Concentric rings */}
                   <div className="absolute w-44 h-44 rounded-full border border-cyan-500/20"></div>
                   <div className="absolute w-28 h-28 rounded-full border border-cyan-500/20"></div>
@@ -551,34 +548,34 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   ></div>
 
                   {/* Vessel Blip 1: Pertamina Pride */}
-                  <div className="absolute top-16 left-20 flex items-center space-x-1 font-tech text-[9px] text-cyan-300">
+                  <div className="absolute top-16 left-20 flex items-center space-x-1 font-mono text-[9px] text-cyan-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
                     <span>VLCC Pertamina Pride [ECDIS: OK]</span>
                   </div>
 
                   {/* Vessel Blip 2: MT Gamsunoro */}
-                  <div className="absolute bottom-14 right-16 flex items-center space-x-1 font-tech text-[9px] text-emerald-300">
+                  <div className="absolute bottom-14 right-16 flex items-center space-x-1 font-mono text-[9px] text-emerald-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>MT Gamsunoro [VSAT 512K]</span>
                   </div>
 
                   {/* Vessel Blip 3: Gas Walio */}
-                  <div className="absolute top-28 right-12 flex items-center space-x-1 font-tech text-[9px] text-purple-300">
+                  <div className="absolute top-28 right-12 flex items-center space-x-1 font-mono text-[9px] text-purple-300">
                     <span className="w-2.5 h-2.5 rounded-full bg-purple-400"></span>
                     <span>Gas Walio [QoS 100%]</span>
                   </div>
                 </div>
 
-                <div className="text-[11px] font-tech text-slate-500 dark:text-slate-400">
+                <div className="text-[11px] font-mono text-[#6E6E73] dark:text-[#A1A1A6]">
                   Koordinat Posisi Terverifikasi: 05°45'20"S • 106°48'35"E (Perairan Karang Jamuang)
                 </div>
               </div>
 
               {/* Right: Dynamic Bandwidth QoS Prioritization Matrix */}
-              <div className="lg:col-span-6 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4 font-tech text-xs">
-                <div className="flex items-center justify-between text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2 font-bold">
-                  <span>FORTINET NGFW ZERO-TRUST QoS (512 Kbps LINK)</span>
-                  <span className={aegisCongested ? 'text-red-600 dark:text-red-400 font-bold animate-pulse' : 'text-emerald-600 dark:text-emerald-400'}>
+              <div className="lg:col-span-6 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-xs space-y-4 text-xs">
+                <div className="flex items-center justify-between text-[#1D1D1F] dark:text-white border-b border-black/[0.08] dark:border-white/[0.08] pb-3 font-bold">
+                  <span>FORTINET NGFW ZERO-TRUST QoS</span>
+                  <span className={aegisCongested ? 'text-red-600 dark:text-red-400 font-bold font-mono animate-pulse' : 'text-emerald-600 dark:text-emerald-400 font-mono'}>
                     {aegisCongested ? 'RAIN FADE / CONGESTED' : 'NOMINAL CARRIER'}
                   </span>
                 </div>
@@ -586,44 +583,44 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                 {/* 4 QoS Bars */}
                 <div className="space-y-3 pt-1">
                   <div>
-                    <div className="flex justify-between text-[#0050AE] dark:text-cyan-300 mb-1 font-semibold">
+                    <div className="flex justify-between text-[#1D1D1F] dark:text-white mb-1 font-semibold text-[11px]">
                       <span>ECDIS Navigation & AIS Matrix (Priority 1)</span>
-                      <span>40% Guaranteed (204 Kbps)</span>
+                      <span className="text-[#0071E3] dark:text-[#2997FF] font-mono">40% Guaranteed (204 Kbps)</span>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
-                      <div className="h-full bg-[#0050AE] dark:bg-cyan-400 w-[40%]"></div>
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#0071E3] dark:bg-[#2997FF] w-[40%]"></div>
                     </div>
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-blue-700 dark:text-blue-300 mb-1 font-semibold">
+                    <div className="flex justify-between text-[#1D1D1F] dark:text-white mb-1 font-semibold text-[11px]">
                       <span>Engine Telemetry & Fuel IoT (Priority 2)</span>
-                      <span>30% Guaranteed (153 Kbps)</span>
+                      <span className="text-[#0071E3] dark:text-[#2997FF] font-mono">30% Guaranteed (153 Kbps)</span>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
-                      <div className="h-full bg-blue-600 dark:bg-blue-500 w-[30%]"></div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-emerald-700 dark:text-emerald-300 mb-1 font-semibold">
-                      <span>Master Official Fleet VoIP (Priority 3)</span>
-                      <span>20% Priority (102 Kbps)</span>
-                    </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
-                      <div className="h-full bg-emerald-600 dark:bg-emerald-400 w-[20%]"></div>
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
+                      <div className="h-full bg-[#2997FF] w-[30%]"></div>
                     </div>
                   </div>
 
                   <div>
-                    <div className="flex justify-between text-slate-600 dark:text-slate-400 mb-1">
-                      <span>Crew Leisure & Entertainment (Priority 4)</span>
-                      <span>{aegisCongested ? '0% THROTTLED' : '10% Leeway (53 Kbps)'}</span>
+                    <div className="flex justify-between text-[#1D1D1F] dark:text-white mb-1 font-semibold text-[11px]">
+                      <span>Master & Official Fleet VoIP (Priority 3)</span>
+                      <span className="text-emerald-600 dark:text-emerald-400 font-mono">20% Guaranteed (102 Kbps)</span>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-950 h-2.5 rounded-full overflow-hidden">
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
+                      <div className="h-full bg-emerald-500 w-[20%]"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between text-[#6E6E73] dark:text-[#A1A1A6] mb-1 font-semibold text-[11px]">
+                      <span>Crew Leisure & General Internet (Priority 4)</span>
+                      <span className="font-mono">{aegisCongested ? 'THROTTLED (0%)' : '10% Low Priority'}</span>
+                    </div>
+                    <div className="w-full bg-black/[0.06] dark:bg-white/[0.08] h-2.5 rounded-full overflow-hidden">
                       <div
                         className={`h-full transition-all duration-300 ${
-                          aegisCongested ? 'bg-red-500 w-0' : 'bg-slate-400 dark:bg-slate-600 w-[10%]'
+                          aegisCongested ? 'bg-red-500 w-0' : 'bg-black/20 dark:bg-white/20 w-[10%]'
                         }`}
                       ></div>
                     </div>
@@ -634,8 +631,8 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                 <div className="pt-2 flex items-center space-x-2">
                   <button
                     onClick={toggleAegisCongestion}
-                    className={`flex-1 py-2 px-3 rounded-xl font-tech font-bold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs ${
-                      aegisCongested ? 'bg-amber-600 text-white' : 'bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-cyan-300'
+                    className={`flex-1 py-2.5 px-4 rounded-full font-semibold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer ${
+                      aegisCongested ? 'bg-amber-600 text-white' : 'bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] text-[#1D1D1F] dark:text-white'
                     }`}
                   >
                     <Sliders className="w-3.5 h-3.5" />
@@ -644,8 +641,8 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
 
                   <button
                     onClick={toggleAegisStarlink}
-                    className={`flex-1 py-2 px-3 rounded-xl font-tech font-bold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs ${
-                      aegisStarlinkActive ? 'bg-[#0050AE] dark:bg-cyan-600 text-white' : 'bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-cyan-300'
+                    className={`flex-1 py-2.5 px-4 rounded-full font-semibold text-xs transition-all flex items-center justify-center space-x-1.5 shadow-xs cursor-pointer ${
+                      aegisStarlinkActive ? 'bg-[#0071E3] text-white' : 'bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] text-[#1D1D1F] dark:text-white'
                     }`}
                   >
                     <Zap className="w-3.5 h-3.5" />
@@ -662,57 +659,57 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
           <div className="space-y-6 animate-in fade-in duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Left: Sensor Metrics Grid */}
-              <div className="lg:col-span-6 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4 font-tech text-xs">
-                <div className="text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2 flex justify-between font-bold">
+              <div className="lg:col-span-6 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] space-y-4 text-xs shadow-xs">
+                <div className="text-[#1D1D1F] dark:text-white border-b border-black/[0.08] dark:border-white/[0.08] pb-3 flex justify-between font-bold">
                   <span>SHELTER TELEMETRY ACQUISITION</span>
-                  <span className="text-emerald-600 dark:text-emerald-400">SENSORS ONLINE</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-mono">SENSORS ONLINE</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-xs">
-                    <div className="text-slate-500 text-[10px]">AMBIENT TEMPERATURE</div>
-                    <div className="text-xl font-bold text-[#0050AE] dark:text-cyan-400 mt-0.5">{shelterTemp} °C</div>
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
+                    <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">AMBIENT TEMPERATURE</div>
+                    <div className="text-xl font-bold text-[#0071E3] dark:text-[#2997FF] mt-0.5 font-mono">{shelterTemp} °C</div>
                     <div className="text-[9px] text-emerald-600 dark:text-emerald-400">Optimal (18° - 28°C)</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-xs">
-                    <div className="text-slate-500 text-[10px]">LINE VOLTAGE (STABILIZER)</div>
-                    <div className="text-xl font-bold text-[#002D62] dark:text-white mt-0.5">{voltage} V</div>
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
+                    <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">LINE VOLTAGE (STABILIZER)</div>
+                    <div className="text-xl font-bold text-[#1D1D1F] dark:text-white mt-0.5 font-mono">{voltage} V</div>
                     <div className="text-[9px] text-emerald-600 dark:text-emerald-400">Harmonic Clean (220V ±5%)</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-xs">
-                    <div className="text-slate-500 text-[10px]">BATTERY RESERVE (LiFePO4)</div>
-                    <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">98.4 %</div>
-                    <div className="text-[9px] text-slate-500">Autonomous 48h Runtime</div>
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
+                    <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">BATTERY RESERVE (LiFePO4)</div>
+                    <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5 font-mono">98.4 %</div>
+                    <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">Autonomous 48h Runtime</div>
                   </div>
 
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-xs">
-                    <div className="text-slate-500 text-[10px]">DOOR MAGNETIC CONTACT</div>
-                    <div className="text-xl font-bold text-[#0050AE] dark:text-cyan-300 mt-0.5">CLOSED</div>
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
+                    <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">DOOR MAGNETIC CONTACT</div>
+                    <div className="text-xl font-bold text-[#0071E3] dark:text-[#2997FF] mt-0.5 font-mono">CLOSED</div>
                     <div className="text-[9px] text-emerald-600 dark:text-emerald-400">Perimeter Locked</div>
                   </div>
                 </div>
               </div>
 
               {/* Right: Remote Telecontrol Switch Matrix */}
-              <div className="lg:col-span-6 bg-slate-50/90 dark:bg-slate-900/80 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4 font-tech text-xs">
-                <div className="text-[#0050AE] dark:text-cyan-400 border-b border-slate-200 dark:border-slate-800 pb-2 flex justify-between font-bold">
+              <div className="lg:col-span-6 bg-white dark:bg-[#161617] p-5 sm:p-6 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] space-y-4 text-xs shadow-xs">
+                <div className="text-[#1D1D1F] dark:text-white border-b border-black/[0.08] dark:border-white/[0.08] pb-3 flex justify-between font-bold">
                   <span>REMOTE TELECONTROL RELAY MATRIX</span>
-                  <span className="text-slate-500 dark:text-slate-400">CLICK TO TOGGLE</span>
+                  <span className="text-[#6E6E73] dark:text-[#A1A1A6] font-mono">CLICK TO TOGGLE</span>
                 </div>
 
                 <div className="space-y-3">
                   {/* Relay 1 */}
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between shadow-xs">
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
                     <div>
-                      <div className="font-bold text-[#002D62] dark:text-white text-xs">Relay #1: Edge Core Router Power</div>
-                      <div className="text-[10px] text-slate-500">Remote reboot daemon / power cycle</div>
+                      <div className="font-semibold text-[#1D1D1F] dark:text-white text-xs">Relay #1: Edge Core Router Power</div>
+                      <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Remote reboot daemon / power cycle</div>
                     </div>
                     <button
                       onClick={() => setRelay1(!relay1)}
-                      className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
-                        relay1 ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white'
+                      className={`px-3.5 py-1.5 rounded-full font-semibold text-xs transition-all cursor-pointer ${
+                        relay1 ? 'bg-emerald-600 text-white shadow-xs' : 'bg-red-600 text-white'
                       }`}
                     >
                       {relay1 ? 'ON (ACTIVE)' : 'OFF (CUT)'}
@@ -720,15 +717,15 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   </div>
 
                   {/* Relay 2 */}
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between shadow-xs">
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
                     <div>
-                      <div className="font-bold text-[#002D62] dark:text-white text-xs">Relay #2: Auxiliary Cooling Fan</div>
-                      <div className="text-[10px] text-slate-500">Thermal management automation</div>
+                      <div className="font-semibold text-[#1D1D1F] dark:text-white text-xs">Relay #2: Auxiliary Cooling Fan</div>
+                      <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Thermal management automation</div>
                     </div>
                     <button
                       onClick={() => setRelay2(!relay2)}
-                      className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
-                        relay2 ? 'bg-[#0050AE] dark:bg-cyan-500 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                      className={`px-3.5 py-1.5 rounded-full font-semibold text-xs transition-all cursor-pointer ${
+                        relay2 ? 'bg-[#0071E3] text-white shadow-xs' : 'bg-black/[0.04] dark:bg-white/[0.08] text-[#6E6E73] dark:text-[#A1A1A6]'
                       }`}
                     >
                       {relay2 ? 'RUNNING' : 'STANDBY'}
@@ -736,18 +733,18 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   </div>
 
                   {/* Relay 3 */}
-                  <div className="p-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-between shadow-xs">
+                  <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
                     <div>
-                      <div className="font-bold text-[#002D62] dark:text-white text-xs">Relay #3: Solar / Generator Transfer</div>
-                      <div className="text-[10px] text-slate-500">Dual power source ATS orchestrator</div>
+                      <div className="font-semibold text-[#1D1D1F] dark:text-white text-xs">Relay #3: Solar / Generator Transfer</div>
+                      <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Dual power source ATS orchestrator</div>
                     </div>
                     <button
                       onClick={() => setRelay3(!relay3)}
-                      className={`px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
-                        relay3 ? 'bg-purple-600 text-white' : 'bg-amber-600 text-white'
+                      className={`px-3.5 py-1.5 rounded-full font-semibold text-xs transition-all cursor-pointer ${
+                        relay3 ? 'bg-purple-600 text-white shadow-xs' : 'bg-amber-600 text-white'
                       }`}
                     >
-                      {relay3 ? 'SOLAR PRIORITY' : 'GENERATOR'}
+                      {relay3 ? 'SOLAR PV (ATS)' : 'GENSET BACKUP'}
                     </button>
                   </div>
                 </div>

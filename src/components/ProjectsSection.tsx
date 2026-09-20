@@ -37,11 +37,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
-            <span className="w-2 h-2 rounded-full bg-red-600 dark:bg-cyan-400 animate-pulse"></span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <span>{lang === 'en' ? 'VERIFIED TRACK RECORD' : 'REKAM JEJAK PROYEK STRATEGIS'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
             {lang === 'en' ? (
               <>
                 Proven Delivery Across <span className="text-gradient-brand">Critical Environments</span>
@@ -52,23 +51,23 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </>
             )}
           </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
             {lang === 'en'
               ? 'Explore our completed deployments for Indonesia’s most demanding state-owned enterprises, government ministries, and private corporations.'
               : 'Studi kasus implementasi sistem komunikasi satelit maritim, telemetri otomatis, pemeliharaan surveillance, hingga pemodelan transmisi daya energi nasional.'}
           </p>
         </div>
 
-        {/* Category Filters */}
+        {/* Category Filters (Apple Pill Style) */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? 'bg-gradient-brand text-white shadow-md shadow-red-500/20'
-                  : 'bg-white/80 dark:bg-slate-900/80 text-slate-600 dark:text-slate-400 hover:text-red-600 border border-slate-200/80 dark:border-slate-800'
+                  ? 'bg-[#0071E3] text-white shadow-xs scale-105'
+                  : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.06] dark:border-white/[0.08]'
               }`}
             >
               {cat.label[lang]}
@@ -82,7 +81,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             <div
               key={project.id}
               onClick={() => setActiveProject(project)}
-              className="card-3d-tilt interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-2xl cursor-pointer flex flex-col justify-between transition-all duration-300 group relative"
+              className="bg-white dark:bg-[#161617] rounded-3xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] shadow-xs hover:shadow-xl hover:-translate-y-1 cursor-pointer flex flex-col justify-between transition-all duration-300 group relative"
             >
               <div>
                 {/* Image Container with Fallback to Official Client Logo Banner */}
@@ -92,7 +91,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                         onError={(e) => {
                           (e.target as HTMLElement).style.display = 'none';
                         }}
@@ -109,7 +108,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           className="max-h-full max-w-full object-contain"
                         />
                       </div>
-                      <span className="text-[10px] font-tech text-cyan-400 font-bold z-10 uppercase tracking-widest">
+                      <span className="text-[10px] font-mono text-[#2997FF] font-semibold z-10 uppercase tracking-widest">
                         {project.category}
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
@@ -118,7 +117,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                   {/* Client Tag */}
                   <div className="absolute top-3 left-3 z-10">
-                    <span className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-white/95 dark:bg-slate-950/90 text-[#0050AE] dark:text-cyan-300 shadow-md backdrop-blur-sm">
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-white/95 dark:bg-black/90 text-[#1D1D1F] dark:text-white shadow-md backdrop-blur-sm">
                       {project.client}
                     </span>
                   </div>
@@ -126,7 +125,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   {/* Verified ref tag */}
                   {project.documentRef && (
                     <div className="absolute top-3 right-3 z-10">
-                      <span className="p-1.5 rounded-md bg-emerald-600/90 text-white flex items-center text-[10px] shadow-md backdrop-blur-sm">
+                      <span className="p-1.5 rounded-full bg-emerald-600/95 text-white flex items-center text-[10px] shadow-md backdrop-blur-sm">
                         <FileCheck className="w-3 h-3" />
                       </span>
                     </div>
@@ -134,38 +133,38 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
                   {/* Location badge */}
                   <div className="absolute bottom-2.5 left-3 flex items-center text-[11px] font-medium text-white z-10">
-                    <MapPin className="w-3 h-3 mr-1 text-red-400 dark:text-cyan-400" />
+                    <MapPin className="w-3 h-3 mr-1 text-[#2997FF]" />
                     <span className="line-clamp-1">{project.location}</span>
                   </div>
 
                   {/* Index badge */}
-                  <div className="absolute bottom-2.5 right-3 text-[9px] font-tech text-white/60 z-10">
+                  <div className="absolute bottom-2.5 right-3 text-[9px] font-mono text-white/70 z-10">
                     PRJ_0{idx + 1}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-gradient-brand transition-colors line-clamp-2">
+                <div className="p-6">
+                  <h3 className="text-base font-semibold text-[#1D1D1F] dark:text-white mb-2 group-hover:text-[#0071E3] transition-colors line-clamp-2 leading-snug">
                     {project.title}
                   </h3>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-4 line-clamp-3">
+                  <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal mb-4 line-clamp-3">
                     {project.summary[lang]}
                   </p>
 
                   {/* Key Tech tags */}
-                  <div className="flex flex-wrap gap-1 mb-2">
+                  <div className="flex flex-wrap gap-1.5 mb-2">
                     {project.technologies.slice(0, 3).map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100/80 dark:bg-slate-900/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800"
+                        className="text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-black/[0.03] dark:bg-white/[0.06] text-[#6E6E73] dark:text-[#A1A1A6]"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-[10px] px-1.5 py-0.5 text-red-600 dark:text-cyan-400 font-bold font-tech">
+                      <span className="text-[10px] px-2 py-0.5 text-[#0071E3] dark:text-[#2997FF] font-semibold font-mono">
                         +{project.technologies.length - 3}
                       </span>
                     )}
@@ -174,7 +173,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
               </div>
 
               {/* Card Footer */}
-              <div className="px-5 py-3 border-t border-slate-100 dark:border-slate-800/80 bg-slate-50/60 dark:bg-[#081522]/60 flex items-center justify-between text-xs font-bold text-red-600 dark:text-cyan-400 group-hover:text-[#0050AE] transition-colors">
+              <div className="px-6 py-3.5 border-t border-black/[0.06] dark:border-white/[0.08] bg-black/[0.01] dark:bg-white/[0.02] flex items-center justify-between text-xs font-semibold text-[#0071E3] dark:text-[#2997FF] group-hover:underline transition-colors">
                 <span>{lang === 'en' ? 'Deep-Dive Case Study' : 'Detail Studi Kasus'}</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>

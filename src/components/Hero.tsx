@@ -62,40 +62,40 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Left Column (Clean Corporate Typography & Brand CTA) */}
           <div className="lg:col-span-6 space-y-6">
             <div>
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill mb-4 border border-red-500/20 text-xs font-tech font-bold text-red-600 dark:text-red-400 shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] mb-4 border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono text-[#1D1D1F] dark:text-slate-200 shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#0071E3] animate-pulse"></span>
                 <span>MISSION-CRITICAL ENTERPRISE INFRASTRUCTURE</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#002D62] dark:text-white tracking-tight leading-[1.15]">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.08]">
                 {lang === 'en' ? "Empowering Critical" : 'Maudy Network'}
                 <br />
                 <span className="text-gradient-brand">
                   {lang === 'en' ? 'Infrastructure Across Land & Sea' : 'Komunikasi Indonesia'}
                 </span>
               </h1>
-              <div className="mt-2 text-base sm:text-lg font-bold text-slate-500 dark:text-slate-400 tracking-tight">
-                #BeyondInfrastructure • Solusi Jaringan, Keamanan Siber & IoT Terpadu
+              <div className="mt-3 text-base sm:text-lg font-medium text-[#6E6E73] dark:text-[#A1A1A6] tracking-tight">
+                #BeyondInfrastructure • Solusi Jaringan, Keamanan Siber &amp; IoT Terpadu
               </div>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
+            <p className="text-[#6E6E73] dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
               {lang === 'en'
                 ? "Enterprise-grade IT Infrastructure, Fortinet NSE 7 Cybersecurity, Marine VSAT Networks, Industrial IoT Telemetry, AI Surveillance & Mission-Critical Software for Pertamina, Ministries, and Global Enterprises."
                 : "Solusi Teknologi Terpadu: Arsitektur Jaringan Enterprise, Internet Satelit Kapal (VSAT), Keamanan Siber Fortinet NSE 7, Telemetri IoT Industri, CCTV AI, dan Rekayasa Perangkat Lunak Strategis."}
             </p>
 
-            {/* Pill-shaped Action Buttons with Soft Shadows & Gradients */}
-            <div className="pt-2 flex flex-wrap items-center gap-3.5">
+            {/* Apple Pill Action Buttons */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={onOpenConsultation}
-                className="px-7 py-3 rounded-full bg-gradient-brand hover:opacity-95 text-white font-bold text-sm shadow-lg shadow-red-600/25 hover:shadow-red-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
+                className="apple-pill-btn px-7 py-3 text-sm font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] active:scale-95 transition-all shadow-md shadow-blue-500/20 cursor-pointer"
               >
                 {lang === 'en' ? 'Get Technical Consultation' : 'Konsultasi Teknis'}
               </button>
 
               <button
                 onClick={onExploreProjects}
-                className="px-6 py-3 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-red-600 dark:hover:text-cyan-300 border border-slate-300 dark:border-slate-700 hover:border-red-500 hover:-translate-y-0.5 active:translate-y-0 bg-white/70 dark:bg-slate-900/60 backdrop-blur-sm transition-all"
+                className="apple-pill-btn px-6 py-3 text-xs font-medium text-[#1D1D1F] dark:text-[#F5F5F7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.1] border border-black/[0.08] dark:border-white/[0.12] active:scale-95 transition-all cursor-pointer"
               >
                 {lang === 'en' ? 'Explore Projects →' : 'Jelajahi Portofolio →'}
               </button>
@@ -106,48 +106,48 @@ export const Hero: React.FC<HeroProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 title={lang === 'en' ? 'Download Official MNK Company Profile (PDF 2.9MB)' : 'Unduh Profil Perusahaan Resmi PT. MNK (PDF 2.9MB)'}
-                className="px-5 py-3 rounded-full text-xs font-tech font-bold text-red-600 dark:text-cyan-400 border border-red-500/30 dark:border-cyan-500/30 hover:border-red-500 bg-red-500/10 dark:bg-slate-900/60 hover:-translate-y-0.5 transition-all flex items-center space-x-1.5 shadow-sm"
+                className="apple-pill-btn px-5 py-3 text-xs font-medium text-[#0071E3] dark:text-[#2997FF] bg-[#0071E3]/10 dark:bg-white/[0.06] border border-[#0071E3]/25 dark:border-white/[0.1] hover:bg-[#0071E3]/15 active:scale-95 transition-all flex items-center space-x-1.5 shadow-xs"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>{lang === 'en' ? 'Company Profile (PDF)' : 'Unduh Profil (PDF)'}</span>
               </a>
             </div>
 
-            {/* Interactive Animated Badges */}
+            {/* Apple Bento Partner Micro-Badges */}
             <div className="pt-4 flex flex-wrap items-center gap-2.5">
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-blue-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+              <div className="px-3.5 py-2 rounded-2xl bg-white dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex items-center space-x-2.5 text-xs text-[#1D1D1F] dark:text-[#F5F5F7] shadow-xs cursor-default">
+                <div className="w-6 h-6 rounded-xl bg-slate-50 dark:bg-white p-1 flex items-center justify-center border border-black/[0.06] shrink-0">
                   <img src="/logos/cisco.png" alt="Cisco" className="max-h-full max-w-full object-contain" />
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">CERTIFIED</span>
-                  <span className="font-bold text-xs">Cisco CCNP</span>
+                  <span className="text-[9px] uppercase font-mono font-medium text-[#86868B] block -mb-0.5">CERTIFIED</span>
+                  <span className="font-semibold text-xs">Cisco CCNP</span>
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-red-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+              <div className="px-3.5 py-2 rounded-2xl bg-white dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex items-center space-x-2.5 text-xs text-[#1D1D1F] dark:text-[#F5F5F7] shadow-xs cursor-default">
+                <div className="w-6 h-6 rounded-xl bg-slate-50 dark:bg-white p-1 flex items-center justify-center border border-black/[0.06] shrink-0">
                   <img src="/logos/fortinet.png" alt="Fortinet" className="max-h-full max-w-full object-contain" />
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">SECURITY</span>
-                  <span className="font-bold text-xs">Fortinet NSE 7</span>
+                  <span className="text-[9px] uppercase font-mono font-medium text-[#86868B] block -mb-0.5">SECURITY</span>
+                  <span className="font-semibold text-xs">Fortinet NSE 7</span>
                 </div>
               </div>
 
-              <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-850 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-500/50 hover:-translate-y-0.5 transition-all flex items-center space-x-2 text-xs text-slate-700 dark:text-slate-200 shadow-xs cursor-default">
-                <div className="w-5 h-5 rounded bg-white p-0.5 flex items-center justify-center border border-slate-200/60 shadow-2xs shrink-0">
+              <div className="px-3.5 py-2 rounded-2xl bg-white dark:bg-[#161617] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex items-center space-x-2.5 text-xs text-[#1D1D1F] dark:text-[#F5F5F7] shadow-xs cursor-default">
+                <div className="w-6 h-6 rounded-xl bg-slate-50 dark:bg-white p-1 flex items-center justify-center border border-black/[0.06] shrink-0">
                   <img src="/logos/bnsp.png" alt="BNSP" className="max-h-full max-w-full object-contain" />
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase font-tech font-semibold text-slate-400 block -mb-0.5">NATIONAL</span>
-                  <span className="font-bold text-xs">BNSP Standard</span>
+                  <span className="text-[9px] uppercase font-mono font-medium text-[#86868B] block -mb-0.5">NATIONAL</span>
+                  <span className="font-semibold text-xs">BNSP Standard</span>
                 </div>
               </div>
             </div>
 
             {/* Fine Print Footnote */}
-            <div className="text-[11px] text-slate-400 dark:text-slate-500 pt-2 space-y-1">
+            <div className="text-[11px] text-[#86868B] pt-2 space-y-1">
               <div>
                 {lang === 'en'
                   ? '*Operated by certified network architects with 99.9% uptime SLA guarantee'
@@ -156,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({
               <div>
                 <a
                   href="#certifications"
-                  className="text-red-600 dark:text-cyan-400 underline hover:text-red-700 transition-colors"
+                  className="text-[#0071E3] dark:text-[#2997FF] hover:underline transition-colors"
                 >
                   {lang === 'en'
                     ? 'MNK Service Level Agreement & Operational Guidelines'
@@ -168,31 +168,31 @@ export const Hero: React.FC<HeroProps> = ({
 
           {/* Right Column: Tidied Up, Elegant, Ultra-Crisp Simulator */}
           <div className="lg:col-span-6 relative">
-            <div className="relative w-full rounded-[36px] bg-white dark:bg-[#071322] p-4 sm:p-6 overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-800 gradient-border-top transition-colors">
-              {/* Subtle Ambient Red & Blue Corner Glows */}
-              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-red-600/8 dark:bg-red-600/15 blur-3xl pointer-events-none"></div>
-              <div className="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-blue-600/8 dark:bg-[#0050AE]/20 blur-3xl pointer-events-none"></div>
+            <div className="relative w-full rounded-[36px] bg-white dark:bg-[#161617] p-4 sm:p-6 overflow-hidden shadow-2xl border border-black/[0.08] dark:border-white/[0.08] transition-all">
+              {/* Subtle Ambient Light Corner Glow */}
+              <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-blue-500/5 dark:bg-blue-500/10 blur-3xl pointer-events-none"></div>
+              <div className="absolute -bottom-12 -right-12 w-64 h-64 rounded-full bg-blue-600/5 dark:bg-[#0071E3]/15 blur-3xl pointer-events-none"></div>
 
               {/* Top Navigation Bar of the Simulator */}
-              <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
+              <div className="relative z-20 flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-black/[0.06] dark:border-white/[0.08]">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></div>
-                  <span className="text-xs font-tech font-bold text-[#002D62] dark:text-white tracking-wider flex items-center space-x-1.5">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+                  <span className="text-xs font-mono font-semibold text-[#1D1D1F] dark:text-white tracking-wider flex items-center space-x-1.5">
                     <span>MNK LIVE SIMULATOR</span>
-                    <span className="text-[9px] font-sans px-1.5 py-0.5 rounded-full bg-red-500/10 text-red-600 dark:text-red-400 font-bold border border-red-500/20">
+                    <span className="text-[10px] font-sans px-2 py-0.5 rounded-full bg-black/[0.04] text-[#1D1D1F] dark:bg-white/[0.08] dark:text-white font-medium border border-black/[0.06] dark:border-white/[0.08]">
                       iPhone 17 Pro
                     </span>
                   </span>
                 </div>
 
-                {/* Segmented 4-Engine Selector */}
-                <div className="inline-flex p-1 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-xs font-bold">
+                {/* Apple Style Segmented 4-Engine Selector */}
+                <div className="inline-flex p-1 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] text-xs font-medium">
                   <button
                     onClick={() => setActiveDevice('bot')}
-                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center space-x-1.5 ${
+                    className={`px-3 py-1 rounded-full transition-all flex items-center space-x-1.5 cursor-pointer ${
                       activeDevice === 'bot' || activeDevice === 'both'
-                        ? 'bg-gradient-brand text-white shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                        ? 'bg-[#0071E3] text-white shadow-xs'
+                        : 'text-[#6E6E73] dark:text-slate-400 hover:text-[#1D1D1F] dark:hover:text-white'
                     }`}
                   >
                     <Navigation className="w-3.5 h-3.5" />
@@ -200,10 +200,10 @@ export const Hero: React.FC<HeroProps> = ({
                   </button>
                   <button
                     onClick={() => setActiveDevice('molinar')}
-                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center space-x-1.5 ${
+                    className={`px-3 py-1 rounded-full transition-all flex items-center space-x-1.5 cursor-pointer ${
                       activeDevice === 'molinar'
-                        ? 'bg-gradient-brand text-white shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                        ? 'bg-[#0071E3] text-white shadow-xs'
+                        : 'text-[#6E6E73] dark:text-slate-400 hover:text-[#1D1D1F] dark:hover:text-white'
                     }`}
                   >
                     <Activity className="w-3.5 h-3.5" />
@@ -211,10 +211,10 @@ export const Hero: React.FC<HeroProps> = ({
                   </button>
                   <button
                     onClick={() => setActiveDevice('aegis')}
-                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center space-x-1.5 ${
+                    className={`px-3 py-1 rounded-full transition-all flex items-center space-x-1.5 cursor-pointer ${
                       activeDevice === 'aegis'
-                        ? 'bg-gradient-brand text-white shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                        ? 'bg-[#0071E3] text-white shadow-xs'
+                        : 'text-[#6E6E73] dark:text-slate-400 hover:text-[#1D1D1F] dark:hover:text-white'
                     }`}
                   >
                     <Anchor className="w-3.5 h-3.5" />
@@ -222,10 +222,10 @@ export const Hero: React.FC<HeroProps> = ({
                   </button>
                   <button
                     onClick={() => setActiveDevice('xtur')}
-                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center space-x-1.5 ${
+                    className={`px-3 py-1 rounded-full transition-all flex items-center space-x-1.5 cursor-pointer ${
                       activeDevice === 'xtur'
-                        ? 'bg-gradient-brand text-white shadow-xs'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-[#002D62] dark:hover:text-white'
+                        ? 'bg-[#0071E3] text-white shadow-xs'
+                        : 'text-[#6E6E73] dark:text-slate-400 hover:text-[#1D1D1F] dark:hover:text-white'
                     }`}
                   >
                     <Cpu className="w-3.5 h-3.5" />

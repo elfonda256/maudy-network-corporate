@@ -48,24 +48,25 @@ export const FloatingActions: React.FC = () => {
 
       {/* Floating Chat Box Popup (Enterprise NOC & B2B) */}
       {chatOpen && (
-        <div className="w-[340px] sm:w-[380px] rounded-3xl bg-white dark:bg-[#0B1F3A] border border-slate-200 dark:border-cyan-500/40 shadow-2xl overflow-hidden mb-2 animate-in fade-in slide-in-from-bottom-5 duration-300">
+        <div className="w-[340px] sm:w-[380px] rounded-3xl bg-white/95 dark:bg-[#161617]/95 backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.12] shadow-2xl overflow-hidden mb-2 animate-in fade-in slide-in-from-bottom-5 duration-300">
           {/* Header */}
-          <div className="p-4 bg-gradient-brand text-white flex items-center justify-between relative overflow-hidden">
+          <div className="p-4 bg-[#1D1D1F] text-white flex items-center justify-between relative overflow-hidden">
             <div className="flex items-center space-x-3 relative z-10">
-              <div className="w-10 h-10 rounded-full bg-white/15 p-1 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-white/10 p-1 border border-white/20 flex items-center justify-center flex-shrink-0">
                 <img src="/logo-mnk.png" alt="MNK" className="h-6 w-auto object-contain" />
               </div>
               <div>
-                <h4 className="text-xs font-black tracking-wide">MNK Direct Enterprise Desk</h4>
-                <div className="flex items-center text-[10px] text-rose-100 font-tech">
+                <h4 className="text-xs font-bold tracking-tight">MNK Direct Enterprise Desk</h4>
+                <div className="flex items-center text-[10px] text-white/70">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
-                  <span>24/7/365 NOC Engineers Online</span>
+                  <span>24/7 NOC Engineers Online</span>
                 </div>
               </div>
             </div>
             <button
               onClick={() => setChatOpen(false)}
-              className="p-1 rounded-full hover:bg-white/20 text-white transition-colors relative z-10"
+              className="p-1.5 rounded-full hover:bg-white/10 text-white/70 hover:text-white transition-colors relative z-10"
+              aria-label="Tutup Chat"
             >
               <X className="w-4 h-4" />
             </button>
@@ -73,89 +74,89 @@ export const FloatingActions: React.FC = () => {
 
           {/* Quick Consultation Options */}
           <div className="p-4 space-y-2.5 max-h-[360px] overflow-y-auto text-xs">
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium pb-1">
+            <p className="text-[11px] text-[#6E6E73] dark:text-[#A1A1A6] font-medium pb-1">
               Pilih topik untuk langsung terhubung dengan tim teknisi atau representatif resmi MNK:
             </p>
 
             <button
               onClick={() => openWhatsApp('Halo MNK, saya ingin konsultasi mengenai implementasi sistem CCTV cerdas XTUR AI Vision Surveillance untuk fasilitas kami.')}
-              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-red-500 dark:hover:border-red-500 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.04] hover:border-[#0071E3]/50 dark:hover:border-[#2997FF]/50 text-left transition-all flex items-center justify-between group"
             >
               <div className="flex items-center space-x-2.5">
-                <div className="p-1.5 rounded-lg bg-red-500/10 text-red-600 dark:text-red-400">
+                <div className="p-2 rounded-xl bg-[#0071E3]/10 text-[#0071E3] dark:text-[#2997FF]">
                   <Cpu className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-red-600 dark:group-hover:text-cyan-300">
+                  <div className="font-semibold text-[#1D1D1F] dark:text-white group-hover:text-[#0071E3] dark:group-hover:text-[#2997FF] transition-colors">
                     XTUR AI Vision Surveillance
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Konsultasi ANPR & Kamera AI Edge</div>
+                  <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Konsultasi ANPR & Kamera AI Edge</div>
                 </div>
               </div>
-              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-red-500" />
+              <Send className="w-3.5 h-3.5 text-[#6E6E73] group-hover:text-[#0071E3] transition-colors" />
             </button>
 
             <button
               onClick={() => openWhatsApp('Halo MNK, kami memerlukan solusi jaringan satelit maritim VSAT dan proteksi siber kapal Aegis Suite untuk armada kapal kami.')}
-              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-cyan-500 dark:hover:border-cyan-400 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.04] hover:border-[#0071E3]/50 dark:hover:border-[#2997FF]/50 text-left transition-all flex items-center justify-between group"
             >
               <div className="flex items-center space-x-2.5">
-                <div className="p-1.5 rounded-lg bg-cyan-500/10 text-[#0050AE] dark:text-cyan-300">
+                <div className="p-2 rounded-xl bg-[#0071E3]/10 text-[#0071E3] dark:text-[#2997FF]">
                   <Anchor className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-[#0050AE] dark:group-hover:text-cyan-300">
+                  <div className="font-semibold text-[#1D1D1F] dark:text-white group-hover:text-[#0071E3] dark:group-hover:text-[#2997FF] transition-colors">
                     Aegis Maritime & Satelit Kapal
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">VSAT QoS, Starlink & Zero-Trust IMO</div>
+                  <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">VSAT QoS, Starlink & Zero-Trust IMO</div>
                 </div>
               </div>
-              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#0050AE]" />
+              <Send className="w-3.5 h-3.5 text-[#6E6E73] group-hover:text-[#0071E3] transition-colors" />
             </button>
 
             <button
               onClick={() => openWhatsApp('URGENT: Kami memerlukan eskalasi darurat tim NOC Maudy Network Komunikasi untuk kendala jaringan operasional.')}
-              className="w-full p-2.5 rounded-xl border border-red-500/30 bg-red-500/5 hover:bg-red-500/10 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3 rounded-2xl border border-rose-500/20 bg-rose-500/5 hover:bg-rose-500/10 text-left transition-all flex items-center justify-between group"
             >
               <div className="flex items-center space-x-2.5">
-                <div className="p-1.5 rounded-lg bg-red-600 text-white">
+                <div className="p-2 rounded-xl bg-rose-500 text-white">
                   <ShieldAlert className="w-4 h-4 animate-pulse" />
                 </div>
                 <div>
-                  <div className="font-bold text-red-600 dark:text-red-400">
+                  <div className="font-semibold text-rose-600 dark:text-rose-400">
                     Incident Response NOC Darurat
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Eskalasi kendala kritis jaringan 24/7</div>
+                  <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Eskalasi kendala kritis jaringan 24/7</div>
                 </div>
               </div>
-              <Send className="w-3.5 h-3.5 text-red-500" />
+              <Send className="w-3.5 h-3.5 text-rose-500" />
             </button>
 
             <button
               onClick={() => openWhatsApp()}
-              className="w-full p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 hover:border-emerald-500 text-left transition-all flex items-center justify-between group"
+              className="w-full p-3 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-black/[0.02] dark:bg-white/[0.04] hover:border-emerald-500/50 text-left transition-all flex items-center justify-between group"
             >
               <div className="flex items-center space-x-2.5">
-                <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600">
+                <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600">
                   <Headphones className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="font-bold text-[#002D62] dark:text-white group-hover:text-emerald-600">
+                  <div className="font-semibold text-[#1D1D1F] dark:text-white group-hover:text-emerald-600 transition-colors">
                     Konsultasi Umum & Pengadaan
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">Tanya jawab proposal proyek & B2B</div>
+                  <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">Tanya jawab proposal proyek & B2B</div>
                 </div>
               </div>
-              <Send className="w-3.5 h-3.5 text-slate-400 group-hover:text-emerald-500" />
+              <Send className="w-3.5 h-3.5 text-[#6E6E73] group-hover:text-emerald-500 transition-colors" />
             </button>
           </div>
 
           {/* Footer Call Link */}
-          <div className="p-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] font-tech">
-            <span className="text-slate-500 dark:text-slate-400">Panggilan Langsung:</span>
+          <div className="p-3.5 bg-black/[0.02] dark:bg-white/[0.02] border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[11px]">
+            <span className="text-[#6E6E73] dark:text-[#A1A1A6]">Panggilan Langsung:</span>
             <a
               href="tel:+6285727487507"
-              className="text-[#0050AE] dark:text-cyan-400 font-bold hover:underline flex items-center"
+              className="text-[#0071E3] dark:text-[#2997FF] font-semibold hover:underline flex items-center"
             >
               <PhoneCall className="w-3 h-3 mr-1" />
               +62 857-2748-7507

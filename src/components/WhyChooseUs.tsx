@@ -112,11 +112,10 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <span>{lang === 'en' ? 'OUR COMPETITIVE ADVANTAGE' : 'KEUNGGULAN STRATEGIS MNK'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
             {lang === 'en' ? (
               <>
                 Why Global Enterprises & Government Trust <span className="text-gradient-brand">MNK</span>
@@ -127,7 +126,7 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
               </>
             )}
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
             {lang === 'en'
               ? 'We combine elite tier certifications, in-house software patents, and real-world resilience across high-stakes national infrastructure.'
               : 'Memadukan sertifikasi insinyur tingkat dunia, inovasi piranti lunak mandiri, dan ketangguhan di berbagai medan infrastruktur nasional.'}
@@ -141,35 +140,37 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
             return (
               <div
                 key={idx}
-                className="interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden"
+                className="bg-white dark:bg-[#161617] p-6 rounded-3xl flex flex-col justify-between border border-black/[0.08] dark:border-white/[0.08] shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
               >
                 {/* Tech Corner Accent */}
-                <div className="absolute top-2 right-2 text-[9px] font-tech text-slate-300 dark:text-slate-600 group-hover:text-red-500/60 dark:group-hover:text-cyan-400/60 transition-colors">
+                <div className="absolute top-4 right-4 text-[10px] font-mono text-[#86868B] group-hover:text-[#0071E3] transition-colors">
                   0{idx + 1}
                 </div>
 
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className={`p-3 rounded-xl bg-slate-50/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 ${feat.iconColor} group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300 shadow-xs`}>
-                      <Icon className="w-6 h-6" />
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-11 h-11 rounded-2xl bg-black/[0.03] dark:bg-white/[0.06] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-[#0071E3] dark:text-[#2997FF] group-hover:scale-105 transition-transform duration-300 shadow-2xs">
+                      <Icon className="w-5 h-5" />
                     </div>
-                    <span className="text-[10px] font-tech font-bold px-2 py-0.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 border border-red-500/20 shadow-xs">
-                      {feat.badge}
-                    </span>
                   </div>
 
-                  <h3 className="text-base font-bold text-[#002D62] dark:text-white mb-2 group-hover:text-gradient-brand transition-colors">
-                    {feat.title[lang]}
-                  </h3>
+                  <div className="mb-2">
+                    <span className="inline-block text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] text-[#1D1D1F] dark:text-white border border-black/[0.06] dark:border-white/[0.08] mb-2.5">
+                      {feat.badge}
+                    </span>
+                    <h3 className="text-base font-semibold text-[#1D1D1F] dark:text-white mb-2 leading-snug">
+                      {feat.title[lang]}
+                    </h3>
+                  </div>
 
-                  <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+                  <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal">
                     {feat.desc[lang]}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center space-x-1.5 text-[11px] font-medium text-slate-500 dark:text-slate-400">
-                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-cyan-400 group-hover:scale-110 transition-transform" />
-                  <span className="font-tech text-[10px] tracking-wide uppercase">{lang === 'en' ? 'ENTERPRISE READY // SLA VERIFIED' : 'STANDAR KORPORASI // TERUJI'}</span>
+                <div className="mt-5 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center space-x-1.5 text-[11px] font-mono text-[#86868B]">
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <span className="text-[10px] tracking-wide uppercase">{lang === 'en' ? 'ENTERPRISE READY // SLA VERIFIED' : 'STANDAR KORPORASI // TERUJI'}</span>
                 </div>
               </div>
             );

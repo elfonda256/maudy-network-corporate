@@ -132,11 +132,10 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-red-600 dark:bg-cyan-400 animate-ping mr-1"></span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <span>{lang === 'en' ? 'STRATEGIC SECTORS SERVED' : 'SEKTOR INDUSTRI STRATEGIS'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
             {lang === 'en' ? (
               <>
                 Engineered for <span className="text-gradient-brand">Critical Industries</span>
@@ -147,7 +146,7 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
               </>
             )}
           </h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
             {lang === 'en'
               ? 'Our field-proven architectures meet the rigorous demands of national infrastructure, offshore exploration, and ministerial governance.'
               : 'Arsitektur kami dirancang khusus menjawab standar ketat infrastruktur nasional, pelayaran lepas pantai, dan kementerian negara.'}
@@ -165,34 +164,34 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                 <button
                   key={ind.id}
                   onClick={() => setActiveIdx(idx)}
-                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border ${
+                  className={`w-full text-left p-4 rounded-2xl transition-all duration-300 flex items-center justify-between border cursor-pointer ${
                     isSelected
-                      ? 'bg-gradient-brand text-white border-transparent shadow-lg shadow-red-500/15 scale-[1.02]'
-                      : 'bg-white/80 dark:bg-[#0B1F3A]/60 backdrop-blur-sm border-slate-200/80 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-red-400/50 dark:hover:border-slate-700 shadow-xs hover:translate-x-1'
+                      ? 'bg-[#0071E3] text-white border-transparent shadow-md scale-[1.01]'
+                      : 'bg-white dark:bg-[#161617] border-black/[0.08] dark:border-white/[0.08] text-[#1D1D1F] dark:text-white hover:border-[#0071E3]/40 shadow-xs'
                   }`}
                 >
                   <div className="flex items-center space-x-3.5">
                     <div
-                      className={`p-2.5 rounded-xl ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center ${
                         isSelected
                           ? 'bg-white/20 text-white'
-                          : 'bg-slate-100 dark:bg-slate-900 text-red-600 dark:text-cyan-400'
+                          : 'bg-black/[0.03] dark:bg-white/[0.06] text-[#0071E3] dark:text-[#2997FF]'
                       }`}
                     >
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold">
+                      <div className="text-sm font-semibold">
                         {ind.name[lang]}
                       </div>
-                      <div className={`text-[11px] line-clamp-1 ${isSelected ? 'text-blue-100' : 'text-slate-500 dark:text-slate-400'}`}>
+                      <div className={`text-[11px] line-clamp-1 ${isSelected ? 'text-blue-100' : 'text-[#6E6E73] dark:text-[#A1A1A6]'}`}>
                         {ind.tagline[lang]}
                       </div>
                     </div>
                   </div>
                   <ArrowRight
                     className={`w-4 h-4 transition-transform ${
-                      isSelected ? 'text-white translate-x-1' : 'text-slate-400'
+                      isSelected ? 'text-white translate-x-0.5' : 'text-[#86868B]'
                     }`}
                   />
                 </button>
@@ -202,19 +201,19 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
           {/* Right: Detailed Card */}
           <div className="lg:col-span-7">
-            <div className="interactive-card bg-white/85 dark:bg-[#0B1F3A]/85 backdrop-blur-xl p-8 rounded-3xl border border-slate-200/80 dark:border-cyan-500/30 gradient-border-top shadow-xl relative overflow-hidden animate-fadeIn">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-800/80">
-                <div className="flex items-center space-x-3">
-                  <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-blue-900/30 text-red-600 dark:text-cyan-400 border border-slate-200 dark:border-blue-800">
-                    <ActiveIcon className="w-7 h-7" />
+            <div className="bg-white dark:bg-[#161617] p-8 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] shadow-sm relative overflow-hidden animate-fadeIn">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-black/[0.06] dark:border-white/[0.08]">
+                <div className="flex items-center space-x-3.5">
+                  <div className="w-12 h-12 rounded-2xl bg-black/[0.03] dark:bg-white/[0.06] text-[#0071E3] dark:text-[#2997FF] flex items-center justify-center border border-black/[0.06] dark:border-white/[0.08]">
+                    <ActiveIcon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#002D62] dark:text-white">
+                    <h3 className="text-2xl font-semibold text-[#1D1D1F] dark:text-white">
                       {selectedIndustry.name[lang]}
                     </h3>
-                    <span className="text-xs font-bold text-red-600 dark:text-cyan-400 font-tech">
+                    <span className="text-xs font-mono font-medium text-[#0071E3] dark:text-[#2997FF]">
                       {lang === 'en' ? 'VERIFIED CLIENT ENGAGEMENT: ' : 'KLIEN STRATEGIS TERBUKTI: '}
-                      <strong className="text-[#002D62] dark:text-white font-sans">{selectedIndustry.clientRef}</strong>
+                      <strong className="text-[#1D1D1F] dark:text-white font-sans">{selectedIndustry.clientRef}</strong>
                     </span>
                   </div>
                 </div>
@@ -222,23 +221,23 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
 
               {/* Delivery Scope */}
               <div className="mb-6">
-                <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 font-tech font-bold">
+                <div className="text-xs text-[#86868B] uppercase tracking-wider mb-2 font-mono font-medium">
                   {lang === 'en' ? 'Field-Delivered Scope:' : 'Cakupan Pekerjaan Terlaksana:'}
                 </div>
-                <p className="text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-normal bg-slate-50/80 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <p className="text-sm text-[#1D1D1F] dark:text-slate-200 leading-relaxed font-normal bg-black/[0.02] dark:bg-white/[0.04] p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
                   {selectedIndustry.delivered[lang]}
                 </p>
               </div>
 
               {/* Features */}
               <div className="mb-8">
-                <div className="text-xs text-[#0050AE] dark:text-cyan-400 uppercase tracking-wider mb-3 font-tech font-bold">
+                <div className="text-xs text-[#1D1D1F] dark:text-white uppercase tracking-wider mb-3 font-mono font-semibold">
                   {lang === 'en' ? 'Architectural Highlights & Moats:' : 'Spesifikasi & Keunggulan Desain:'}
                 </div>
                 <div className="space-y-2.5">
                   {selectedIndustry.keyFeatures.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-center space-x-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                      <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-cyan-400 flex-shrink-0" />
+                    <div key={fIdx} className="flex items-center space-x-3 text-xs sm:text-sm text-[#1D1D1F] dark:text-slate-300">
+                      <CheckCircle className="w-4 h-4 text-[#0071E3] dark:text-[#2997FF] flex-shrink-0" />
                       <span>{feat[lang]}</span>
                     </div>
                   ))}
@@ -246,13 +245,13 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
               </div>
 
               {/* Footer */}
-              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+              <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
+                <span className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] font-normal">
                   {lang === 'en' ? 'Official Documentation & Contracts Available' : 'Dokumen Kontrak & SPK Resmi Terlampir'}
                 </span>
                 <button
                   onClick={onExploreProjects}
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-blue-600/30 text-[#0050AE] dark:text-cyan-300 text-xs font-bold transition-all hover:scale-105"
+                  className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all shadow-xs cursor-pointer"
                 >
                   <span>{lang === 'en' ? 'View Case Studies' : 'Lihat Portofolio Sektor'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

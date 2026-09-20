@@ -15,11 +15,11 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-gradient-pill text-red-600 dark:text-red-400 text-xs font-tech font-bold tracking-wider mb-3 shadow-xs">
-            <Shield className="w-3.5 h-3.5 mr-1 text-red-600 dark:text-cyan-400" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
+            <Shield className="w-3.5 h-3.5 mr-1" />
             <span>{lang === 'en' ? 'WORLD-CLASS CREDENTIALS' : 'SERTIFIKASI INTERNASIONAL RESMI'}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#002D62] dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
             {lang === 'en' ? (
               <>
                 Certified Engineering <span className="text-gradient-brand">Accreditations</span>
@@ -30,7 +30,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
               </>
             )}
           </h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
             {lang === 'en'
               ? 'Our infrastructure designs are led by verified architects certified by Cisco, Fortinet, MikroTik, Ruijie, and the National Professional Certification Board (BNSP).'
               : 'Seluruh arsitektur jaringan dirancang dan dieksekusi oleh tenaga ahli pemegang sertifikasi resmi Cisco, Fortinet, MikroTik, Ruijie, dan BNSP.'}
@@ -40,8 +40,8 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
         {/* Global Certifications Grid with authentic badges */}
         <div>
           <div className="text-center mb-8">
-            <h3 className="text-lg font-bold text-[#002D62] dark:text-white flex items-center justify-center space-x-2">
-              <Award className="w-5 h-5 text-red-600 dark:text-cyan-400" />
+            <h3 className="text-xl font-semibold text-[#1D1D1F] dark:text-white flex items-center justify-center space-x-2">
+              <Award className="w-5 h-5 text-[#0071E3] dark:text-[#2997FF]" />
               <span>{lang === 'en' ? 'Elite Engineering Accreditations' : 'Daftar Sertifikasi Kompetensi Insinyur'}</span>
             </h3>
           </div>
@@ -50,11 +50,11 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
             {CERTIFICATIONS_LIST.map((cert, idx) => (
               <div
                 key={idx}
-                className="interactive-card bg-white/80 dark:bg-[#0B1F3A]/75 backdrop-blur-md p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 hover:border-red-500/50 dark:hover:border-cyan-400/50 gradient-border-top transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-xl hover:scale-105 group"
+                className="bg-white dark:bg-[#161617] p-5 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1 group"
               >
                 <div>
                   {cert.image ? (
-                    <div className="h-14 w-full mb-3 rounded-xl overflow-hidden bg-white border border-slate-200 dark:border-slate-700/60 p-2 flex items-center justify-center shadow-xs">
+                    <div className="h-14 w-full mb-3 rounded-2xl overflow-hidden bg-white border border-black/[0.06] dark:border-white/[0.08] p-2 flex items-center justify-center shadow-2xs">
                       <img
                         src={cert.image}
                         alt={cert.code}
@@ -62,20 +62,20 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
                       />
                     </div>
                   ) : (
-                    <div className="h-16 w-full mb-3 rounded-xl bg-slate-100/90 dark:bg-blue-950/40 border border-slate-200 dark:border-blue-500/20 flex items-center justify-center text-[#0050AE] dark:text-cyan-400 font-bold text-xs font-tech">
+                    <div className="h-14 w-full mb-3 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-center text-[#0071E3] dark:text-[#2997FF] font-semibold text-xs font-mono">
                       {cert.code}
                     </div>
                   )}
 
-                  <div className="text-xs font-bold text-[#002D62] dark:text-white mb-1 group-hover:text-gradient-brand transition-colors">
+                  <div className="text-xs font-semibold text-[#1D1D1F] dark:text-white mb-1">
                     {cert.code}
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                  <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6] font-normal">
                     {cert.issuer}
                   </div>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-slate-200/80 dark:border-slate-800 text-[10px] font-semibold text-red-600 dark:text-cyan-400 truncate font-tech">
+                <div className="mt-4 pt-2.5 border-t border-black/[0.06] dark:border-white/[0.08] text-[10px] font-medium text-[#0071E3] dark:text-[#2997FF] truncate font-mono">
                   {cert.level}
                 </div>
               </div>
