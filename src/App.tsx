@@ -1,4 +1,34 @@
 import React, { useState, useEffect } from 'react';
+
+// ==========================================
+// 1. PT Maudy Network Corporate Components
+// ==========================================
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { StatsBar } from './components/StatsBar';
+import { AboutSection } from './components/AboutSection';
+import { WhyChooseUs } from './components/WhyChooseUs';
+import { ServicesSection } from './components/ServicesSection';
+import { IndustriesSection } from './components/IndustriesSection';
+import { ProjectsSection } from './components/ProjectsSection';
+import { ProductsSection } from './components/ProductsSection';
+import { CertificationsSection } from './components/CertificationsSection';
+import { ClientsPartners } from './components/ClientsPartners';
+import { ProcessWorkflow } from './components/ProcessWorkflow';
+import { CtaSection } from './components/CtaSection';
+import { ContactSection } from './components/ContactSection';
+import { Footer } from './components/Footer';
+import { ConsultationModal } from './components/ConsultationModal';
+import { GovernanceDrawer } from './components/GovernanceDrawer';
+import { FloatingActions } from './components/FloatingActions';
+import { AdminPanel } from './components/AdminPanel';
+import { AtmosphericBackground } from './components/AtmosphericBackground';
+import { InteractiveEstimator } from './components/InteractiveEstimator';
+import { CmsProvider } from './context/CmsContext';
+
+// ==========================================
+// 2. Aegis Technology (Enterprise AI) Components
+// ==========================================
 import { AegisNavbar } from './components/AegisNavbar';
 import { AppleAtmosphericBackground } from './components/AppleAtmosphericBackground';
 import { AegisHero } from './components/AegisHero';
@@ -21,118 +51,354 @@ import { AegisContactModal } from './components/AegisContactModal';
 import { PRODUCTS, type ProductItem } from './data/aegisData';
 
 export function App() {
+  // Portal State: 'corporate' (PT Maudy Network) vs 'aegis-ai' (Aegis Technology AI Suite)
+  const [activePortal, setActivePortal] = useState<'corporate' | 'aegis-ai'>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash.includes('aegis-ai') || hash.includes('aegis-platform')) {
+        return 'aegis-ai';
+      }
+    }
+    return 'corporate';
+  });
+
+  // Corporate Portal States
+  const [lang, setLang] = useState<'en' | 'id'>('id');
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [consultationOpen, setConsultationOpen] = useState(false);
+  const [credentialsOpen, setCredentialsOpen] = useState(false);
+  const [adminOpen, setAdminOpen] = useState(false);
+
+  // Aegis AI Portal States
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [prefilledProduct, setPrefilledProduct] = useState<string | undefined>(undefined);
 
+  // Synchronize Dark Mode based on portal
   useEffect(() => {
-    // Force dark mode for dark cinematic enterprise theme
-    document.documentElement.classList.add('dark');
+    if (activePortal === 'aegis-ai') {
+      // Aegis AI is dark keynote cinematic theme
+      document.documentElement.classList.add('dark');
+    } else {
+      // Corporate respects user preference
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+  }, [activePortal, isDarkMode]);
+
+  // URL Hash Synchronizer
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#aegis-ai' || hash === '#aegis-platform') {
+        setActivePortal('aegis-ai');
+      } else if (hash === '#corporate') {
+        setActivePortal('corporate');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
-  const handleOpenDemo = (productName?: string) => {
-    setPrefilledProduct(productName);
-    setDemoModalOpen(true);
+  const switchPortal = (portal: 'corporate' | 'aegis-ai') => {
+    setActivePortal(portal);
+    window.location.hash = portal === 'aegis-ai' ? '#aegis-ai' : '#corporate';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleOpenProductDetail = (productId: string) => {
-    setSelectedProductId(productId);
+  const scrollToProjects = () => {
+    const el = document.getElementById('projects');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToAegisSolutions = () => {
+    const el = document.getElementById('solusi');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
 
   const selectedProduct: ProductItem | null = selectedProductId 
     ? PRODUCTS.find(p => p.id === selectedProductId) || null 
     : null;
 
-  const scrollToSolutions = () => {
-    const el = document.getElementById('solusi');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <div className="relative min-h-screen bg-[#000000] text-slate-100 font-sans selection:bg-[#0050AE] selection:text-white overflow-x-hidden">
-      {/* Apple-grade Atmospheric Ambient Background Layer */}
-      <AppleAtmosphericBackground />
+    <CmsProvider>
+      <div className="relative min-h-screen selection:bg-red-600 selection:text-white">
+        
+        {/* ========================================================================= */}
+        {/* Persistent Apple-Style Floating Portal Switcher (Visible in both portals) */}
+        {/* ========================================================================= */}
+        <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex items-center bg-slate-900/90 dark:bg-black/90 backdrop-blur-2xl border border-white/20 rounded-full p-1.5 shadow-2xl transition-transform hover:scale-105">
+          <button
+            onClick={() => switchPortal('corporate')}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              activePortal === 'corporate'
+                ? 'bg-red-600 text-white shadow-md'
+                : 'text-slate-300 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <span>🏢</span>
+            <span>Maudy Corporate</span>
+          </button>
+          
+          <button
+            onClick={() => switchPortal('aegis-ai')}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              activePortal === 'aegis-ai'
+                ? 'bg-[#0071E3] text-white shadow-md'
+                : 'text-slate-300 hover:text-white hover:bg-white/10'
+            }`}
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>⚡ Aegis AI Suite</span>
+          </button>
+        </div>
 
-      {/* 1. Sticky Navigation */}
-      <AegisNavbar onOpenDemo={handleOpenDemo} />
+        {/* ========================================================================= */}
+        {/* PORTAL 1: PT MAUDY NETWORK NUSANTARA (CORPORATE PORTAL)                   */}
+        {/* ========================================================================= */}
+        {activePortal === 'corporate' && (
+          <div className="relative min-h-screen text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors overflow-x-hidden">
+            {/* Interactive Atmospheric Background with Cyber Grids and Glow Orbs */}
+            <AtmosphericBackground />
 
-      {/* Main Content Sections */}
-      <main className="relative z-10">
-        {/* 2. Hero Section */}
-        <AegisHero 
-          onOpenDemo={() => handleOpenDemo()}
-          onExploreSolutions={scrollToSolutions}
-        />
+            {/* Sticky Enterprise Navigation Bar */}
+            <Navbar
+              lang={lang}
+              setLang={setLang}
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
+              onOpenConsultation={() => setConsultationOpen(true)}
+              onOpenCredentials={() => setCredentialsOpen(true)}
+              onOpenAdmin={() => setAdminOpen(true)}
+              onSwitchToAegis={() => switchPortal('aegis-ai')}
+            />
 
-        {/* 3. Company Value: AI yang Dibangun untuk Dunia Nyata */}
-        <AegisCompanyValue />
+            {/* Main Corporate Content Sections */}
+            <main className="relative z-10 flex-grow pt-14">
+              {/* Fullscreen Hero Section */}
+              <Hero
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+                onExploreProjects={scrollToProjects}
+              />
 
-        {/* 4. Product Ecosystem (Visual Hierarchy) */}
-        <AegisProductEcosystem />
+              {/* Operational Statistics Bar */}
+              <StatsBar lang={lang} />
 
-        {/* 5. Flagship Spotlight: Aegis Maritime */}
-        <AegisFlagshipMaritime 
-          onOpenDemo={handleOpenDemo}
-          onOpenProductDetail={handleOpenProductDetail}
-        />
+              {/* Brand Logos of 16 Clients & Principals */}
+              <ClientsPartners lang={lang} />
 
-        {/* 6. Product Portfolio: All 12 Products */}
-        <AegisProductPortfolio 
-          onOpenDemo={handleOpenDemo}
-          onOpenProductDetail={handleOpenProductDetail}
-        />
+              {/* Corporate About & Storytelling */}
+              <AboutSection
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 7. Industry Section: AI untuk Berbagai Industri */}
-        <AegisIndustrySection 
-          onSelectProduct={handleOpenProductDetail}
-          onOpenDemo={handleOpenDemo}
-        />
+              {/* Why Choose MNK - Competitive Moats */}
+              <WhyChooseUs lang={lang} />
 
-        {/* 8. Technology: Technology Behind the Intelligence */}
-        <AegisTechnologySection />
+              {/* Comprehensive Services Suite (12 Core Offerings) */}
+              <ServicesSection
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 9. Private AI: Ketika Data Adalah Aset Strategis */}
-        <AegisPrivateAiSection onOpenDemo={handleOpenDemo} />
+              {/* Critical Industries & Tailored Solutions */}
+              <IndustriesSection
+                lang={lang}
+                onExploreProjects={scrollToProjects}
+              />
 
-        {/* 10. Security: Arsitektur Keamanan Enterprise */}
-        <AegisSecuritySection />
+              {/* Flagship Projects & Verified Track Record Case Studies */}
+              <ProjectsSection
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 11. How It Works: 6-Step Pipeline */}
-        <AegisHowItWorks />
+              {/* Proprietary Products & Interactive Live Simulator (XTUR + Aegis Maritime) */}
+              <ProductsSection
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 12. Business Benefits: Dampak Kualitatif */}
-        <AegisBenefitsSection />
+              {/* Interactive Architecture & Capacity Estimator */}
+              <InteractiveEstimator
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 13. Real Use Cases */}
-        <AegisUseCases />
+              {/* Global Certifications & Organization Leadership */}
+              <CertificationsSection lang={lang} />
 
-        {/* 14. Company Section: Tentang Kami */}
-        <AegisCompanySection />
+              {/* 8-Stage Engineering Delivery Workflow */}
+              <ProcessWorkflow
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-        {/* 15. Contact / Request Demo Section */}
-        <AegisContactSection prefilledProduct={prefilledProduct} />
-      </main>
+              {/* Enterprise CTA Banner */}
+              <CtaSection
+                lang={lang}
+                onOpenConsultation={() => setConsultationOpen(true)}
+              />
 
-      {/* 16. Comprehensive Footer */}
-      <AegisFooter />
+              {/* Direct Contact, Map Visualizer & Technical Form */}
+              <ContactSection lang={lang} />
+            </main>
 
-      {/* Interactive Product Deep-Dive Modal */}
-      <AegisProductModal 
-        product={selectedProduct}
-        onClose={() => setSelectedProductId(null)}
-        onOpenDemo={(pName) => {
-          setSelectedProductId(null);
-          handleOpenDemo(pName);
-        }}
-      />
+            {/* Comprehensive Enterprise Footer */}
+            <Footer
+              lang={lang}
+              onOpenConsultation={() => setConsultationOpen(true)}
+              onOpenCredentials={() => setCredentialsOpen(true)}
+            />
 
-      {/* Interactive Global Demo Consultation Modal */}
-      <AegisContactModal 
-        isOpen={demoModalOpen}
-        onClose={() => setDemoModalOpen(false)}
-        prefilledProduct={prefilledProduct}
-      />
-    </div>
+            {/* Floating Action Buttons (WhatsApp & Scroll to top) */}
+            <FloatingActions />
+
+            {/* Global Consultation Modal */}
+            <ConsultationModal
+              isOpen={consultationOpen}
+              onClose={() => setConsultationOpen(false)}
+              lang={lang}
+            />
+
+            {/* Verified Contracts & Governance Drawer */}
+            <GovernanceDrawer
+              isOpen={credentialsOpen}
+              onClose={() => setCredentialsOpen(false)}
+              lang={lang}
+            />
+
+            {/* In-Browser CMS & Admin Control Panel */}
+            <AdminPanel
+              isOpen={adminOpen}
+              onClose={() => setAdminOpen(false)}
+              lang={lang}
+            />
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* PORTAL 2: AEGIS TECHNOLOGY (ENTERPRISE AI & AUTOMATION PLATFORM)          */}
+        {/* ========================================================================= */}
+        {activePortal === 'aegis-ai' && (
+          <div className="relative min-h-screen bg-[#000000] text-slate-100 font-sans selection:bg-[#0050AE] selection:text-white overflow-x-hidden">
+            {/* Apple-grade Atmospheric Ambient Background Layer */}
+            <AppleAtmosphericBackground />
+
+            {/* 1. Sticky Navigation */}
+            <AegisNavbar 
+              onOpenDemo={(pName) => {
+                setPrefilledProduct(pName);
+                setDemoModalOpen(true);
+              }}
+              onSwitchToCorporate={() => switchPortal('corporate')}
+            />
+
+            {/* Main Content Sections */}
+            <main className="relative z-10">
+              {/* 2. Hero Section */}
+              <AegisHero 
+                onOpenDemo={() => {
+                  setPrefilledProduct(undefined);
+                  setDemoModalOpen(true);
+                }}
+                onExploreSolutions={scrollToAegisSolutions}
+              />
+
+              {/* 3. Company Value: AI yang Dibangun untuk Dunia Nyata */}
+              <AegisCompanyValue />
+
+              {/* 4. Product Ecosystem (Visual Hierarchy) */}
+              <AegisProductEcosystem />
+
+              {/* 5. Flagship Spotlight: Aegis Maritime */}
+              <AegisFlagshipMaritime 
+                onOpenDemo={(pName) => {
+                  setPrefilledProduct(pName);
+                  setDemoModalOpen(true);
+                }}
+                onOpenProductDetail={(pId) => setSelectedProductId(pId)}
+              />
+
+              {/* 6. Product Portfolio: All 12 Products with Artwork & Mockups */}
+              <AegisProductPortfolio 
+                onOpenDemo={(pName) => {
+                  setPrefilledProduct(pName);
+                  setDemoModalOpen(true);
+                }}
+                onOpenProductDetail={(pId) => setSelectedProductId(pId)}
+              />
+
+              {/* 7. Industry Section: AI untuk Berbagai Industri */}
+              <AegisIndustrySection 
+                onSelectProduct={(pId) => setSelectedProductId(pId)}
+                onOpenDemo={(pName) => {
+                  setPrefilledProduct(pName);
+                  setDemoModalOpen(true);
+                }}
+              />
+
+              {/* 8. Technology: Technology Behind the Intelligence */}
+              <AegisTechnologySection />
+
+              {/* 9. Private AI: Ketika Data Adalah Aset Strategis */}
+              <AegisPrivateAiSection 
+                onOpenDemo={(pName) => {
+                  setPrefilledProduct(pName);
+                  setDemoModalOpen(true);
+                }} 
+              />
+
+              {/* 10. Security: Arsitektur Keamanan Enterprise */}
+              <AegisSecuritySection />
+
+              {/* 11. How It Works: 6-Step Pipeline */}
+              <AegisHowItWorks />
+
+              {/* 12. Business Benefits: Dampak Kualitatif */}
+              <AegisBenefitsSection />
+
+              {/* 13. Real Use Cases */}
+              <AegisUseCases />
+
+              {/* 14. Company Section: Tentang Kami */}
+              <AegisCompanySection />
+
+              {/* 15. Contact / Request Demo Section */}
+              <AegisContactSection prefilledProduct={prefilledProduct} />
+            </main>
+
+            {/* 16. Comprehensive Footer */}
+            <AegisFooter />
+
+            {/* Interactive Product Deep-Dive Modal */}
+            <AegisProductModal 
+              product={selectedProduct}
+              onClose={() => setSelectedProductId(null)}
+              onOpenDemo={(pName) => {
+                setSelectedProductId(null);
+                setPrefilledProduct(pName);
+                setDemoModalOpen(true);
+              }}
+            />
+
+            {/* Interactive Global Demo Consultation Modal */}
+            <AegisContactModal 
+              isOpen={demoModalOpen}
+              onClose={() => setDemoModalOpen(false)}
+              prefilledProduct={prefilledProduct}
+            />
+          </div>
+        )}
+
+      </div>
+    </CmsProvider>
   );
 }
 

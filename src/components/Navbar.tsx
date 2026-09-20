@@ -26,6 +26,7 @@ interface NavbarProps {
   onOpenConsultation: () => void;
   onOpenCredentials: () => void;
   onOpenAdmin: () => void;
+  onSwitchToAegis?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -36,6 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenConsultation,
   onOpenCredentials,
   onOpenAdmin,
+  onSwitchToAegis,
 }) => {
   const { inquiries } = useCms();
   const newInquiriesCount = inquiries.filter((i) => i.status === 'new').length;
@@ -374,6 +376,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 Aegis
               </a>
             </div>
+
+            {onSwitchToAegis && (
+              <button
+                onClick={onSwitchToAegis}
+                className="ml-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#0050AE] via-[#0071E3] to-[#2997FF] text-white hover:brightness-110 shadow-md shadow-blue-500/20 transition-all flex items-center gap-1.5 cursor-pointer"
+                title="Buka Platform Solusi Enterprise AI Aegis (12 Solusi)"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Aegis Enterprise AI</span>
+              </button>
+            )}
           </nav>
 
           {/* Mobile hamburger menu toggle */}
@@ -403,6 +416,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
           ))}
           <div className="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
+            {onSwitchToAegis && (
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onSwitchToAegis();
+                }}
+                className="w-full py-2.5 rounded-lg bg-gradient-to-r from-[#0050AE] to-[#2997FF] text-white font-bold text-xs shadow-md flex items-center justify-center gap-2"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>⚡ Buka Platform Aegis Enterprise AI (12 Solusi)</span>
+              </button>
+            )}
             <button
               onClick={() => {
                 setMobileMenuOpen(false);

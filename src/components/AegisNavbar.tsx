@@ -3,9 +3,10 @@ import { Shield, Menu, X, ChevronRight, Sparkles } from 'lucide-react';
 
 interface Props {
   onOpenDemo: (prefilledProduct?: string) => void;
+  onSwitchToCorporate?: () => void;
 }
 
-export const AegisNavbar: React.FC<Props> = ({ onOpenDemo }) => {
+export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('beranda');
@@ -55,22 +56,34 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo }) => {
         <div className="flex items-center justify-between">
           
           {/* Apple-style Minimal Brand */}
-          <div 
-            onClick={() => scrollTo('beranda')}
-            className="flex items-center space-x-2.5 cursor-pointer group"
-          >
-            <div className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.12] flex items-center justify-center text-white group-hover:bg-white/[0.15] transition-all">
-              <Shield className="w-4 h-4 text-[#2997FF]" />
-            </div>
-            <div className="flex flex-col text-left">
-              <div className="flex items-center space-x-1">
-                <span className="text-sm font-semibold tracking-tight text-[#F5F5F7]">Aegis</span>
-                <span className="text-sm font-light text-[#86868B]">Technology</span>
+          <div className="flex items-center space-x-3">
+            <div 
+              onClick={() => scrollTo('beranda')}
+              className="flex items-center space-x-2.5 cursor-pointer group"
+            >
+              <div className="w-8 h-8 rounded-full bg-white/[0.08] border border-white/[0.12] flex items-center justify-center text-white group-hover:bg-white/[0.15] transition-all">
+                <Shield className="w-4 h-4 text-[#2997FF]" />
               </div>
-              <span className="text-[9px] font-mono text-[#6E6E73] -mt-0.5 tracking-wider uppercase">
-                Maudy Network
-              </span>
+              <div className="flex flex-col text-left">
+                <div className="flex items-center space-x-1">
+                  <span className="text-sm font-semibold tracking-tight text-[#F5F5F7]">Aegis</span>
+                  <span className="text-sm font-light text-[#86868B]">Technology</span>
+                </div>
+                <span className="text-[9px] font-mono text-[#6E6E73] -mt-0.5 tracking-wider uppercase">
+                  Maudy Network
+                </span>
+              </div>
             </div>
+
+            {onSwitchToCorporate && (
+              <button
+                onClick={onSwitchToCorporate}
+                className="hidden md:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-medium text-slate-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/[0.1] transition-all cursor-pointer"
+                title="Beralih ke Profil Korporat PT Maudy Network Nusantara"
+              >
+                <span>← Profil Korporat MNK</span>
+              </button>
+            )}
           </div>
 
           {/* Desktop Nav Items (Apple.com style small, crisp typography) */}
@@ -155,7 +168,20 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo }) => {
                 <ChevronRight className="w-4 h-4 text-[#6E6E73]" />
               </button>
             ))}
-            <div className="pt-3">
+            {onSwitchToCorporate && (
+              <div className="pb-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onSwitchToCorporate();
+                  }}
+                  className="w-full py-2.5 px-4 text-center text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-full transition-all shadow-md flex items-center justify-center gap-2"
+                >
+                  <span>🏢 Buka Profil Korporat PT Maudy Network</span>
+                </button>
+              </div>
+            )}
+            <div className="pt-1">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
