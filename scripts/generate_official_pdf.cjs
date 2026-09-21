@@ -2,6 +2,27 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
+function toBase64(relPath) {
+  const absPath = path.join(__dirname, '..', relPath);
+  if (!fs.existsSync(absPath)) {
+    console.warn('File not found for base64 encoding:', absPath);
+    return '';
+  }
+  const ext = path.extname(absPath).slice(1).toLowerCase();
+  const mime = ext === 'png' ? 'image/png' : ext === 'svg' ? 'image/svg+xml' : 'image/jpeg';
+  return `data:${mime};base64,${fs.readFileSync(absPath).toString('base64')}`;
+}
+
+const logoMnk = toBase64('public/logo-mnk.png');
+const imgMaritime = toBase64('public/assets/generated/maritime_hero.jpg');
+const imgFactory = toBase64('public/assets/generated/factory_twin.jpg');
+const imgDocIntel = toBase64('public/assets/generated/doc_intelligence.jpg');
+const imgPrivateAi = toBase64('public/assets/generated/private_ai.jpg');
+const imgVehicle = toBase64('public/xtur/det-vehicle.jpg');
+const imgDashboard = toBase64('public/xtur/01-dashboard-overview.png');
+
+console.log('Encoded images successfully. Preparing HTML...');
+
 const htmlContent = `<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -27,8 +48,8 @@ const htmlContent = `<!DOCTYPE html>
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1E293B;
     background-color: #FFFFFF;
-    font-size: 11px;
-    line-height: 1.5;
+    font-size: 10.5px;
+    line-height: 1.45;
   }
 
   .page {
@@ -56,20 +77,14 @@ const htmlContent = `<!DOCTYPE html>
   .header-brand {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
-  .header-logo-badge {
-    width: 26px;
-    height: 26px;
-    background: #0071E3;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 13px;
-    color: #FFF;
-    font-family: 'Space Grotesk', sans-serif;
+  .header-logo-img {
+    height: 22px;
+    width: auto;
+    background: #FFFFFF;
+    padding: 2px 6px;
+    border-radius: 4px;
   }
   .header-title-text {
     font-size: 11px;
@@ -113,192 +128,270 @@ const htmlContent = `<!DOCTYPE html>
   }
 
   .content-area {
-    padding: 10mm 16mm 14mm 16mm;
+    padding: 8mm 16mm 14mm 16mm;
     height: 266mm;
     position: relative;
   }
 
   /* Typography Utilities */
-  h1 { font-size: 24px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px; line-height: 1.2; }
-  h2 { font-size: 15px; font-weight: 700; color: #0F172A; letter-spacing: -0.3px; }
-  h3 { font-size: 12px; font-weight: 700; color: #0F172A; }
+  h1 { font-size: 23px; font-weight: 800; color: #0F172A; letter-spacing: -0.5px; line-height: 1.15; }
+  h2 { font-size: 14px; font-weight: 700; color: #0F172A; letter-spacing: -0.3px; }
+  h3 { font-size: 11.5px; font-weight: 700; color: #0F172A; }
   p { color: #475569; }
 
   .badge {
     display: inline-block;
-    font-size: 8px;
+    font-size: 7.5px;
     font-weight: 700;
     font-family: 'Space Grotesk', monospace;
     text-transform: uppercase;
-    padding: 2.5px 7px;
+    padding: 2.5px 6.5px;
     border-radius: 4px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
   }
   .badge-blue { background: #EFF6FF; color: #0284C7; border: 1px solid #BAE6FD; }
   .badge-dark { background: #0F172A; color: #38BDF8; border: 1px solid #1E293B; }
   .badge-green { background: #F0FDF4; color: #16A34A; border: 1px solid #BBF7D0; }
   .badge-purple { background: #FAF5FF; color: #9333EA; border: 1px solid #E9D5FF; }
 
-  /* Page 1 Specifics */
+  /* Page 1 Hero & Visual Banner */
   .hero-box {
     background: linear-gradient(145deg, #070B19 0%, #0F172A 100%);
     border-radius: 12px;
-    padding: 18px 22px;
+    padding: 16px 20px;
     color: #FFFFFF;
     position: relative;
     border: 1px solid #1E293B;
-    margin-bottom: 14px;
+    margin-bottom: 10px;
   }
-  .hero-box h1 { color: #FFFFFF; font-size: 26px; margin: 6px 0; }
-  .hero-box p { color: #94A3B8; font-size: 11px; max-width: 90%; }
-  
+  .hero-box h1 { color: #FFFFFF; font-size: 24px; margin: 5px 0; }
+  .hero-box p { color: #94A3B8; font-size: 10.5px; max-width: 95%; }
+
+  .cover-illustrations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .cover-img-card {
+    position: relative;
+    border-radius: 9px;
+    overflow: hidden;
+    height: 98px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .cover-img-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cover-img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,23,42,0.85) 0%, rgba(15,23,42,0.15) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px 10px;
+  }
+  .cover-img-tag {
+    font-size: 7.5px;
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    color: #38BDF8;
+    text-transform: uppercase;
+  }
+  .cover-img-title {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.2;
+  }
+
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
   .stat-card {
     background: #F8FAFC;
     border: 1px solid #E2E8F0;
     border-radius: 8px;
-    padding: 10px 12px;
+    padding: 8px 10px;
   }
   .stat-num {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     color: #0071E3;
     font-family: 'Space Grotesk', sans-serif;
   }
   .stat-label {
-    font-size: 9px;
+    font-size: 8.5px;
     font-weight: 600;
     color: #334155;
-    margin-top: 2px;
+    margin-top: 1px;
   }
   .stat-desc {
-    font-size: 8px;
+    font-size: 7.5px;
     color: #64748B;
-    margin-top: 2px;
-    line-height: 1.3;
+    margin-top: 1px;
+    line-height: 1.25;
   }
 
   .pillar-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 8px;
+    margin-bottom: 10px;
   }
   .pillar-card {
     border: 1px solid #E2E8F0;
     background: #FFFFFF;
     border-radius: 8px;
-    padding: 12px 14px;
+    padding: 9px 12px;
     border-left: 3.5px solid #0071E3;
   }
   .pillar-title {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     color: #0F172A;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
   }
   .pillar-desc {
-    font-size: 9.5px;
+    font-size: 8.5px;
     color: #475569;
-    line-height: 1.4;
+    line-height: 1.35;
   }
 
   .legal-callout {
     background: #F0FDF4;
     border: 1px solid #BBF7D0;
     border-radius: 8px;
-    padding: 10px 14px;
+    padding: 8px 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
-  /* Catalog Grid Styles (Page 2) */
-  .category-section {
-    margin-bottom: 13px;
+  /* Catalog Grid Styles with Product Illustrations (Page 2) */
+  .category-section-illustrated {
+    margin-bottom: 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #FFFFFF;
   }
-  .category-header {
+  .cat-bar {
+    background: #F8FAFC;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 4px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1.5px solid #E2E8F0;
-    padding-bottom: 4px;
-    margin-bottom: 7px;
   }
-  .category-title {
-    font-size: 12px;
+  .cat-bar-title {
+    font-size: 10.5px;
     font-weight: 800;
     color: #0F172A;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
   }
-  .products-row {
+  .cat-body-grid {
+    display: grid;
+    grid-template-columns: 105px 1fr;
+    gap: 8px;
+    padding: 7px;
+  }
+  .cat-illustration {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 100%;
+    min-height: 82px;
+    border: 1px solid #E2E8F0;
+  }
+  .cat-illustration img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cat-illustration-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,23,42,0.85) 0%, transparent 65%);
+    display: flex;
+    align-items: flex-end;
+    padding: 4px 6px;
+    font-size: 7px;
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    color: #38BDF8;
+  }
+  .cat-products-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+    gap: 6px;
   }
-  .product-box {
+  .mini-product-card {
     border: 1px solid #E2E8F0;
     background: #FAFAFA;
-    border-radius: 6px;
-    padding: 8px 10px;
+    border-radius: 5px;
+    padding: 5px 7px;
     display: flex;
-    flex-col;
+    flex-direction: column;
     justify-content: space-between;
-    min-height: 86px;
+    height: 82px;
   }
-  .product-code {
-    font-size: 7.5px;
+  .mini-code {
+    font-size: 7px;
     font-family: 'Space Grotesk', monospace;
     color: #0284C7;
     font-weight: 700;
   }
-  .product-name {
-    font-size: 10px;
+  .mini-name {
+    font-size: 9px;
     font-weight: 700;
     color: #0F172A;
-    margin: 2px 0;
+    line-height: 1.15;
+    margin: 1px 0;
   }
-  .product-desc {
-    font-size: 8px;
+  .mini-desc {
+    font-size: 7.2px;
     color: #64748B;
-    line-height: 1.35;
-    margin-bottom: 6px;
+    line-height: 1.25;
   }
-  .product-tag {
-    font-size: 7.5px;
+  .mini-tag {
+    font-size: 6.8px;
     font-weight: 600;
     color: #0369A1;
     background: #E0F2FE;
-    padding: 2px 5px;
+    padding: 1.5px 4px;
     border-radius: 3px;
     display: inline-block;
+    width: fit-content;
   }
 
   /* Tables (Page 3) */
   .spec-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 14px;
-    font-size: 9px;
+    margin-bottom: 10px;
+    font-size: 8.5px;
   }
   .spec-table th {
     background: #0F172A;
     color: #FFFFFF;
     font-weight: 700;
-    padding: 7px 10px;
+    padding: 5px 8px;
     text-align: left;
-    font-size: 8.5px;
+    font-size: 8px;
     letter-spacing: 0.3px;
   }
   .spec-table td {
-    padding: 6px 10px;
+    padding: 4.5px 8px;
     border-bottom: 1px solid #E2E8F0;
     color: #334155;
   }
@@ -309,18 +402,50 @@ const htmlContent = `<!DOCTYPE html>
     color: #0F172A;
   }
 
+  .tech-visual-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .tech-visual-card {
+    height: 72px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #E2E8F0;
+  }
+  .tech-visual-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tech-visual-badge {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    background: rgba(15,23,42,0.85);
+    color: #38BDF8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 7.5px;
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
   /* Procurement Box (Page 4) */
   .scheme-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 12px;
   }
   .scheme-box {
     border: 1.5px solid #E2E8F0;
     background: #FFFFFF;
     border-radius: 8px;
-    padding: 12px 12px;
+    padding: 10px 10px;
     text-align: left;
   }
   .scheme-box.highlight {
@@ -328,47 +453,47 @@ const htmlContent = `<!DOCTYPE html>
     background: #F8FAFC;
   }
   .scheme-name {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 800;
     color: #0F172A;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
   }
   .scheme-badge {
-    font-size: 7.5px;
+    font-size: 7px;
     font-family: 'Space Grotesk', monospace;
-    padding: 2px 6px;
-    border-radius: 4px;
+    padding: 1.5px 5px;
+    border-radius: 3px;
     font-weight: 700;
     display: inline-block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .contact-banner {
     background: linear-gradient(135deg, #070A14 0%, #1E293B 100%);
-    border-radius: 10px;
-    padding: 14px 18px;
+    border-radius: 9px;
+    padding: 12px 16px;
     color: #FFFFFF;
-    margin-top: 10px;
+    margin-top: 8px;
     border: 1px solid #334155;
   }
   .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 8px;
-    font-size: 9px;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 8.5px;
   }
   .contact-item-title {
     color: #38BDF8;
     font-weight: 700;
-    font-size: 8px;
+    font-size: 7.5px;
     font-family: 'Space Grotesk', monospace;
     text-transform: uppercase;
   }
   .contact-item-val {
     color: #F8FAFC;
     font-weight: 600;
-    margin-top: 2px;
+    margin-top: 1px;
   }
 </style>
 </head>
@@ -380,7 +505,7 @@ const htmlContent = `<!DOCTYPE html>
 <div class="page">
   <div class="header-bar">
     <div class="header-brand">
-      <div class="header-logo-badge">M</div>
+      <img src="${logoMnk}" alt="Maudy Network" class="header-logo-img" />
       <div>
         <div class="header-title-text">PT MAUDY NETWORK KOMUNIKASI (MNK)</div>
         <div class="header-subtitle-text">AEGIS ENTERPRISE ARTIFICIAL INTELLIGENCE DIVISION</div>
@@ -392,20 +517,38 @@ const htmlContent = `<!DOCTYPE html>
   <div class="content-area">
     <!-- Hero Box -->
     <div class="hero-box">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
         <span class="badge badge-dark">DOKUMEN RESMI TENDER & PENGADAAN B2B</span>
-        <span style="font-size:8px; font-family:'Space Grotesk', monospace; color:#38BDF8;">REF: MNK-AEGIS-CAT-2026/V4.2</span>
+        <span style="font-size:7.5px; font-family:'Space Grotesk', monospace; color:#38BDF8;">REF: MNK-AEGIS-CAT-2026/V4.2</span>
       </div>
       <h1>Aegis Enterprise AI Suite</h1>
-      <p style="margin-bottom:8px;">
+      <p style="margin-bottom:6px;">
         Katalog Komprehensif Solusi Kecerdasan Buatan Terintegrasi, Komunikasi Satelit Maritim, Edge Vision CCTV XTUR, & Sovereign On-Premise LLM untuk Korporasi Strategis dan Pemerintahan.
       </p>
-      <div style="display:flex; gap:6px; margin-top:8px;">
+      <div style="display:flex; gap:5px; margin-top:6px;">
         <span class="badge badge-blue">ISO 9001:2015</span>
         <span class="badge badge-blue">ISO 27001:2022</span>
         <span class="badge badge-blue">IZIN JASTEL KOMINFO</span>
         <span class="badge badge-blue">FORTINET NSE 7</span>
         <span class="badge badge-blue">AIR-GAPPED COMPLIANT</span>
+      </div>
+    </div>
+
+    <!-- Product Visual Hero Showcase -->
+    <div class="cover-illustrations-grid">
+      <div class="cover-img-card">
+        <img src="${imgMaritime}" alt="Aegis Maritime Sat-AI" />
+        <div class="cover-img-overlay">
+          <div class="cover-img-tag">INFRASTRUKTUR MARITIM LEPAS PANTAI</div>
+          <div class="cover-img-title">Aegis Maritime Sat-AI & Telemetri Rute ALKI</div>
+        </div>
+      </div>
+      <div class="cover-img-card">
+        <img src="${imgDocIntel}" alt="AI Document Intelligence" />
+        <div class="cover-img-overlay">
+          <div class="cover-img-tag">SOVEREIGN AI & DOKUMEN INTELIJEN</div>
+          <div class="cover-img-title">Semantic Vector RAG & Analisis Kontrak B2B</div>
+        </div>
       </div>
     </div>
 
@@ -434,37 +577,36 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <!-- Executive Pillars -->
-    <div style="margin-bottom:8px;">
-      <h2>Pilar Arsitektur & Rekayasa Sistem Aegis</h2>
-      <p style="font-size:9.5px; margin-bottom:8px;">Mengapa solusi Aegis menjadi standar terdepan pada industri maritim, perbankan, dan manufaktur kritis:</p>
+    <div style="margin-bottom:6px;">
+      <h2>Pilar Arsitektur Rekayasa Sistem Aegis</h2>
     </div>
 
     <div class="pillar-grid">
       <div class="pillar-card">
         <div class="pillar-title">1. Sovereign & Air-Gapped Private AI</div>
         <div class="pillar-desc">
-          Model AI dan database dokumen berjalan 100% secara on-premise pada hardware GPU internal organisasi Anda. Tanpa ketergantungan API pihak ketiga, menjamin kerahasiaan absolut data sensitif dan kepatuhan terhadap UU Perlindungan Data Pribadi (UU PDP No. 27/2022).
+          Model AI dan database dokumen berjalan 100% on-premise pada hardware internal organisasi Anda. Tanpa ketergantungan cloud publik, menjamin kepatuhan UU PDP No. 27/2022.
         </div>
       </div>
 
       <div class="pillar-card">
         <div class="pillar-title">2. Edge Computing & CCTV Cerdas XTUR</div>
         <div class="pillar-desc">
-          Komputasi AI langsung di lokasi kamera dengan inferensi ultra cepat 4.2ms. Menghadirkan ANPR Plat Nomor 57 wilayah Indonesia, pelacakan armada kendaraan, serta deteksi titik panas thermal dual-spectrum untuk mitigasi kebakaran pabrik secara otomatis.
+          Komputasi AI langsung di lokasi kamera dengan inferensi ultra cepat 4.2ms. Menghadirkan ANPR Plat Nomor 57 wilayah Indonesia & sensor termal proteksi dini titik api.
         </div>
       </div>
 
       <div class="pillar-card">
         <div class="pillar-title">3. Satelit Maritim & Jaringan Lepas Pantai</div>
         <div class="pillar-desc">
-          Integrasi telemetri kapal laut, VSAT maritim pita frekuensi Ku/Ka-Band, dan monitoring armada navigasi rute ALKI I/II/III. Menyediakan konektivitas dan AI telemetri mesin tanpa henti hingga radius perairan Samudera Pasifik.
+          Integrasi telemetri kapal laut, VSAT maritim pita frekuensi Ku/Ka-Band, dan monitoring armada navigasi rute ALKI I/II/III hingga radius perairan Samudera Pasifik.
         </div>
       </div>
 
       <div class="pillar-card">
         <div class="pillar-title">4. Otomasi Dokumen & Semantic RAG</div>
         <div class="pillar-desc">
-          OCR cerdas multi-bahasa yang mampu mengekstraksi ratusan ribu halaman kontrak tender, faktur pajak, dan blueprint teknis dengan akurasi 99.4%. Mesin pencarian semantik vektor menghasilkan jawaban presisi dan bukti audit yang dapat diverifikasi.
+          OCR cerdas multi-bahasa akurasi 99.4% yang mampu mengekstraksi ratusan ribu lembar kontrak tender, faktur pajak, dan blueprint teknis secara otomatis ke ERP.
         </div>
       </div>
     </div>
@@ -472,8 +614,8 @@ const htmlContent = `<!DOCTYPE html>
     <!-- Official Legal Callout -->
     <div class="legal-callout">
       <div>
-        <div style="font-weight:700; font-size:10px; color:#166534;">Jaminan Legalitas & Kredibilitas Badan Usaha PT. Maudy Network Komunikasi</div>
-        <div style="font-size:8.5px; color:#15803D; margin-top:1px;">
+        <div style="font-weight:700; font-size:9.5px; color:#166534;">Jaminan Legalitas & Kredibilitas Badan Usaha PT. Maudy Network Komunikasi</div>
+        <div style="font-size:8px; color:#15803D; margin-top:1px;">
           NIB: 0220205831962 &bull; NPWP: 94.786.321.4-503.000 &bull; Izin Jastel Kominfo RI No: 129/TEL.04.02/2021
         </div>
       </div>
@@ -494,7 +636,7 @@ const htmlContent = `<!DOCTYPE html>
 <div class="page">
   <div class="header-bar">
     <div class="header-brand">
-      <div class="header-logo-badge">M</div>
+      <img src="${logoMnk}" alt="Maudy Network" class="header-logo-img" />
       <div>
         <div class="header-title-text">PORTOFOLIO LENGKAP 12 SOLUSI ENTERPRISE AI</div>
         <div class="header-subtitle-text">INTEGRATED INDUSTRIAL ARTIFICIAL INTELLIGENCE MATRIX</div>
@@ -506,157 +648,181 @@ const htmlContent = `<!DOCTYPE html>
   <div class="content-area">
     
     <!-- SECTOR 1: MARITIME & SATELLITE -->
-    <div class="category-section">
-      <div class="category-header">
-        <div class="category-title">
+    <div class="category-section-illustrated">
+      <div class="cat-bar">
+        <div class="cat-bar-title">
           <span>🚢</span>
           <span>SEKTOR 1: MARITIM, VSAT SATELIT & LOGISTIK KELAUTAN</span>
         </div>
         <span class="badge badge-blue">OFFSHORE & MARINE</span>
       </div>
-      <div class="products-row">
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-MARITIME-01</div>
-            <div class="product-name">Aegis Maritime Sat-AI</div>
-            <div class="product-desc">Sistem navigasi cerdas kapal terintegrasi VSAT ku-band, pemantauan konsumsi bahan bakar real-time, dan deteksi cuaca ekstrem.</div>
-          </div>
-          <span class="product-tag">VSAT Telemetri & Mesin</span>
+      <div class="cat-body-grid">
+        <div class="cat-illustration">
+          <img src="${imgMaritime}" alt="Maritim AI" />
+          <div class="cat-illustration-overlay">VSAT & TELEMETRI</div>
         </div>
-
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-FLEET-02</div>
-            <div class="product-name">FleetOS Intelligence</div>
-            <div class="product-desc">Optimasi rute pelayaran maritim ALKI I/II/III, audit histori AIS armada kapal, dan prediksi waktu tiba pelabuhan (ETA) otomatis.</div>
+        <div class="cat-products-row">
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-MARITIME-01</div>
+              <div class="mini-name">Aegis Maritime Sat-AI</div>
+              <div class="mini-desc">Sistem navigasi cerdas kapal terintegrasi VSAT ku-band, pantau bahan bakar real-time & cuaca.</div>
+            </div>
+            <span class="mini-tag">VSAT Telemetri</span>
           </div>
-          <span class="product-tag">Optimasi Rute Armada</span>
-        </div>
 
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-WASTE-03</div>
-            <div class="product-name">Smart Port & Waste AI</div>
-            <div class="product-desc">Monitoring pembuangan limbah pelabuhan, sensor air pintar, dan kepatuhan regulasi lingkungan maritim internasional MARPOL.</div>
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-FLEET-02</div>
+              <div class="mini-name">FleetOS Intelligence</div>
+              <div class="mini-desc">Optimasi rute pelayaran ALKI I/II/III, audit histori AIS armada kapal, prediksi ETA akurat.</div>
+            </div>
+            <span class="mini-tag">Rute Armada ALKI</span>
           </div>
-          <span class="product-tag">Kepatuhan Lingkungan</span>
+
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-WASTE-03</div>
+              <div class="mini-name">Smart Port & Waste AI</div>
+              <div class="mini-desc">Monitoring pembuangan limbah pelabuhan, sensor air pintar, kepatuhan regulasi MARPOL.</div>
+            </div>
+            <span class="mini-tag">Kepatuhan Lingkungan</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- SECTOR 2: SURVEILLANCE & INDUSTRIAL EDGE AI -->
-    <div class="category-section">
-      <div class="category-header">
-        <div class="category-title">
+    <div class="category-section-illustrated">
+      <div class="cat-bar">
+        <div class="cat-bar-title">
           <span>👁️</span>
           <span>SEKTOR 2: CCTV CERDAS XTUR, MANUFAKTUR & KONSTRUKSI</span>
         </div>
         <span class="badge badge-dark">INDUSTRIAL EDGE VISION</span>
       </div>
-      <div class="products-row">
-        <div class="product-box">
-          <div>
-            <div class="product-code">XTUR-VISION-04</div>
-            <div class="product-name">XTUR AI Edge CCTV</div>
-            <div class="product-desc">ANPR Plat Nomor akurasi 99.2% di 57 wilayah RI, pagar virtual perimeter, dan alarm intrusi seketika (&lt; 150ms).</div>
-          </div>
-          <span class="product-tag">ANPR Plat & Perimeter</span>
+      <div class="cat-body-grid">
+        <div class="cat-illustration">
+          <img src="${imgFactory}" alt="Factory Twin AI" />
+          <div class="cat-illustration-overlay">EDGE VISION & TWIN</div>
         </div>
-
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-TWIN-05</div>
-            <div class="product-name">Factory Twin AI</div>
-            <div class="product-desc">Digital twin lini produksi manufaktur, visualisasi 3D SCADA, deteksi anomali getaran mesin, dan pencegahan downtime pabrik.</div>
+        <div class="cat-products-row">
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">XTUR-VISION-04</div>
+              <div class="mini-name">XTUR AI Edge CCTV</div>
+              <div class="mini-desc">ANPR Plat Nomor 99.2% di 57 wilayah RI, pagar virtual perimeter, alarm seketika &lt;150ms.</div>
+            </div>
+            <span class="mini-tag">ANPR & Perimeter</span>
           </div>
-          <span class="product-tag">Digital Twin SCADA</span>
-        </div>
 
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-BUILD-06</div>
-            <div class="product-name">Construct AI Monitor</div>
-            <div class="product-desc">Deteksi otomatis kelengkapan APD (helm/rompi) pekerja konstruksi, tracking progres fisik proyek, dan audit zonasi bahaya.</div>
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-TWIN-05</div>
+              <div class="mini-name">Factory Twin AI</div>
+              <div class="mini-desc">Digital twin lini produksi manufaktur, visualisasi 3D SCADA, deteksi anomali getaran mesin.</div>
+            </div>
+            <span class="mini-tag">3D Digital Twin</span>
           </div>
-          <span class="product-tag">Keselamatan K3 & Progres</span>
+
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-BUILD-06</div>
+              <div class="mini-name">Construct AI Monitor</div>
+              <div class="mini-desc">Deteksi otomatis kelengkapan APD (helm/rompi) pekerja konstruksi, audit zonasi bahaya proyek.</div>
+            </div>
+            <span class="mini-tag">Keselamatan K3</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- SECTOR 3: DOCUMENT INTELLIGENCE & ENTERPRISE LLM -->
-    <div class="category-section">
-      <div class="category-header">
-        <div class="category-title">
+    <div class="category-section-illustrated">
+      <div class="cat-bar">
+        <div class="cat-bar-title">
           <span>🏢</span>
           <span>SEKTOR 3: DOKUMEN INTELIJEN, PENGADAAN & ENTERPRISE LLM</span>
         </div>
         <span class="badge badge-purple">ENTERPRISE AUTOMATION</span>
       </div>
-      <div class="products-row">
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-DOC-07</div>
-            <div class="product-name">AI Document Intelligence</div>
-            <div class="product-desc">OCR multi-bahasa berakurasi 99.4%, preservasi tabel keuangan kompleks, ekstraksi klausul kontrak, dan arsip digital otomatis.</div>
-          </div>
-          <span class="product-tag">OCR Kontrak & Faktur</span>
+      <div class="cat-body-grid">
+        <div class="cat-illustration">
+          <img src="${imgDocIntel}" alt="Doc Intelligence" />
+          <div class="cat-illustration-overlay">SEMANTIC VECTOR RAG</div>
         </div>
-
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-PROC-08</div>
-            <div class="product-name">Procure AI Suite</div>
-            <div class="product-desc">Analisis penawaran vendor tender, perbandingan harga material konstruksi otomatis, dan scoring risiko reputasi rekanan.</div>
+        <div class="cat-products-row">
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-DOC-07</div>
+              <div class="mini-name">AI Document Intel</div>
+              <div class="mini-desc">OCR multi-bahasa akurasi 99.4%, preservasi tabel keuangan kompleks, ekstraksi klausul kontrak.</div>
+            </div>
+            <span class="mini-tag">OCR Kontrak & ERP</span>
           </div>
-          <span class="product-tag">Scoring Vendor Tender</span>
-        </div>
 
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-BIZ-09</div>
-            <div class="product-name">Business Copilot AI</div>
-            <div class="product-desc">Asisten penalaran bisnis internal berbasis RAG dokumen perusahaan, pembuatan notulen rapat, dan draf laporan resmi.</div>
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-PROC-08</div>
+              <div class="mini-name">Procure AI Suite</div>
+              <div class="mini-desc">Analisis penawaran vendor tender, perbandingan harga material otomatis, scoring risiko rekanan.</div>
+            </div>
+            <span class="mini-tag">Scoring Rekanan</span>
           </div>
-          <span class="product-tag">RAG Internal Knowledge</span>
+
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-BIZ-09</div>
+              <div class="mini-name">Business Copilot AI</div>
+              <div class="mini-desc">Asisten penalaran bisnis internal berbasis RAG dokumen perusahaan, draf laporan analitik resmi.</div>
+            </div>
+            <span class="mini-tag">Internal Knowledge</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- SECTOR 4: CYBERSECURITY & SOVEREIGN PRIVATE AI -->
-    <div class="category-section">
-      <div class="category-header">
-        <div class="category-title">
+    <div class="category-section-illustrated">
+      <div class="cat-bar">
+        <div class="cat-bar-title">
           <span>🛡️</span>
           <span>SEKTOR 4: KEAMANAN SIBER SOVEREIGN & ISOLASI AIR-GAPPED</span>
         </div>
         <span class="badge badge-green">MISSION-CRITICAL DEFENSE</span>
       </div>
-      <div class="products-row">
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-SHIELD-10</div>
-            <div class="product-name">Aegis Cyber Shield AI</div>
-            <div class="product-desc">Deteksi intrusi jaringan berbasis AI, micro-segmentation isolasi endpoint ransomware &lt; 200ms, dan korelasi log SIEM terpadu.</div>
-          </div>
-          <span class="product-tag">Zero-Trust SOC Defense</span>
+      <div class="cat-body-grid">
+        <div class="cat-illustration">
+          <img src="${imgPrivateAi}" alt="Private AI" />
+          <div class="cat-illustration-overlay">AIR-GAPPED CLUSTER</div>
         </div>
-
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-PRIV-11</div>
-            <div class="product-name">Aegis Private Air-Gapped</div>
-            <div class="product-desc">Server GPU lokal tanpa sambungan internet publik, enkripsi hardware HSM FIPS 140-2 Level 3, kedaulatan data 100%.</div>
+        <div class="cat-products-row">
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-SHIELD-10</div>
+              <div class="mini-name">Aegis Cyber Shield AI</div>
+              <div class="mini-desc">Deteksi intrusi jaringan AI, micro-segmentation isolasi ransomware &lt; 200ms, korelasi log SIEM.</div>
+            </div>
+            <span class="mini-tag">Zero-Trust SOC</span>
           </div>
-          <span class="product-tag">Hardware On-Premise</span>
-        </div>
 
-        <div class="product-box">
-          <div>
-            <div class="product-code">AEGIS-COMPLY-12</div>
-            <div class="product-name">Comply AI Governance</div>
-            <div class="product-desc">Audit otomatis kepatuhan UU PDP No 27/2022, ISO 27001, deteksi data NIK/finansial bocor, dan laporan kepatuhan auditor.</div>
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-PRIV-11</div>
+              <div class="mini-name">Aegis Private AI</div>
+              <div class="mini-desc">Server GPU lokal tanpa sambungan internet, enkripsi hardware HSM FIPS 140-2 Level 3 berdaulat.</div>
+            </div>
+            <span class="mini-tag">GPU On-Premise</span>
           </div>
-          <span class="product-tag">Audit Trail Kepatuhan</span>
+
+          <div class="mini-product-card">
+            <div>
+              <div class="mini-code">AEGIS-COMPLY-12</div>
+              <div class="mini-name">Comply AI Governance</div>
+              <div class="mini-desc">Audit otomatis kepatuhan UU PDP No 27/2022, ISO 27001, deteksi kebocoran data NIK/finansial.</div>
+            </div>
+            <span class="mini-tag">Audit UU PDP</span>
+          </div>
         </div>
       </div>
     </div>
@@ -675,7 +841,7 @@ const htmlContent = `<!DOCTYPE html>
 <div class="page">
   <div class="header-bar">
     <div class="header-brand">
-      <div class="header-logo-badge">M</div>
+      <img src="${logoMnk}" alt="Maudy Network" class="header-logo-img" />
       <div>
         <div class="header-title-text">SPESIFIKASI TEKNIS & ARSITEKTUR INFRASTRUKTUR</div>
         <div class="header-subtitle-text">ENGINEERING BENCHMARK & HARDWARE INTEGRATION MATRIX</div>
@@ -685,9 +851,22 @@ const htmlContent = `<!DOCTYPE html>
   </div>
 
   <div class="content-area">
-    <div style="margin-bottom:10px;">
+    
+    <!-- Visual Hardware Showcase Row -->
+    <div class="tech-visual-row">
+      <div class="tech-visual-card">
+        <img src="${imgVehicle}" alt="XTUR ANPR Detection" />
+        <div class="tech-visual-badge">XTUR ANPR 99.2% &bull; INFERENCE &lt; 4.2ms</div>
+      </div>
+      <div class="tech-visual-card">
+        <img src="${imgDashboard}" alt="XTUR AI Dashboard" />
+        <div class="tech-visual-badge">64 RTSP MULTI-STREAM NOC MONITORING</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:6px;">
       <h2>Matriks Spesifikasi Teknis Hardware & Performa</h2>
-      <p style="font-size:9px;">Benchmark resmi hasil uji laboratorium dan operasional lapangan PT Maudy Network Komunikasi:</p>
+      <p style="font-size:8.5px;">Benchmark resmi hasil uji laboratorium dan operasional lapangan PT Maudy Network Komunikasi:</p>
     </div>
 
     <!-- TABLE 1: HARDWARE & INFERENCE -->
@@ -733,9 +912,9 @@ const htmlContent = `<!DOCTYPE html>
       </tbody>
     </table>
 
-    <div style="margin-top:10px; margin-bottom:8px;">
+    <div style="margin-top:6px; margin-bottom:5px;">
       <h2>Kepatuhan Regulasi & Standar Tata Kelola Keamanan Informasi</h2>
-      <p style="font-size:9px;">Memenuhi seluruh persyaratan audit teknis BUMN, OJK, Kominfo, dan standar industri pertahanan:</p>
+      <p style="font-size:8.5px;">Memenuhi seluruh persyaratan audit teknis BUMN, OJK, Kominfo, dan standar industri pertahanan:</p>
     </div>
 
     <!-- TABLE 2: SECURITY & COMPLIANCE -->
@@ -777,11 +956,11 @@ const htmlContent = `<!DOCTYPE html>
     </table>
 
     <!-- Callout Box Architecture -->
-    <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:8px; padding:10px 14px; margin-top:8px;">
-      <div style="font-weight:700; font-size:9.5px; color:#0F172A; margin-bottom:2px;">
+    <div style="background:#F8FAFC; border:1px solid #CBD5E1; border-radius:7px; padding:7px 12px; margin-top:5px;">
+      <div style="font-weight:700; font-size:9px; color:#0F172A; margin-bottom:1px;">
         Arsitektur Modular Terintegrasi dengan Sistem ERP / VMS Eksisting
       </div>
-      <div style="font-size:8.5px; color:#475569; line-height:1.4;">
+      <div style="font-size:8px; color:#475569; line-height:1.35;">
         Seluruh solusi Aegis Enterprise AI dirancang secara agnostik menggunakan protokol standar terbuka (REST API, Webhook, MQTT, Kafka, ONVIF, dan RTSP). Solusi dapat langsung diintegrasikan dengan sistem ERP terkemuka (SAP, Oracle, Microsoft Dynamics) serta platform VMS (Milestone, Genetec, Hikcentral) tanpa perlu membongkar infrastruktur lama.
       </div>
     </div>
@@ -800,7 +979,7 @@ const htmlContent = `<!DOCTYPE html>
 <div class="page">
   <div class="header-bar">
     <div class="header-brand">
-      <div class="header-logo-badge">M</div>
+      <img src="${logoMnk}" alt="Maudy Network" class="header-logo-img" />
       <div>
         <div class="header-title-text">SKEMA PENGADAAN B2B, TENDER & KONTAK RESMI</div>
         <div class="header-subtitle-text">COMMERCIAL PROCUREMENT FRAMEWORK & OFFICIAL VERIFICATION</div>
@@ -810,9 +989,9 @@ const htmlContent = `<!DOCTYPE html>
   </div>
 
   <div class="content-area">
-    <div style="margin-bottom:10px;">
+    <div style="margin-bottom:8px;">
       <h2>Pilihan Fleksibel Skema Pengadaan B2B & Korporasi</h2>
-      <p style="font-size:9px;">PT Maudy Network Komunikasi menyediakan 3 skema pengadaan resmi yang sesuai dengan kebijakan anggaran institusi Anda:</p>
+      <p style="font-size:8.5px;">PT Maudy Network Komunikasi menyediakan 3 skema pengadaan resmi yang sesuai dengan kebijakan anggaran institusi Anda:</p>
     </div>
 
     <!-- 3 Scheme Cards -->
@@ -820,10 +999,10 @@ const htmlContent = `<!DOCTYPE html>
       <div class="scheme-box highlight">
         <span class="scheme-badge badge-blue">SKEMA 1: EVALUASI PROYEK</span>
         <div class="scheme-name">Proof of Concept (PoC)</div>
-        <p style="font-size:8.5px; color:#475569; line-height:1.4; margin-bottom:8px;">
+        <p style="font-size:8px; color:#475569; line-height:1.35; margin-bottom:6px;">
           Uji coba langsung perangkat keras XTUR / Model AI di lokasi kerja client selama 14 s/d 30 hari kalender dengan pendampingan langsung engineer.
         </p>
-        <ul style="font-size:8px; color:#334155; padding-left:14px; line-height:1.5;">
+        <ul style="font-size:7.5px; color:#334155; padding-left:12px; line-height:1.45;">
           <li>Perangkat unit demo disediakan</li>
           <li>Akses penuh seluruh fitur software</li>
           <li>Laporan hasil uji akurasi resmi</li>
@@ -834,10 +1013,10 @@ const htmlContent = `<!DOCTYPE html>
       <div class="scheme-box">
         <span class="scheme-badge badge-dark">SKEMA 2: BELANJA MODAL</span>
         <div class="scheme-name">CAPEX (Perpetual License)</div>
-        <p style="font-size:8.5px; color:#475569; line-height:1.4; margin-bottom:8px;">
+        <p style="font-size:8px; color:#475569; line-height:1.35; margin-bottom:6px;">
           Pembelian putus seluruh hardware dan lisensi software permanen. Aset perangkat keras menjadi hak milik penuh organisasi client.
         </p>
-        <ul style="font-size:8px; color:#334155; padding-left:14px; line-height:1.5;">
+        <ul style="font-size:7.5px; color:#334155; padding-left:12px; line-height:1.45;">
           <li>Hardware hak milik 100% instansi</li>
           <li>Lisensi software selamanya (perpetual)</li>
           <li>Garansi 1-3 tahun & SLA lokal</li>
@@ -848,10 +1027,10 @@ const htmlContent = `<!DOCTYPE html>
       <div class="scheme-box">
         <span class="scheme-badge badge-green">SKEMA 3: BIAYA OPERASIONAL</span>
         <div class="scheme-name">OPEX (Managed Service)</div>
-        <p style="font-size:8.5px; color:#475569; line-height:1.4; margin-bottom:8px;">
+        <p style="font-size:8px; color:#475569; line-height:1.35; margin-bottom:6px;">
           Layanan menyeluruh terpadu bulanan atau tahunan. Termasuk penyediaan hardware, pemeliharaan berkala, bandwidth VSAT, dan penggantian unit rusak.
         </p>
-        <ul style="font-size:8px; color:#334155; padding-left:14px; line-height:1.5;">
+        <ul style="font-size:7.5px; color:#334155; padding-left:12px; line-height:1.45;">
           <li>Tanpa investasi modal awal besar</li>
           <li>SLA 99.98% garansi spare-part 24/7</li>
           <li>Pembaruan model AI berkelanjutan</li>
@@ -861,12 +1040,12 @@ const htmlContent = `<!DOCTYPE html>
     </div>
 
     <!-- Official B2B Request Checklist -->
-    <div style="margin-bottom:8px;">
+    <div style="margin-bottom:6px;">
       <h2>Formulir & Persyaratan Permintaan Penawaran Resmi (RFP)</h2>
-      <p style="font-size:9px; margin-bottom:6px;">Untuk mempercepat penerbitan Surat Penawaran Harga (SPH) resmi dan penjadwalan PoC, mohon lampirkan data berikut:</p>
+      <p style="font-size:8.5px; margin-bottom:5px;">Untuk mempercepat penerbitan Surat Penawaran Harga (SPH) resmi dan penjadwalan PoC, mohon lampirkan data berikut:</p>
     </div>
 
-    <table class="spec-table" style="margin-bottom:10px;">
+    <table class="spec-table" style="margin-bottom:8px;">
       <thead>
         <tr>
           <th style="width:25%;">Dokumen / Informasi</th>
@@ -893,17 +1072,17 @@ const htmlContent = `<!DOCTYPE html>
         <tr>
           <td><strong>Topologi Jaringan Eksisting</strong></td>
           <td>Format VMS/NVR eksisting, jenis ERP internal, atau ketersediaan koneksi internet on-site</td>
-          <td><span class="badge badge-purple">OPTIONAL (RECOMMENDED)</span></td>
+          <td><span class="badge badge-purple">OPTIONAL</span></td>
         </tr>
       </tbody>
     </table>
 
     <!-- Contact & Verification Banner -->
     <div class="contact-banner">
-      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:8px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #334155; padding-bottom:6px;">
         <div>
-          <div style="font-size:12px; font-weight:800; color:#FFFFFF;">Hubungi Technical Sales Desk & Network Operations Center (NOC)</div>
-          <div style="font-size:8.5px; color:#94A3B8; margin-top:2px;">PT Maudy Network Komunikasi (Maudy Network Nusantara) &bull; Terdaftar Resmi di Kemenkumham RI</div>
+          <div style="font-size:11px; font-weight:800; color:#FFFFFF;">Hubungi Technical Sales Desk & Network Operations Center (NOC)</div>
+          <div style="font-size:8px; color:#94A3B8; margin-top:1px;">PT Maudy Network Komunikasi (Maudy Network Nusantara) &bull; Terdaftar Resmi di Kemenkumham RI</div>
         </div>
         <span class="badge badge-green">NOC 24/7 SIAGA</span>
       </div>
@@ -912,30 +1091,30 @@ const htmlContent = `<!DOCTYPE html>
         <div>
           <div class="contact-item-title">KANTOR PUSAT & WORKSHOP</div>
           <div class="contact-item-val">Semarang, Jawa Tengah, Indonesia</div>
-          <div style="font-size:8px; color:#94A3B8; margin-top:2px;">Area Layanan: Seluruh Indonesia & Perairan Maritim</div>
+          <div style="font-size:7.5px; color:#94A3B8; margin-top:1px;">Area Layanan: Seluruh Indonesia & Perairan Maritim</div>
         </div>
         <div>
           <div class="contact-item-title">HOTLINE NOC & WHATSAPP</div>
           <div class="contact-item-val">+62 857-2748-7507</div>
-          <div style="font-size:8px; color:#94A3B8; margin-top:2px;">Email: admin@maudy.net.id / support@maudy.net.id</div>
+          <div style="font-size:7.5px; color:#94A3B8; margin-top:1px;">Email: admin@maudy.net.id / support@maudy.net.id</div>
         </div>
         <div>
           <div class="contact-item-title">PORTAL RESMI & VERIFIKASI</div>
           <div class="contact-item-val">https://maudy.net.id</div>
-          <div style="font-size:8px; color:#94A3B8; margin-top:2px;">NIB: 0220205831962 &bull; PKP Terdaftar</div>
+          <div style="font-size:7.5px; color:#94A3B8; margin-top:1px;">NIB: 0220205831962 &bull; PKP Terdaftar</div>
         </div>
       </div>
     </div>
 
     <!-- Official Sign-Off Footer Note -->
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px; padding-top:6px; border-top:1px solid #E2E8F0;">
-      <div style="font-size:8px; color:#64748B;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:8px; padding-top:5px; border-top:1px solid #E2E8F0;">
+      <div style="font-size:7.5px; color:#64748B;">
         Hak Cipta &copy; 2026 PT Maudy Network Komunikasi. Seluruh hak cipta dilindungi undang-undang.<br>
         Dokumen ini diterbitkan secara sah dan dilindungi oleh Perjanjian Kerahasiaan (Non-Disclosure Agreement).
       </div>
       <div style="text-align:right;">
-        <div style="font-size:8px; font-weight:700; color:#0F172A;">TIM KOMERSIAL & DIREKTORAT TEKNOLOGI</div>
-        <div style="font-size:7.5px; color:#0071E3; font-family:'Space Grotesk', monospace;">PT MAUDY NETWORK KOMUNIKASI</div>
+        <div style="font-size:7.5px; font-weight:700; color:#0F172A;">TIM KOMERSIAL & DIREKTORAT TEKNOLOGI</div>
+        <div style="font-size:7px; color:#0071E3; font-family:'Space Grotesk', monospace;">PT MAUDY NETWORK KOMUNIKASI</div>
       </div>
     </div>
 
@@ -959,11 +1138,11 @@ console.log('HTML catalog template written to:', tmpHtmlPath);
 const chromePath = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const cmd = `"${chromePath}" --headless --disable-gpu --no-pdf-header-footer --print-to-pdf="${outPdfPath}" "file://${tmpHtmlPath}"`;
 
-console.log('Executing Chrome headless print-to-pdf...');
+console.log('Executing Chrome headless print-to-pdf with embedded illustrations...');
 try {
   execSync(cmd, { stdio: 'inherit' });
   const stats = fs.statSync(outPdfPath);
-  console.log(`Success! High-resolution official PDF generated: ${outPdfPath} (${stats.size} bytes)`);
+  console.log(`Success! High-resolution illustrated official PDF generated: ${outPdfPath} (${stats.size} bytes)`);
   fs.unlinkSync(tmpHtmlPath);
 } catch (err) {
   console.error('Error generating PDF via Chrome:', err);
