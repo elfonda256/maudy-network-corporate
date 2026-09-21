@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  ArrowRight, ShieldCheck, Cpu, Database, Activity, 
-  ChevronRight, Sparkles, Lock, Layers
+  ChevronRight, 
+  Lock
 } from 'lucide-react';
 
 interface Props {
@@ -11,14 +11,6 @@ interface Props {
 }
 
 export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onOpenBrochure }) => {
-  const [activeTab, setActiveTab] = useState<number>(0);
-
-  const pillars = [
-    { title: 'Private AI Core', tag: 'Self-Hosted', desc: 'Model bahasa dan penalaran terisolasi di server internal Anda.', metric: 'Zero Data Outbound' },
-    { title: 'Automated Workflows', tag: 'Smart Routing', desc: 'Otomasi persetujuan bertingkat, penawaran harga, dan laporan harian.', metric: '85% Lebih Cepat' },
-    { title: 'Industry Telemetry', tag: 'IoT & Sensors', desc: 'Monitoring getaran mesin kapal, lini produksi pabrik, dan armada.', metric: '< 100ms Latensi' },
-    { title: 'Document Intelligence', tag: 'Semantic RAG', desc: 'Membaca ribuan halaman kontrak dan blueprint teknik dalam hitungan detik.', metric: '99.4% Akurasi OCR' },
-  ];
 
   return (
     <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-transparent pt-16 sm:pt-24 pb-20 text-center">
@@ -74,75 +66,38 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onO
           </button>
         </div>
 
-        {/* Apple Keynote Style Bento Showcase Component */}
-        <div className="mt-16 text-left">
-          <div className="apple-card p-6 sm:p-8 rounded-3xl bg-[#0F0F12]/80 border border-white/[0.08] shadow-2xl relative overflow-hidden backdrop-blur-2xl">
-            
-            {/* Top Bar of Bento Frame */}
-            <div className="flex flex-wrap items-center justify-between pb-6 border-b border-white/[0.06] gap-3">
-              <div className="flex items-center space-x-3">
-                <div className="w-3 h-3 rounded-full bg-[#2997FF] animate-pulse"></div>
-                <div>
-                  <div className="text-xs font-semibold text-white font-sans">Aegis Enterprise Architecture</div>
-                  <div className="text-[11px] text-[#86868B] font-mono">Status: Private Clusters Synchronized</div>
-                </div>
+        {/* Minimalist Executive Key Metrics Strip */}
+        <div className="mt-14 max-w-4xl mx-auto">
+          <div className="p-4 sm:p-5 rounded-2xl bg-[#0F0F14]/70 border border-white/[0.08] backdrop-blur-2xl shadow-xl">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+              <div className="pt-2 md:pt-0">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">12 Solusi</div>
+                <div className="text-xs text-[#86868B] mt-1 font-sans">Enterprise AI Suite</div>
               </div>
-              <div className="flex items-center space-x-2">
-                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-white/[0.06] text-[#A1A1A6] border border-white/[0.08]">
-                  Air-Gapped Ready
-                </span>
-                <span className="px-2.5 py-1 rounded-full text-[10px] font-mono bg-[#0071E3]/15 text-[#2997FF] border border-[#0071E3]/30">
-                  AES-256
-                </span>
+              <div className="pt-2 md:pt-0 md:pl-6">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-[#2997FF] tracking-tight">Air-Gapped</div>
+                <div className="text-xs text-[#86868B] mt-1 font-sans">Zero Data Egress</div>
+              </div>
+              <div className="pt-2 md:pt-0 md:pl-6">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-emerald-400 tracking-tight">&lt; 4.2ms</div>
+                <div className="text-xs text-[#86868B] mt-1 font-sans">Inferensi Edge AI</div>
+              </div>
+              <div className="pt-2 md:pt-0 md:pl-6">
+                <div className="text-xl sm:text-2xl font-bold font-mono text-white tracking-tight">99.98%</div>
+                <div className="text-xs text-[#86868B] mt-1 font-sans">SLA NOC 24/7</div>
               </div>
             </div>
 
-            {/* Interactive 4 Bento Tabs */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 mt-6">
-              {pillars.map((item, idx) => {
-                const isSelected = activeTab === idx;
-                return (
-                  <div
-                    key={idx}
-                    onClick={() => setActiveTab(idx)}
-                    className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
-                      isSelected
-                        ? 'bg-white/[0.08] border-[#2997FF]/60 shadow-[0_0_20px_rgba(41,151,255,0.15)]'
-                        : 'bg-white/[0.02] border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12]'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] font-mono text-[#86868B] uppercase">{item.tag}</span>
-                        {isSelected && <span className="w-1.5 h-1.5 rounded-full bg-[#2997FF]"></span>}
-                      </div>
-                      <h3 className={`text-sm font-semibold ${isSelected ? 'text-white' : 'text-[#D2D2D7]'}`}>
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-[#86868B] mt-1.5 leading-relaxed font-sans">
-                        {item.desc}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 pt-2.5 border-t border-white/[0.04] text-[11px] font-mono text-[#2997FF]">
-                      {item.metric}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Humanist Bottom Reassurance */}
-            <div className="mt-6 pt-5 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between text-xs text-[#86868B] gap-2">
-              <span className="flex items-center gap-1.5">
+            <div className="mt-4 pt-3.5 border-t border-white/[0.05] flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] text-[#86868B] font-mono">
+              <span className="flex items-center gap-1.5 text-slate-300">
                 <Lock className="w-3.5 h-3.5 text-[#2997FF]" />
-                Kedaulatan data dan kepatuhan regulasi terjamin di bawah infrastruktur organisasi Anda.
+                Kedaulatan Data Terjamin 100% On-Premise
               </span>
-              <span className="text-[11px] font-mono text-[#6E6E73]">
-                12 Solusi Industri Terintegrasi
-              </span>
+              <span className="text-white/20 hidden sm:inline">&bull;</span>
+              <span>ISO 9001:2015 &bull; ISO 27001:2022</span>
+              <span className="text-white/20 hidden sm:inline">&bull;</span>
+              <span>Izin Jastel Kominfo RI</span>
             </div>
-
           </div>
         </div>
 
