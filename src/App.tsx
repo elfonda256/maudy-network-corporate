@@ -244,9 +244,6 @@ export function App() {
               onOpenCredentials={() => setCredentialsOpen(true)}
             />
 
-            {/* Floating Action Buttons (WhatsApp & Scroll to top) */}
-            <FloatingActions />
-
             {/* Global Consultation Modal */}
             <ConsultationModal
               isOpen={consultationOpen}
@@ -384,6 +381,20 @@ export function App() {
           </div>
         )}
 
+        {/* Global Floating Actions (Maudy AI Virtual Desk, WhatsApp & Scroll-to-Top) */}
+        <FloatingActions 
+          onOpenEstimator={() => {
+            if (activePortal !== 'corporate') {
+              switchPortal('corporate');
+            }
+            setTimeout(() => {
+              const el = document.getElementById('estimator');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
+          }} 
+        />
       </div>
     </CmsProvider>
   );
