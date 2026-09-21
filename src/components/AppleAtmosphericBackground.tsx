@@ -2,21 +2,21 @@ import React, { useEffect, useRef } from 'react';
 
 export const AppleAtmosphericBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const mousePosRef = useRef<{ x: number; y: number }>({ x: -1000, y: -1000 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     let animationFrameId: number;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
+    const isMobile = width < 768;
 
     let mouseX = width / 2;
     let mouseY = height / 3;
-    let targetMouseX = width / 2;
-    let targetMouseY = height / 3;
 
     const handleResize = () => {
       if (!canvas) return;
@@ -25,15 +25,16 @@ export const AppleAtmosphericBackground: React.FC = () => {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      targetMouseX = e.clientX;
-      targetMouseY = e.clientY;
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('resize', handleResize, { passive: true });
+    if (!isMobile) {
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    }
 
-    // Particle nodes for Apple-style subtle data constellation
-    const particleCount = Math.min(Math.floor((width * height) / 22000), 65);
+    // Adaptive Particle Count: 18 on mobile, 36 on desktop
+    const particleCount = isMobile ? 18 : 36;
     const particles: {
       x: number;
       y: number;
@@ -56,33 +57,51 @@ export const AppleAtmosphericBackground: React.FC = () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 1.6 + 0.8,
-        alpha: Math.random() * 0.4 + 0.15,
-        targetAlpha: Math.random() * 0.5 + 0.15,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        radius: Math.random() * 1.5 + 0.8,
+        alpha: Math.random() * 0.35 + 0.15,
+        targetAlpha: Math.random() * 0.45 + 0.15,
         baseColor: colors[Math.floor(Math.random() * colors.length)],
       });
     }
 
-    const render = () => {
+    // Performance throttler: cap at ~35-40 FPS
+    const targetFpsInterval = 1000 / 36;
+    let lastDrawTime = 0;
+    const maxConnectionDistance = isMobile ? 90 : 125;
+
+    const render = (currentTime: number) => {
+      if (document.hidden) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+
+      const elapsed = currentTime - lastDrawTime;
+      if (elapsed < targetFpsInterval) {
+        animationFrameId = requestAnimationFrame(render);
+        return;
+      }
+      lastDrawTime = currentTime - (elapsed % targetFpsInterval);
+
       ctx.clearRect(0, 0, width, height);
 
-      // Smooth mouse interpolation
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      const curMouse = mousePosRef.current;
+      if (curMouse.x > 0) {
+        mouseX += (curMouse.x - mouseX) * 0.08;
+        mouseY += (curMouse.y - mouseY) * 0.08;
+      }
 
       // Render subtle connection lines
-      ctx.lineWidth = 0.6;
+      ctx.lineWidth = 0.65;
       for (let i = 0; i < particles.length; i++) {
-        // Connect to neighboring particles
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 140) {
-            const opacity = (1 - dist / 140) * 0.09;
+          if (dist < maxConnectionDistance) {
+            const opacity = (1 - dist / maxConnectionDistance) * 0.08;
             ctx.strokeStyle = `rgba(41, 151, 255, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -92,20 +111,18 @@ export const AppleAtmosphericBackground: React.FC = () => {
         }
 
         // Proximity interaction with cursor
-        const mdx = particles[i].x - mouseX;
-        const mdy = particles[i].y - mouseY;
-        const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mDist < 180) {
-          const mOpacity = (1 - mDist / 180) * 0.15;
-          ctx.strokeStyle = `rgba(41, 151, 255, ${mOpacity})`;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouseX, mouseY);
-          ctx.stroke();
-
-          // Subtle gentle repulsion from cursor
-          particles[i].x += (mdx / mDist) * 0.4;
-          particles[i].y += (mdy / mDist) * 0.4;
+        if (curMouse.x > 0) {
+          const mdx = particles[i].x - mouseX;
+          const mdy = particles[i].y - mouseY;
+          const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mDist < 140) {
+            const mOpacity = (1 - mDist / 140) * 0.12;
+            ctx.strokeStyle = `rgba(41, 151, 255, ${mOpacity})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouseX, mouseY);
+            ctx.stroke();
+          }
         }
       }
 
@@ -119,12 +136,6 @@ export const AppleAtmosphericBackground: React.FC = () => {
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        // Gentle breathing alpha
-        p.alpha += (p.targetAlpha - p.alpha) * 0.02;
-        if (Math.abs(p.targetAlpha - p.alpha) < 0.03) {
-          p.targetAlpha = Math.random() * 0.4 + 0.15;
-        }
-
         ctx.fillStyle = `${p.baseColor} ${p.alpha})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -134,62 +145,49 @@ export const AppleAtmosphericBackground: React.FC = () => {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
+    animationFrameId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (!isMobile) {
+        window.removeEventListener('mousemove', handleMouseMove);
+      }
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#07090E]">
-      {/* 1. Silky Apple Ambient Diffused Mesh Gradients */}
+      {/* 1. Silky Apple Ambient Diffused Mesh Gradients (GPU Pre-Rasterized, Zero Heat) */}
       <div 
-        className="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[1100px] h-[750px] rounded-full opacity-40 blur-[190px] pointer-events-none animate-pulseGlow"
+        className="absolute inset-0 pointer-events-none opacity-45"
         style={{
-          background: 'radial-gradient(circle, rgba(0, 113, 227, 0.45) 0%, rgba(41, 151, 255, 0.18) 45%, transparent 75%)',
-        }}
-      />
-      <div 
-        className="absolute top-[30%] -left-[12%] w-[850px] h-[850px] rounded-full opacity-25 blur-[220px] pointer-events-none animate-floatSlow"
-        style={{
-          background: 'radial-gradient(circle, rgba(14, 165, 233, 0.35) 0%, rgba(3, 105, 161, 0.12) 55%, transparent 80%)'
-        }}
-      />
-      <div 
-        className="absolute top-[65%] -right-[12%] w-[900px] h-[900px] rounded-full opacity-25 blur-[220px] pointer-events-none animate-floatSlow"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.32) 0%, rgba(29, 78, 216, 0.12) 55%, transparent 80%)',
-          animationDelay: '-2.5s'
-        }}
-      />
-      <div 
-        className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full opacity-20 blur-[200px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(15, 23, 42, 0) 70%)'
+          backgroundImage: `
+            radial-gradient(circle 600px at 50% 10%, rgba(0, 113, 227, 0.35), transparent 75%),
+            radial-gradient(circle 500px at 85% 45%, rgba(14, 165, 233, 0.22), transparent 75%),
+            radial-gradient(circle 550px at 15% 75%, rgba(99, 102, 241, 0.2), transparent 70%)
+          `
         }}
       />
 
       {/* 2. Micro Dot Grid */}
-      <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <pattern id="apple-grid-pattern" width="48" height="48" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="0.85" fill="rgba(255, 255, 255, 0.35)" />
+            <circle cx="2" cy="2" r="0.85" fill="rgba(255, 255, 255, 0.3)" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#apple-grid-pattern)" />
       </svg>
 
-      {/* 3. Interactive Subtle Animated Particle Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-55" />
+      {/* 3. Optimized Particle Canvas */}
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-50" />
 
       {/* 4. Apple Vignette Radial Fade */}
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 45%, transparent 35%, rgba(0, 0, 0, 0.85) 100%)'
+          background: 'radial-gradient(circle at 50% 45%, transparent 40%, rgba(7, 9, 14, 0.85) 100%)'
         }}
       />
     </div>

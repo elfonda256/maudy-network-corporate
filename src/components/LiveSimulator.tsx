@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Terminal,
   Activity,
@@ -27,6 +27,8 @@ interface LiveSimulatorProps {
 }
 
 export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const [isInView, setIsInView] = useState(false);
   const [activeEngine, setActiveEngine] = useState<'pisbot' | 'xtur' | 'aegis' | 'molinar'>('pisbot');
 
   // Universal Ticking Clock & Global System Load
@@ -43,13 +45,13 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
   ]);
   const [botLogs, setBotLogs] = useState<string[]>([
     '[INIT] PIS_BOT Sentinel daemon v4.8 active on thread #16',
-    '[TELEMETRY] ICMP burst 64 bytes -> 192.168.100.1: min/avg/max = 46.2/48.2/51.8 ms (JITTER: 0.8ms)',
-    '[AUDIT] All 15 gateway hops verified. Zero packet drops recorded across maritime links.',
+    '[OK] 5 Strategic nodes online across Jawa-Bali-Sumatera backbone',
+    '[TELEMETRY] Starlink LEO Fleet & Telkom-4 C-Band synchronizing',
   ]);
-  const [isSimulatingFailover, setIsSimulatingFailover] = useState(false);
-  const [failoverActive, setFailoverActive] = useState(false);
+  const [isSimulatingFailover, setIsSimulatingFailover] = useState<boolean>(false);
+  const [failoverActive, setFailoverActive] = useState<boolean>(false);
 
-  // XTUR AI Vision Engine State
+  // XTUR Vision Engine State
   const [xturAlarm, setXturAlarm] = useState<boolean>(false);
   const [xturBlacklist, setXturBlacklist] = useState<boolean>(false);
   const [aiGpuLoad, setAiGpuLoad] = useState<number>(78);
@@ -58,7 +60,6 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
   // Aegis Maritime Engine State
   const [aegisCongested, setAegisCongested] = useState<boolean>(false);
   const [aegisStarlinkActive, setAegisStarlinkActive] = useState<boolean>(false);
-  const [radarAngle, setRadarAngle] = useState<number>(0);
 
   // Molinar.id State
   const [shelterTemp, setShelterTemp] = useState<number>(24.8);
@@ -67,19 +68,35 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
   const [relay2, setRelay2] = useState<boolean>(false); // Fan
   const [relay3, setRelay3] = useState<boolean>(true); // Solar Inverter
 
-  // Clock & Radar loop
+  // IntersectionObserver: Only tick when simulator is visible on screen!
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  // Clock & Telemetry loop - throttled to 1000ms (1s) instead of 100ms
+  useEffect(() => {
+    if (!isInView) return;
+
     const timer = setInterval(() => {
       setSystemCycle((c) => c + 1);
       setSystemUptimeSec((u) => u + 1);
-      setRadarAngle((a) => (a + 4) % 360);
 
       // Micro fluctuations
       setShelterTemp((t) => +(t + (Math.random() - 0.5) * 0.1).toFixed(1));
-      setVoltage((v) => +(v + (Math.random() - 0.5) * 0.3).toFixed(1));
-    }, 100);
+      setVoltage((v) => +(v + (Math.random() - 0.5) * 0.2).toFixed(1));
+    }, 1000);
+
     return () => clearInterval(timer);
-  }, []);
+  }, [isInView]);
 
   // Format uptime
   const formatUptime = (sec: number) => {
@@ -158,7 +175,7 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-[#161617] text-[#1D1D1F] dark:text-white rounded-3xl border border-black/[0.08] dark:border-white/[0.12] p-5 sm:p-8 shadow-xs relative overflow-hidden transition-all">
+    <div ref={sectionRef} className="bg-white dark:bg-[#161617] text-[#1D1D1F] dark:text-white rounded-3xl border border-black/[0.08] dark:border-white/[0.12] p-5 sm:p-8 shadow-xs relative overflow-hidden transition-all">
       {/* Telemetry HUD Header */}
       <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 pb-5 border-b border-black/[0.08] dark:border-white/[0.08] relative z-10">
         <div className="flex items-center space-x-3">
@@ -541,11 +558,8 @@ export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {
                   <div className="absolute inset-0 border-t border-b border-cyan-500/20 top-1/2 -translate-y-1/2"></div>
                   <div className="absolute inset-0 border-l border-r border-cyan-500/20 left-1/2 -translate-x-1/2"></div>
 
-                  {/* Rotating Beam */}
-                  <div
-                    className="radar-sweep-beam pointer-events-none"
-                    style={{ transform: `rotate(${radarAngle}deg)` }}
-                  ></div>
+                  {/* Rotating Beam (GPU CSS Accelerated) */}
+                  <div className="radar-sweep-beam pointer-events-none"></div>
 
                   {/* Vessel Blip 1: Pertamina Pride */}
                   <div className="absolute top-16 left-20 flex items-center space-x-1 font-mono text-[9px] text-cyan-300">
