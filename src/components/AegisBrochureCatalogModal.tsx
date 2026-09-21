@@ -63,7 +63,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
     window.open(`https://wa.me/6285727487507?text=${text}`, '_blank');
   };
 
-  // Filtered products for catalog
+  // Complete 12-Product Enterprise Catalog Sections
   const catalogSections = [
     {
       id: 'maritime',
@@ -72,7 +72,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
       subtitle: 'Aegis Maritime Intelligence, Hybrid VSAT / Starlink & IMO Compliance',
       badge: 'FLAGSHIP SECTOR',
       color: '#0071E3',
-      products: PRODUCTS.filter(p => p.id === 'aegis-maritime' || p.id === 'fleet-telematics' || p.category === 'industry'),
+      products: PRODUCTS.filter(p => p.id === 'aegis-maritime' || p.id === 'fleetos-ai' || p.id === 'maintenance-ai'),
       specs: [
         { label: 'Konektivitas Satelit', value: 'Hybrid Ku/Ka-Band GEO + LEO Starlink Maritime with sub-second failover' },
         { label: 'Kepatuhan Regulasi', value: 'IMO Resolution MSC.428(98), IACS UR E26/E27, SOLAS & MARPOL Ready' },
@@ -87,7 +87,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
       subtitle: 'Edge AI Vision, ANPR Plat Nomor 99.2% & Dual Thermal Sensing',
       badge: 'INDUSTRIAL SURVEILLANCE',
       color: '#2997FF',
-      products: PRODUCTS.filter(p => p.id === 'industrial-vision' || p.id === 'predictive-maintenance' || p.id === 'construction-twin'),
+      products: PRODUCTS.filter(p => p.id === 'factory-twin-ai' || p.id === 'construct-ai' || p.id === 'smart-waste-ai'),
       specs: [
         { label: 'Akurasi ANPR/E-TLE', value: '99.2% pada kecepatan kendaraan hingga 120 km/jam siang dan malam' },
         { label: 'Deteksi Intrusi', value: 'Perimeter Virtual Fence < 150ms real-time audio/visual alert trigger' },
@@ -102,7 +102,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
       subtitle: 'AI Document Intelligence, Smart Vendor Analytics & RAG Semantic Search',
       badge: 'ENTERPRISE AUTOMATION',
       color: '#6366F1',
-      products: PRODUCTS.filter(p => p.id === 'ai-doc-intel' || p.id === 'smart-procurement' || p.id === 'bi-analytics' || p.id === 'compliance-guard'),
+      products: PRODUCTS.filter(p => p.id === 'ai-doc-intel' || p.id === 'procure-ai' || p.id === 'business-ai' || p.id === 'comply-ai'),
       specs: [
         { label: 'Pemrosesan Dokumen', value: 'OCR Multi-bahasa (ID/EN/Mandarin/Arabic) dengan preservasi tabel kompleks' },
         { label: 'Pencarian Semantik', value: 'Vector Embedding RAG (Retrieval-Augmented Generation) berbasis dokumen lokal' },
@@ -117,7 +117,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
       subtitle: 'Aegis Cyber Shield, Private Air-Gapped AI & Incident Response',
       badge: 'MISSION-CRITICAL SECURITY',
       color: '#10B981',
-      products: PRODUCTS.filter(p => p.id === 'cyber-shield' || p.id === 'private-ai'),
+      products: PRODUCTS.filter(p => p.id === 'aegis-cyber-ai' || p.id === 'aegis-private-ai'),
       specs: [
         { label: 'Arsitektur Isolasi', value: 'Air-Gapped Private On-Premise GPU Cluster (Zero Data Egress / Outbound)' },
         { label: 'Proteksi Ransomware', value: 'Micro-segmentation otomatis isolasi endpoint terinfeksi dalam waktu < 200ms' },
@@ -165,13 +165,24 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
           </div>
 
           <div className="flex items-center space-x-2">
+            <a
+              href="/downloads/Aegis-Enterprise-AI-Catalog-2026.pdf"
+              download="Aegis-Enterprise-AI-Catalog-2026.pdf"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-semibold shadow-md transition-all cursor-pointer"
+              title="Unduh Berkas Dokumen PDF Resmi (4 Halaman Spesifikasi Lengkap)"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Unduh PDF Resmi</span>
+              <span className="sm:hidden">PDF</span>
+            </a>
+
             <button
               onClick={handlePrint}
-              title="Cetak atau Simpan sebagai PDF"
+              title="Cetak atau Simpan sebagai PDF dari Browser"
               className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-medium transition-all cursor-pointer border border-white/[0.1]"
             >
               <Printer className="w-3.5 h-3.5 text-[#2997FF]" />
-              <span>Cetak / PDF</span>
+              <span className="hidden sm:inline">Cetak / Print</span>
             </button>
 
             <button
@@ -231,15 +242,15 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
         </div>
 
         {/* Scrollable Printable Document Body */}
-        <div className="overflow-y-auto p-6 sm:p-8 space-y-10 flex-1 print:overflow-visible print:p-0 print:space-y-6">
+        <div className="overflow-y-auto p-6 sm:p-8 space-y-8 flex-1 print:overflow-visible print:p-0 print:space-y-6">
           
           {/* OFFICIAL COVER / HEADER SHEET */}
-          <div className="border-b border-white/[0.1] pb-8 print:border-black print:pb-6">
+          <div className="border-b border-white/[0.1] pb-6 print:border-black print:pb-6 space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
                 <div className="flex items-center space-x-2">
                   <span className="text-[11px] font-mono tracking-widest text-[#2997FF] uppercase font-bold print:text-blue-700">
-                    DOKUMEN SPESIFIKASI TEKNIK RESMI
+                    DOKUMEN SPESIFIKASI TEKNIS RESMI
                   </span>
                   <span className="text-white/40 print:text-gray-400">•</span>
                   <span className="text-[11px] font-mono text-white/60 print:text-gray-600">
@@ -255,7 +266,7 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
               </div>
 
               {/* Legal Badges */}
-              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-right space-y-1 print:border-gray-300 print:bg-gray-50">
+              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/[0.08] text-right space-y-1 print:border-gray-300 print:bg-gray-50 shrink-0">
                 <div className="text-[10px] font-mono text-emerald-400 font-bold print:text-emerald-700">
                   ISO 9001:2015 &bull; ISO 27001:2022
                 </div>
@@ -265,6 +276,37 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
                 <div className="text-[10px] text-white/60 print:text-gray-600">
                   Hotline NOC 24/7: +62 857-2748-7507
                 </div>
+              </div>
+            </div>
+
+            {/* Quick PDF Action Banner */}
+            <div className="rounded-2xl p-4 bg-gradient-to-r from-[#0071E3]/20 via-[#2997FF]/10 to-transparent border border-[#2997FF]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 print:hidden">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-xl bg-[#0071E3]/20 border border-[#2997FF]/40 flex items-center justify-center text-[#2997FF] shrink-0">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-white flex items-center space-x-2">
+                    <span>Dokumen Master PDF Resmi Tersedia</span>
+                    <span className="px-2 py-0.2 rounded-full text-[9px] font-mono bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      4 HALAMAN A4
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-white/70">
+                    Spesifikasi 12 produk AI, maritim satelit, CCTV XTUR, tata kelola keamanan ISO & formulir procurement.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <a
+                  href="/downloads/Aegis-Enterprise-AI-Catalog-2026.pdf"
+                  download="Aegis-Enterprise-AI-Catalog-2026.pdf"
+                  className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-semibold shadow-lg transition-all cursor-pointer"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Unduh Dokumen PDF Resmi</span>
+                </a>
               </div>
             </div>
           </div>
@@ -444,7 +486,16 @@ export const AegisBrochureCatalogModal: React.FC<AegisBrochureCatalogModalProps>
                 </p>
               </div>
 
-              <div className="flex items-center space-x-2.5 print:hidden">
+              <div className="flex flex-wrap items-center gap-2 print:hidden">
+                <a
+                  href="/downloads/Aegis-Enterprise-AI-Catalog-2026.pdf"
+                  download="Aegis-Enterprise-AI-Catalog-2026.pdf"
+                  className="px-3.5 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-semibold flex items-center space-x-1.5 transition-all border border-white/[0.1]"
+                  title="Unduh Berkas Dokumen PDF Resmi"
+                >
+                  <Download className="w-3.5 h-3.5 text-[#2997FF]" />
+                  <span>Unduh PDF</span>
+                </a>
                 <a
                   href="tel:+6285727487507"
                   className="px-3.5 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] text-white text-xs font-semibold flex items-center space-x-1.5 transition-all"

@@ -88,17 +88,14 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate, 
           </div>
 
           {/* Desktop Nav Items (Apple.com style small, crisp typography) */}
-          <nav className="hidden lg:flex items-center space-x-6 text-[12px] font-normal tracking-tight">
+          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-6 text-[12px] font-normal tracking-tight">
             {[
               { id: 'beranda', label: 'Overview' },
-              { id: 'solusi', label: 'Solusi' },
-              { id: 'produk', label: 'Produk (12)' },
+              { id: 'solusi', label: 'Solusi AI' },
+              { id: 'produk', label: '12 Produk' },
               { id: 'industri', label: 'Industri' },
-              { id: 'teknologi', label: 'Teknologi' },
               { id: 'private-ai', label: 'Private AI' },
-              { id: 'security', label: 'Keamanan' },
               { id: 'cara-kerja', label: 'Arsitektur' },
-              { id: 'tentang-kami', label: 'Tentang Kami' },
               { id: 'kontak', label: 'Kontak' },
             ].map((link) => (
               <button
@@ -116,8 +113,8 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate, 
           </nav>
 
           {/* Right Action: Telemetry indicator & Apple Blue Pill Button */}
-          <div className="flex items-center space-x-3">
-            <div className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-[#86868B]">
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+            <div className="hidden xl:flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-[#86868B]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span className="text-[10px] font-mono">Private AI Active</span>
             </div>
@@ -128,7 +125,7 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate, 
                 className="hidden md:inline-flex items-center space-x-1 px-3 py-1.5 rounded-full text-[11px] font-medium text-white bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] transition-all cursor-pointer shadow-xs"
                 title="Buka E-Katalog & Lembar Spesifikasi PDF"
               >
-                <span>📑 E-Katalog & Brosur</span>
+                <span>📑 E-Katalog &amp; PDF</span>
               </button>
             )}
 

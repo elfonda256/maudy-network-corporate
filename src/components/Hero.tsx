@@ -34,39 +34,22 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeDevice, setActiveDevice] = useState<'both' | 'bot' | 'molinar' | 'aegis' | 'xtur'>('bot');
   const [simulatorPumpState, setSimulatorPumpState] = useState<boolean>(true);
   return (
-    <section className="hero-section relative pt-32 sm:pt-36 pb-16 lg:pb-24 overflow-hidden bg-transparent transition-colors">
-      {/* Floating High-Tech Top Badge */}
-      <div className="absolute top-28 right-8 lg:right-16 hidden xl:flex items-center space-x-2.5 px-4 py-1.5 rounded-full bg-white/90 dark:bg-[#161617]/90 backdrop-blur-md border border-black/[0.08] dark:border-white/[0.1] shadow-sm text-[11px] font-mono text-[#1D1D1F] dark:text-[#F5F5F7] animate-float-slow z-20">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span className="font-semibold text-[#1D1D1F] dark:text-white">NOC STATUS:</span>
-        <span className="text-emerald-600 dark:text-emerald-400 font-semibold">24/7 ONLINE</span>
-        <span className="text-[#6E6E73] dark:text-[#A1A1A6]">• SLA 99.98%</span>
-      </div>
-
+    <section className="hero-section relative pt-36 sm:pt-40 pb-16 lg:pb-24 overflow-hidden bg-transparent transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Breadcrumb Trail (Apple Style) */}
-        <div className="flex items-center space-x-2 text-xs text-[#6E6E73] dark:text-[#A1A1A6] mb-8 font-medium">
-          <a href="#" className="hover:text-[#1D1D1F] dark:hover:text-white transition-colors">Home</a>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <a href="#services" className="hover:text-[#1D1D1F] dark:hover:text-white transition-colors">
-            {lang === 'en' ? 'Enterprise IT' : 'Infrastruktur IT'}
-          </a>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-[#1D1D1F] dark:text-white font-medium">
-            {lang === 'en' ? 'Critical Infrastructure Solutions' : 'Solusi Infrastruktur Strategis'}
-          </span>
-        </div>
-
-        {/* Main Grid: Left Copy & Right Asymmetric Blue Card */}
+        {/* Main Grid: Left Copy & Right Interactive Showcase Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column (Clean Corporate Typography & Brand CTA) */}
           <div className="lg:col-span-6 space-y-6">
             <div>
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] mb-4 border border-black/[0.08] dark:border-white/[0.1] text-xs font-mono text-[#1D1D1F] dark:text-slate-200 shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#0071E3] animate-pulse"></span>
-                <span>MISSION-CRITICAL ENTERPRISE INFRASTRUCTURE</span>
+              <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-mono text-white/90 shadow-sm backdrop-blur-md mb-4">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="font-semibold text-white">NOC 24/7 ONLINE</span>
+                <span className="text-white/40">•</span>
+                <span className="text-[#2997FF] font-semibold">SLA 99.98%</span>
+                <span className="text-white/40 hidden sm:inline">•</span>
+                <span className="text-white/70 hidden sm:inline">MISSION-CRITICAL INFRASTRUCTURE</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.08]">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.08]">
                 {lang === 'en' ? "Empowering Critical" : 'Maudy Network'}
                 <br />
                 <span className="text-gradient-brand">

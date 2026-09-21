@@ -48,10 +48,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { href: '#services', label: { en: 'Enterprise Solutions', id: 'Solusi Korporasi' } },
-    { href: '#industries', label: { en: 'Maritime & Sector', id: 'Maritim & Sektor' } },
-    { href: '#projects', label: { en: 'Project Showcase', id: 'Portofolio Proyek' } },
-    { href: '#products', label: { en: 'Proprietary Tech', id: 'Inovasi Produk' } },
+    { href: '#services', label: { en: 'Solutions', id: 'Solusi Korporasi' } },
+    { href: '#industries', label: { en: 'Maritime & VSAT', id: 'Maritim & VSAT' } },
+    { href: '#projects', label: { en: 'Portfolio', id: 'Portofolio' } },
+    { href: '#products', label: { en: 'XTUR & Tech', id: 'Inovasi & XTUR' } },
     { href: '#about', label: { en: 'About MNK', id: 'Tentang MNK' } },
     { href: '#contact', label: { en: 'Support & NOC', id: 'Bantuan & NOC' } },
   ];
@@ -150,27 +150,26 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="h-[2px] w-full bg-[#0071E3]"></div>
 
       {/* Top Utility Micro-Bar */}
-      <div className="bg-[#07090E]/90 backdrop-blur-xl border-b border-white/[0.08] transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between text-xs">
-          {/* Left: Language Switcher */}
-          <div className="flex items-center space-x-2 font-medium">
+      <div className="bg-[#07090E]/95 backdrop-blur-2xl border-b border-white/[0.08] transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between text-xs gap-3">
+          {/* Left: Language Capsule */}
+          <div className="flex items-center p-0.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-[11px] font-medium shrink-0">
             <button
               onClick={() => setLang('id')}
-              className={`transition-colors cursor-pointer ${
+              className={`px-2.5 py-0.5 rounded-full transition-all cursor-pointer ${
                 lang === 'id'
-                  ? 'text-[#0071E3] dark:text-[#2997FF] font-semibold'
-                  : 'text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white'
+                  ? 'bg-[#0071E3] text-white shadow-xs font-semibold'
+                  : 'text-white/60 hover:text-white'
               }`}
             >
               ID
             </button>
-            <span className="text-black/15 dark:text-white/20">|</span>
             <button
               onClick={() => setLang('en')}
-              className={`transition-colors cursor-pointer ${
+              className={`px-2.5 py-0.5 rounded-full transition-all cursor-pointer ${
                 lang === 'en'
-                  ? 'text-[#0071E3] dark:text-[#2997FF] font-semibold'
-                  : 'text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white'
+                  ? 'bg-[#0071E3] text-white shadow-xs font-semibold'
+                  : 'text-white/60 hover:text-white'
               }`}
             >
               EN
@@ -178,20 +177,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Center: Search Box (Apple Pill Style with Live Dropdown) */}
-          <div className="hidden md:flex items-center flex-1 max-w-md mx-6 relative">
+          <div className="hidden md:flex items-center flex-1 max-w-sm lg:max-w-md relative">
             <div className="relative w-full">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6E6E73]" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#86868B]" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={lang === 'en' ? 'Search solutions, VSAT, XTUR, CCTV, SPK...' : 'Cari layanan, VSAT, XTUR, CCTV, SPK...'}
-                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.12] text-xs text-[#1D1D1F] dark:text-white placeholder-[#6E6E73] focus:outline-none focus:border-[#0071E3] dark:focus:border-[#2997FF]"
+                placeholder={lang === 'en' ? 'Search solutions, VSAT maritim, XTUR AI, SPK...' : 'Cari solusi, VSAT maritim, XTUR AI, SPK...'}
+                className="w-full pl-9 pr-8 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.09] border border-white/[0.1] text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#2997FF] focus:bg-black/60 transition-all"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -200,37 +199,37 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Live Search Results Dropdown */}
             {searchResults.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl bg-white dark:bg-[#161617] border border-black/[0.08] dark:border-white/[0.12] shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="px-3.5 py-2 bg-black/[0.02] dark:bg-white/[0.02] border-b border-black/[0.06] dark:border-white/[0.08] text-[10px] font-mono text-[#6E6E73] dark:text-[#A1A1A6] flex items-center justify-between">
+              <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl bg-[#121622] border border-white/[0.15] shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="px-3.5 py-2 bg-white/[0.03] border-b border-white/[0.08] text-[10px] font-mono text-white/60 flex items-center justify-between">
                   <span>{lang === 'en' ? 'SEARCH RESULTS' : 'HASIL PENCARIAN SISTEM'}</span>
-                  <span>{searchResults.length} {lang === 'en' ? 'MATCHES' : 'DITEMUKAN'}</span>
+                  <span className="text-[#2997FF] font-semibold">{searchResults.length} {lang === 'en' ? 'MATCHES' : 'DITEMUKAN'}</span>
                 </div>
-                <div className="divide-y divide-black/[0.04] dark:divide-white/[0.06] max-h-72 overflow-y-auto">
+                <div className="divide-y divide-white/[0.06] max-h-72 overflow-y-auto">
                   {searchResults.map((item, idx) => (
                     <button
                       key={idx}
                       onClick={item.action}
-                      className="w-full p-2.5 hover:bg-black/[0.03] dark:hover:bg-white/[0.05] text-left transition-colors flex items-center justify-between group cursor-pointer"
+                      className="w-full p-2.5 hover:bg-white/[0.06] text-left transition-colors flex items-center justify-between group cursor-pointer"
                     >
                       <div className="flex-1 pr-2">
                         <div className="flex items-center space-x-2">
                           <span className={`px-1.5 py-0.5 rounded-full text-[9px] font-mono font-medium ${
-                            item.category === 'Product' ? 'bg-red-500/10 text-red-600 dark:text-red-400' :
-                            item.category === 'Service' ? 'bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF]' :
-                            item.category === 'Project' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400' :
-                            'bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                            item.category === 'Product' ? 'bg-red-500/20 text-red-300' :
+                            item.category === 'Service' ? 'bg-blue-500/20 text-[#2997FF]' :
+                            item.category === 'Project' ? 'bg-emerald-500/20 text-emerald-300' :
+                            'bg-purple-500/20 text-purple-300'
                           }`}>
                             {item.category}
                           </span>
-                          <span className="text-xs font-semibold text-[#1D1D1F] dark:text-white group-hover:text-[#0071E3] dark:group-hover:text-[#2997FF]">
+                          <span className="text-xs font-semibold text-white group-hover:text-[#2997FF]">
                             {item.title}
                           </span>
                         </div>
-                        <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6] mt-0.5 truncate pl-1">
+                        <div className="text-[10px] text-white/60 mt-0.5 truncate pl-1">
                           {item.subtitle}
                         </div>
                       </div>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#6E6E73] group-hover:text-[#0071E3] transition-colors flex-shrink-0" />
+                      <ArrowRight className="w-3.5 h-3.5 text-white/40 group-hover:text-[#2997FF] transition-colors flex-shrink-0" />
                     </button>
                   ))}
                 </div>
@@ -238,75 +237,50 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Right: Quick Utilities & Consultation Action */}
-          <div className="flex items-center space-x-3 sm:space-x-4">
-            {/* Quick Utility Icons */}
-            <div className="hidden sm:flex items-center space-x-3 text-[#6E6E73] dark:text-[#A1A1A6]">
-              <a
-                href="#products"
-                title="Molinar.id & Apps"
-                className="p-1 hover:text-[#0071E3] dark:hover:text-[#2997FF] transition-colors"
-              >
-                <Smartphone className="w-4 h-4" />
-              </a>
-              <a
-                href="#contact"
-                title="Semarang HQ Office"
-                className="p-1 hover:text-[#0071E3] dark:hover:text-[#2997FF] transition-colors"
-              >
-                <MapPin className="w-4 h-4" />
-              </a>
-              <a
-                href="tel:+6285727487507"
-                title="24/7 Technical Support"
-                className="p-1 hover:text-[#0071E3] dark:hover:text-[#2997FF] transition-colors"
-              >
-                <Headphones className="w-4 h-4" />
-              </a>
-            </div>
+          {/* Right: Streamlined Utilities */}
+          <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
+            {/* 24/7 Hotline Badge */}
+            <a
+              href="tel:+6285727487507"
+              className="hidden lg:flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 hover:bg-emerald-500/20 transition-all"
+              title="Hotline NOC 24/7 & Technical Support"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>NOC: +62 857-2748-7507</span>
+            </a>
 
-            {/* Verified Docs Quick Link */}
+            {/* Official PDF & SPK Quick Trigger */}
             <button
               onClick={onOpenCredentials}
-              className="hidden lg:flex items-center space-x-1 text-[11px] font-medium text-[#0071E3] dark:text-[#2997FF] hover:underline cursor-pointer"
+              className="hidden sm:flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium text-white/80 hover:text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.08] transition-all cursor-pointer"
+              title="Unduh Company Profile & Katalog Spesifikasi PDF"
             >
-              <FileCheck className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'Contracts & SPK' : 'Kontrak & SPK'}</span>
-            </button>
-
-            {/* Official PDF Download Quick Trigger */}
-            <button
-              onClick={onOpenCredentials}
-              className="hidden sm:flex items-center space-x-1 text-[11px] font-medium text-[#0071E3] dark:text-[#2997FF] hover:underline cursor-pointer"
-              title="Unduh Company Profile & Brosur XTUR PDF"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>PDF</span>
+              <Download className="w-3.5 h-3.5 text-[#2997FF]" />
+              <span>{lang === 'en' ? 'Legal & PDFs' : 'Legal & PDF'}</span>
             </button>
 
             {/* In-Browser CMS Admin Button */}
             <button
               onClick={onOpenAdmin}
-              className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.12] border border-black/[0.08] dark:border-white/[0.12] text-[11px] font-medium text-[#1D1D1F] dark:text-white transition-colors shadow-2xs group cursor-pointer"
-              title="Open In-Browser CMS (CRUD for Projects, Services, Clients/Logos, Inquiries)"
+              className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/[0.05] hover:bg-white/[0.1] border border-white/[0.1] text-[11px] font-medium text-white transition-colors shadow-2xs group cursor-pointer"
+              title="Buka In-Browser CMS Admin"
             >
-              <Sliders className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform text-[#0071E3] dark:text-[#2997FF]" />
-              <span>CMS Admin</span>
+              <Sliders className="w-3.5 h-3.5 group-hover:rotate-45 transition-transform text-[#2997FF]" />
+              <span>CMS</span>
               {newInquiriesCount > 0 && (
-                <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#0071E3] text-white">
+                <span className="px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-[#0071E3] text-white">
                   {newInquiriesCount}
                 </span>
               )}
             </button>
 
-            {/* Apple Blue Pill CTA Button */}
+            {/* Apple Blue Pill Consultation Button */}
             <button
               onClick={onOpenConsultation}
-              className="flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs shadow-xs transition-all duration-200 group cursor-pointer"
+              className="flex items-center space-x-1 px-3.5 py-1 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs shadow-xs transition-all duration-200 group cursor-pointer"
             >
               <Lock className="w-3 h-3 text-white/90" />
               <span>{lang === 'en' ? 'Consultation' : 'Konsultasi'}</span>
-              <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
             </button>
           </div>
         </div>
@@ -314,13 +288,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Main Navigation Bar */}
       <div
-        className={`bg-[#07090E]/85 backdrop-blur-xl transition-all duration-300 ${
-          scrolled ? 'shadow-xs py-2 border-b border-white/[0.08]' : 'py-3 border-b border-white/[0.06]'
+        className={`bg-[#07090E]/90 backdrop-blur-2xl transition-all duration-300 ${
+          scrolled ? 'shadow-lg py-2 border-b border-white/[0.08]' : 'py-2.5 border-b border-white/[0.06]'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <a href="#" className="flex items-center space-x-3 group shrink-0">
             <div className="px-2.5 py-1 rounded-2xl bg-white shadow-2xs border border-black/[0.08] flex items-center transition-transform group-hover:scale-105">
               <img
                 src="/logo-mnk.png"
@@ -331,44 +305,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           {/* Desktop Links */}
-          <nav className="hidden lg:flex items-center space-x-1">
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="px-3.5 py-1.5 text-xs font-medium text-[#1D1D1F] dark:text-[#F5F5F7] hover:text-[#0071E3] dark:hover:text-[#2997FF] hover:bg-black/[0.04] dark:hover:bg-white/[0.06] rounded-full transition-all"
+                className="px-3 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/[0.08] rounded-full transition-all"
               >
                 {link.label[lang]}
               </a>
             ))}
 
-            {/* Direct Link Quick Chips */}
-            <div className="flex items-center space-x-1.5 pl-2 border-l border-black/[0.08] dark:border-white/[0.1]">
-              <a
-                href="#xtur"
-                title="Direct link to XTUR AI Vision"
-                className="px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-black/[0.04] dark:bg-white/[0.08] hover:bg-[#0071E3] hover:text-white text-[#1D1D1F] dark:text-white border border-black/[0.06] dark:border-white/[0.08] transition-all flex items-center"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#0071E3] mr-1.5"></span>
-                XTUR AI
-              </a>
-              <a
-                href="#aegis"
-                title="Direct link to Aegis Maritime Suite"
-                className="px-3 py-1 rounded-full text-[11px] font-mono font-medium bg-black/[0.04] dark:bg-white/[0.08] hover:bg-[#0071E3] hover:text-white text-[#1D1D1F] dark:text-white border border-black/[0.06] dark:border-white/[0.08] transition-all flex items-center"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2997FF] mr-1.5"></span>
-                Aegis
-              </a>
-            </div>
-
             {onSwitchToAegis && (
               <button
                 onClick={onSwitchToAegis}
-                className="ml-2 px-4 py-1.5 rounded-full text-xs font-medium bg-[#0071E3] hover:bg-[#0077ED] text-white shadow-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                className="ml-3 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-[#0071E3] to-[#2997FF] hover:brightness-110 text-white shadow-sm transition-all flex items-center gap-1.5 cursor-pointer shrink-0"
                 title="Buka Platform Solusi Enterprise AI Aegis (12 Solusi)"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
                 <span>Aegis Enterprise AI</span>
               </button>
             )}

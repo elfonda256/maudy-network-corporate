@@ -21,7 +21,7 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onO
   ];
 
   return (
-    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-transparent pt-12 pb-20 text-center">
+    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-transparent pt-16 sm:pt-24 pb-20 text-center">
       {/* Apple Subtle Diffused Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-[#0071E3]/20 via-[#2997FF]/10 to-transparent blur-[140px] rounded-full"></div>
@@ -30,7 +30,7 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onO
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
         {/* Eyebrow Pill */}
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-medium text-[#A1A1A6] mb-6 backdrop-blur-md">
+        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-medium text-[#A1A1A6] mb-6 backdrop-blur-md">
           <span className="w-1.5 h-1.5 rounded-full bg-[#2997FF] animate-pulse"></span>
           <span>Aegis Enterprise Intelligence Platform</span>
           <span className="text-[#6E6E73]">•</span>
@@ -61,7 +61,7 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onO
               onClick={onOpenBrochure}
               className="apple-pill-btn px-6 py-3 text-sm font-medium text-white bg-white/[0.08] hover:bg-white/[0.15] border border-white/[0.15] active:scale-95 transition-all cursor-pointer shadow-md flex items-center space-x-2"
             >
-              <span>📑 Buka E-Katalog & Brosur PDF</span>
+              <span>📑 Katalog &amp; Brosur PDF</span>
             </button>
           )}
 

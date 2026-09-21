@@ -12,7 +12,9 @@ import {
   Award, 
   Landmark, 
   Briefcase, 
-  Check
+  Check,
+  Cpu,
+  Bot
 } from 'lucide-react';
 import { CONTRACT_EVIDENCE } from '../data/companyData';
 
@@ -108,7 +110,7 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
           >
             <Download className="w-3.5 h-3.5" />
             <span>{lang === 'en' ? 'Official PDF Downloads' : 'Unduh Dokumen PDF'}</span>
-            <span className="ml-1 px-1.5 py-0.2 rounded-full text-[9px] bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-bold">2 FILES</span>
+            <span className="ml-1 px-1.5 py-0.2 rounded-full text-[9px] bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-bold">3 DOKUMEN</span>
           </button>
         </div>
 
@@ -252,67 +254,99 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
                 Silakan unduh dokumen profil perusahaan resmi dan katalog teknis spesifikasi produk dalam format PDF untuk keperluan peninjauan tender, verifikasi vendor, dan rapat pengadaan internal:
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {/* Download 1: Company Profile */}
-                <div className="p-6 rounded-3xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex flex-col justify-between space-y-4">
+                <div className="p-5 rounded-3xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] flex items-center justify-center mb-3">
-                      <FileText className="w-6 h-6" />
+                    <div className="w-11 h-11 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] flex items-center justify-center mb-3">
+                      <FileText className="w-5 h-5" />
                     </div>
                     <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-medium">
                       OFFICIAL PROFILE (PDF)
                     </span>
-                    <h4 className="text-base font-semibold text-[#1D1D1F] dark:text-white mt-2">
+                    <h4 className="text-sm font-semibold text-[#1D1D1F] dark:text-white mt-2">
                       Company Profile PT. Maudy Network Komunikasi
                     </h4>
                     <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] mt-1 leading-relaxed">
-                      Dokumen profil korporat resmi memuat riwayat perusahaan, legalitas resmi, daftar sertifikasi internasional (Fortinet, Cisco, Mikrotik, BNSP), dan portofolio proyek strategis.
+                      Dokumen profil korporat resmi memuat legalitas PT, NIB, sertifikasi Fortinet NSE 7, Cisco, Mikrotik, dan portofolio proyek strategis.
                     </p>
                   </div>
 
                   <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#6E6E73]">Ukuran: 2.94 MB</span>
+                    <span className="text-[11px] font-mono text-[#6E6E73]">2.94 MB</span>
                     <a
                       href="/downloads/MNK-Company-Profile-Official.pdf"
                       download="PT-Maudy-Network-Komunikasi-Company-Profile.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all flex items-center space-x-1.5 shadow-xs"
+                      className="px-4 py-2 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all flex items-center space-x-1.5 shadow-xs"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      <span>Unduh PDF</span>
+                      <span>Unduh</span>
                     </a>
                   </div>
                 </div>
 
                 {/* Download 2: XTUR AI Surveillance Profile */}
-                <div className="p-6 rounded-3xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex flex-col justify-between space-y-4">
+                <div className="p-5 rounded-3xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex flex-col justify-between space-y-4">
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] flex items-center justify-center mb-3">
-                      <Award className="w-6 h-6" />
+                    <div className="w-11 h-11 rounded-2xl bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] flex items-center justify-center mb-3">
+                      <Award className="w-5 h-5" />
                     </div>
                     <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-medium">
                       PRODUCT PROFILE (PDF)
                     </span>
-                    <h4 className="text-base font-semibold text-[#1D1D1F] dark:text-white mt-2">
+                    <h4 className="text-sm font-semibold text-[#1D1D1F] dark:text-white mt-2">
                       XTUR AI Vision Surveillance - Technical Catalog
                     </h4>
                     <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] mt-1 leading-relaxed">
-                      Brosur spesifikasi teknis lengkap XTUR AI mencakup arsitektur edge GPU, benchmark inferensi 4.2ms, daftar 57 wilayah ANPR Indonesia, integrasi RTSP 64 kamera, dan topologi hardware.
+                      Brosur spesifikasi teknis lengkap XTUR AI mencakup arsitektur edge GPU, inferensi 4.2ms, ANPR 57 wilayah, dan integrasi 64 kamera RTSP.
                     </p>
                   </div>
 
                   <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
-                    <span className="text-[11px] font-mono text-[#6E6E73]">Ukuran: 6.58 MB</span>
+                    <span className="text-[11px] font-mono text-[#6E6E73]">6.58 MB</span>
                     <a
                       href="/downloads/XTUR-AI-Surveillance-Product-Profile.pdf"
                       download="XTUR-AI-Vision-Surveillance-Product-Profile.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all flex items-center space-x-1.5 shadow-xs"
+                      className="px-4 py-2 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all flex items-center space-x-1.5 shadow-xs"
                     >
                       <Download className="w-3.5 h-3.5" />
-                      <span>Unduh PDF</span>
+                      <span>Unduh</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Download 3: Aegis Enterprise AI Suite Catalog */}
+                <div className="p-5 rounded-3xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] hover:border-[#0071E3]/40 transition-all flex flex-col justify-between space-y-4">
+                  <div>
+                    <div className="w-11 h-11 rounded-2xl bg-indigo-500/10 text-[#6366F1] dark:text-[#818CF8] flex items-center justify-center mb-3">
+                      <Cpu className="w-5 h-5" />
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-indigo-500/10 text-[#6366F1] dark:text-[#818CF8] font-medium">
+                      ENTERPRISE AI (PDF)
+                    </span>
+                    <h4 className="text-sm font-semibold text-[#1D1D1F] dark:text-white mt-2">
+                      Aegis Enterprise AI Suite - Master Technical Catalog
+                    </h4>
+                    <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] mt-1 leading-relaxed">
+                      Katalog resmi 4 halaman A4 mencakup 12 solusi enterprise AI (Maritim VSAT, XTUR Vision, OCR RAG, Sovereign Cyber Shield) dan skema B2B/PoC.
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
+                    <span className="text-[11px] font-mono text-[#6E6E73]">4 Halaman (Official)</span>
+                    <a
+                      href="/downloads/Aegis-Enterprise-AI-Catalog-2026.pdf"
+                      download="Aegis-Enterprise-AI-Catalog-2026.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-4 py-2 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all flex items-center space-x-1.5 shadow-xs"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Unduh</span>
                     </a>
                   </div>
                 </div>
