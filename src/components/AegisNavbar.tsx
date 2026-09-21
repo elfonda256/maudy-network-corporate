@@ -4,9 +4,10 @@ import { Shield, Menu, X, ChevronRight, Sparkles } from 'lucide-react';
 interface Props {
   onOpenDemo: (prefilledProduct?: string) => void;
   onSwitchToCorporate?: () => void;
+  onOpenBrochure?: () => void;
 }
 
-export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate }) => {
+export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate, onOpenBrochure }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('beranda');
@@ -121,6 +122,16 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate }
               <span className="text-[10px] font-mono">Private AI Active</span>
             </div>
 
+            {onOpenBrochure && (
+              <button
+                onClick={onOpenBrochure}
+                className="hidden md:inline-flex items-center space-x-1 px-3 py-1.5 rounded-full text-[11px] font-medium text-white bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] transition-all cursor-pointer shadow-xs"
+                title="Buka E-Katalog & Lembar Spesifikasi PDF"
+              >
+                <span>📑 E-Katalog & Brosur</span>
+              </button>
+            )}
+
             <button
               onClick={() => onOpenDemo()}
               className="apple-pill-btn inline-flex items-center justify-center px-4 py-1.5 text-[12px] font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] active:scale-95 transition-all shadow-sm cursor-pointer"
@@ -178,6 +189,19 @@ export const AegisNavbar: React.FC<Props> = ({ onOpenDemo, onSwitchToCorporate }
                   className="w-full py-2.5 px-4 text-center text-xs font-semibold text-white bg-red-600 hover:bg-red-700 rounded-full transition-all shadow-md flex items-center justify-center gap-2"
                 >
                   <span>🏢 Buka Profil Korporat PT Maudy Network</span>
+                </button>
+              </div>
+            )}
+            {onOpenBrochure && (
+              <div className="pt-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenBrochure();
+                  }}
+                  className="w-full py-2.5 text-center text-xs font-medium text-white bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] rounded-full transition-all flex items-center justify-center space-x-1.5"
+                >
+                  <span>📑 Buka E-Katalog & Brosur PDF</span>
                 </button>
               </div>
             )}

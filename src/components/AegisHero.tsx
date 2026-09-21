@@ -7,9 +7,10 @@ import {
 interface Props {
   onOpenDemo: () => void;
   onExploreSolutions: () => void;
+  onOpenBrochure?: () => void;
 }
 
-export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions }) => {
+export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions, onOpenBrochure }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const pillars = [
@@ -20,12 +21,10 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions }) =
   ];
 
   return (
-    <section id="beranda" className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#000000] pt-12 pb-24 text-center">
-      {/* Apple Subtle Diffused Ambient Glows (Not Harsh Neon) */}
+    <section id="beranda" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-transparent pt-12 pb-20 text-center">
+      {/* Apple Subtle Diffused Ambient Glows */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-[#0071E3]/15 via-[#2997FF]/5 to-transparent blur-[160px] rounded-full"></div>
-        <div className="absolute top-1/2 -left-60 w-[500px] h-[500px] bg-blue-900/10 blur-[180px] rounded-full"></div>
-        <div className="absolute top-1/2 -right-60 w-[500px] h-[500px] bg-cyan-900/10 blur-[180px] rounded-full"></div>
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[550px] bg-gradient-to-b from-[#0071E3]/20 via-[#2997FF]/10 to-transparent blur-[140px] rounded-full"></div>
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -49,13 +48,22 @@ export const AegisHero: React.FC<Props> = ({ onOpenDemo, onExploreSolutions }) =
         </p>
 
         {/* Apple Style Clean Action Controls */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mt-8">
           <button
             onClick={onOpenDemo}
-            className="apple-pill-btn px-7 py-3.5 text-sm font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] active:scale-95 transition-all shadow-lg hover:shadow-[#0071E3]/25 cursor-pointer"
+            className="apple-pill-btn px-7 py-3 text-sm font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] active:scale-95 transition-all shadow-lg hover:shadow-[#0071E3]/25 cursor-pointer"
           >
             Jadwalkan Demo
           </button>
+
+          {onOpenBrochure && (
+            <button
+              onClick={onOpenBrochure}
+              className="apple-pill-btn px-6 py-3 text-sm font-medium text-white bg-white/[0.08] hover:bg-white/[0.15] border border-white/[0.15] active:scale-95 transition-all cursor-pointer shadow-md flex items-center space-x-2"
+            >
+              <span>📑 Buka E-Katalog & Brosur PDF</span>
+            </button>
+          )}
 
           <button
             onClick={onExploreSolutions}

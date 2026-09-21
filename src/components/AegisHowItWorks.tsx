@@ -8,7 +8,7 @@ export const AegisHowItWorks: React.FC = () => {
   const stepIcons = [Database, Network, Cpu, Brain, Workflow, CheckCircle];
 
   return (
-    <section id="cara-kerja" className="relative py-28 bg-[#000000] border-t border-white/[0.06] overflow-hidden text-left">
+    <section id="cara-kerja" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden text-left">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

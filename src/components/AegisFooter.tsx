@@ -2,7 +2,11 @@ import React from 'react';
 import { Shield, ArrowUp } from 'lucide-react';
 import { PRODUCTS, INDUSTRIES } from '../data/aegisData';
 
-export const AegisFooter: React.FC = () => {
+interface AegisFooterProps {
+  onOpenBrochure?: () => void;
+}
+
+export const AegisFooter: React.FC<AegisFooterProps> = ({ onOpenBrochure }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -107,6 +111,9 @@ export const AegisFooter: React.FC = () => {
               <li><button onClick={() => scrollTo('private-ai')} className="hover:text-white">Private AI</button></li>
               <li><button onClick={() => scrollTo('security')} className="hover:text-white">Keamanan</button></li>
               <li><button onClick={() => scrollTo('tentang-kami')} className="hover:text-white">Tentang Kami</button></li>
+              {onOpenBrochure && (
+                <li><button onClick={onOpenBrochure} className="text-[#2997FF] hover:underline font-medium">📑 E-Katalog &amp; Brosur PDF</button></li>
+              )}
               <li><button onClick={() => scrollTo('kontak')} className="hover:text-white text-[#2997FF]">Jadwalkan Demo</button></li>
             </ul>
           </div>

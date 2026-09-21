@@ -11,9 +11,10 @@ import { ProductVisualIllustration } from './ProductVisualIllustration';
 interface Props {
   onOpenDemo: (prefilledProduct?: string) => void;
   onOpenProductDetail: (productId: string) => void;
+  onOpenBrochure?: () => void;
 }
 
-export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProductDetail }) => {
+export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProductDetail, onOpenBrochure }) => {
   const [activeCategory, setActiveCategory] = useState<'all' | 'enterprise' | 'industry' | 'core' | 'operations'>('all');
 
   const productIcons: Record<string, React.ElementType> = {
@@ -36,11 +37,11 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
   });
 
   return (
-    <section id="produk" className="relative py-28 bg-[#000000] border-t border-white/[0.06] overflow-hidden text-left">
+    <section id="produk" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden text-left">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
             <span>PORTFOLIO PRODUK LENGKAP (12 SOLUSI)</span>
           </div>
@@ -50,6 +51,17 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed font-sans">
             Jelajahi 12 platform solusi kecerdasan buatan, otomasi, dan analitik yang dibangun khusus untuk tantangan skala enterprise.
           </p>
+
+          {onOpenBrochure && (
+            <div className="pt-2">
+              <button
+                onClick={onOpenBrochure}
+                className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-xs font-medium text-white transition-all shadow-sm cursor-pointer"
+              >
+                <span>📑 Buka E-Katalog Lengkap &amp; Cetak Brosur PDF &rarr;</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Apple Style Filter Pills */}

@@ -8,7 +8,7 @@ export const AegisCompanyValue: React.FC = () => {
   const stageIcons = [Database, Cpu, Brain, Activity, TrendingUp];
 
   return (
-    <section id="solusi" className="relative py-28 bg-[#000000] border-t border-white/[0.06] overflow-hidden">
+    <section id="solusi" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

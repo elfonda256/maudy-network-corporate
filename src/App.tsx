@@ -48,6 +48,7 @@ import { AegisContactSection } from './components/AegisContactSection';
 import { AegisFooter } from './components/AegisFooter';
 import { AegisProductModal } from './components/AegisProductModal';
 import { AegisContactModal } from './components/AegisContactModal';
+import { AegisBrochureCatalogModal } from './components/AegisBrochureCatalogModal';
 import { PRODUCTS, type ProductItem } from './data/aegisData';
 
 export function App() {
@@ -71,6 +72,7 @@ export function App() {
   // Aegis AI Portal States
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [demoModalOpen, setDemoModalOpen] = useState(false);
+  const [brochureModalOpen, setBrochureModalOpen] = useState(false);
   const [prefilledProduct, setPrefilledProduct] = useState<string | undefined>(undefined);
 
   // Enforce Single Unified Apple Dark-Keynote Theme permanently across both portals
@@ -282,6 +284,7 @@ export function App() {
                 setDemoModalOpen(true);
               }}
               onSwitchToCorporate={() => switchPortal('corporate')}
+              onOpenBrochure={() => setBrochureModalOpen(true)}
             />
 
             {/* Main Content Sections */}
@@ -293,6 +296,7 @@ export function App() {
                   setDemoModalOpen(true);
                 }}
                 onExploreSolutions={scrollToAegisSolutions}
+                onOpenBrochure={() => setBrochureModalOpen(true)}
               />
 
               {/* 3. Company Value: AI yang Dibangun untuk Dunia Nyata */}
@@ -317,6 +321,7 @@ export function App() {
                   setDemoModalOpen(true);
                 }}
                 onOpenProductDetail={(pId) => setSelectedProductId(pId)}
+                onOpenBrochure={() => setBrochureModalOpen(true)}
               />
 
               {/* 7. Industry Section: AI untuk Berbagai Industri */}
@@ -359,7 +364,7 @@ export function App() {
             </main>
 
             {/* 16. Comprehensive Footer */}
-            <AegisFooter />
+            <AegisFooter onOpenBrochure={() => setBrochureModalOpen(true)} />
 
             {/* Interactive Product Deep-Dive Modal */}
             <AegisProductModal 
@@ -377,6 +382,17 @@ export function App() {
               isOpen={demoModalOpen}
               onClose={() => setDemoModalOpen(false)}
               prefilledProduct={prefilledProduct}
+            />
+
+            {/* Interactive Official E-Catalog & Brochure Modal */}
+            <AegisBrochureCatalogModal 
+              isOpen={brochureModalOpen}
+              onClose={() => setBrochureModalOpen(false)}
+              onOpenDemo={(pName) => {
+                setBrochureModalOpen(false);
+                setPrefilledProduct(pName);
+                setDemoModalOpen(true);
+              }}
             />
           </div>
         )}

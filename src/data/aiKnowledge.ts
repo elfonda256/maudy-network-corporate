@@ -108,6 +108,37 @@ export function queryMaudyAi(rawInput: string, lastTopic?: string): AiResponse {
     };
   }
 
+  // 1.5. BROSUR & KATALOG RESMI
+  if (
+    query.includes('brosur') || 
+    query.includes('katalog') || 
+    query.includes('catalog') || 
+    query.includes('brochure') || 
+    query.includes('unduh') ||
+    query.includes('download')
+  ) {
+    return {
+      reply: `📄 **E-Katalog & Brosur Resmi Spesifikasi Teknis 2026** telah tersedia untuk portofolio PT Maudy Network Nusantara & Aegis AI Suite:\n\n` +
+        `• **Katalog Maritim & Satelit (CAT-MARITIME-01)**: Solusi VSAT Ku/Ka-Band, Starlink Maritime LEO, dan Kepatuhan IMO MSC.428(98).\n` +
+        `• **Katalog XTUR AI Vision (CAT-VISION-02)**: Spesifikasi kamera cerdas ANPR 99.2%, deteksi perimeter, dan sensor panas termal.\n` +
+        `• **Katalog Dokumen & Procurement AI (CAT-DOC-03)**: Semantic RAG, OCR multi-bahasa, dan audit kontrak tender otomatis.\n` +
+        `• **Katalog Sovereign Cyber AI (CAT-CYBER-04)**: Arsitektur Air-Gapped on-premise, Zero-Trust, dan pencegahan ransomware.\n\n` +
+        `Anda dapat membuka lembar katalog lengkap dengan mengklik tombol **"📑 E-Katalog & Brosur"** di navigasi atas atau meminta salinan dokumen resmi via WhatsApp.`,
+      suggestions: [
+        "Minta penawaran resmi (RFP)",
+        "Jadwalkan demo teknis B2B",
+        "Konsultasi maritim via WhatsApp"
+      ],
+      actions: [
+        {
+          label: "💬 Minta Brosur & Dokumen PDF via WhatsApp",
+          type: "whatsapp",
+          payload: "Halo PT Maudy Network Nusantara, saya ingin meminta salinan E-Katalog & Brosur Resmi Spesifikasi Teknis Aegis AI Suite dan XTUR Vision."
+        }
+      ]
+    };
+  }
+
   // 2. XTUR / CCTV / KAMERA / AI VISION / ANPR
   if (
     query.includes('cctv') || 
