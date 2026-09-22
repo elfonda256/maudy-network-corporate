@@ -46,11 +46,11 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
             </h3>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {CERTIFICATIONS_LIST.map((cert, idx) => (
               <div
                 key={idx}
-                className="bg-white dark:bg-[#161617] p-5 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1 group"
+                className="w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.67rem)] lg:w-[calc(20%-0.8rem)] bg-white dark:bg-[#161617] p-5 rounded-3xl border border-black/[0.08] dark:border-white/[0.08] transition-all text-center flex flex-col justify-between shadow-xs hover:shadow-xl hover:-translate-y-1 group"
               >
                 <div>
                   {cert.image ? (
