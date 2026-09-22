@@ -10,9 +10,11 @@ import {
   LifeBuoy,
   ArrowRight,
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ProcessProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -160,7 +162,7 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
                   />
                 </div>
                 <div className="text-xs font-semibold truncate">
-                  {step.title[lang]}
+                  {getLangText(step.title, lang)}
                 </div>
               </button>
             );
@@ -176,29 +178,29 @@ export const ProcessWorkflow: React.FC<ProcessProps> = ({ lang, onOpenConsultati
               </div>
               <div>
                 <div className="text-xs font-mono text-[#0071E3] dark:text-[#2997FF] font-semibold uppercase tracking-wider">
-                  {lang === 'en' ? `Stage ${currentStep.num} Execution` : `Tahap ${currentStep.num}`}
+                  {lang === 'ja' ? `フェーズ ${currentStep.num}` : lang === 'ar' ? `المرحلة ${currentStep.num}` : lang === 'en' ? `Stage ${currentStep.num} Execution` : `Tahap ${currentStep.num}`}
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold text-[#1D1D1F] dark:text-white mt-0.5">
-                  {currentStep.title[lang]}
+                  {getLangText(currentStep.title, lang)}
                 </h3>
               </div>
             </div>
             <span className="px-3 py-1 rounded-full bg-black/[0.04] dark:bg-white/[0.08] text-[#1D1D1F] dark:text-white text-xs font-mono font-medium border border-black/[0.06] dark:border-white/[0.08]">
-              {lang === 'en' ? 'Verified Protocol' : 'Standar Baku MNK'}
+              {lang === 'ja' ? '標準プロトコル' : lang === 'ar' ? 'معيار معتمد' : lang === 'en' ? 'Verified Protocol' : 'Standar Baku MNK'}
             </span>
           </div>
 
           <div className="py-6 space-y-4">
             <p className="text-sm text-[#1D1D1F] dark:text-slate-200 leading-relaxed font-normal">
-              {currentStep.shortDesc[lang]}
+              {getLangText(currentStep.shortDesc, lang)}
             </p>
 
             <div className="bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
               <div className="text-xs font-mono text-[#1D1D1F] dark:text-white uppercase tracking-wider mb-3 font-semibold">
-                {lang === 'en' ? 'Standard Deliverables at this Stage:' : 'Dokumen & Output Tahapan Ini:'}
+                {lang === 'ja' ? 'このフェーズでの主要成果物:' : lang === 'ar' ? 'المخرجات والوثائق المعتمدة لهذه المرحلة:' : lang === 'en' ? 'Standard Deliverables at this Stage:' : 'Dokumen & Output Tahapan Ini:'}
               </div>
               <ul className="space-y-2.5">
-                {currentStep.deliverables[lang].map((d, dIdx) => (
+                {((currentStep.deliverables as any)[lang] || currentStep.deliverables.en || currentStep.deliverables.id || []).map((d: string, dIdx: number) => (
                   <li key={dIdx} className="flex items-center space-x-2.5 text-xs sm:text-sm text-[#1D1D1F] dark:text-slate-300">
                     <CheckCircle className="w-4 h-4 text-[#0071E3] dark:text-[#2997FF] flex-shrink-0" />
                     <span>{d}</span>

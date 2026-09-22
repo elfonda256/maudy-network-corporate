@@ -12,9 +12,10 @@ import {
   Activity, 
   Sparkles 
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
 
 interface InteractiveEstimatorProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -69,6 +70,34 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
   const guaranteedEcdis = satType === 'vsat512' ? '204 Kbps / Vessel' : satType === 'vsat1024' ? '410 Kbps / Vessel' : '15 Mbps / Vessel';
   const dataSavedPercent = satType === 'hybridStarlink' ? '45%' : '35%';
 
+  // Translations helper
+  const isEn = lang === 'en';
+  const isJa = lang === 'ja';
+  const isAr = lang === 'ar';
+
+  const t = {
+    badge: isJa ? 'インタラクティブ・エンジニアリング試算' : isAr ? 'حاسبة التقدير الفني التفاعلية' : isEn ? 'INTERACTIVE CLIENT ESTIMATOR' : 'KALKULATOR ESTIMASI KEBUTUHAN TEKNIS',
+    titleMain: isJa ? 'ハードウェア＆処理能力の' : isAr ? 'احسب متطلبات الأجهزة والبنية التحتية' : isEn ? 'Calculate Your Enterprise' : 'Simulasikan Kebutuhan',
+    titleGradient: isJa ? 'リアルタイム試算' : isAr ? 'والسعة المؤسسية' : isEn ? 'Architecture & Capacity' : 'Hardware & Bandwidth',
+    titleSuffix: isJa ? 'シミュレーション' : isAr ? 'لمنشأتك' : isEn ? '' : 'Anda',
+    subtitle: isJa
+      ? 'GPU推論能力、エッジハードウェア要件、衛星帯域幅QoS効率をリアルタイムで試算できます。'
+      : isAr
+      ? 'قيّم متطلبات الأجهزة، وقدرة استدلال معالجات الرسوم، وكفاءة النطاق الترددي للاتصالات الفضائية في الوقت الفعلي.'
+      : isEn
+      ? 'Evaluate hardware requirements, GPU inferencing capacity, and QoS bandwidth efficiency tailored to your operations in real-time.'
+      : 'Dapatkan gambaran instan spesifikasi GPU, latensi inferensi, dan efisiensi bandwidth satelit sebelum mengajukan implementasi resmi.',
+    xturTab: isJa ? 'XTUR AIビジョン試算' : isAr ? 'مقدّر رؤية XTUR الذكية' : isEn ? 'XTUR AI Vision Edge Estimator' : 'Estimator Kamera AI XTUR',
+    aegisTab: isJa ? 'Aegis 船舶衛星QoS試算' : isAr ? 'مقدّر جودة الاتصال البحري Aegis' : isEn ? 'Aegis Maritime Satellite QoS' : 'Estimator Bandwidth Kapal Aegis',
+    camStreams: isJa ? '1. RTSPカメラ接続数' : isAr ? '1. إجمالي تدفقات كاميرات RTSP' : isEn ? '1. Total RTSP Camera Streams' : '1. Jumlah Kamera CCTV Terpasang',
+    resLabel: isJa ? '2. ビデオ解像度' : isAr ? '2. دقة تدفق الفيديو' : isEn ? '2. Video Stream Resolution' : '2. Resolusi Video Kamera',
+    modulesLabel: isJa ? '3. 稼働AI検出モジュール' : isAr ? '3. وحدات الرؤية بالذكاء الاصطناعي النشطة' : isEn ? '3. Active AI Vision Modules' : 'Modul Deteksi Kecerdasan Buatan (AI)',
+    vesselSize: isJa ? '1. 船隊規模（タンカー・貨物船）' : isAr ? '1. حجم أسطول السفن والناقلات' : isEn ? '1. Vessel Fleet Size' : '1. Jumlah Armada Kapal Tanker / Kargo',
+    satTopo: isJa ? '2. 船舶衛星通信トポロジー' : isAr ? '2. طبولوجيا الاتصالات الفضائية' : isEn ? '2. Satellite Communication Topology' : '2. Tipe Saluran Satelit Kapal',
+    ctaXtur: isJa ? 'この構成でXTURの導入を申請' : isAr ? 'تقديم طلب نشر XTUR بهذا التكوين' : isEn ? 'Deploy XTUR With This Configuration' : 'Ajukan Implementasi Berdasarkan Estimasi Ini',
+    ctaAegis: isJa ? '船隊向けAegis Maritime導入相談' : isAr ? 'استشارة نشر Aegis Maritime للأسطول' : isEn ? 'Consult Aegis Maritime For Fleet' : 'Konsultasikan Implementasi Armada Kapal',
+  };
+
   return (
     <section id="estimator" className="py-24 bg-transparent relative overflow-hidden transition-colors">
       {/* Top Animated Beam Sweep Divider */}
@@ -79,23 +108,13 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <Calculator className="w-3.5 h-3.5 mr-1" />
-            <span>{lang === 'en' ? 'INTERACTIVE CLIENT ESTIMATOR' : 'KALKULATOR ESTIMASI KEBUTUHAN TEKNIS'}</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
-              <>
-                Calculate Your Enterprise <span className="text-gradient-brand">Architecture & Capacity</span>
-              </>
-            ) : (
-              <>
-                Simulasikan Kebutuhan <span className="text-gradient-brand">Hardware & Bandwidth</span> Anda
-              </>
-            )}
+            {t.titleMain} <span className="text-gradient-brand">{t.titleGradient}</span> {t.titleSuffix}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
-              ? 'Evaluate hardware requirements, GPU inferencing capacity, and QoS bandwidth efficiency tailored to your operations in real-time.'
-              : 'Dapatkan gambaran instan spesifikasi GPU, latensi inferensi, dan efisiensi bandwidth satelit sebelum mengajukan implementasi resmi.'}
+            {t.subtitle}
           </p>
 
           {/* Mode Switcher Tabs (Apple Pill Style) */}
@@ -109,7 +128,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               }`}
             >
               <Cpu className="w-4 h-4" />
-              <span>{lang === 'en' ? 'XTUR AI Vision Edge Estimator' : 'Estimator Kamera AI XTUR'}</span>
+              <span>{t.xturTab}</span>
             </button>
             <button
               onClick={() => setActiveTab('aegis')}
@@ -120,7 +139,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               }`}
             >
               <Anchor className="w-4 h-4" />
-              <span>{lang === 'en' ? 'Aegis Maritime Satellite QoS' : 'Estimator Bandwidth Kapal Aegis'}</span>
+              <span>{t.aegisTab}</span>
             </button>
           </div>
         </div>
@@ -133,7 +152,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono">
-                    1. {lang === 'en' ? 'Total RTSP Camera Streams' : 'Jumlah Kamera CCTV Terpasang'}
+                    {t.camStreams}
                   </label>
                   <span className="text-base font-bold font-mono text-[#0071E3] dark:text-[#2997FF]">
                     {cameraCount} Streams
@@ -159,7 +178,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               {/* Stream Resolution */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono mb-2">
-                  2. {lang === 'en' ? 'Video Stream Resolution' : 'Resolusi Video Kamera'}
+                  {t.resLabel}
                 </label>
                 <div className="grid grid-cols-3 gap-3">
                   {[
@@ -186,14 +205,30 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               {/* Active AI Modules */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono mb-2">
-                  3. {lang === 'en' ? 'Active AI Vision Modules' : 'Modul Deteksi Kecerdasan Buatan (AI)'}
+                  {t.modulesLabel}
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {[
-                    { key: 'anpr', label: 'ANPR (57 Kode Wilayah Plat)', desc: 'Pengenalan plat & log kendaraan otonom' },
-                    { key: 'ppe', label: 'Audit K3 (Helm & Rompi APD)', desc: 'Inspeksi keselamatan kerja konstruksi/pabrik' },
-                    { key: 'intrusion', label: 'Intrusi Perimeter & Garis Virtual', desc: 'Pendeteksian penyusup di zona terlarang' },
-                    { key: 'fireSmoke', label: 'Deteksi Dini Asap & Api (Thermal)', desc: 'Peringatan dini insiden kebakaran' },
+                    { 
+                      key: 'anpr', 
+                      label: isJa ? 'ANPR ナンバープレート認識' : isAr ? 'التعرف على اللوحات (ANPR)' : isEn ? 'ANPR License Plate AI' : 'ANPR (57 Kode Wilayah Plat)', 
+                      desc: isJa ? 'リアルタイム車両認識および自律ログ記録' : isAr ? 'التعرف البصري على لوحات المركبات وتسجيلها' : isEn ? 'Real-time vehicle OCR and access logging' : 'Pengenalan plat & log kendaraan otonom' 
+                    },
+                    { 
+                      key: 'ppe', 
+                      label: isJa ? '安全保護具（PPE）遵守監査' : isAr ? 'تدقيق معدات الوقاية والسلامة' : isEn ? 'HSE Safety PPE Audit' : 'Audit K3 (Helm & Rompi APD)', 
+                      desc: isJa ? 'ヘルメット・安全ベストの自動着用確認' : isAr ? 'فحص الامتثال للخوذة والسترات العاكسة' : isEn ? 'Hardhat & vest compliance inspection' : 'Inspeksi keselamatan kerja konstruksi/pabrik' 
+                    },
+                    { 
+                      key: 'intrusion', 
+                      label: isJa ? '侵入検知・仮想境界線' : isAr ? 'كشف التسلل والحدود الافتراضية' : isEn ? 'Perimeter Intrusion Tripwire' : 'Intrusi Perimeter & Garis Virtual', 
+                      desc: isJa ? '制限区域侵入および境界線の即時警告' : isAr ? 'تنبيهات اختراق المنطقة المحظورة' : isEn ? 'Virtual tripwire & restricted zone alerts' : 'Pendeteksian penyusup di zona terlarang' 
+                    },
+                    { 
+                      key: 'fireSmoke', 
+                      label: isJa ? '熱検知・煙・火災早期警戒' : isAr ? 'الكشف المبكر عن الحرائق والدخان' : isEn ? 'Thermal Fire & Smoke Detection' : 'Deteksi Dini Asap & Api (Thermal)', 
+                      desc: isJa ? '炎と煙の兆候をミリ秒単位で検知' : isAr ? 'اكتشاف سريع لانبعاثات اللهب والدخان' : isEn ? 'Rapid thermal flame signature detection' : 'Peringatan dini insiden kebakaran' 
+                    },
                   ].map((mod) => {
                     const isChecked = modules[mod.key as keyof typeof modules];
                     return (
@@ -281,7 +316,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   onClick={onOpenConsultation}
                   className="w-full py-3.5 px-6 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer"
                 >
-                  <span>{lang === 'en' ? 'Deploy XTUR With This Configuration' : 'Ajukan Implementasi Berdasarkan Estimasi Ini'}</span>
+                  <span>{t.ctaXtur}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
@@ -294,10 +329,10 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <label className="text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono">
-                    1. {lang === 'en' ? 'Vessel Fleet Size' : 'Jumlah Armada Kapal Tanker / Kargo'}
+                    {t.vesselSize}
                   </label>
                   <span className="text-base font-bold font-mono text-[#0071E3] dark:text-[#2997FF]">
-                    {vesselCount} Kapal
+                    {vesselCount} {isJa ? '隻' : isAr ? 'سفينة' : isEn ? 'Vessels' : 'Kapal'}
                   </span>
                 </div>
                 <input
@@ -310,23 +345,35 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   className="w-full accent-[#0071E3] cursor-pointer h-2 bg-black/[0.06] dark:bg-white/[0.1] rounded-lg"
                 />
                 <div className="flex justify-between text-[10px] font-mono text-[#6E6E73] dark:text-[#A1A1A6] mt-1">
-                  <span>1 Kapal</span>
-                  <span>15 Kapal</span>
-                  <span>30 Kapal (Pertamina Scale)</span>
-                  <span>50 Kapal</span>
+                  <span>1 {isJa ? '隻' : isAr ? 'سفينة' : isEn ? 'Vessel' : 'Kapal'}</span>
+                  <span>15 {isJa ? '隻' : isAr ? 'سفينة' : isEn ? 'Vessels' : 'Kapal'}</span>
+                  <span>30 {isJa ? '隻 (大手規模)' : isAr ? 'سفينة (أسطول ضخم)' : isEn ? 'Vessels (Enterprise)' : 'Kapal (Pertamina Scale)'}</span>
+                  <span>50 {isJa ? '隻' : isAr ? 'سفينة' : isEn ? 'Vessels' : 'Kapal'}</span>
                 </div>
               </div>
 
               {/* Satellite Telemetry Link */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-[#1D1D1F] dark:text-white font-mono mb-2">
-                  2. {lang === 'en' ? 'Satellite Communication Topology' : 'Tipe Saluran Satelit Kapal'}
+                  {t.satTopo}
                 </label>
                 <div className="space-y-2.5">
                   {[
-                    { id: 'vsat512', label: 'Maritime VSAT Ku-Band 512 Kbps', desc: 'Standar pelayaran internasional dengan bandwidth ketat (Prioritas ECDIS 40%)' },
-                    { id: 'vsat1024', label: 'Maritime VSAT Ku-Band 1 Mbps', desc: 'Peningkatan kapasitas telemetri mesin kapal dan transmisi data fuel oil real-time' },
-                    { id: 'hybridStarlink', label: 'Starlink Maritime LEO + 4G Coastal Hybrid', desc: 'Kecepatan tinggi multi-orbit dengan failover sub-detik < 800ms saat di laut lepas' },
+                    { 
+                      id: 'vsat512', 
+                      label: isJa ? '海洋VSAT Ku-Band 512 Kbps' : isAr ? 'اتصال VSAT البحري Ku-Band 512 كيلوبت' : 'Maritime VSAT Ku-Band 512 Kbps', 
+                      desc: isJa ? '国際航海標準・ECDIS帯域40%完全保護' : isAr ? 'معيار الملاحة الدولية مع ضمان 40% لنظام ECDIS' : isEn ? 'International maritime standard with strict QoS priority (40% ECDIS reserved)' : 'Standar pelayaran internasional dengan bandwidth ketat (Prioritas ECDIS 40%)' 
+                    },
+                    { 
+                      id: 'vsat1024', 
+                      label: isJa ? '海洋VSAT Ku-Band 1 Mbps' : isAr ? 'اتصال VSAT البحري Ku-Band 1 ميجابت' : 'Maritime VSAT Ku-Band 1 Mbps', 
+                      desc: isJa ? '機関テレメトリおよび燃料消費量のリアルタイム同期' : isAr ? 'سعة موسعة لنقل بيانات المحرك ومراقبة الوقود فورياً' : isEn ? 'Enhanced engine telemetry and real-time fuel oil consumption logging' : 'Peningkatan kapasitas telemetri mesin kapal dan transmisi data fuel oil real-time' 
+                    },
+                    { 
+                      id: 'hybridStarlink', 
+                      label: isJa ? 'Starlink 海洋LEO + 4G沿岸ハイブリッド' : isAr ? 'نظام Starlink Maritime LEO + 4G الهجين' : 'Starlink Maritime LEO + 4G Coastal Hybrid', 
+                      desc: isJa ? 'マルチ軌道高速通信・公海上<800msサブ秒自動フェイルオーバー' : isAr ? 'سرعة فائقة متعددة المدارات مع تحويل تلقائي في أقل من 800 مللي ثانية' : isEn ? 'High-speed multi-orbit with sub-second failover < 800ms across open oceans' : 'Kecepatan tinggi multi-orbit dengan failover sub-detik < 800ms saat di laut lepas' 
+                    },
                   ].map((st) => (
                     <div
                       key={st.id}
@@ -367,7 +414,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">TOTAL FLEET BANDWIDTH</div>
                     <div className="text-base font-bold text-[#0071E3] dark:text-[#2997FF] mt-0.5 truncate">{totalProtectedBandwidth}</div>
-                    <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">{vesselCount} Tanker Ships</div>
+                    <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">{vesselCount} {isJa ? '隻の船舶' : isAr ? 'سفينة في الأسطول' : isEn ? 'Tanker Ships' : 'Armada Kapal'}</div>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">GUARANTEED ECDIS</div>
@@ -376,7 +423,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-[#6E6E73] dark:text-[#A1A1A6] text-[10px] font-medium uppercase tracking-wider">QoS TRAFFIC SAVING</div>
-                    <div className="text-lg font-bold text-[#34C759] mt-0.5">{dataSavedPercent} Efisiensi</div>
+                    <div className="text-lg font-bold text-[#34C759] mt-0.5">{dataSavedPercent} {isJa ? '帯域節減' : isAr ? 'توفير بالضغط' : isEn ? 'Efficiency' : 'Efisiensi'}</div>
                     <div className="text-[9px] text-[#6E6E73] dark:text-[#A1A1A6]">Kompresi Paket Cerdas</div>
                   </div>
                   <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08]">
@@ -389,10 +436,16 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                 <div className="p-4 rounded-2xl bg-black/[0.02] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] space-y-1">
                   <div className="text-[10px] font-mono text-[#34C759] uppercase tracking-wider flex items-center font-bold">
                     <ShieldCheck className="w-3.5 h-3.5 mr-1" />
-                    Perlindungan Perimeter Sesuai Standar Maritim
+                    {isJa ? '国際海事基準準拠セキュリティ' : isAr ? 'حماية محيطية وفق المعايير البحرية الدولية' : isEn ? 'IMO 2021 Compliant Maritime Cyber Security' : 'Perlindungan Perimeter Sesuai Standar Maritim'}
                   </div>
                   <div className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed">
-                    Zero-Trust VLAN Isolasi, Pemisahan Jaringan Kru Kapal vs OT Mesin, serta Firewall Karantina Malware Lepas Pantai.
+                    {isJa
+                      ? 'ゼロトラストVLAN分離、船員ネットワークと機関部OTの隔離、洋上マルウェア検疫ファイアウォール。'
+                      : isAr
+                      ? 'عزل شبكات VLAN بنموذج انعدام الثقة (Zero-Trust)، وفصل شبكات الطاقم عن أنظمة التشغيل والتحكم (OT).'
+                      : isEn
+                      ? 'Zero-Trust VLAN isolation, crew vs OT engine network segmentation, and offshore malware quarantine firewall.'
+                      : 'Zero-Trust VLAN Isolasi, Pemisahan Jaringan Kru Kapal vs OT Mesin, serta Firewall Karantina Malware Lepas Pantai.'}
                   </div>
                 </div>
               </div>
@@ -402,7 +455,7 @@ export const InteractiveEstimator: React.FC<InteractiveEstimatorProps> = ({
                   onClick={onOpenConsultation}
                   className="w-full py-3.5 px-6 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer"
                 >
-                  <span>{lang === 'en' ? 'Consult Aegis Maritime For Fleet' : 'Konsultasikan Implementasi Armada Kapal'}</span>
+                  <span>{t.ctaAegis}</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

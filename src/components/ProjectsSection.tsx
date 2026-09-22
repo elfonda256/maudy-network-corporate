@@ -4,9 +4,11 @@ import { getClientLogo } from '../data/companyData';
 import { ProjectModal } from './ProjectModal';
 import { ArrowUpRight, MapPin, FileCheck } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ProjectsSectionProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -19,12 +21,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const categories = [
-    { id: 'all', label: { en: 'All Engagements', id: 'Semua Portofolio' } },
-    { id: 'maritime', label: { en: 'Maritime & Tankers', id: 'Maritim & Armada Kapal' } },
-    { id: 'government', label: { en: 'Government & Ministries', id: 'Kementerian & BUMN' } },
-    { id: 'energy', label: { en: 'Power & Energy', id: 'Kelistrikan & Energi' } },
-    { id: 'enterprise', label: { en: 'Enterprise & Higher Ed', id: 'Korporasi & Kampus' } },
-    { id: 'infrastructure', label: { en: 'Outdoor & Command Centers', id: 'Infrastruktur & Ruang Kontrol' } },
+    { id: 'all', label: { en: 'All Engagements', id: 'Semua Portofolio', ja: '全導入実績', ar: 'كافة المشاريع' } },
+    { id: 'maritime', label: { en: 'Maritime & Tankers', id: 'Maritim & Armada Kapal', ja: '海運・タンカー艦隊', ar: 'الملاحة البحرية وناقلات النفط' } },
+    { id: 'government', label: { en: 'Government & Ministries', id: 'Kementerian & BUMN', ja: '政府機関・国営企業', ar: 'الوزارات والمؤسسات الحكومية' } },
+    { id: 'energy', label: { en: 'Power & Energy', id: 'Kelistrikan & Energi', ja: '電力・エネルギー', ar: 'الطاقة والكهرباء' } },
+    { id: 'enterprise', label: { en: 'Enterprise & Higher Ed', id: 'Korporasi & Kampus', ja: '大企業・高等教育機関', ar: 'الشركات والجامعات' } },
+    { id: 'infrastructure', label: { en: 'Outdoor & Command Centers', id: 'Infrastruktur & Ruang Kontrol', ja: '重要インフラ・司令室', ar: 'البنية التحتية ومراكز القيادة' } },
   ];
 
   const filteredProjects =
@@ -70,7 +72,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.06] dark:border-white/[0.08]'
               }`}
             >
-              {cat.label[lang]}
+              {getLangText(cat.label, lang)}
             </button>
           ))}
         </div>
@@ -152,7 +154,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </h3>
 
                   <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal mb-4 line-clamp-3">
-                    {project.summary[lang]}
+                    {getLangText(project.summary, lang)}
                   </p>
 
                   {/* Key Tech tags */}

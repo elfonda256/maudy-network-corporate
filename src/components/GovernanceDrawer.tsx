@@ -18,10 +18,13 @@ import {
 } from 'lucide-react';
 import { CONTRACT_EVIDENCE } from '../data/companyData';
 
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
+
 interface GovernanceDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
@@ -127,7 +130,7 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
                   <div className="relative h-44 bg-black/5 overflow-hidden border-b border-black/[0.06] dark:border-white/[0.08]">
                     <img
                       src={doc.image}
-                      alt={doc.title[lang]}
+                      alt={getLangText(doc.title, lang)}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-2 right-2">
@@ -141,14 +144,14 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
                   <div className="p-5 flex-1 flex flex-col justify-between">
                     <div>
                       <h4 className="text-sm font-semibold text-[#1D1D1F] dark:text-white mb-1.5 group-hover:text-[#0071E3] transition-colors">
-                        {doc.title[lang]}
+                        {getLangText(doc.title, lang)}
                       </h4>
                       <div className="flex items-center text-xs text-[#0071E3] dark:text-[#2997FF] font-mono mb-2">
                         <Building2 className="w-3.5 h-3.5 mr-1 text-[#6E6E73]" />
                         <span>{doc.client}</span>
                       </div>
                       <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] font-normal leading-relaxed mb-3">
-                        {doc.description[lang]}
+                        {getLangText(doc.description, lang)}
                       </p>
                     </div>
 

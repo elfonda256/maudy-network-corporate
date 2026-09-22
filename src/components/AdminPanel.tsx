@@ -28,6 +28,7 @@ import {
 import { useCms } from '../context/CmsContext';
 import type { ClientItem, Inquiry } from '../context/CmsContext';
 import type { Project, Service } from '../data/companyData';
+import type { Language } from '../i18n/translations';
 
 interface ImageImporterProps {
   label: string;
@@ -162,7 +163,7 @@ const ImageImporter: React.FC<ImageImporterProps> = ({
 interface AdminPanelProps {
   isOpen: boolean;
   onClose: () => void;
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, onClose, lang }) => {

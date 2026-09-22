@@ -1,12 +1,37 @@
 import React from 'react';
 import { CERTIFICATIONS_LIST } from '../data/companyData';
 import { Award, Shield } from 'lucide-react';
+import type { Language } from '../i18n/translations';
 
 interface CertificationsProps {
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) => {
+  const badgeText = lang === 'ja'
+    ? '世界水準の公式技術認証'
+    : lang === 'ar'
+    ? 'الاعتمادات والشهادات الدولية الرسمية'
+    : lang === 'en'
+    ? 'WORLD-CLASS CREDENTIALS'
+    : 'SERTIFIKASI INTERNASIONAL RESMI';
+
+  const descText = lang === 'ja'
+    ? 'すべてのネットワーク基盤は、Cisco、Fortinet、MikroTik、Ruijie、および国家資格委員会（BNSP）認定の専任エンジニアによって設計・構築されます。'
+    : lang === 'ar'
+    ? 'يتم تصميم وتنفيذ جميع شبكاتنا وبنيتنا التحتية بواسطة مهندسين معتمدين رسمياً من Cisco وFortinet وMikroTik وRuijie والهيئة الوطنية BNSP.'
+    : lang === 'en'
+    ? 'Our infrastructure designs are led by verified architects certified by Cisco, Fortinet, MikroTik, Ruijie, and the National Professional Certification Board (BNSP).'
+    : 'Seluruh arsitektur jaringan dirancang dan dieksekusi oleh tenaga ahli pemegang sertifikasi resmi Cisco, Fortinet, MikroTik, Ruijie, dan BNSP.';
+
+  const listTitle = lang === 'ja'
+    ? '専任エンジニア保有技術資格一覧'
+    : lang === 'ar'
+    ? 'قائمة الشهادات الفنية المعتمدة للمهندسين'
+    : lang === 'en'
+    ? 'Elite Engineering Accreditations'
+    : 'Daftar Sertifikasi Kompetensi Insinyur';
+
   return (
     <section id="certifications" className="py-24 bg-transparent relative overflow-hidden transition-colors">
       {/* Top Animated Beam Sweep Divider */}
@@ -17,10 +42,18 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <Shield className="w-3.5 h-3.5 mr-1" />
-            <span>{lang === 'en' ? 'WORLD-CLASS CREDENTIALS' : 'SERTIFIKASI INTERNASIONAL RESMI'}</span>
+            <span>{badgeText}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
+            {lang === 'ja' ? (
+              <>
+                公式エンジニアリング資格・<span className="text-gradient-brand">国際認定</span>
+              </>
+            ) : lang === 'ar' ? (
+              <>
+                شهادات الكفاءة الهندسية و<span className="text-gradient-brand">الاعتمادات العالمية</span>
+              </>
+            ) : lang === 'en' ? (
               <>
                 Certified Engineering <span className="text-gradient-brand">Accreditations</span>
               </>
@@ -31,9 +64,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
             )}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
-              ? 'Our infrastructure designs are led by verified architects certified by Cisco, Fortinet, MikroTik, Ruijie, and the National Professional Certification Board (BNSP).'
-              : 'Seluruh arsitektur jaringan dirancang dan dieksekusi oleh tenaga ahli pemegang sertifikasi resmi Cisco, Fortinet, MikroTik, Ruijie, dan BNSP.'}
+            {descText}
           </p>
         </div>
 
@@ -42,7 +73,7 @@ export const CertificationsSection: React.FC<CertificationsProps> = ({ lang }) =
           <div className="text-center mb-8">
             <h3 className="text-xl font-semibold text-[#1D1D1F] dark:text-white flex items-center justify-center space-x-2">
               <Award className="w-5 h-5 text-[#0071E3] dark:text-[#2997FF]" />
-              <span>{lang === 'en' ? 'Elite Engineering Accreditations' : 'Daftar Sertifikasi Kompetensi Insinyur'}</span>
+              <span>{listTitle}</span>
             </h3>
           </div>
 

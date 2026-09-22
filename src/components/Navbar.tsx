@@ -15,10 +15,12 @@ import {
 } from 'lucide-react';
 import { PRODUCTS_LIST, SERVICES_LIST, PROJECTS_LIST, CERTIFICATIONS_LIST } from '../data/companyData';
 import { useCms } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
+import { LANGUAGES, TRANSLATIONS, getLangText } from '../i18n/translations';
 
 interface NavbarProps {
-  lang: 'en' | 'id';
-  setLang: (lang: 'en' | 'id') => void;
+  lang: Language;
+  setLang: (lang: Language) => void;
   onOpenConsultation: () => void;
   onOpenCredentials: () => void;
   onOpenAdmin: () => void;
@@ -48,12 +50,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { href: '#services', label: { en: 'Solutions', id: 'Solusi Korporasi' } },
-    { href: '#industries', label: { en: 'Maritime & VSAT', id: 'Maritim & VSAT' } },
-    { href: '#projects', label: { en: 'Portfolio', id: 'Portofolio' } },
-    { href: '#products', label: { en: 'XTUR & Tech', id: 'Inovasi & XTUR' } },
-    { href: '#about', label: { en: 'About MNK', id: 'Tentang MNK' } },
-    { href: '#contact', label: { en: 'Support & NOC', id: 'Bantuan & NOC' } },
+    { href: '#services', label: TRANSLATIONS.nav.corporate.solutions },
+    { href: '#industries', label: TRANSLATIONS.nav.corporate.maritime },
+    { href: '#projects', label: TRANSLATIONS.nav.corporate.portfolio },
+    { href: '#products', label: TRANSLATIONS.nav.corporate.innovation },
+    { href: '#about', label: TRANSLATIONS.nav.corporate.about },
+    { href: '#contact', label: TRANSLATIONS.nav.corporate.contact },
   ];
 
   // Live search filtering across Products, Services, Projects, and Certifications
@@ -72,7 +74,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     PRODUCTS_LIST.forEach((prod) => {
       const nameMatch = prod.name.toLowerCase().includes(q);
       const taglineMatch = prod.tagline.toLowerCase().includes(q);
-      const descMatch = prod.description[lang].toLowerCase().includes(q);
+      const descText = getLangText(prod.description, lang);
+      const descMatch = descText.toLowerCase().includes(q);
       if (nameMatch || taglineMatch || descMatch) {
         results.push({
           category: 'Product',
@@ -91,12 +94,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
     // Services
     SERVICES_LIST.forEach((srv: any) => {
-      const titleMatch = srv.title[lang].toLowerCase().includes(q);
-      const descMatch = srv.description[lang].toLowerCase().includes(q);
+      const srvTitle = getLangText(srv.title, lang);
+      const srvDesc = getLangText(srv.description, lang);
+      const titleMatch = srvTitle.toLowerCase().includes(q);
+      const descMatch = srvDesc.toLowerCase().includes(q);
       if (titleMatch || descMatch) {
         results.push({
           category: 'Service',
-          title: srv.title[lang],
+          title: srvTitle,
           subtitle: srv.category,
           action: () => {
             const el = document.getElementById('services');
@@ -152,28 +157,23 @@ export const Navbar: React.FC<NavbarProps> = ({
       {/* Top Utility Micro-Bar */}
       <div className="bg-[#07090E]/95 backdrop-blur-2xl border-b border-white/[0.08] transition-colors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between text-xs gap-3">
-          {/* Left: Language Capsule */}
+          {/* Left: Language Capsule (Apple 4-Language Pill) */}
           <div className="flex items-center p-0.5 rounded-full bg-white/[0.06] border border-white/[0.08] text-[11px] font-medium shrink-0">
-            <button
-              onClick={() => setLang('id')}
-              className={`px-2.5 py-0.5 rounded-full transition-all cursor-pointer ${
-                lang === 'id'
-                  ? 'bg-[#0071E3] text-white shadow-xs font-semibold'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              ID
-            </button>
-            <button
-              onClick={() => setLang('en')}
-              className={`px-2.5 py-0.5 rounded-full transition-all cursor-pointer ${
-                lang === 'en'
-                  ? 'bg-[#0071E3] text-white shadow-xs font-semibold'
-                  : 'text-white/60 hover:text-white'
-              }`}
-            >
-              EN
-            </button>
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLang(l.code)}
+                title={l.nativeName}
+                className={`px-2 py-0.5 rounded-full transition-all cursor-pointer flex items-center gap-1 text-[11px] ${
+                  lang === l.code
+                    ? 'bg-[#0071E3] text-white shadow-xs font-semibold'
+                    : 'text-white/60 hover:text-white hover:bg-white/[0.05]'
+                }`}
+              >
+                <span>{l.flag}</span>
+                <span>{l.label}</span>
+              </button>
+            ))}
           </div>
 
           {/* Center: Search Box (Apple Pill Style with Live Dropdown) */}
@@ -184,7 +184,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={lang === 'en' ? 'Search solutions, VSAT maritim, XTUR AI, SPK...' : 'Cari solusi, VSAT maritim, XTUR AI, SPK...'}
+                placeholder={getLangText(TRANSLATIONS.nav.corporate.searchPlaceholder, lang)}
                 className="w-full pl-9 pr-8 py-1.5 rounded-full bg-white/[0.06] hover:bg-white/[0.09] border border-white/[0.1] text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#2997FF] focus:bg-black/60 transition-all"
               />
               {searchQuery && (
@@ -201,8 +201,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             {searchResults.length > 0 && (
               <div className="absolute top-full left-0 right-0 mt-2 rounded-2xl bg-[#121622] border border-white/[0.15] shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="px-3.5 py-2 bg-white/[0.03] border-b border-white/[0.08] text-[10px] font-mono text-white/60 flex items-center justify-between">
-                  <span>{lang === 'en' ? 'SEARCH RESULTS' : 'HASIL PENCARIAN SISTEM'}</span>
-                  <span className="text-[#2997FF] font-semibold">{searchResults.length} {lang === 'en' ? 'MATCHES' : 'DITEMUKAN'}</span>
+                  <span>{getLangText(TRANSLATIONS.nav.corporate.searchResults, lang)}</span>
+                  <span className="text-[#2997FF] font-semibold">{searchResults.length} {getLangText(TRANSLATIONS.nav.corporate.matchesFound, lang)}</span>
                 </div>
                 <div className="divide-y divide-white/[0.06] max-h-72 overflow-y-auto">
                   {searchResults.map((item, idx) => (
@@ -256,7 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               title="Unduh Company Profile & Katalog Spesifikasi PDF"
             >
               <Download className="w-3.5 h-3.5 text-[#2997FF]" />
-              <span>{lang === 'en' ? 'Legal & PDFs' : 'Legal & PDF'}</span>
+              <span>{getLangText(TRANSLATIONS.nav.corporate.credentialsBtn, lang)}</span>
             </button>
 
             {/* In-Browser CMS Admin Button */}
@@ -280,7 +280,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               className="flex items-center space-x-1 px-3.5 py-1 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs shadow-xs transition-all duration-200 group cursor-pointer"
             >
               <Lock className="w-3 h-3 text-white/90" />
-              <span>{lang === 'en' ? 'Consultation' : 'Konsultasi'}</span>
+              <span>{getLangText(TRANSLATIONS.nav.corporate.consultationBtn, lang)}</span>
             </button>
           </div>
         </div>
@@ -312,7 +312,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 href={link.href}
                 className="px-3 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/[0.08] rounded-full transition-all"
               >
-                {link.label[lang]}
+                {getLangText(link.label, lang)}
               </a>
             ))}
 
@@ -323,7 +323,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 title="Buka Platform Solusi Enterprise AI Aegis (12 Solusi)"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
-                <span>Aegis Enterprise AI</span>
+                <span>{getLangText(TRANSLATIONS.nav.corporate.switchToAegis, lang)}</span>
               </button>
             )}
           </nav>
@@ -343,18 +343,36 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#FBFBFD] dark:bg-[#161617] border-b border-black/[0.08] dark:border-white/[0.08] px-4 pt-3 pb-6 space-y-1.5 shadow-xl animate-fadeIn">
+        <div className="lg:hidden bg-[#0F1320] border-b border-white/[0.08] px-4 pt-3 pb-6 space-y-2 shadow-xl animate-fadeIn">
+          {/* Mobile Language Pill Bar */}
+          <div className="flex items-center justify-center p-1 rounded-2xl bg-white/[0.06] border border-white/[0.08] text-xs font-medium mb-3">
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLang(l.code)}
+                className={`flex-1 py-1.5 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-1 text-xs ${
+                  lang === l.code
+                    ? 'bg-[#0071E3] text-white font-semibold shadow-xs'
+                    : 'text-white/60 hover:text-white'
+                }`}
+              >
+                <span>{l.flag}</span>
+                <span>{l.label}</span>
+              </button>
+            ))}
+          </div>
+
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-[#1D1D1F] dark:text-[#F5F5F7] hover:text-[#0071E3] dark:hover:text-[#2997FF] hover:bg-black/[0.04] dark:hover:bg-white/[0.06] transition-colors"
+              className="block px-4 py-2.5 rounded-2xl text-sm font-medium text-white/90 hover:text-[#2997FF] hover:bg-white/[0.06] transition-colors"
             >
-              {link.label[lang]}
+              {getLangText(link.label, lang)}
             </a>
           ))}
-          <div className="pt-3 border-t border-black/[0.08] dark:border-white/[0.08] space-y-2">
+          <div className="pt-3 border-t border-white/[0.08] space-y-2">
             {onSwitchToAegis && (
               <button
                 onClick={() => {
@@ -364,7 +382,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 className="w-full py-3 rounded-full bg-[#0071E3] text-white font-medium text-xs shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>⚡ Buka Platform Aegis Enterprise AI (12 Solusi)</span>
+                <span>{getLangText(TRANSLATIONS.nav.corporate.switchToAegis, lang)}</span>
               </button>
             )}
             <button
@@ -372,19 +390,19 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenCredentials();
               }}
-              className="w-full py-2.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] text-xs font-medium text-[#1D1D1F] dark:text-white cursor-pointer"
+              className="w-full py-2.5 rounded-full bg-white/[0.06] text-xs font-medium text-white cursor-pointer"
             >
-              {lang === 'en' ? 'Verified Contracts & SPK' : 'Dokumen Kontrak & SPK Resmi'}
+              {getLangText(TRANSLATIONS.nav.corporate.credentialsBtn, lang)}
             </button>
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAdmin();
               }}
-              className="w-full py-2.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-xs font-medium text-[#1D1D1F] dark:text-white flex items-center justify-center space-x-2 cursor-pointer"
+              className="w-full py-2.5 rounded-full bg-white/[0.06] border border-white/[0.1] text-xs font-medium text-white flex items-center justify-center space-x-2 cursor-pointer"
             >
               <Sliders className="w-3.5 h-3.5 text-[#0071E3]" />
-              <span>{lang === 'en' ? 'In-Browser CMS Admin' : 'Kelola Konten (CMS Admin)'}</span>
+              <span>CMS Admin</span>
               {newInquiriesCount > 0 && (
                 <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#0071E3] text-white">
                   {newInquiriesCount}
@@ -398,7 +416,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               className="w-full py-3 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-sm shadow-xs cursor-pointer"
             >
-              {lang === 'en' ? 'Get Technical Consultation' : 'Mulai Konsultasi'}
+              {getLangText(TRANSLATIONS.nav.corporate.consultationBtn, lang)}
             </button>
           </div>
         </div>

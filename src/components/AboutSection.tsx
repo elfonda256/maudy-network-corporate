@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Target, CheckCircle2, ArrowUpRight, Building2, Waves, Cpu, Shield } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface AboutProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -275,10 +277,10 @@ export const AboutSection: React.FC<AboutProps> = ({ lang, onOpenConsultation })
                   {m.year}
                 </div>
                 <h4 className="text-sm font-semibold text-[#1D1D1F] dark:text-white mb-2 leading-snug">
-                  {m.title[lang]}
+                  {getLangText(m.title, lang)}
                 </h4>
                 <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal">
-                  {m.desc[lang]}
+                  {getLangText(m.desc, lang)}
                 </p>
               </div>
             ))}

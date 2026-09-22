@@ -17,47 +17,91 @@ import {
   Headphones
 } from 'lucide-react';
 import { queryMaudyAi, type ChatMessage, type AiAction } from '../data/aiKnowledge';
+import type { Language } from '../i18n/translations';
+import { TRANSLATIONS } from '../i18n/translations';
 
 interface AiAssistantModalProps {
   isOpen: boolean;
   onClose: () => void;
   onOpenEstimator?: () => void;
+  lang?: Language;
 }
 
 export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({ 
   isOpen, 
   onClose,
-  onOpenEstimator
+  onOpenEstimator,
+  lang = 'id'
 }) => {
   const [activeTab, setActiveTab] = useState<'ai' | 'quickDesk'>('ai');
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
+
+  const tChat = TRANSLATIONS.chatbot;
+
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
     {
       id: 'init-1',
       sender: 'assistant',
-      text: 'Halo! Selamat datang di portal resmi **PT Maudy Network Nusantara**.\n\nSaya adalah **Maudy AI Virtual Assistant**. Saya dapat membantu Anda dengan info teknis seputar **konektivitas satelit maritim VSAT**, **kamera AI CCTV XTUR**, **keamanan siber IMO**, atau **estimasi biaya implementasi B2B**.\n\nApa yang ingin Anda ketahui hari ini?',
-      timestamp: 'Baru saja',
+      text: tChat.greeting[lang] || tChat.greeting.id,
+      timestamp: lang === 'ja' ? 'たった今' : lang === 'ar' ? 'الآن' : lang === 'en' ? 'Just now' : 'Baru saja',
       actions: [
         {
-          label: '📊 Buka Kalkulator Estimasi Biaya',
+          label: tChat.estimatorBtn[lang] || tChat.estimatorBtn.id,
           type: 'scroll_estimator'
         },
         {
-          label: '💬 Chat WhatsApp Tim Teknis',
+          label: tChat.whatsappBtn[lang] || tChat.whatsappBtn.id,
           type: 'whatsapp',
-          payload: 'Halo PT Maudy Network Nusantara, saya ingin berkonsultasi mengenai kebutuhan infrastruktur perusahaan.'
+          payload: lang === 'ja'
+            ? 'PT Maudy Network 様: 企業向けインフラおよび海上通信ソリューションについて相談希望です。'
+            : lang === 'ar'
+            ? 'مرحباً PT Maudy Network، أود الاستفسار حول حلول البنية التحتية والاتصالات لشركتنا.'
+            : lang === 'en'
+            ? 'Hello PT Maudy Network, I would like to inquire about enterprise infrastructure and connectivity solutions.'
+            : 'Halo PT Maudy Network Nusantara, saya ingin berkonsultasi mengenai kebutuhan infrastruktur perusahaan.'
         }
       ]
     }
   ]);
 
-  const [suggestions, setSuggestions] = useState<string[]>([
-    'Apa keunggulan XTUR AI CCTV?',
-    'Solusi satelit VSAT untuk kapal laut',
-    'Berapa estimasi biaya implementasi?',
-    'Hubungi tim darurat NOC 24/7'
-  ]);
+  const [suggestions, setSuggestions] = useState<string[]>(() => 
+    tChat.suggestions[lang] || tChat.suggestions.id
+  );
+
+  useEffect(() => {
+    const greetingText = tChat.greeting[lang] || tChat.greeting.id;
+    const suggestionsList = tChat.suggestions[lang] || tChat.suggestions.id;
+    const estimatorLabel = tChat.estimatorBtn[lang] || tChat.estimatorBtn.id;
+    const waLabel = tChat.whatsappBtn[lang] || tChat.whatsappBtn.id;
+
+    setMessages([
+      {
+        id: `init-${lang}`,
+        sender: 'assistant',
+        text: greetingText,
+        timestamp: lang === 'ja' ? 'たった今' : lang === 'ar' ? 'الآن' : lang === 'en' ? 'Just now' : 'Baru saja',
+        actions: [
+          {
+            label: estimatorLabel,
+            type: 'scroll_estimator'
+          },
+          {
+            label: waLabel,
+            type: 'whatsapp',
+            payload: lang === 'ja'
+              ? 'PT Maudy Network 様: 企業向けインフラおよび海上通信ソリューションについて相談希望です。'
+              : lang === 'ar'
+              ? 'مرحباً PT Maudy Network، أود الاستفسار حول حلول البنية التحتية والاتصالات لشركتنا.'
+              : lang === 'en'
+              ? 'Hello PT Maudy Network, I would like to inquire about enterprise infrastructure and connectivity solutions.'
+              : 'Halo PT Maudy Network Nusantara, saya ingin berkonsultasi mengenai kebutuhan infrastruktur perusahaan.'
+          }
+        ]
+      }
+    ]);
+    setSuggestions(suggestionsList);
+  }, [lang]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -92,7 +136,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
 
     // Realistic AI thinking delay (400ms - 700ms)
     setTimeout(() => {
-      const response = queryMaudyAi(query);
+      const response = queryMaudyAi(query, undefined, lang);
       const assistantMsgId = `ai-${Date.now()}`;
 
       setMessages((prev) => [
@@ -354,7 +398,7 @@ export const AiAssistantModal: React.FC<AiAssistantModalProps> = ({
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleSendMessage();
               }}
-              placeholder="Tanya harga, satelit kapal, CCTV XTUR..."
+              placeholder={tChat.inputPlaceholder[lang] || tChat.inputPlaceholder.id}
               disabled={isTyping}
               className="flex-1 px-3 py-2 text-xs rounded-xl bg-black/40 border border-white/[0.1] text-white placeholder-white/40 focus:outline-none focus:border-[#2997FF] focus:ring-1 focus:ring-[#2997FF] transition-all disabled:opacity-50"
             />

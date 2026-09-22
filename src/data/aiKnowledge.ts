@@ -88,11 +88,114 @@ export const MAUDY_KNOWLEDGE = {
   }
 };
 
-// Response logic with multi-turn and semantic matching
-export function queryMaudyAi(rawInput: string, lastTopic?: string): AiResponse {
-  const query = rawInput.toLowerCase().trim();
+import type { Language } from '../i18n/translations';
 
-  // 1. GREETING & INTRO
+// Response logic with multi-turn and semantic matching
+export function queryMaudyAi(rawInput: string, lastTopic?: string, currentLang?: Language): AiResponse {
+  const query = rawInput.toLowerCase().trim();
+  const isJapanese = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]/.test(rawInput) || currentLang === 'ja';
+  const isArabic = /[\u0600-\u06FF]/.test(rawInput) || currentLang === 'ar';
+
+  // 0.A JAPANESE LANGUAGE ROUTER
+  if (isJapanese) {
+    if (query.match(/^(こんにちは|初めまして|おはよう|こんばんは|hello|hi|test)/i) || query.length < 15) {
+      return {
+        reply: `PT. Maudy Network Komunikasi（MNK）および Aegis Enterprise AI Suite へようこそ。\n\n私は **Maudy AI バーチャルアシスタント** です。以下の専門分野に関する技術仕様・ご提案に対応いたします：\n\n` +
+          `• 🚢 **海上衛星通信・船舶VSAT**（Starlink LEO + GEO自動切替、IMO MSC.428(98)規格準拠）\n` +
+          `• 👁️ **XTUR AI 画像解析監視システム**（サブ5msエッジ推論、ANPR車両認識、工場・重要インフラ向け防犯）\n` +
+          `• 🛡️ **Aegis Private AI 基盤**（完全オンプレミス＆エアギャップ稼働、最高レベルのデータ主権）\n` +
+          `• 📊 **エンタープライズ導入見積もり・PoC検証支援**\n` +
+          `• 🚨 **24/7 NOC監視体制（SLA 99.98%）**\n\n` +
+          `どのような課題やご要望についてお調べでしょうか？`,
+        suggestions: [
+          "海上衛星通信VSATの特長と導入実績",
+          "XTUR AI 監視カメラの性能と仕様",
+          "オンプレミス型 Private AI のセキュリティ",
+          "日本企業向け導入費用・PoCのご相談"
+        ],
+        actions: [
+          {
+            label: "💬 担当エンジニアへ相談（WhatsApp）",
+            type: "whatsapp",
+            payload: "PT Maudy Network 様: 日本企業向けのソリューション導入および技術提携についてご相談したく存じます。"
+          }
+        ]
+      };
+    }
+
+    return {
+      reply: `お問い合わせいただきありがとうございます。\n\n` +
+        `**PT Maudy Network Nusantara** は、インドネシアおよび東南アジア海域において、外航船団（タンカー、貨物船）、国家インフラ、製造業工場向けに高品質な通信およびエンタープライズAIを提供しています。\n\n` +
+        `• **海上通信・船舶向けVSAT**: Starlink Maritime と C/Ku-Band VSAT のインテリジェント冗長化、IMOサイバーセキュリティ認証対応。\n` +
+        `• **XTUR AI 監視**: エッジGPU（TensorRT/YOLO）による超低遅延解析で、入退場管理・安全防護具（ヘルメット等）自動検査。\n` +
+        `• **データ主権とPrivate AI**: 機密データを外部クラウドに送信しない100%ローカル稼働環境の構築。\n\n` +
+        `詳細な仕様書（カタログPDF）のご提供や、技術者による個別相談をご希望の際はお気軽にお申し付けください。`,
+      suggestions: [
+        "公式カタログPDFの確認",
+        "船舶通信の接続安定性とSLA",
+        "エッジAI監視の導入費用"
+      ],
+      actions: [
+        {
+          label: "💬 WhatsAppで技術担当者に連絡",
+          type: "whatsapp",
+          payload: `PT Maudy Network: "${rawInput}" に関する技術資料・導入相談を希望します。`
+        }
+      ]
+    };
+  }
+
+  // 0.B ARABIC LANGUAGE ROUTER
+  if (isArabic) {
+    if (query.match(/^(مرحبا|أهلا|السلام|صباح|مساء|test|hi)/i) || query.length < 15) {
+      return {
+        reply: `أهلاً بكم في البوابة الرسمية لشركة **PT Maudy Network Komunikasi** ومنظومة **Aegis Enterprise AI**.\n\n` +
+          `أنا **المساعد الذكي Maudy AI**. يسعدني تقديم الدعم الفني والمعلومات الشاملة حول:\n\n` +
+          `• 🚢 **حلول الاتصالات الفضائية البحرية VSAT**: دمج أقمار Starlink LEO وVSAT GEO مع الامتثال لمعايير المنظمة البحرية الدولية (IMO MSC.428(98)).\n` +
+          `• 👁️ **كاميرات المراقبة بالذكاء الاصطناعي XTUR**: استدلال طرفي فائق السرعة (<5ms)، تعرف آلي على لوحات المركبات (ANPR)، وفحص السلامة المهنية.\n` +
+          `• 🛡️ **منظومة الذكاء الاصطناعي الخاص Aegis Private AI**: تشغيل محلي معزول بنسبة 100% لحماية سيادة البيانات المؤسسية.\n` +
+          `• 📊 **تقديرات التكلفة للمشاريع الكبرى B2B**\n` +
+          `• 🚨 **مركز إدارة الشبكات NOC يعمل على مدار 24/7 (SLA 99.98%)**\n\n` +
+          `كيف يمكننا مساعدة مؤسستكم اليوم؟`,
+        suggestions: [
+          "حلول الاتصالات الفضائية البحرية للأساطيل",
+          "مميزات كاميرات المراقبة الذكية XTUR",
+          "بنية الذكاء الاصطناعي الخاص محلياً",
+          "طلب دراسة فنية وعرض أسعار"
+        ],
+        actions: [
+          {
+            label: "💬 المحادثة مع الفريق الفني (واتساب)",
+            type: "whatsapp",
+            payload: "مرحباً PT Maudy Network، نود الاستفسار حول حلول البنية التحتية والذكاء الاصطناعي والاتصالات البحرية لشركتنا."
+          }
+        ]
+      };
+    }
+
+    return {
+      reply: `شكراً لتواصلكم مع **PT. Maudy Network Komunikasi**.\n\n` +
+        `نحن شركاؤكم الهندسيون في توفير بنية تحتية رقمية فائقة الاعتمادية للقطاع البحري والصناعي والمؤسسي:\n\n` +
+        `• **الاتصالات البحرية**: استمرارية اتصال بنسبة 99.98% للسفن وناقلات النفط مع حماية Zero-Trust للأمن السيبراني.\n` +
+        `• **المراقبة الذكية XTUR**: حماية محيطية ذكية للمنشآت والموانئ مع تنبيهات فورية وكشف المخاطر.\n` +
+        `• **سيادة البيانات الكاملة**: حلول AI محلية لا تعتمد على خوادم خارجية.\n\n` +
+        `يسعد فريقنا التقني تزويدكم بكتالوج المواصفات الفنية أو ترتيب جلسة تجريبية مخصصة.`,
+      suggestions: [
+        "تحميل الكتالوج الرسمي والمواصفات",
+        "استفسار عن حماية الأمن السيبراني البحري",
+        "حساب التكلفة التقديرية"
+      ],
+      actions: [
+        {
+          label: "💬 التواصل المباشر عبر واتساب",
+          type: "whatsapp",
+          payload: `مرحباً PT Maudy Network، نستفسر بخصوص: "${rawInput}"`
+        }
+      ]
+    };
+  }
+
+  // 1. GREETING & INTRO (ID / EN)
   if (
     query.match(/^(halo|hai|hi|hello|hei|pagi|siang|sore|malam|selamat|assalamualaikum|tes|test)/i) &&
     query.length < 25

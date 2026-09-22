@@ -7,12 +7,14 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { AiAssistantModal } from './AiAssistantModal';
+import type { Language } from '../i18n/translations';
 
 interface FloatingActionsProps {
   onOpenEstimator?: () => void;
+  lang?: Language;
 }
 
-export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenEstimator }) => {
+export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenEstimator, lang = 'id' }) => {
   const [showScroll, setShowScroll] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [showPromptBadge, setShowPromptBadge] = useState(true);
@@ -28,6 +30,22 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenEstimato
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const badgeQuestion = lang === 'ja'
+    ? 'ご質問ですか？'
+    : lang === 'ar'
+    ? 'هل لديك سؤال؟'
+    : lang === 'en'
+    ? 'Have questions?'
+    : 'Ada pertanyaan?';
+
+  const badgeAction = lang === 'ja'
+    ? 'Maudy AIに相談'
+    : lang === 'ar'
+    ? 'اسأل Maudy AI'
+    : lang === 'en'
+    ? 'Ask Maudy AI'
+    : 'Tanya Maudy AI';
 
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end space-y-3">
@@ -47,6 +65,7 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenEstimato
         isOpen={chatOpen}
         onClose={() => setChatOpen(false)}
         onOpenEstimator={onOpenEstimator}
+        lang={lang}
       />
 
       {/* Main AI Floating Action Button with Animated Pill */}
@@ -59,10 +78,10 @@ export const FloatingActions: React.FC<FloatingActionsProps> = ({ onOpenEstimato
           >
             <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
             <span className="text-white/90 group-hover:text-white flex items-center space-x-1.5">
-              <span>Ada pertanyaan?</span>
+              <span>{badgeQuestion}</span>
               <strong className="text-[#2997FF] font-semibold flex items-center">
                 <Sparkles className="w-3 h-3 mr-1 inline" />
-                Tanya Maudy AI
+                {badgeAction}
               </strong>
             </span>
             <button

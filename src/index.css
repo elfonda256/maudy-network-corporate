@@ -35,6 +35,17 @@
     letter-spacing: -0.015em;
   }
 
+  /* Language & Script Specific Typography */
+  html[lang="ja"] {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic Medium", "Yu Gothic", Meiryo, sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  html[dir="rtl"] {
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans Arabic', 'Traditional Arabic', sans-serif;
+    letter-spacing: 0;
+  }
+
   body {
     background-color: #07090E;
     color: var(--text-primary);

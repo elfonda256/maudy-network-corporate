@@ -18,9 +18,11 @@ import {
   Anchor, 
   Activity
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ProductsSectionProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -300,7 +302,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
               </div>
 
               <p className="text-sm text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal">
-                {activeProduct.description[lang]}
+                {getLangText(activeProduct.description, lang)}
               </p>
 
               {/* 3 Key Capabilities */}
@@ -309,10 +311,10 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
                   <div key={cIdx} className="bg-black/[0.02] dark:bg-white/[0.04] p-3.5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
                     <div className="text-xs font-semibold text-[#1D1D1F] dark:text-white mb-1 flex items-center">
                       <CheckCircle2 className="w-3.5 h-3.5 mr-2 text-[#0071E3] dark:text-[#2997FF] flex-shrink-0" />
-                      <span>{cap.title[lang]}</span>
+                      <span>{getLangText(cap.title, lang)}</span>
                     </div>
                     <div className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] font-normal leading-relaxed pl-5">
-                      {cap.desc[lang]}
+                      {getLangText(cap.desc, lang)}
                     </div>
                   </div>
                 ))}
@@ -554,7 +556,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({
               </div>
             ) : (
               <div className="space-y-4 text-xs leading-relaxed text-[#6E6E73] dark:text-[#A1A1A6]">
-                <p>{activeProduct.description[lang]}</p>
+                <p>{getLangText(activeProduct.description, lang)}</p>
                 <div className="rounded-2xl overflow-hidden border border-black/[0.08] dark:border-white/[0.08] max-h-80">
                   <img src={activeProduct.image} alt={activeProduct.name} className="w-full h-full object-cover" />
                 </div>

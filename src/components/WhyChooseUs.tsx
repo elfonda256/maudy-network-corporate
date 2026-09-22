@@ -10,9 +10,11 @@ import {
   Building,
   CheckCircle,
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface WhyChooseProps {
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
@@ -154,18 +156,26 @@ export const WhyChooseUs: React.FC<WhyChooseProps> = ({ lang }) => {
                       {feat.badge}
                     </span>
                     <h3 className="text-base font-semibold text-[#1D1D1F] dark:text-white mb-2 leading-snug">
-                      {feat.title[lang]}
+                      {getLangText(feat.title as any, lang)}
                     </h3>
                   </div>
 
                   <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal">
-                    {feat.desc[lang]}
+                    {getLangText(feat.desc as any, lang)}
                   </p>
                 </div>
 
                 <div className="mt-5 pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center space-x-1.5 text-[11px] font-mono text-[#86868B]">
                   <CheckCircle className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-                  <span className="text-[10px] tracking-wide uppercase">{lang === 'en' ? 'ENTERPRISE READY // SLA VERIFIED' : 'STANDAR KORPORASI // TERUJI'}</span>
+                  <span className="text-[10px] tracking-wide uppercase">
+                    {lang === 'ja'
+                      ? 'エンタープライズ品質 // SLA検証済'
+                      : lang === 'ar'
+                      ? 'جاهزية مؤسسية // مستوى خدمة معتمد'
+                      : lang === 'en'
+                      ? 'ENTERPRISE READY // SLA VERIFIED'
+                      : 'STANDAR KORPORASI // TERUJI'}
+                  </span>
                 </div>
               </div>
             );

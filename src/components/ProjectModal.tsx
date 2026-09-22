@@ -2,10 +2,12 @@ import React from 'react';
 import { X, CheckCircle2, ShieldAlert, Lightbulb, TrendingUp, Cpu, FileCheck, MapPin } from 'lucide-react';
 import type { Project } from '../data/companyData';
 import { getClientLogo } from '../data/companyData';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ProjectModalProps {
   project: Project | null;
-  lang: 'en' | 'id';
+  lang: Language;
   onClose: () => void;
   onOpenConsultation: () => void;
 }
@@ -86,10 +88,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           {/* Executive Summary */}
           <div>
             <div className="text-xs font-mono text-[#0071E3] dark:text-[#2997FF] uppercase tracking-wider mb-1.5 font-semibold">
-              {lang === 'en' ? 'Project Overview' : 'Ringkasan Proyek'}
+              {lang === 'ja' ? 'プロジェクト概要' : lang === 'ar' ? 'نظرة عامة على المشروع' : lang === 'en' ? 'Project Overview' : 'Ringkasan Proyek'}
             </div>
             <p className="text-sm text-[#1D1D1F] dark:text-[#F5F5F7] leading-relaxed font-normal">
-              {project.summary[lang]}
+              {getLangText(project.summary, lang)}
             </p>
           </div>
 
@@ -98,20 +100,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <div className="bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
               <div className="flex items-center space-x-2 text-red-600 dark:text-red-400 text-xs font-semibold font-mono mb-2 uppercase">
                 <ShieldAlert className="w-4 h-4" />
-                <span>{lang === 'en' ? 'Core Operational Challenge' : 'Tantangan Teknis & Medan'}</span>
+                <span>{lang === 'ja' ? '技術・運用の主要課題' : lang === 'ar' ? 'التحديات التشغيلية والفنية' : lang === 'en' ? 'Core Operational Challenge' : 'Tantangan Teknis & Medan'}</span>
               </div>
               <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed">
-                {project.challenge[lang]}
+                {getLangText(project.challenge, lang)}
               </p>
             </div>
 
             <div className="bg-black/[0.02] dark:bg-white/[0.04] p-5 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
               <div className="flex items-center space-x-2 text-[#0071E3] dark:text-[#2997FF] text-xs font-semibold font-mono mb-2 uppercase">
                 <Lightbulb className="w-4 h-4" />
-                <span>{lang === 'en' ? 'MNK Engineered Solution' : 'Solusi Arsitektur MNK'}</span>
+                <span>{lang === 'ja' ? 'MNK エンジニアリングソリューション' : lang === 'ar' ? 'الحل الهندسي من MNK' : lang === 'en' ? 'MNK Engineered Solution' : 'Solusi Arsitektur MNK'}</span>
               </div>
               <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed">
-                {project.solution[lang]}
+                {getLangText(project.solution, lang)}
               </p>
             </div>
           </div>
@@ -120,10 +122,10 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <div className="bg-emerald-50 dark:bg-emerald-950/30 p-5 rounded-2xl border border-emerald-200 dark:border-emerald-800/40">
             <div className="flex items-center space-x-2 text-[#34C759] text-xs font-semibold font-mono mb-1.5 uppercase">
               <TrendingUp className="w-4 h-4" />
-              <span>{lang === 'en' ? 'Demonstrated Business Impact' : 'Dampak & Manfaat Operasional'}</span>
+              <span>{lang === 'ja' ? '実証された事業成果・インパクト' : lang === 'ar' ? 'الأثر التشغيلي المحقق' : lang === 'en' ? 'Demonstrated Business Impact' : 'Dampak & Manfaat Operasional'}</span>
             </div>
             <p className="text-xs sm:text-sm text-[#1D1D1F] dark:text-emerald-100 leading-relaxed">
-              {project.businessImpact[lang]}
+              {getLangText(project.businessImpact, lang)}
             </p>
           </div>
 
@@ -132,7 +134,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <div>
               <div className="text-xs font-mono text-[#6E6E73] dark:text-[#A1A1A6] uppercase tracking-wider mb-2 font-medium flex items-center">
                 <Cpu className="w-3.5 h-3.5 mr-1.5 text-[#0071E3] dark:text-[#2997FF]" />
-                <span>{lang === 'en' ? 'Technologies & Equipment' : 'Teknologi & Perangkat'}</span>
+                <span>{lang === 'ja' ? '採用技術・導入機材' : lang === 'ar' ? 'التقنيات والمعدات المستخدمة' : lang === 'en' ? 'Technologies & Equipment' : 'Teknologi & Perangkat'}</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {project.technologies.map((tech, idx) => (

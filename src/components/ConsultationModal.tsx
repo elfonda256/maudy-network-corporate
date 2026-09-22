@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { X, Send, CheckCircle, ShieldCheck, PhoneCall, Building2 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
 
 interface ConsultationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const ConsultationModal: React.FC<ConsultationModalProps> = ({
@@ -14,6 +15,10 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
   lang,
 }) => {
   if (!isOpen) return null;
+
+  const isEn = lang === 'en';
+  const isJa = lang === 'ja';
+  const isAr = lang === 'ar';
 
   const { addInquiry } = useCms();
   const [submitted, setSubmitted] = useState(false);
@@ -57,10 +62,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             </div>
             <div>
               <h3 className="text-base sm:text-lg font-semibold text-[#1D1D1F] dark:text-white tracking-tight">
-                {lang === 'en' ? 'Enterprise Technical Consultation' : 'Permohonan Konsultasi Teknis'}
+                {isJa ? 'エンタープライズ技術相談' : isAr ? 'طلب استشارة فنية للمؤسسات' : isEn ? 'Enterprise Technical Consultation' : 'Permohonan Konsultasi Teknis'}
               </h3>
               <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6]">
-                {lang === 'en'
+                {isJa
+                  ? 'MNK最高技術責任者・リードエンジニアリングチーム直通'
+                  : isAr
+                  ? 'اتصال مباشر مع الإدارة الهندسية وفريق الخبراء المعتمدين'
+                  : isEn
                   ? 'Connect directly with Director Yahya Hidayatullah & Lead Engineering Team'
                   : 'Terhubung langsung dengan Direksi & Tim Ahli Jaringan MNK'}
               </p>
@@ -81,10 +90,14 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
             <div className="p-8 text-center bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl border border-emerald-200 dark:border-emerald-800/40">
               <CheckCircle className="w-12 h-12 text-[#34C759] mx-auto mb-3" />
               <h4 className="text-lg font-semibold text-[#1D1D1F] dark:text-white mb-2">
-                {lang === 'en' ? 'Consultation Request Sent' : 'Permintaan Berhasil Diterima'}
+                {isJa ? '相談リクエストを受信しました' : isAr ? 'تم استلام طلب الاستشارة بنجاح' : isEn ? 'Consultation Request Sent' : 'Permintaan Berhasil Diterima'}
               </h4>
               <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] max-w-md mx-auto leading-relaxed mb-6">
-                {lang === 'en'
+                {isJa
+                  ? 'チーフネットワークアーキテクトが仕様を確認し、速やかにご連絡いたします。WhatsAppでの直接連絡も可能です。'
+                  : isAr
+                  ? 'يقوم كبير مهندسي الشبكات بمراجعة مواصفاتكم للتواصل معكم قريباً. يمكنكم أيضاً التواصل فوراً عبر واتساب.'
+                  : isEn
                   ? 'Our Chief Network Architect will review your specifications and contact you shortly. You may also reach us directly via WhatsApp.'
                   : 'Spesifikasi proyek Anda sedang ditinjau oleh Arsitek Jaringan Utama kami. Anda juga dapat menghubungi langsung melalui WhatsApp.'}
               </p>
@@ -102,7 +115,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   onClick={onClose}
                   className="px-5 py-2.5 rounded-full bg-black/[0.04] dark:bg-white/[0.08] text-[#1D1D1F] dark:text-white text-xs font-medium hover:bg-black/[0.08] dark:hover:bg-white/[0.12] cursor-pointer"
                 >
-                  {lang === 'en' ? 'Close Window' : 'Tutup Jendela'}
+                  {isJa ? '閉じる' : isAr ? 'إغلاق النافذة' : isEn ? 'Close Window' : 'Tutup Jendela'}
                 </button>
               </div>
             </div>
@@ -111,27 +124,27 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                    {lang === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
+                    {isJa ? 'ご芳名 *' : isAr ? 'الاسم الكامل *' : isEn ? 'Full Name *' : 'Nama Lengkap *'}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Hadi Prabowo"
+                    placeholder={isJa ? '例: 山田 太郎' : isAr ? 'مثال: عبد الله السالم' : 'e.g. Hadi Prabowo'}
                     className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                    {lang === 'en' ? 'Company / Ministry *' : 'Perusahaan / Lembaga *'}
+                    {isJa ? '会社・組織名 *' : isAr ? 'الشركة / المؤسسة *' : isEn ? 'Company / Ministry *' : 'Perusahaan / Lembaga *'}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="e.g. PT Pertamina / Kementerian BUMN"
+                    placeholder={isJa ? '例: 株式会社サンプル / 省庁' : isAr ? 'مثال: شركة بترول / وزارة' : 'e.g. PT Pertamina / Kementerian BUMN'}
                     className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
@@ -140,20 +153,20 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                    {lang === 'en' ? 'Email Address *' : 'Alamat Email *'}
+                    {isJa ? 'メールアドレス *' : isAr ? 'البريد الإلكتروني *' : isEn ? 'Email Address *' : 'Alamat Email *'}
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="director@pertamina.com"
+                    placeholder="director@company.com"
                     className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                    {lang === 'en' ? 'WhatsApp / Mobile *' : 'Nomor WhatsApp *'}
+                    {isJa ? 'WhatsApp / 電話番号 *' : isAr ? 'واتساب / الهاتف *' : isEn ? 'WhatsApp / Mobile *' : 'Nomor WhatsApp *'}
                   </label>
                   <input
                     type="tel"
@@ -168,7 +181,7 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
               <div>
                 <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                  {lang === 'en' ? 'Primary Scope of Interest' : 'Kategori Kebutuhan'}
+                  {isJa ? 'ご相談対象の分野' : isAr ? 'مجال الاهتمام الرئيسي' : isEn ? 'Primary Scope of Interest' : 'Kategori Kebutuhan'}
                 </label>
                 <select
                   value={formData.scope}
@@ -189,14 +202,18 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
 
               <div>
                 <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                  {lang === 'en' ? 'Initial Notes / Challenges' : 'Catatan Kebutuhan Singkat'}
+                  {isJa ? 'ご要望・現状の課題' : isAr ? 'ملاحظات أولية / التحديات' : isEn ? 'Initial Notes / Challenges' : 'Catatan Kebutuhan Singkat'}
                 </label>
                 <textarea
                   rows={3}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder={
-                    lang === 'en'
+                    isJa
+                      ? 'ノード数、船舶数、拠点地域、希望導入時期などをご記入ください...'
+                      : isAr
+                      ? 'حدد عدد النقاط، عدد السفن، الموقع، أو التاريخ المستهدف...'
+                      : isEn
                       ? 'Specify number of nodes, vessel count, location, or urgent target date...'
                       : 'Sebutkan jumlah titik jaringan, kapal, lokasi, atau target waktu...'
                   }
@@ -210,7 +227,9 @@ export const ConsultationModal: React.FC<ConsultationModalProps> = ({
                   className="w-full py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs sm:text-sm shadow-xs transition-all flex items-center justify-center space-x-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{lang === 'en' ? 'Send Consultation Brief' : 'Kirim Permohonan Konsultasi'}</span>
+                  <span>
+                    {isJa ? '相談内容を送信' : isAr ? 'إرسال طلب الاستشارة' : isEn ? 'Send Consultation Brief' : 'Kirim Permohonan Konsultasi'}
+                  </span>
                 </button>
               </div>
             </form>

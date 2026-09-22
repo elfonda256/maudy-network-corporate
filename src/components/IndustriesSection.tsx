@@ -9,9 +9,11 @@ import {
   CheckCircle,
   ArrowRight,
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface IndustriesProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onExploreProjects: () => void;
 }
 
@@ -177,10 +179,10 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                     </div>
                     <div>
                       <div className="text-sm font-semibold">
-                        {ind.name[lang]}
+                        {getLangText(ind.name, lang)}
                       </div>
                       <div className={`text-[11px] line-clamp-1 ${isSelected ? 'text-blue-100' : 'text-[#6E6E73] dark:text-[#A1A1A6]'}`}>
-                        {ind.tagline[lang]}
+                        {getLangText(ind.tagline, lang)}
                       </div>
                     </div>
                   </div>
@@ -204,10 +206,16 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
                   </div>
                   <div>
                     <h3 className="text-2xl font-semibold text-[#1D1D1F] dark:text-white">
-                      {selectedIndustry.name[lang]}
+                      {getLangText(selectedIndustry.name, lang)}
                     </h3>
                     <span className="text-xs font-mono font-medium text-[#0071E3] dark:text-[#2997FF]">
-                      {lang === 'en' ? 'VERIFIED CLIENT ENGAGEMENT: ' : 'KLIEN STRATEGIS TERBUKTI: '}
+                      {lang === 'ja'
+                        ? '主要クライアント導入実績: '
+                        : lang === 'ar'
+                        ? 'العميل الاستراتيجي المعتمد: '
+                        : lang === 'en'
+                        ? 'VERIFIED CLIENT ENGAGEMENT: '
+                        : 'KLIEN STRATEGIS TERBUKTI: '}
                       <strong className="text-[#1D1D1F] dark:text-white font-sans">{selectedIndustry.clientRef}</strong>
                     </span>
                   </div>
@@ -217,23 +225,35 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
               {/* Delivery Scope */}
               <div className="mb-6">
                 <div className="text-xs text-[#86868B] uppercase tracking-wider mb-2 font-mono font-medium">
-                  {lang === 'en' ? 'Field-Delivered Scope:' : 'Cakupan Pekerjaan Terlaksana:'}
+                  {lang === 'ja'
+                    ? '現場導入実績・提供スコープ:'
+                    : lang === 'ar'
+                    ? 'نطاق العمل المنفذ ميدانياً:'
+                    : lang === 'en'
+                    ? 'Field-Delivered Scope:'
+                    : 'Cakupan Pekerjaan Terlaksana:'}
                 </div>
                 <p className="text-sm text-[#1D1D1F] dark:text-slate-200 leading-relaxed font-normal bg-black/[0.02] dark:bg-white/[0.04] p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.08]">
-                  {selectedIndustry.delivered[lang]}
+                  {getLangText(selectedIndustry.delivered, lang)}
                 </p>
               </div>
 
               {/* Features */}
               <div className="mb-8">
                 <div className="text-xs text-[#1D1D1F] dark:text-white uppercase tracking-wider mb-3 font-mono font-semibold">
-                  {lang === 'en' ? 'Architectural Highlights & Moats:' : 'Spesifikasi & Keunggulan Desain:'}
+                  {lang === 'ja'
+                    ? 'アーキテクチャの強み・主要仕様:'
+                    : lang === 'ar'
+                    ? 'أبرز المواصفات الهندسية:'
+                    : lang === 'en'
+                    ? 'Architectural Highlights & Moats:'
+                    : 'Spesifikasi & Keunggulan Desain:'}
                 </div>
                 <div className="space-y-2.5">
                   {selectedIndustry.keyFeatures.map((feat, fIdx) => (
                     <div key={fIdx} className="flex items-center space-x-3 text-xs sm:text-sm text-[#1D1D1F] dark:text-slate-300">
                       <CheckCircle className="w-4 h-4 text-[#0071E3] dark:text-[#2997FF] flex-shrink-0" />
-                      <span>{feat[lang]}</span>
+                      <span>{getLangText(feat as any, lang)}</span>
                     </div>
                   ))}
                 </div>

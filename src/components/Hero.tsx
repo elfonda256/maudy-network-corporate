@@ -19,9 +19,11 @@ import {
   Battery,
   Signal,
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { TRANSLATIONS, getLangText } from '../i18n/translations';
 
 interface HeroProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
   onExploreProjects: () => void;
 }
@@ -33,6 +35,9 @@ export const Hero: React.FC<HeroProps> = ({
 }) => {
   const [activeDevice, setActiveDevice] = useState<'both' | 'bot' | 'molinar' | 'aegis' | 'xtur'>('bot');
   const [simulatorPumpState, setSimulatorPumpState] = useState<boolean>(true);
+
+  const tHero = TRANSLATIONS.hero.corporate;
+
   return (
     <section className="hero-section relative pt-36 sm:pt-40 pb-16 lg:pb-24 overflow-hidden bg-transparent transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -43,28 +48,26 @@ export const Hero: React.FC<HeroProps> = ({
             <div>
               <div className="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.05] border border-white/[0.1] text-xs font-mono text-white/90 shadow-sm backdrop-blur-md mb-4">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span className="font-semibold text-white">NOC 24/7 ONLINE</span>
+                <span className="font-semibold text-white">{getLangText(tHero.nocBadge, lang)}</span>
                 <span className="text-white/40">•</span>
-                <span className="text-[#2997FF] font-semibold">SLA 99.98%</span>
+                <span className="text-[#2997FF] font-semibold">{getLangText(tHero.slaBadge, lang)}</span>
                 <span className="text-white/40 hidden sm:inline">•</span>
-                <span className="text-white/70 hidden sm:inline">MISSION-CRITICAL INFRASTRUCTURE</span>
+                <span className="text-white/70 hidden sm:inline">{getLangText(tHero.missionBadge, lang)}</span>
               </div>
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-semibold text-white tracking-tight leading-[1.08]">
-                {lang === 'en' ? "Empowering Critical" : 'Maudy Network'}
+                {getLangText(tHero.headlinePrefix, lang)}
                 <br />
                 <span className="text-gradient-brand">
-                  {lang === 'en' ? 'Infrastructure Across Land & Sea' : 'Komunikasi Indonesia'}
+                  {getLangText(tHero.headlineSuffix, lang)}
                 </span>
               </h1>
               <div className="mt-3 text-base sm:text-lg font-medium text-[#6E6E73] dark:text-[#A1A1A6] tracking-tight">
-                #BeyondInfrastructure • Solusi Jaringan, Keamanan Siber &amp; IoT Terpadu
+                {getLangText(tHero.tagline, lang)}
               </div>
             </div>
 
             <p className="text-[#6E6E73] dark:text-slate-300 text-sm sm:text-base leading-relaxed font-normal max-w-xl">
-              {lang === 'en'
-                ? "Enterprise-grade IT Infrastructure, Fortinet NSE 7 Cybersecurity, Marine VSAT Networks, Industrial IoT Telemetry, AI Surveillance & Mission-Critical Software for Pertamina, Ministries, and Global Enterprises."
-                : "Solusi Teknologi Terpadu: Arsitektur Jaringan Enterprise, Internet Satelit Kapal (VSAT), Keamanan Siber Fortinet NSE 7, Telemetri IoT Industri, CCTV AI, dan Rekayasa Perangkat Lunak Strategis."}
+              {getLangText(tHero.description, lang)}
             </p>
 
             {/* Apple Pill Action Buttons */}
@@ -73,14 +76,14 @@ export const Hero: React.FC<HeroProps> = ({
                 onClick={onOpenConsultation}
                 className="apple-pill-btn px-7 py-3 text-sm font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] active:scale-95 transition-all shadow-md shadow-blue-500/20 cursor-pointer"
               >
-                {lang === 'en' ? 'Get Technical Consultation' : 'Konsultasi Teknis'}
+                {getLangText(tHero.ctaConsult, lang)}
               </button>
 
               <button
                 onClick={onExploreProjects}
                 className="apple-pill-btn px-6 py-3 text-xs font-medium text-[#1D1D1F] dark:text-[#F5F5F7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.06] dark:hover:bg-white/[0.1] border border-black/[0.08] dark:border-white/[0.12] active:scale-95 transition-all cursor-pointer"
               >
-                {lang === 'en' ? 'Explore Projects →' : 'Jelajahi Portofolio →'}
+                {getLangText(tHero.ctaPortfolio, lang)}
               </button>
 
               <a
@@ -88,11 +91,11 @@ export const Hero: React.FC<HeroProps> = ({
                 download="PT-Maudy-Network-Komunikasi-Company-Profile.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                title={lang === 'en' ? 'Download Official MNK Company Profile (PDF 2.9MB)' : 'Unduh Profil Perusahaan Resmi PT. MNK (PDF 2.9MB)'}
+                title={lang === 'ja' ? '公式会社概要PDFをダウンロード' : lang === 'ar' ? 'تحميل الملف التعريفي الرسمي PDF' : lang === 'en' ? 'Download Official MNK Company Profile (PDF)' : 'Unduh Profil Perusahaan Resmi PT. MNK (PDF)'}
                 className="apple-pill-btn px-5 py-3 text-xs font-medium text-[#0071E3] dark:text-[#2997FF] bg-[#0071E3]/10 dark:bg-white/[0.06] border border-[#0071E3]/25 dark:border-white/[0.1] hover:bg-[#0071E3]/15 active:scale-95 transition-all flex items-center space-x-1.5 shadow-xs"
               >
                 <Download className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'Company Profile (PDF)' : 'Unduh Profil (PDF)'}</span>
+                <span>{lang === 'ja' ? '会社概要 (PDF)' : lang === 'ar' ? 'الملف التعريفي (PDF)' : lang === 'en' ? 'Company Profile (PDF)' : 'Unduh Profil (PDF)'}</span>
               </a>
             </div>
 

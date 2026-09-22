@@ -21,9 +21,10 @@ import {
   Sliders,
   Maximize2
 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
 
 interface LiveSimulatorProps {
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const LiveSimulator: React.FC<LiveSimulatorProps> = ({ lang }) => {

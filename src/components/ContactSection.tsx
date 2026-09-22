@@ -11,9 +11,10 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
 
 interface ContactProps {
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
@@ -28,6 +29,10 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
     terrain: 'Onshore Corporate / Data Center',
     message: '',
   });
+
+  const isEn = lang === 'en';
+  const isJa = lang === 'ja';
+  const isAr = lang === 'ar';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,21 +58,27 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#0071E3] dark:bg-[#2997FF] animate-ping mr-1"></span>
-            <span>{lang === 'en' ? 'DIRECT TECHNICAL DIALOGUE' : 'HUBUNGI KAMI'}</span>
+            <span>
+              {isJa ? '技術相談窓口' : isAr ? 'التواصل الفني المباشر' : isEn ? 'DIRECT TECHNICAL DIALOGUE' : 'HUBUNGI KAMI'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
-              <>
-                Ready to Secure <span className="text-[#0071E3] dark:text-[#2997FF]">Your Infrastructure?</span>
-              </>
+            {isJa ? (
+              <>お客様の<span className="text-[#0071E3] dark:text-[#2997FF]">ITインフラ</span>を堅牢化する準備はできていますか？</>
+            ) : isAr ? (
+              <>هل أنت مستعد لتأمين <span className="text-[#0071E3] dark:text-[#2997FF]">بنيتك التحتية؟</span></>
+            ) : isEn ? (
+              <>Ready to Secure <span className="text-[#0071E3] dark:text-[#2997FF]">Your Infrastructure?</span></>
             ) : (
-              <>
-                Konsultasikan <span className="text-[#0071E3] dark:text-[#2997FF]">Infrastruktur Anda</span>
-              </>
+              <>Konsultasikan <span className="text-[#0071E3] dark:text-[#2997FF]">Infrastruktur Anda</span></>
             )}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
+            {isJa
+              ? 'シニアネットワークアーキテクトおよび技術役員が、技術評価とお見積りを直接担当します。'
+              : isAr
+              ? 'تواصل مباشرة مع كبار مهندسي الشبكات ومديري الهندسة لدينا للتقييم الفني وعروض الأسعار.'
+              : isEn
               ? 'Connect directly with our senior network architects and engineering directors for technical evaluation and quotation.'
               : 'Hubungi kami untuk konsultasi teknis, survei lokasi, dan evaluasi jaringan korporat Anda.'}
           </p>
@@ -79,7 +90,9 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
             <div className="bg-white dark:bg-[#161617] p-6 sm:p-8 rounded-3xl border border-black/[0.08] dark:border-white/[0.12] shadow-xs space-y-6">
               <h3 className="text-base font-semibold text-[#1D1D1F] dark:text-white tracking-tight flex items-center">
                 <Building className="w-4 h-4 mr-2 text-[#0071E3] dark:text-[#2997FF]" />
-                <span>{lang === 'en' ? 'Headquarters & NOC Center' : 'Kantor Pusat & Pusat NOC'}</span>
+                <span>
+                  {isJa ? '本社およびNOC運用センター' : isAr ? 'المقر الرئيسي ومركز عمليات الشبكة (NOC)' : isEn ? 'Headquarters & NOC Center' : 'Kantor Pusat & Pusat NOC'}
+                </span>
               </h3>
 
               <div className="space-y-4 text-xs sm:text-sm">
@@ -127,7 +140,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   <div>
                     <span className="font-semibold text-[#1D1D1F] dark:text-white">24/7/365</span>
                     <span className="text-[#6E6E73] dark:text-[#A1A1A6] text-xs ml-1.5">
-                      {lang === 'en' ? 'Continuous NOC & Technical Support' : 'Operasional NOC & Dukungan Teknis 24 Jam'}
+                      {isJa ? '24時間365日 NOC監視および技術サポート' : isAr ? 'دعم فني ومراقبة NOC على مدار 24/7' : isEn ? 'Continuous NOC & Technical Support' : 'Operasional NOC & Dukungan Teknis 24 Jam'}
                     </span>
                   </div>
                 </div>
@@ -142,7 +155,9 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   className="w-full flex items-center justify-center space-x-2 py-3 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-medium text-xs transition-all shadow-xs"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>{lang === 'en' ? 'Instant WhatsApp Chat with Director' : 'Chat WhatsApp Langsung'}</span>
+                  <span>
+                    {isJa ? '役員直通 WhatsApp チャット' : isAr ? 'محادثة مباشرة عبر واتساب' : isEn ? 'Instant WhatsApp Chat with Director' : 'Chat WhatsApp Langsung'}
+                  </span>
                 </a>
               </div>
             </div>
@@ -176,10 +191,16 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
             <div className="bg-white dark:bg-[#161617] p-6 sm:p-8 rounded-3xl border border-black/[0.08] dark:border-white/[0.12] shadow-xs relative overflow-hidden">
               <h3 className="text-xl font-semibold text-[#1D1D1F] dark:text-white mb-2 flex items-center space-x-2 tracking-tight">
                 <ShieldCheck className="w-5 h-5 text-[#0071E3] dark:text-[#2997FF]" />
-                <span>{lang === 'en' ? 'Schedule Infrastructure Consultation' : 'Formulir Pengajuan Evaluasi Teknis'}</span>
+                <span>
+                  {isJa ? '技術評価・インフラ相談フォーム' : isAr ? 'نموذج طلب الاستشارة والتقييم الفني' : isEn ? 'Schedule Infrastructure Consultation' : 'Formulir Pengajuan Evaluasi Teknis'}
+                </span>
               </h3>
               <p className="text-sm text-[#6E6E73] dark:text-[#A1A1A6] mb-6 font-normal leading-relaxed">
-                {lang === 'en'
+                {isJa
+                  ? '要件をご入力ください。認定シニアエンジニアが2営業時間以内に回答いたします。'
+                  : isAr
+                  ? 'يرجى تقديم متطلبات مشروعك أدناه. سيقوم فريق المهندسين المعتمد لدينا بالرد خلال ساعتي عمل.'
+                  : isEn
                   ? 'Provide your project requirements below. A certified lead engineer will review and respond within 2 business hours.'
                   : 'Isi spesifikasi kebutuhan Anda di bawah ini. Tim insinyur bersertifikasi kami akan merespon dalam 2 jam kerja.'}
               </p>
@@ -188,10 +209,14 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                 <div className="p-8 text-center bg-emerald-50 dark:bg-emerald-950/30 rounded-3xl border border-emerald-200 dark:border-emerald-800/40">
                   <CheckCircle className="w-12 h-12 text-[#34C759] mx-auto mb-3" />
                   <h4 className="text-lg font-semibold text-[#1D1D1F] dark:text-white mb-1">
-                    {lang === 'en' ? 'Consultation Request Dispatched' : 'Permohonan Berhasil Dikirim'}
+                    {isJa ? '技術相談リクエストを送信しました' : isAr ? 'تم إرسال طلب الاستشارة بنجاح' : isEn ? 'Consultation Request Dispatched' : 'Permohonan Berhasil Dikirim'}
                   </h4>
                   <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] max-w-md mx-auto leading-relaxed">
-                    {lang === 'en'
+                    {isJa
+                      ? 'ありがとうございます。要件はディレクターおよびリードエンジニアに転送されました。'
+                      : isAr
+                      ? 'شكراً لك. تم تحويل متطلباتك الفنية مباشرة إلى مدير الشركة وفريق الهندسة.'
+                      : isEn
                       ? 'Thank you. Your technical requirements have been forwarded to Director Yahya Hidayatullah and Lead Architect Ikhwanul Rahman.'
                       : 'Terima kasih. Spesifikasi kebutuhan Anda telah diteruskan langsung ke Direktur Yahya Hidayatullah dan Tim Engineering.'}
                   </p>
@@ -199,7 +224,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                     onClick={() => setSubmitted(false)}
                     className="mt-6 px-6 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-xs text-white font-medium transition-all"
                   >
-                    {lang === 'en' ? 'Submit Another Technical Brief' : 'Kirim Permintaan Baru'}
+                    {isJa ? '新しい相談リクエストを送信' : isAr ? 'إرسال طلب فني جديد' : isEn ? 'Submit Another Technical Brief' : 'Kirim Permintaan Baru'}
                   </button>
                 </div>
               ) : (
@@ -207,27 +232,27 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Full Name *' : 'Nama Lengkap *'}
+                        {isJa ? 'ご芳名 *' : isAr ? 'الاسم الكامل *' : isEn ? 'Full Name *' : 'Nama Lengkap *'}
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Hadi Prabowo"
+                        placeholder={isJa ? '例: 山田 太郎' : isAr ? 'مثال: محمد العمري' : 'e.g. Hadi Prabowo'}
                         className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Organization / Institution *' : 'Instansi / Perusahaan *'}
+                        {isJa ? '組織・企業名 *' : isAr ? 'المؤسسة / الشركة *' : isEn ? 'Organization / Institution *' : 'Instansi / Perusahaan *'}
                       </label>
                       <input
                         type="text"
                         required
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                        placeholder="e.g. PT Pertamina / Kementerian"
+                        placeholder={isJa ? '例: 株式会社サンプル / 省庁' : isAr ? 'مثال: أرامكو / الوزارة' : 'e.g. PT Pertamina / Kementerian'}
                         className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                       />
                     </div>
@@ -236,20 +261,20 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Corporate Email *' : 'Email Kantor *'}
+                        {isJa ? '会社メールアドレス *' : isAr ? 'البريد الإلكتروني للعمل *' : isEn ? 'Corporate Email *' : 'Email Kantor *'}
                       </label>
                       <input
                         type="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="name@pertamina.com"
+                        placeholder="corporate@domain.com"
                         className="w-full px-4 py-3 rounded-2xl bg-black/[0.03] dark:bg-white/[0.05] border border-black/[0.1] dark:border-white/[0.15] text-[#1D1D1F] dark:text-white text-xs sm:text-sm focus:border-[#0071E3] focus:ring-2 focus:ring-[#0071E3]/20 focus:outline-none transition-all placeholder:text-[#6E6E73]/60"
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Phone / WhatsApp *' : 'Nomor WhatsApp *'}
+                        {isJa ? '電話番号 / WhatsApp *' : isAr ? 'رقم الهاتف / واتساب *' : isEn ? 'Phone / WhatsApp *' : 'Nomor WhatsApp *'}
                       </label>
                       <input
                         type="tel"
@@ -265,7 +290,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Primary Scope of Work' : 'Ruang Lingkup Kebutuhan'}
+                        {isJa ? '希望プロジェクト領域' : isAr ? 'نطاق العمل الأساسي' : isEn ? 'Primary Scope of Work' : 'Ruang Lingkup Kebutuhan'}
                       </label>
                       <select
                         value={formData.serviceScope}
@@ -287,7 +312,7 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
                     <div>
                       <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                        {lang === 'en' ? 'Operational Terrain / Environment' : 'Lokasi & Medan Operasional'}
+                        {isJa ? '運用環境・拠点形態' : isAr ? 'بيئة العمل الميداني والتشغيلي' : isEn ? 'Operational Terrain / Environment' : 'Lokasi & Medan Operasional'}
                       </label>
                       <select
                         value={formData.terrain}
@@ -305,14 +330,18 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
 
                   <div>
                     <label className="block text-xs font-medium text-[#1D1D1F] dark:text-white mb-1.5">
-                      {lang === 'en' ? 'Technical Specifications / Project Details' : 'Keterangan Kebutuhan Teknis'}
+                      {isJa ? '技術要件・案件詳細' : isAr ? 'المواصفات الفنية وتفاصيل المشروع' : isEn ? 'Technical Specifications / Project Details' : 'Keterangan Kebutuhan Teknis'}
                     </label>
                     <textarea
                       rows={3}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={
-                        lang === 'en'
+                        isJa
+                          ? '既存インフラの課題、ノード数、希望導入スケジュール、コンプライアンス要件などをご記入ください...'
+                          : isAr
+                          ? 'صف التحديات الحالية، عدد النقاط، الجدول الزمني، أو معايير الامتثال المطلوبة...'
+                          : isEn
                           ? 'Describe existing infrastructure bottlenecks, number of nodes, desired timeline, or required compliance standards...'
                           : 'Jelaskan kendala jaringan saat ini, jumlah titik perangkat, estimasi waktu, atau standar kepatuhan yang dibutuhkan...'
                       }
@@ -325,7 +354,9 @@ export const ContactSection: React.FC<ContactProps> = ({ lang }) => {
                     className="w-full py-3.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white font-medium text-xs sm:text-sm transition-all flex items-center justify-center space-x-2 shadow-xs cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    <span>{lang === 'en' ? 'Submit Technical Consultation Request' : 'Kirim Pengajuan Konsultasi'}</span>
+                    <span>
+                      {isJa ? '技術相談リクエストを送信' : isAr ? 'إرسال طلب الاستشارة الفنية' : isEn ? 'Submit Technical Consultation Request' : 'Kirim Pengajuan Konsultasi'}
+                    </span>
                   </button>
                 </form>
               )}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { COMPANY_DETAILS } from '../data/companyData';
 import { ArrowUp, FileCheck } from 'lucide-react';
+import type { Language } from '../i18n/translations';
 
 interface FooterProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
   onOpenCredentials: () => void;
 }
@@ -31,6 +32,10 @@ export const Footer: React.FC<FooterProps> = ({
   lang,
   onOpenCredentials,
 }) => {
+  const isEn = lang === 'en';
+  const isJa = lang === 'ja';
+  const isAr = lang === 'ar';
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -52,7 +57,11 @@ export const Footer: React.FC<FooterProps> = ({
               </div>
             </a>
             <p className="text-[#6E6E73] dark:text-[#A1A1A6] font-normal leading-relaxed max-w-sm">
-              {lang === 'en'
+              {isJa
+                ? 'PT. Maudy Network Komunikasi (MNK) は、エンタープライズIT、海洋衛星VSAT、産業用IoTにおいてミッションクリティカルな高信頼ソリューションを提供する技術プロバイダーです。'
+                : isAr
+                ? 'شركة PT. Maudy Network Komunikasi (MNK) مزود رائد لحلول تكنولوجيا المعلومات للمؤسسات، واتصالات الأقمار الصناعية البحرية VSAT، وإنترنت الأشياء الصناعي.'
+                : isEn
                 ? 'PT. Maudy Network Komunikasi (MNK) is a strategic enterprise IT, maritime VSAT, and industrial IoT solutions provider delivering mission-critical resilience across Indonesia.'
                 : 'PT. Maudy Network Komunikasi (MNK) adalah penyedia solusi IT infrastruktur, jaringan satelit kapal, dan IoT telemetri industri berkeandalan tinggi di seluruh Indonesia.'}
             </p>
@@ -68,7 +77,9 @@ export const Footer: React.FC<FooterProps> = ({
                 className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#161617] hover:bg-black/[0.04] dark:hover:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.12] text-[#1D1D1F] dark:text-white transition-colors text-[11px] font-medium shadow-2xs cursor-pointer"
               >
                 <FileCheck className="w-3.5 h-3.5 text-[#0071E3] dark:text-[#2997FF]" />
-                <span>{lang === 'en' ? 'Verified Contracts & SPK' : 'Dokumen Kontrak & SPK Resmi'}</span>
+                <span>
+                  {isJa ? '公式契約証憑・SPK認証' : isAr ? 'العقود الرسمية المعتمدة والتراخيص' : isEn ? 'Verified Contracts & SPK' : 'Dokumen Kontrak & SPK Resmi'}
+                </span>
               </button>
             </div>
           </div>
@@ -76,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Col 2: Core Services */}
           <div>
             <div className="font-semibold text-[#1D1D1F] dark:text-white font-mono uppercase tracking-wider mb-3 text-[11px]">
-              {lang === 'en' ? 'Core Services' : 'Layanan Utama'}
+              {isJa ? '主要サービス' : isAr ? 'الخدمات الأساسية' : isEn ? 'Core Services' : 'Layanan Utama'}
             </div>
             <ul className="space-y-2">
               <li>
@@ -115,7 +126,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Col 3: Products */}
           <div>
             <div className="font-semibold text-[#1D1D1F] dark:text-white font-mono uppercase tracking-wider mb-3 text-[11px]">
-              {lang === 'en' ? 'Proprietary Platforms' : 'Platform Mandiri'}
+              {isJa ? '独自開発プラットフォーム' : isAr ? 'المنصات التكنولوجية الخاصة' : isEn ? 'Proprietary Platforms' : 'Platform Mandiri'}
             </div>
             <ul className="space-y-2">
               <li>
@@ -156,7 +167,7 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Col 4: Contact */}
           <div>
             <div className="font-semibold text-[#1D1D1F] dark:text-white font-mono uppercase tracking-wider mb-3 text-[11px]">
-              {lang === 'en' ? 'Headquarters' : 'Kantor Pusat'}
+              {isJa ? '本社所在地' : isAr ? 'المقر الرئيسي' : isEn ? 'Headquarters' : 'Kantor Pusat'}
             </div>
             <p className="text-[#6E6E73] dark:text-[#A1A1A6] text-xs mb-3 leading-relaxed">
               {COMPANY_DETAILS.address}
@@ -185,7 +196,7 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="pt-8 border-t border-black/[0.06] dark:border-white/[0.08] mt-2">
           <div className="text-center mb-4">
             <span className="text-[10px] font-mono uppercase tracking-widest text-[#6E6E73] dark:text-[#A1A1A6] font-medium">
-              {lang === 'en' ? 'Verified Enterprise Principals, Clients & Accreditations' : 'Mitra Prinsipal, Klien Strategis & Akreditasi Resmi'}
+              {isJa ? '認証主要パートナー・戦略顧客・公式資格' : isAr ? 'الشركاء التقنيون المعتمدون وكبار العملاء والاعتمادات الرسمية' : isEn ? 'Verified Enterprise Principals, Clients & Accreditations' : 'Mitra Prinsipal, Klien Strategis & Akreditasi Resmi'}
             </span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2">
@@ -212,7 +223,7 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           <div className="text-[10px] text-[#6E6E73] dark:text-[#A1A1A6]">
-            {lang === 'en' ? 'Engineered for High-Reliability Operations' : 'Infrastruktur Kritis Berstandar Nasional & Internasional'}
+            {isJa ? '高信頼オペレーション向けエンジニアリング' : isAr ? 'هندسة متطورة للعمليات فائقة الموثوقية' : isEn ? 'Engineered for High-Reliability Operations' : 'Infrastruktur Kritis Berstandar Nasional & Internasional'}
           </div>
 
           <button

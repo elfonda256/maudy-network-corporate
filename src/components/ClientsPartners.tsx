@@ -13,9 +13,11 @@ import {
 } from 'lucide-react';
 import { useCms } from '../context/CmsContext';
 import type { ClientItem } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ClientsPartnersProps {
-  lang: 'en' | 'id';
+  lang: Language;
 }
 
 export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
@@ -166,7 +168,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                         {item.name}
                       </h4>
                       <span className="text-[11px] font-normal text-[#6E6E73] dark:text-[#A1A1A6]">
-                        {item.category[lang]}
+                        {getLangText(item.category, lang)}
                       </span>
                     </div>
                   </div>
@@ -176,10 +178,10 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                 <div className="pt-2.5 border-t border-black/[0.06] dark:border-white/[0.08]">
                   <div className="text-[11px] font-medium text-[#6E6E73] dark:text-[#A1A1A6] mb-1 flex items-center">
                     <CheckCircle2 className="w-3 h-3 mr-1.5 text-emerald-500" />
-                    <span>{lang === 'en' ? 'Verified Scope' : 'Ruang Lingkup Terverifikasi'}</span>
+                    <span>{lang === 'ja' ? '提供スコープ' : lang === 'ar' ? 'نطاق العمل المعتمد' : lang === 'en' ? 'Verified Scope' : 'Ruang Lingkup Terverifikasi'}</span>
                   </div>
                   <p className="text-xs text-[#1D1D1F] dark:text-[#F5F5F7] font-normal leading-relaxed">
-                    {item.scope[lang]}
+                    {getLangText(item.scope, lang)}
                   </p>
                 </div>
               </div>
@@ -240,7 +242,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                   {selectedClient.name}
                 </h3>
                 <span className="text-xs text-[#6E6E73] dark:text-[#A1A1A6]">
-                  {selectedClient.category[lang]}
+                  {getLangText(selectedClient.category, lang)}
                 </span>
               </div>
             </div>
@@ -249,10 +251,10 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
             <div className="space-y-4 text-xs">
               <div className="p-4 rounded-2xl bg-black/[0.03] dark:bg-white/[0.04] border border-black/[0.06] dark:border-white/[0.08] space-y-2">
                 <div className="text-[11px] font-semibold text-[#0071E3] dark:text-[#2997FF] uppercase tracking-wider">
-                  Ruang Lingkup Pengadaan & Layanan Terpasang
+                  {lang === 'ja' ? '調達スコープ・導入サービス' : lang === 'ar' ? 'نطاق التوريد والخدمات المنفذة' : lang === 'en' ? 'Scope of Work & Deployed Services' : 'Ruang Lingkup Pengadaan & Layanan Terpasang'}
                 </div>
                 <p className="text-[#1D1D1F] dark:text-[#F5F5F7] leading-relaxed font-normal text-xs">
-                  {selectedClient.scope[lang]}
+                  {getLangText(selectedClient.scope, lang)}
                 </p>
               </div>
 

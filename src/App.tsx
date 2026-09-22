@@ -50,6 +50,7 @@ import { AegisProductModal } from './components/AegisProductModal';
 import { AegisContactModal } from './components/AegisContactModal';
 import { AegisBrochureCatalogModal } from './components/AegisBrochureCatalogModal';
 import { PRODUCTS, type ProductItem } from './data/aegisData';
+import type { Language } from './i18n/translations';
 
 export function App() {
   // Portal State: 'corporate' (PT Maudy Network) vs 'aegis-ai' (Aegis Technology AI Suite)
@@ -63,8 +64,8 @@ export function App() {
     return 'corporate';
   });
 
-  // Corporate Portal States
-  const [lang, setLang] = useState<'en' | 'id'>('id');
+  // Corporate Portal States (4 Languages: id, en, ja, ar)
+  const [lang, setLang] = useState<Language>('id');
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [credentialsOpen, setCredentialsOpen] = useState(false);
   const [adminOpen, setAdminOpen] = useState(false);
@@ -79,6 +80,12 @@ export function App() {
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
+
+  // Synchronize language and RTL layout direction dynamically
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  }, [lang]);
 
   // URL Hash Synchronizer
   useEffect(() => {
@@ -279,6 +286,8 @@ export function App() {
 
             {/* 1. Sticky Navigation */}
             <AegisNavbar 
+              lang={lang}
+              setLang={setLang}
               onOpenDemo={(pName) => {
                 setPrefilledProduct(pName);
                 setDemoModalOpen(true);
@@ -291,6 +300,7 @@ export function App() {
             <main className="relative z-10">
               {/* 2. Hero Section */}
               <AegisHero 
+                lang={lang}
                 onOpenDemo={() => {
                   setPrefilledProduct(undefined);
                   setDemoModalOpen(true);
@@ -399,6 +409,7 @@ export function App() {
 
         {/* Global Floating Actions (Maudy AI Virtual Desk, WhatsApp & Scroll-to-Top) */}
         <FloatingActions 
+          lang={lang}
           onOpenEstimator={() => {
             if (activePortal !== 'corporate') {
               switchPortal('corporate');

@@ -17,9 +17,11 @@ import {
 } from 'lucide-react';
 import type { Service } from '../data/companyData';
 import { useCms } from '../context/CmsContext';
+import type { Language } from '../i18n/translations';
+import { getLangText } from '../i18n/translations';
 
 interface ServicesProps {
-  lang: 'en' | 'id';
+  lang: Language;
   onOpenConsultation: () => void;
 }
 
@@ -43,13 +45,13 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
   };
 
   const categories = [
-    { id: 'all', label: { en: 'All Services', id: 'Semua Layanan' } },
-    { id: 'Infrastructure', label: { en: 'Core Infrastructure', id: 'Infrastruktur Inti' } },
-    { id: 'Maritime', label: { en: 'Marine & VSAT', id: 'Maritim & VSAT' } },
-    { id: 'Security', label: { en: 'Cyber Security', id: 'Keamanan Siber' } },
-    { id: 'Software', label: { en: 'Software & GIS', id: 'Software & GIS' } },
-    { id: 'IoT', label: { en: 'Smart IoT', id: 'Smart IoT' } },
-    { id: 'Surveillance', label: { en: 'AI Surveillance', id: 'CCTV & Pengawasan' } },
+    { id: 'all', label: { en: 'All Services (12)', id: 'Semua Layanan (12)', ja: '全サービス (12)', ar: 'كافة الخدمات (12)' } },
+    { id: 'Network', label: { en: 'Core Network', id: 'Jaringan & Fiber', ja: '基幹ネットワーク', ar: 'الشبكات الأساسية' } },
+    { id: 'Maritime', label: { en: 'Marine VSAT', id: 'Satelit Maritim', ja: '海上VSAT衛星', ar: 'الأقمار البحرية' } },
+    { id: 'Cybersecurity', label: { en: 'Cyber Security', id: 'Keamanan Siber', ja: 'サイバー防衛', ar: 'الأمن السيبراني' } },
+    { id: 'Software', label: { en: 'Software & GIS', id: 'Software & GIS', ja: 'ソフトウェア＆GIS', ar: 'البرمجيات ونظم GIS' } },
+    { id: 'IoT', label: { en: 'Smart IoT', id: 'Smart IoT', ja: '産業IoT', ar: 'إنترنت الأشياء' } },
+    { id: 'Surveillance', label: { en: 'AI Surveillance', id: 'CCTV & Pengawasan', ja: 'AI画像監視', ar: 'المراقبة الذكية' } },
   ];
 
   const filteredServices =
@@ -68,10 +70,26 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
-            <span>{lang === 'en' ? 'COMPREHENSIVE CAPABILITIES' : 'LAYANAN TERPADU MNK'}</span>
+            <span>
+              {lang === 'ja'
+                ? '包括的テクノロジー能力'
+                : lang === 'ar'
+                ? 'قدرات تكنولوجية متكاملة'
+                : lang === 'en'
+                ? 'COMPREHENSIVE CAPABILITIES'
+                : 'LAYANAN TERPADU MNK'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
+            {lang === 'ja' ? (
+              <>
+                ミッションクリティカル <span className="text-gradient-brand">テクノロジーサービス</span>
+              </>
+            ) : lang === 'ar' ? (
+              <>
+                خدمات التكنولوجيا للبنية <span className="text-gradient-brand">التحتية الاستراتيجية</span>
+              </>
+            ) : lang === 'en' ? (
               <>
                 Mission-Critical <span className="text-gradient-brand">Technology Services</span>
               </>
@@ -82,7 +100,11 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
             )}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
+            {lang === 'ja'
+              ? '通信キャリア水準のルーティング、大洋航海VSAT、Fortinet NSE 7サイバー防衛から、国家機関向け専用ソフトウェアまで。'
+              : lang === 'ar'
+              ? 'من توجيه شبكات الاتصالات عالية السرعة واتصالات أقمار أعالي البحار إلى أمن فورتينت السيبراني وهندسة البرمجيات المؤسسية.'
+              : lang === 'en'
               ? 'From carrier-grade routing and deep-ocean VSAT telemetry to Fortinet NSE 7 cybersecurity and custom ministerial software engines.'
               : 'Mulai dari arsitektur jaringan carrier-grade, satelit laut lepas, keamanan siber Fortinet NSE 7, hingga rekayasa piranti lunak kementerian.'}
           </p>
@@ -100,7 +122,7 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
                   : 'bg-black/[0.04] dark:bg-white/[0.06] text-[#6E6E73] dark:text-[#A1A1A6] hover:text-[#1D1D1F] dark:hover:text-white border border-black/[0.06] dark:border-white/[0.08]'
               }`}
             >
-              {cat.label[lang]}
+              {getLangText(cat.label, lang)}
             </button>
           ))}
         </div>
@@ -109,6 +131,7 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredServices.map((service, idx) => {
             const Icon = iconMap[service.iconName] || Network;
+            const benefitsList = (service.benefits as any)[lang] || service.benefits.en || service.benefits.id || [];
             return (
               <div
                 key={service.id}
@@ -130,19 +153,25 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
                   </div>
 
                   <h3 className="text-lg font-semibold text-[#1D1D1F] dark:text-white mb-2 leading-snug">
-                    {service.title[lang]}
+                    {getLangText(service.title, lang)}
                   </h3>
 
                   <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] leading-relaxed font-normal mb-5">
-                    {service.description[lang]}
+                    {getLangText(service.description, lang)}
                   </p>
 
                   {/* Key Benefits List */}
                   <div className="space-y-2 mb-6">
                     <div className="text-[11px] text-[#1D1D1F] dark:text-white uppercase font-mono tracking-wider font-semibold">
-                      {lang === 'en' ? 'Key Deliverables & Benefits:' : 'Keunggulan & Manfaat:'}
+                      {lang === 'ja'
+                        ? '主な提供価値・メリット:'
+                        : lang === 'ar'
+                        ? 'أبرز المزايا والمخرجات:'
+                        : lang === 'en'
+                        ? 'Key Deliverables & Benefits:'
+                        : 'Keunggulan & Manfaat:'}
                     </div>
-                    {service.benefits[lang].map((benefit, bIdx) => (
+                    {benefitsList.map((benefit: string, bIdx: number) => (
                       <div key={bIdx} className="flex items-start space-x-2 text-xs text-[#1D1D1F] dark:text-slate-300">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#0071E3] dark:text-[#2997FF] mt-0.5 flex-shrink-0" />
                         <span>{benefit}</span>

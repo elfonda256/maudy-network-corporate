@@ -1,3 +1,22 @@
+import type { Language } from '../i18n/translations';
+export type { Language };
+
+export interface MultilingualText {
+  id: string;
+  en: string;
+  ja?: string;
+  ar?: string;
+  [key: string]: string | undefined;
+}
+
+export interface MultilingualList {
+  id: string[];
+  en: string[];
+  ja?: string[];
+  ar?: string[];
+  [key: string]: string[] | undefined;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -5,22 +24,10 @@ export interface Project {
   category: 'maritime' | 'government' | 'energy' | 'enterprise' | 'infrastructure';
   location: string;
   image?: string;
-  summary: {
-    en: string;
-    id: string;
-  };
-  challenge: {
-    en: string;
-    id: string;
-  };
-  solution: {
-    en: string;
-    id: string;
-  };
-  businessImpact: {
-    en: string;
-    id: string;
-  };
+  summary: MultilingualText;
+  challenge: MultilingualText;
+  solution: MultilingualText;
+  businessImpact: MultilingualText;
   technologies: string[];
   specs?: string[];
   documentRef?: string;
@@ -28,19 +35,19 @@ export interface Project {
 
 export interface Service {
   id: string;
-  title: { en: string; id: string };
+  title: MultilingualText;
   category: string;
   iconName: string;
-  description: { en: string; id: string };
-  benefits: { en: string[]; id: string[] };
+  description: MultilingualText;
+  benefits: MultilingualList;
   technologies: string[];
 }
 
 export interface TeamMember {
   name: string;
-  role: { en: string; id: string };
+  role: MultilingualText;
   certifications: string[];
-  bio: { en: string; id: string };
+  bio: MultilingualText;
   avatar?: string;
 }
 
@@ -759,20 +766,22 @@ export const PRODUCTS_LIST = [
     hashAlias: ["xtur", "xtur-ai"],
     description: {
       en: "Enterprise-grade autonomous AI computer vision platform engineered by MNK. Powers multi-camera video analytics with sub-5ms neural edge inference, 57-region ANPR/ALPR automated license recognition, perimeter intrusion alerts, and HSE safety compliance (PPE hardhat/vest detection) across 64+ RTSP camera streams.",
-      id: "Platform pengawasan CCTV kecerdasan buatan (AI Vision) otonom kelas enterprise rancangan MNK. Menyajikan analisis video multi-kamera dengan inferensi edge saraf <5ms, pengenalan plat nomor otomatis (ANPR) 57 wilayah, radar intrusi perimeter, dan audit kepatuhan K3 keselamatan kerja pada 64+ kamera serentak."
+      id: "Platform pengawasan CCTV kecerdasan buatan (AI Vision) otonom kelas enterprise rancangan MNK. Menyajikan analisis video multi-kamera dengan inferensi edge saraf <5ms, pengenalan plat nomor otomatis (ANPR) 57 wilayah, radar intrusi perimeter, dan audit kepatuhan K3 keselamatan kerja pada 64+ kamera serentak.",
+      ja: "MNKが開発したエンタープライズ向け自律型AIコンピュータビジョン基盤。サブ5msのニューラルエッジ推論、57地域の車両ナンバー自動認識（ANPR/ALPR）、侵入検知アラート、および64台以上の同時RTSPストリームでの安全衛生（PPE保護具）準拠検査を実現。",
+      ar: "منصة رؤية حاسوبية ذكية ومستقلة على مستوى المؤسسات من تصميم MNK. توفر تحليلات فيديو متعددة الكاميرات بزمن انتقال عصبي طرفي أقل من 5 مللي ثانية، وتعرفاً آلياً على لوحات المركبات لـ 57 منطقة، وكشف التسلل الخارجي، وتدقيق سلامة العمل (معدات الوقاية) على أكثر من 64 بث كاميرا متزامن."
     },
     capabilities: [
       {
-        title: { en: "Sub-5ms Neural Edge Inference", id: "Inferensi Saraf Edge Sub-5ms" },
-        desc: { en: "Hardware-accelerated YOLO & TensorRT computer vision models executing real-time multi-target classification and tracking at 4.2ms GPU latency.", id: "Akselerasi inferensi YOLO & TensorRT pada edge GPU berkecepatan 4.2ms tanpa bergantung pada latensi cloud eksternal." }
+        title: { en: "Sub-5ms Neural Edge Inference", id: "Inferensi Saraf Edge Sub-5ms", ja: "サブ5ms ニューラルエッジ推論", ar: "استدلال طرفي عصبي أقل من 5 مللي ثانية" },
+        desc: { en: "Hardware-accelerated YOLO & TensorRT computer vision models executing real-time multi-target classification and tracking at 4.2ms GPU latency.", id: "Akselerasi inferensi YOLO & TensorRT pada edge GPU berkecepatan 4.2ms tanpa bergantung pada latensi cloud eksternal.", ja: "ハードウェア加速されたYOLOおよびTensorRTモデルが4.2msの超低遅延でリアルタイム分類と追跡を実行。", ar: "نماذج رؤية حاسوبية مسرّعة عتادياً تنفذ تصنيفاً وتتبعاً متعدد الأهداف في الوقت الفعلي بزمن 4.2 مللي ثانية." }
       },
       {
-        title: { en: "57-Region ANPR & Vehicle Telemetry", id: "ANPR 57 Wilayah & Telemetri Kendaraan" },
-        desc: { en: "Autonomous license plate recognition with instantaneous character extraction, vehicle class identification, speed estimation, and blacklist hotlist alarms.", id: "Identifikasi otomatis nomor polisi kendaraan di 57 kode wilayah nasional, klasifikasi tipe kendaraan, dan alarm instan daftar hitam (blacklist)." }
+        title: { en: "57-Region ANPR & Vehicle Telemetry", id: "ANPR 57 Wilayah & Telemetri Kendaraan", ja: "57地域対応 ANPR＆車両テレメトリ", ar: "التعرف الآلي على لوحات 57 منطقة" },
+        desc: { en: "Autonomous license plate recognition with instantaneous character extraction, vehicle class identification, speed estimation, and blacklist hotlist alarms.", id: "Identifikasi otomatis nomor polisi kendaraan di 57 kode wilayah nasional, klasifikasi tipe kendaraan, dan alarm instan daftar hitam (blacklist).", ja: "即時の文字抽出、車両クラス識別、速度推定、および指名手配車両アラームを備えたナンバープレート自動認識。", ar: "استخراج فوري لحروف وأرقام اللوحات وتصنيف المركبات وتقدير السرعة مع إنذارات القائمة السوداء الفورية." }
       },
       {
-        title: { en: "Industrial HSE & Zone Intrusion Matrix", id: "Kepatuhan K3 & Intrusi Perimeter Digital" },
-        desc: { en: "Automated optical inspection for safety helmets, high-vis vests, fire/smoke anomalies, and forbidden zone breach detection with instantaneous webhook dispatch.", id: "Deteksi otomatis kepatuhan APD (helm proyek, rompi), anomali asap/api, serta peringatan pelanggaran batas zona bahaya via webhook instan." }
+        title: { en: "Industrial HSE & Zone Intrusion Matrix", id: "Kepatuhan K3 & Intrusi Perimeter Digital", ja: "産業安全衛生（HSE）＆侵入検知マトリクス", ar: "مصفوفة السلامة المهنية وكشف التسلل" },
+        desc: { en: "Automated optical inspection for safety helmets, high-vis vests, fire/smoke anomalies, and forbidden zone breach detection with instantaneous webhook dispatch.", id: "Deteksi otomatis kepatuhan APD (helm proyek, rompi), anomali asap/api, serta peringatan pelanggaran batas zona bahaya via webhook instan.", ja: "ヘルメットや安全ベスト着用、火災・煙検知、立ち入り禁止区域侵入を自動検知し即座にアラート送信。", ar: "فحص بصري آلي لخوذ وسترات السلامة وكشف الدخان والحرائق واختراق المناطق المحظورة مع إرسال إشعارات فورية." }
       }
     ],
     liveMetrics: {
@@ -792,20 +801,22 @@ export const PRODUCTS_LIST = [
     hashAlias: ["aegis", "aegis-maritime"],
     description: {
       en: "Mission-critical maritime cyber-defense ecosystem deployed across oceanic fleets and VLCC crude tankers (including Pertamina International Shipping). Integrates Fortinet NSE 7 zero-trust NGFW perimeter isolation, deep packet inspection at sea, and intelligent VSAT/Starlink satellite QoS bandwidth optimization.",
-      id: "Suite pertahanan siber kemaritiman misi kritis yang dioperasikan pada armada kapal tanker samudra dan VLCC (termasuk PT Pertamina International Shipping). Memadukan firewall zero-trust Fortinet NSE 7, inspeksi paket mendalam di laut lepas, dan orkestrasi QoS satelit VSAT/Starlink cerdas."
+      id: "Suite pertahanan siber kemaritiman misi kritis yang dioperasikan pada armada kapal tanker samudra dan VLCC (termasuk PT Pertamina International Shipping). Memadukan firewall zero-trust Fortinet NSE 7, inspeksi paket mendalam di laut lepas, dan orkestrasi QoS satelit VSAT/Starlink cerdas.",
+      ja: "外航船隊およびVLCC大型原油タンカー（PT Pertamina International Shippingなど）に配備されたミッションクリティカルな海上サイバー防御システム。Fortinet NSE 7ゼロトラストNGFW境界分離、公海上でのディープパケット検査、インテリジェントなVSAT/Starlink衛星QoS帯域幅最適化を統合。",
+      ar: "منظومة دفاع سيبراني بحري للمهام الحرجة تعمل عبر أساطيل النقل البحري وناقلات النفط العملاقة (بما في ذلك شركة برتامينا الدولية للشحن). تجمع بين جدران الحماية Zero-Trust من Fortinet NSE 7، وفحص الحزم العميق في عرض البحر، وتحسين جودة الخدمة (QoS) الذكية لأقمار VSAT/Starlink."
     },
     capabilities: [
       {
-        title: { en: "Zero-Trust Fleet Perimeter Defense", id: "Perlindungan Perimeter Kapal Zero-Trust" },
-        desc: { en: "Isolates operational OT shipboard navigation (ECDIS, gyro, engine telemetry) from crew entertainment networks with military-grade firewalling and automated quarantine.", id: "Memisahkan jaringan OT navigasi kritis kapal (ECDIS, gyro, telemetri mesin) dari jaringan internet kru dengan isolasi VLAN militer dan karantina malware otomatis." }
+        title: { en: "Zero-Trust Fleet Perimeter Defense", id: "Perlindungan Perimeter Kapal Zero-Trust", ja: "ゼロトラスト船舶境界防衛", ar: "دفاع حدود الأسطول بانعدام الثقة Zero-Trust" },
+        desc: { en: "Isolates operational OT shipboard navigation (ECDIS, gyro, engine telemetry) from crew entertainment networks with military-grade firewalling and automated quarantine.", id: "Memisahkan jaringan OT navigasi kritis kapal (ECDIS, gyro, telemetri mesin) dari jaringan internet kru dengan isolasi VLAN militer dan karantina malware otomatis.", ja: "運航用OTネットワーク（ECDIS、ジャイロ、機関テレメトリ）を乗組員用ネットワークから軍用級ファイアウォールで厳格に隔離。", ar: "عزل شبكات الملاحة التشغيلية الحرجة للسفن عن شبكات ترفيه الطاقم بجدران حماية عسكرية وحجر آلي للبرمجيات الخبيثة." }
       },
       {
-        title: { en: "Mission-Critical VSAT Satellite QoS", id: "Manajemen QoS Bandwidth Satelit VSAT" },
-        desc: { en: "Dynamic bandwidth traffic shaping that guarantees mission-critical navigation and corporate VoIP packet delivery even on congested 512Kbps maritime satellite channels.", id: "Shaping traffic dinamis yang menjamin prioritas paket navigasi resmi dan VoIP darurat tetap lancar meski di bandwidth satelit terbatas 512Kbps." }
+        title: { en: "Mission-Critical VSAT Satellite QoS", id: "Manajemen QoS Bandwidth Satelit VSAT", ja: "ミッションクリティカル 海上VSAT QoS管理", ar: "إدارة جودة خدمة VSAT الفضائية للمهام الحرجة" },
+        desc: { en: "Dynamic bandwidth traffic shaping that guarantees mission-critical navigation and corporate VoIP packet delivery even on congested 512Kbps maritime satellite channels.", id: "Shaping traffic dinamis yang menjamin prioritas paket navigasi resmi dan VoIP darurat tetap lancar meski di bandwidth satelit terbatas 512Kbps.", ja: "混雑した512Kbps衛星通信回線上でも、運航ナビゲーションや緊急VoIP通話を最優先で保証する動的帯域制御。", ar: "تنظيم تدفق البيانات ديناميكياً لضمان أولوية حزم الملاحة والاتصال الصوتي الرسمي حتى عبر قنوات الأقمار المزدحمة بسرعة 512 كيلوبت/ث." }
       },
       {
-        title: { en: "Multi-Orbit Failover Telemetry", id: "Telemetri Failover Multi-Orbit Satelit" },
-        desc: { en: "Sub-second automated failover orchestrator switching between Starlink LEO, Inmarsat GEO, and coastal 4G/5G cellular modems with continuous packet health telemetry.", id: "Orkestrator failover otomatis sub-detik antara satelit Starlink LEO, Inmarsat GEO, dan seluler pesisir 4G/5G dengan pantauan kesehatan paket konstan." }
+        title: { en: "Multi-Orbit Failover Telemetry", id: "Telemetri Failover Multi-Orbit Satelit", ja: "マルチ軌道衛星フェイルオーバー・テレメトリ", ar: "التحويل التلقائي بين المدارات الفضائية المتعددة" },
+        desc: { en: "Sub-second automated failover orchestrator switching between Starlink LEO, Inmarsat GEO, and coastal 4G/5G cellular modems with continuous packet health telemetry.", id: "Orkestrator failover otomatis sub-detik antara satelit Starlink LEO, Inmarsat GEO, dan seluler pesisir 4G/5G dengan pantauan kesehatan paket konstan.", ja: "Starlink LEO、Inmarsat GEO、および沿岸4G/5G間をサブ秒単位で自動切り替えし、通信切断を防止。", ar: "نظام تحويل تلقائي في أجزاء من الثانية بين مدارات Starlink LEO وInmarsat GEO وشبكات 4G/5G الساحلية لضمان عدم انقطاع الاتصال." }
       }
     ],
     liveMetrics: {
@@ -824,6 +835,8 @@ export const PRODUCTS_LIST = [
     description: {
       en: "An integrated hardware-software ecosystem engineered by MNK to deliver absolute control over distributed physical infrastructure, remote shelters, and network assets.",
       id: "Ekosistem terpadu rancangan mandiri MNK yang memadukan keandalan hardware industri dengan kecerdasan software telemetri jarak jauh.",
+      ja: "分散配置された物理インフラ、遠隔地シェルター、および通信設備を完全統制するためにMNKが設計した、ハードウェア・ソフトウェア統合型産業IoT・テレメトリ基盤。",
+      ar: "منظومة متكاملة من الأجهزة والبرمجيات طورتها شركة MNK لتوفير تحكم مطلق ومراقبة دقيقة للبنية التحتية الموزعة والمحطات البعيدة وأصول الشبكات."
     },
     capabilities: [
       {
