@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { 
   FileText, ShoppingCart, HardHat, Wrench, Ship, Shield, 
   Trash2, Truck, Activity, CheckSquare, BarChart2, Cpu,
-  ChevronRight, Sparkles, CheckCircle2
+  ChevronRight
 } from 'lucide-react';
-import { PRODUCTS, type ProductItem } from '../data/aegisData';
+import { PRODUCTS } from '../data/aegisData';
 import { DashboardMockupRenderer } from './DashboardMockupRenderer';
 import { ProductVisualIllustration } from './ProductVisualIllustration';
+import type { Language } from '../i18n/translations';
+import { getAegisProductLocalized, AEGIS_UI_TEXTS } from '../i18n/aegisTranslations';
 
 interface Props {
+  lang?: Language;
   onOpenDemo: (prefilledProduct?: string) => void;
   onOpenProductDetail: (productId: string) => void;
   onOpenBrochure?: () => void;
 }
 
-export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProductDetail, onOpenBrochure }) => {
+export const AegisProductPortfolio: React.FC<Props> = ({ 
+  lang = 'id',
+  onOpenDemo, 
+  onOpenProductDetail, 
+  onOpenBrochure 
+}) => {
   const [activeCategory, setActiveCategory] = useState<'all' | 'enterprise' | 'industry' | 'core' | 'operations'>('all');
+
+  const t = AEGIS_UI_TEXTS[lang]?.portfolio || AEGIS_UI_TEXTS.id.portfolio;
 
   const productIcons: Record<string, React.ElementType> = {
     'ai-doc-intel': FileText,
@@ -36,6 +46,35 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
     return activeCategory === 'all' || p.category === activeCategory;
   });
 
+  const filterList = [
+    { id: 'all', label: t.filters.all },
+    { id: 'enterprise', label: t.filters.enterprise },
+    { id: 'industry', label: t.filters.industry },
+    { id: 'operations', label: t.filters.operations },
+    { id: 'core', label: t.filters.core },
+  ];
+
+  const moreSectorsText = (count: number) => {
+    if (lang === 'ja') return `+他${count}部門`;
+    if (lang === 'ar') return `+${count} قطاعات أخرى`;
+    if (lang === 'en') return `+${count} more sectors`;
+    return `+${count} sektor`;
+  };
+
+  const specLabel = {
+    id: 'Spesifikasi & Use Case',
+    en: 'Specifications & Use Cases',
+    ja: '詳細仕様・ユースケース',
+    ar: 'المواصفات وحالات الاستخدام'
+  }[lang] || 'Spesifikasi & Use Case';
+
+  const demoLabel = {
+    id: 'Minta Demo',
+    en: 'Request Demo',
+    ja: 'デモを予約',
+    ar: 'طلب عرض تجريبي'
+  }[lang] || 'Minta Demo';
+
   return (
     <section id="produk" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden text-left">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,13 +82,13 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-14">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
-            <span>PORTFOLIO PRODUK LENGKAP (12 SOLUSI)</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight font-sans">
-            Solusi yang Dirancang untuk Setiap Kebutuhan.
+            {t.title}
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed font-sans">
-            Jelajahi 12 platform solusi kecerdasan buatan, otomasi, dan analitik yang dibangun khusus untuk tantangan skala enterprise.
+            {t.subtitle}
           </p>
 
           {onOpenBrochure && (
@@ -58,7 +97,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
                 onClick={onOpenBrochure}
                 className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-xs font-medium text-white transition-all shadow-sm cursor-pointer"
               >
-                <span>📑 Buka E-Katalog Lengkap &amp; Cetak Brosur PDF &rarr;</span>
+                <span>{t.catalogBtn}</span>
               </button>
             </div>
           )}
@@ -66,13 +105,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
 
         {/* Apple Style Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-14">
-          {[
-            { id: 'all', label: 'Semua Produk (12)' },
-            { id: 'enterprise', label: 'Dokumen & Pengadaan' },
-            { id: 'industry', label: 'Industri & Maritim' },
-            { id: 'operations', label: 'Armada & Operasional' },
-            { id: 'core', label: 'Core AI & Keamanan' },
-          ].map((cat) => (
+          {filterList.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id as any)}
@@ -91,6 +124,12 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {filteredProducts.map((product) => {
             const Icon = productIcons[product.id] || Cpu;
+            const lp = getAegisProductLocalized(product.id, lang);
+            const pName = lp?.name || product.name;
+            const pTagline = lp?.tagline || product.tagline;
+            const pDesc = lp?.description || product.description;
+            const pIndustries = lp?.targetIndustries || product.targetIndustries;
+
             return (
               <div
                 key={product.id}
@@ -107,7 +146,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
                       <div>
                         <div className="flex items-center gap-2">
                           <h3 className="text-xl font-semibold text-white font-sans">
-                            {product.name}
+                            {pName}
                           </h3>
                           {product.flagship && (
                             <span className="px-2 py-0.5 rounded-full text-[9px] font-mono font-medium bg-[#0071E3]/20 text-[#2997FF] border border-[#0071E3]/30">
@@ -121,7 +160,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
                           )}
                         </div>
                         <div className="text-xs text-[#86868B] font-sans mt-0.5">
-                          {product.tagline}
+                          {pTagline}
                         </div>
                       </div>
                     </div>
@@ -129,7 +168,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
 
                   {/* Description */}
                   <p className="text-sm text-[#A1A1A6] leading-relaxed font-sans">
-                    {product.description}
+                    {pDesc}
                   </p>
 
                   {/* 1. Tailored Visual Illustration Asset (Zero Placeholders) */}
@@ -139,7 +178,7 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
 
                   {/* Target Industries Pills */}
                   <div className="flex flex-wrap gap-1.5 pt-1">
-                    {product.targetIndustries.slice(0, 4).map((ind, idx) => (
+                    {pIndustries.slice(0, 4).map((ind, idx) => (
                       <span 
                         key={idx} 
                         className="px-2.5 py-0.5 rounded-full text-[10px] font-sans bg-white/[0.04] text-[#86868B] border border-white/[0.06]"
@@ -147,9 +186,9 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
                         {ind}
                       </span>
                     ))}
-                    {product.targetIndustries.length > 4 && (
+                    {pIndustries.length > 4 && (
                       <span className="px-2 py-0.5 text-[10px] text-[#6E6E73] font-mono">
-                        +{product.targetIndustries.length - 4} sektor
+                        {moreSectorsText(pIndustries.length - 4)}
                       </span>
                     )}
                   </div>
@@ -166,15 +205,15 @@ export const AegisProductPortfolio: React.FC<Props> = ({ onOpenDemo, onOpenProdu
                     onClick={() => onOpenProductDetail(product.id)}
                     className="text-xs font-medium text-[#2997FF] hover:text-white flex items-center gap-1 transition-colors cursor-pointer group"
                   >
-                    <span>Spesifikasi & Use Case</span>
+                    <span>{specLabel}</span>
                     <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </button>
 
                   <button
-                    onClick={() => onOpenDemo(product.name)}
+                    onClick={() => onOpenDemo(pName)}
                     className="apple-pill-btn px-4 py-1.5 text-xs font-medium text-white bg-[#0071E3] hover:bg-[#0077ED] transition-all cursor-pointer shadow-sm"
                   >
-                    Minta Demo
+                    {demoLabel}
                   </button>
                 </div>
               </div>

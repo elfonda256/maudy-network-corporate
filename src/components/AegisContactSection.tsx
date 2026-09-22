@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { 
-  Send, Phone, Mail, MessageSquare, CheckCircle2, 
-  Sparkles, Building2, User, Briefcase, FileText, ChevronRight, Globe
+  Phone, Mail, MessageSquare, CheckCircle2
 } from 'lucide-react';
 import { PRODUCTS, INDUSTRIES } from '../data/aegisData';
+import type { Language } from '../i18n/translations';
+import { AEGIS_UI_TEXTS, getAegisProductLocalized } from '../i18n/aegisTranslations';
 
 interface Props {
+  lang?: Language;
   prefilledProduct?: string;
 }
 
-export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
+export const AegisContactSection: React.FC<Props> = ({ lang = 'id', prefilledProduct }) => {
+  const t = AEGIS_UI_TEXTS[lang]?.contact || AEGIS_UI_TEXTS.id.contact;
+
   const [formData, setFormData] = useState({
     nama: '',
     perusahaan: '',
@@ -34,6 +38,53 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
     }, 600);
   };
 
+  const pocText = {
+    id: {
+      title: 'Uji Coba Proof of Concept (PoC)',
+      desc: 'Kami menyediakan program demo interaktif dan uji coba terbatas menggunakan sampel dokumen atau telemetri organisasi Anda dalam perimeter yang terisolasi.'
+    },
+    en: {
+      title: 'Proof of Concept (PoC) Sandbox',
+      desc: 'We offer interactive sandbox deployments and bounded pilot evaluations utilizing sanitized samples of your documents or telemetry within an isolated perimeter.'
+    },
+    ja: {
+      title: '概念実証 (PoC) トライアルプログラム',
+      desc: '完全隔離された自社検証環境において、お客様の実データ（文書サンプルやセンサーログ）を用いた実機デモ・PoC評価をご提供いたします。'
+    },
+    ar: {
+      title: 'برنامج إثبات المفهوم التجريبي (PoC)',
+      desc: 'نوفر بيئة تجريبية معزولة لاختبار وتقييم حلولنا باستخدام عينات مخصصة من مستندات أو قياسات مؤسستك في بيئة آمنة تماماً.'
+    }
+  }[lang] || {
+    title: 'Uji Coba Proof of Concept (PoC)',
+    desc: 'Kami menyediakan program demo interaktif dan uji coba terbatas menggunakan sampel dokumen atau telemetri organisasi Anda dalam perimeter yang terisolasi.'
+  };
+
+  const multiSolutionOption = {
+    id: 'Konsultasi Arsitektur Menyeluruh (Multi-Solusi)',
+    en: 'Holistic Architecture Consultation (Multi-Solution)',
+    ja: '包括的アーキテクチャ相談 (複数ソリューション統合)',
+    ar: 'استشارة معمارية شاملة (حلول متعددة متكاملة)'
+  }[lang] || 'Konsultasi Arsitektur Menyeluruh (Multi-Solusi)';
+
+  const anotherRequestBtn = {
+    id: 'Kirim Permintaan Lain',
+    en: 'Send Another Request',
+    ja: '別の問い合わせを送信',
+    ar: 'إرسال طلب آخر'
+  }[lang] || 'Kirim Permintaan Lain';
+
+  const formBadge = {
+    id: { title: 'Formulir Jadwalkan Demo', sub: 'Data Anda terjaga dalam kerahasiaan penuh.' },
+    en: { title: 'Schedule a Consultation', sub: 'Strict non-disclosure confidentiality guaranteed.' },
+    ja: { title: '技術相談・デモお申し込み', sub: '入力された情報は厳格な機密保持基準で保護されます。' },
+    ar: { title: 'نموذج حجز العرض التجريبي', sub: 'بياناتكم محمية بأعلى معايير السرية والخصوصية.' }
+  }[lang] || { title: 'Formulir Jadwalkan Demo', sub: 'Data Anda terjaga dalam kerahasiaan penuh.' };
+
+  const sendBtnLabel = isSubmitting 
+    ? (t.form?.submitting || 'Memproses...')
+    : (t.form?.submitBtn || 'Jadwalkan Demo Sekarang');
+
   return (
     <section id="kontak" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden text-left">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,13 +92,13 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
-            <span>KONSULTASI & JADWALKAN DEMO</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight font-sans">
-            Mulai Diskusi Bersama Tim Kami.
+            {t.title}
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed font-sans">
-            Diskusikan kebutuhan otomasi, audit dokumen, kedaulatan data, atau arsitektur Private AI organisasi Anda secara langsung dengan solusi yang dipersonalisasi.
+            {t.subtitle}
           </p>
         </div>
 
@@ -57,10 +108,10 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
           <div className="lg:col-span-5 space-y-5">
             <div className="apple-card p-6 sm:p-7 rounded-3xl bg-[#0F0F12]/80 border border-white/[0.08] space-y-4">
               <h3 className="text-xl font-semibold text-white font-sans">
-                Saluran Resmi
+                {t.channelsTitle}
               </h3>
               <p className="text-xs text-[#86868B] leading-relaxed font-sans">
-                Hubungi kami untuk presentasi solusi, permintaan proposal teknis, atau penjadwalan Proof of Concept (PoC) secara aman.
+                {t.channelsSubtitle}
               </p>
 
               <div className="space-y-2.5 pt-2">
@@ -76,7 +127,7 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   </div>
                   <div>
                     <div className="text-[10px] font-mono text-[#86868B] uppercase">WhatsApp Enterprise</div>
-                    <div className="text-xs font-semibold text-emerald-400 font-mono">+62 812-8000-xxxx</div>
+                    <div className="text-xs font-semibold text-emerald-400 font-mono">+62 857-2748-7507</div>
                   </div>
                 </a>
 
@@ -89,26 +140,22 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#86868B] uppercase">Email Korporat</div>
-                    <div className="text-xs font-semibold text-[#F5F5F7] font-mono">contact@maudynetwork.com</div>
+                    <div className="text-[10px] font-mono text-[#86868B] uppercase">Corporate Desk</div>
+                    <div className="text-xs font-semibold text-[#F5F5F7] font-mono">support@maudynetwork.id</div>
                   </div>
                 </a>
 
-                {/* LinkedIn */}
+                {/* Phone */}
                 <a 
-                  href="https://linkedin.com" 
-                  target="_blank" 
-                  rel="noreferrer"
+                  href="tel:+622476469031" 
                   className="p-3.5 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.06] transition-all flex items-center space-x-3.5 text-white group"
                 >
                   <div className="w-9 h-9 rounded-xl bg-blue-950/60 border border-blue-800/30 text-blue-400 flex items-center justify-center">
-                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 1 0 0-3.3 1.65 1.65 0 0 0 0 3.3m1.4 9.74V9.92H5.06v8.58h2.8z"/>
-                    </svg>
+                    <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-[10px] font-mono text-[#86868B] uppercase">LinkedIn Korporat</div>
-                    <div className="text-xs font-semibold text-[#F5F5F7] font-mono">Maudy Network Komunikasi</div>
+                    <div className="text-[10px] font-mono text-[#86868B] uppercase">Headquarters Line</div>
+                    <div className="text-xs font-semibold text-[#F5F5F7] font-mono">+62 24 76469031</div>
                   </div>
                 </a>
               </div>
@@ -116,10 +163,10 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
 
             <div className="apple-card p-5 rounded-3xl bg-[#0F0F12]/80 border border-white/[0.08] space-y-2">
               <div className="text-xs font-sans font-semibold text-white flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#2997FF]" /> Uji Coba Proof of Concept (PoC)
+                <CheckCircle2 className="w-4 h-4 text-[#2997FF]" /> {pocText.title}
               </div>
               <p className="text-xs text-[#86868B] leading-relaxed font-sans">
-                Kami menyediakan program demo interaktif dan uji coba terbatas menggunakan sampel dokumen atau telemetri organisasi Anda dalam perimeter yang terisolasi.
+                {pocText.desc}
               </p>
             </div>
           </div>
@@ -134,24 +181,24 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
                   <h3 className="text-2xl font-semibold text-white font-sans">
-                    Permintaan Demo Diterima
+                    {t.form?.successTitle || 'Permintaan Demo Diterima'}
                   </h3>
                   <p className="text-xs text-[#86868B] max-w-md mx-auto leading-relaxed font-sans">
-                    Terima kasih, <strong>{formData.nama}</strong> ({formData.perusahaan}). Tim arsitek solusi Aegis Technology akan segera menghubungi Anda melalui email <strong>{formData.email}</strong>.
+                    {t.form?.successDesc || 'Tim arsitek solusi Aegis Technology akan segera menghubungi Anda.'}
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="apple-pill-btn px-6 py-2 rounded-full bg-white/[0.06] text-white hover:bg-white/[0.1] text-xs font-mono"
+                    className="apple-pill-btn px-6 py-2 rounded-full bg-white/[0.06] text-white hover:bg-white/[0.1] text-xs font-mono cursor-pointer"
                   >
-                    Kirim Permintaan Lain
+                    {anotherRequestBtn}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="border-b border-white/[0.06] pb-3 mb-4 flex items-center justify-between">
                     <div>
-                      <h3 className="text-base font-semibold text-white font-sans">Formulir Jadwalkan Demo</h3>
-                      <p className="text-xs text-[#86868B] font-sans">Data Anda terjaga dalam kerahasiaan penuh.</p>
+                      <h3 className="text-base font-semibold text-white font-sans">{formBadge.title}</h3>
+                      <p className="text-xs text-[#86868B] font-sans">{formBadge.sub}</p>
                     </div>
                     <span className="text-[10px] font-mono text-[#2997FF] bg-[#0071E3]/15 px-2.5 py-0.5 rounded-full border border-[#0071E3]/30">
                       Enterprise
@@ -162,12 +209,12 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Nama Lengkap *
+                        {t.form?.name || 'Nama Lengkap'} *
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Contoh: Budi Pratama"
+                        placeholder="e.g. John Doe / Tanaka Kenji"
                         value={formData.nama}
                         onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors"
@@ -175,12 +222,12 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                     </div>
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Perusahaan / Institusi *
+                        {t.form?.company || 'Perusahaan / Institusi'} *
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Contoh: PT Samudera Perkasa Tbk"
+                        placeholder="e.g. Maritime Corp / Ministry"
                         value={formData.perusahaan}
                         onChange={(e) => setFormData({ ...formData, perusahaan: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors"
@@ -192,12 +239,12 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Jabatan / Posisi *
+                        {t.form?.jobTitle || 'Jabatan / Posisi'} *
                       </label>
                       <input
                         type="text"
                         required
-                        placeholder="Contoh: Head of IT / Director"
+                        placeholder="e.g. Head of IT / Fleet Director"
                         value={formData.jabatan}
                         onChange={(e) => setFormData({ ...formData, jabatan: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors"
@@ -205,12 +252,12 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                     </div>
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Email Korporat *
+                        {t.form?.email || 'Email Korporat'} *
                       </label>
                       <input
                         type="email"
                         required
-                        placeholder="nama@perusahaan.com"
+                        placeholder="name@enterprise.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors"
@@ -222,12 +269,12 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Nomor Telepon / WhatsApp *
+                        {t.form?.phone || 'Nomor Telepon / WhatsApp'} *
                       </label>
                       <input
                         type="tel"
                         required
-                        placeholder="0812-xxxx-xxxx"
+                        placeholder="+62 / +81 / +966 ..."
                         value={formData.telepon}
                         onChange={(e) => setFormData({ ...formData, telepon: e.target.value })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors"
@@ -235,7 +282,7 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                     </div>
                     <div>
                       <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                        Sektor Industri *
+                        {t.form?.industry || 'Sektor Industri'} *
                       </label>
                       <select
                         value={formData.industri}
@@ -254,20 +301,25 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   {/* Solusi Yang Diminati */}
                   <div>
                     <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                      Solusi AI Yang Diminati *
+                      {t.form?.solution || 'Solusi AI Yang Diminati'} *
                     </label>
                     <select
                       value={formData.solusi}
                       onChange={(e) => setFormData({ ...formData, solusi: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs focus:outline-none transition-colors"
                     >
-                      {PRODUCTS.map((prod) => (
-                        <option key={prod.id} value={prod.name} className="bg-[#0C0C0F] text-white">
-                          {prod.name} — {prod.tagline}
-                        </option>
-                      ))}
-                      <option value="Konsultasi Arsitektur Menyeluruh" className="bg-[#0C0C0F] text-white">
-                        Konsultasi Arsitektur Menyeluruh (Multi-Solusi)
+                      {PRODUCTS.map((prod) => {
+                        const lp = getAegisProductLocalized(prod.id, lang);
+                        const pName = lp?.name || prod.name;
+                        const pTagline = lp?.tagline || prod.tagline;
+                        return (
+                          <option key={prod.id} value={pName} className="bg-[#0C0C0F] text-white">
+                            {pName} — {pTagline}
+                          </option>
+                        );
+                      })}
+                      <option value="Multi-Solution Architecture" className="bg-[#0C0C0F] text-white">
+                        {multiSolutionOption}
                       </option>
                     </select>
                   </div>
@@ -275,11 +327,11 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                   {/* Pesan */}
                   <div>
                     <label className="text-[11px] font-sans text-[#A1A1A6] block mb-1">
-                      Catatan Singkat Kebutuhan (Opsional)
+                      {t.form?.message || 'Catatan Singkat Kebutuhan (Opsional)'}
                     </label>
                     <textarea
                       rows={3}
-                      placeholder="Jelaskan secara singkat tantangan bisnis yang ingin Anda diskusikan..."
+                      placeholder={lang === 'ja' ? 'ご希望の導入時期、データ規模、現状の課題をご記入ください...' : lang === 'ar' ? 'يرجى كتابة نبذة عن المتطلبات الفنية أو الاستفسارات التي تودون مناقشتها...' : 'Briefly describe your enterprise operational requirements...'}
                       value={formData.pesan}
                       onChange={(e) => setFormData({ ...formData, pesan: e.target.value })}
                       className="w-full px-3.5 py-2.5 rounded-xl bg-[#141418] border border-white/[0.08] focus:border-[#2997FF] text-white text-xs placeholder-[#6E6E73] focus:outline-none transition-colors resize-none"
@@ -293,11 +345,7 @@ export const AegisContactSection: React.FC<Props> = ({ prefilledProduct }) => {
                       disabled={isSubmitting}
                       className="apple-pill-btn w-full py-3.5 px-6 bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium active:scale-98 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
                     >
-                      {isSubmitting ? (
-                        <span>Mengirimkan Permintaan...</span>
-                      ) : (
-                        <span>Jadwalkan Demo Sekarang</span>
-                      )}
+                      <span>{sendBtnLabel}</span>
                     </button>
                   </div>
                 </form>

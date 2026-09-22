@@ -151,7 +151,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             {project.specs && (
               <div>
                 <div className="text-xs font-mono text-[#6E6E73] dark:text-[#A1A1A6] uppercase tracking-wider mb-2 font-medium">
-                  {lang === 'en' ? 'Key Deliverable Specs' : 'Parameter Kunci'}
+                  {lang === 'ja'
+                    ? '主要成果物・仕様パラメータ'
+                    : lang === 'ar'
+                    ? 'مواصفات التسليم الرئيسية'
+                    : lang === 'en'
+                    ? 'Key Deliverable Specs'
+                    : 'Parameter Kunci'}
                 </div>
                 <ul className="space-y-1.5 text-xs text-[#6E6E73] dark:text-[#A1A1A6]">
                   {project.specs.map((spec, sIdx) => (
@@ -170,11 +176,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-xs">
               <div className="flex items-center space-x-2 text-[#1D1D1F] dark:text-white font-mono">
                 <FileCheck className="w-4 h-4 text-[#0071E3] dark:text-[#2997FF]" />
-                <span>{lang === 'en' ? 'Official Documentation Reference: ' : 'Legalitas & Bukti Pekerjaan: '}</span>
+                <span>
+                  {lang === 'ja'
+                    ? '公式契約・納入検証ドキュメント: '
+                    : lang === 'ar'
+                    ? 'المرجع الرسمي لوثائق المشروع: '
+                    : lang === 'en'
+                    ? 'Official Documentation Reference: '
+                    : 'Legalitas & Bukti Pekerjaan: '}
+                </span>
                 <span className="font-semibold">{project.documentRef}</span>
               </div>
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[#34C759] text-[10px] font-mono font-bold">
-                {lang === 'en' ? 'VERIFIED' : 'TERVERIFIKASI'}
+                {lang === 'ja'
+                  ? '納入確認済'
+                  : lang === 'ar'
+                  ? 'معتمد رسمياً'
+                  : lang === 'en'
+                  ? 'VERIFIED'
+                  : 'TERVERIFIKASI'}
               </span>
             </div>
           )}
@@ -186,7 +206,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 text-xs font-medium text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white transition-colors cursor-pointer"
           >
-            {lang === 'en' ? 'Close Case Study' : 'Tutup'}
+            {lang === 'ja' ? '閉じる' : lang === 'ar' ? 'إغلاق' : lang === 'en' ? 'Close Case Study' : 'Tutup'}
           </button>
           <button
             onClick={() => {
@@ -195,7 +215,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             }}
             className="px-6 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium shadow-xs transition-all cursor-pointer"
           >
-            {lang === 'en' ? 'Inquire Similar Infrastructure Scope' : 'Ajukan Solusi Serupa'}
+            {lang === 'ja'
+              ? '同等のインフラ要件について相談する'
+              : lang === 'ar'
+              ? 'طلب استشارة لمشروع مماثل'
+              : lang === 'en'
+              ? 'Inquire Similar Infrastructure Scope'
+              : 'Ajukan Solusi Serupa'}
           </button>
         </div>
       </div>

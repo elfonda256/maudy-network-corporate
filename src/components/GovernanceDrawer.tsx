@@ -55,14 +55,24 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
             <div>
               <div className="flex items-center space-x-2">
                 <h3 className="text-lg font-semibold text-[#1D1D1F] dark:text-white tracking-tight">
-                  {lang === 'en' ? 'Enterprise Legal Governance & Credentials' : 'Kredensial, Legalitas & Pusat Unduhan Resmi'}
+                  {lang === 'ja'
+                    ? '企業ガバナンス・法的証明書・公式資料'
+                    : lang === 'ar'
+                    ? 'الحوكمة القانونية والاعتمادات الرسمية'
+                    : lang === 'en'
+                    ? 'Enterprise Legal Governance & Credentials'
+                    : 'Kredensial, Legalitas & Pusat Unduhan Resmi'}
                 </h3>
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[#34C759] text-[10px] font-mono font-bold">
                   VERIFIED AUDIT
                 </span>
               </div>
               <p className="text-xs text-[#6E6E73] dark:text-[#A1A1A6]">
-                {lang === 'en'
+                {lang === 'ja'
+                  ? '省庁・国営企業との締結契約書、作業発注書（SPK）、正規事業者番号（NIB）認証、公式PDFカタログ'
+                  : lang === 'ar'
+                  ? 'وثائق المشاريع الرسمية المعتمدة، عقود BUMN، تراخيص NIB الحكومية، وكتالوجات PDF الرسمية'
+                  : lang === 'en'
                   ? 'Authentic public works, state-owned enterprise, and strategic group signed procurement documents & PDF brochures'
                   : 'Dokumen asli penugasan resmi, SPK Kementerian BUMN & Kontrak Resmi, perizinan NIB, serta katalog PDF resmi'}
               </p>
@@ -88,7 +98,9 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
-            <span>{lang === 'en' ? 'Contracts & SPK' : 'Dokumen Kontrak & SPK'}</span>
+            <span>
+              {lang === 'ja' ? '契約書・作業発注書 (SPK)' : lang === 'ar' ? 'العقود وأوامر العمل (SPK)' : lang === 'en' ? 'Contracts & SPK' : 'Dokumen Kontrak & SPK'}
+            </span>
           </button>
 
           <button
@@ -100,7 +112,9 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
             }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
-            <span>{lang === 'en' ? 'Legal & NIB Compliance' : 'Legalitas, NIB & PKP'}</span>
+            <span>
+              {lang === 'ja' ? '企業登記・NIB許認可' : lang === 'ar' ? 'الامتثال القانوني وترخيص NIB' : lang === 'en' ? 'Legal & NIB Compliance' : 'Legalitas, NIB & PKP'}
+            </span>
           </button>
 
           <button
@@ -112,8 +126,12 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
             }`}
           >
             <Download className="w-3.5 h-3.5" />
-            <span>{lang === 'en' ? 'Official PDF Downloads' : 'Unduh Dokumen PDF'}</span>
-            <span className="ml-1 px-1.5 py-0.2 rounded-full text-[9px] bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-bold">3 DOKUMEN</span>
+            <span>
+              {lang === 'ja' ? '公式PDFダウンロード' : lang === 'ar' ? 'تحميل ملفات PDF الرسمية' : lang === 'en' ? 'Official PDF Downloads' : 'Unduh Dokumen PDF'}
+            </span>
+            <span className="ml-1 px-1.5 py-0.2 rounded-full text-[9px] bg-blue-500/10 text-[#0071E3] dark:text-[#2997FF] font-bold">
+              {lang === 'ja' ? '3点' : lang === 'ar' ? '3 وثائق' : lang === 'en' ? '3 DOCUMENTS' : '3 DOKUMEN'}
+            </span>
           </button>
         </div>
 
@@ -360,12 +378,20 @@ export const GovernanceDrawer: React.FC<GovernanceDrawerProps> = ({
 
         {/* Footer */}
         <div className="p-4 bg-black/[0.02] dark:bg-white/[0.02] border-t border-black/[0.08] dark:border-white/[0.08] flex items-center justify-between text-xs font-mono text-[#6E6E73] dark:text-[#A1A1A6]">
-          <span>Perlindungan kerahasiaan lampiran kontrak teknis & dokumen operasional berlaku di bawah NDA</span>
+          <span>
+            {lang === 'ja'
+              ? '技術契約書および運用関連文書の機密性はNDA契約に基づき厳格に保護されます'
+              : lang === 'ar'
+              ? 'سرية مرفقات العقود الفنية والوثائق التشغيلية محمية بموجب اتفاقية عدم الإفصاح (NDA)'
+              : lang === 'en'
+              ? 'Confidentiality of contract attachments & operational documents protected under NDA'
+              : 'Perlindungan kerahasiaan lampiran kontrak teknis & dokumen operasional berlaku di bawah NDA'}
+          </span>
           <button
             onClick={onClose}
             className="px-4 py-2 rounded-full bg-black/[0.04] dark:bg-white/[0.08] text-[#1D1D1F] dark:text-white hover:bg-black/[0.08] transition-colors cursor-pointer"
           >
-            {lang === 'en' ? 'Close Drawer' : 'Tutup Jendela'}
+            {lang === 'ja' ? '閉じる' : lang === 'ar' ? 'إغلاق' : lang === 'en' ? 'Close Drawer' : 'Tutup Jendela'}
           </button>
         </div>
       </div>

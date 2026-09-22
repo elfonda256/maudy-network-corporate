@@ -40,13 +40,25 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] text-[#1D1D1F] dark:text-slate-200 text-xs font-mono mb-3 border border-black/[0.08] dark:border-white/[0.1]">
             <Sparkles className="w-3.5 h-3.5 mr-1 text-[#0071E3] dark:text-[#2997FF]" />
             <span>
-              {lang === 'en'
+              {lang === 'ja'
+                ? '認定クライアント実績＆主要テクノロジーパートナー'
+                : lang === 'ar'
+                ? 'الشركاء والعملاء الاستراتيجيون المعتمدون'
+                : lang === 'en'
                 ? 'VERIFIED CLIENT ENGAGEMENTS & OEM PARTNERS'
                 : 'DAFTAR KLIEN STRATEGIS & MITRA PRINSIPAL'}
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight">
-            {lang === 'en' ? (
+            {lang === 'ja' ? (
+              <>
+                Maudy Network を信頼する <span className="text-[#0071E3] dark:text-[#2997FF]">主要企業・官公庁</span>
+              </>
+            ) : lang === 'ar' ? (
+              <>
+                كبرى الشركات والهيئات التي <span className="text-[#0071E3] dark:text-[#2997FF]">تثق في Maudy</span>
+              </>
+            ) : lang === 'en' ? (
               <>
                 Companies &amp; Institutions That <span className="text-[#0071E3] dark:text-[#2997FF]">Trust Maudy</span>
               </>
@@ -57,7 +69,11 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
             )}
           </h2>
           <p className="mt-2 text-sm text-[#6E6E73] dark:text-[#A1A1A6] font-normal">
-            {lang === 'en'
+            {lang === 'ja'
+              ? '下記の各組織カードをクリックすると、検証済みの業務範囲、納入成果物、契約詳細を確認できます。'
+              : lang === 'ar'
+              ? 'انقر على بطاقة أي مؤسسة أدناه للاطلاع على نطاق العمل المعتمد، مخرجات المشروع، وتفاصيل التعاقد.'
+              : lang === 'en'
               ? 'Click on any institution card below to inspect verified engagement scopes, project deliverables, and contract details.'
               : 'Klik kartu instansi di bawah untuk melihat detail ruang lingkup pekerjaan, status kemitraan terverifikasi, dan studi kasus proyek.'}
           </p>
@@ -116,7 +132,15 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
               }`}
             >
               <Building2 className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'Client Institutions (BUMN & Government)' : 'Klien Strategis (BUMN & Kementerian)'}</span>
+              <span>
+                {lang === 'ja'
+                  ? '主要クライアント（国営企業・省庁）'
+                  : lang === 'ar'
+                  ? 'عملاء استراتيجيون (شركات حكومية ووزارات)'
+                  : lang === 'en'
+                  ? 'Client Institutions (BUMN & Government)'
+                  : 'Klien Strategis (BUMN & Kementerian)'}
+              </span>
             </button>
             <button
               onClick={() => setActiveTab('tech')}
@@ -127,7 +151,15 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>{lang === 'en' ? 'Technology OEM Partners' : 'Mitra Prinsipal Teknologi'}</span>
+              <span>
+                {lang === 'ja'
+                  ? 'テクノロジー主要パートナー（OEM）'
+                  : lang === 'ar'
+                  ? 'الشركاء التكنولوجيون (OEM)'
+                  : lang === 'en'
+                  ? 'Technology OEM Partners'
+                  : 'Mitra Prinsipal Teknologi'}
+              </span>
             </button>
           </div>
         </div>
@@ -260,13 +292,29 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
 
               <div className="p-3.5 rounded-2xl bg-black/[0.02] dark:bg-white/[0.03] border border-black/[0.04] dark:border-white/[0.06] text-[11px] space-y-1.5 text-[#6E6E73] dark:text-[#A1A1A6]">
                 <div className="flex justify-between items-center">
-                  <span>Klasifikasi Kemitraan:</span>
+                  <span>
+                    {lang === 'ja'
+                      ? 'パートナーシップ区分:'
+                      : lang === 'ar'
+                      ? 'تصنيف الشراكة:'
+                      : lang === 'en'
+                      ? 'Partnership Classification:'
+                      : 'Klasifikasi Kemitraan:'}
+                  </span>
                   <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
                     {selectedClient.type === 'client' ? 'End-User Strategic BUMN' : 'Global OEM Technology Partner'}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span>Status SLA Operasional:</span>
+                  <span>
+                    {lang === 'ja'
+                      ? '稼働SLAステータス:'
+                      : lang === 'ar'
+                      ? 'حالة مستوى الخدمة التشغيلي:'
+                      : lang === 'en'
+                      ? 'Operational SLA Status:'
+                      : 'Status SLA Operasional:'}
+                  </span>
                   <span className="text-[#0071E3] dark:text-[#2997FF] font-semibold">99.98% High Availability</span>
                 </div>
               </div>
@@ -278,7 +326,7 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                 onClick={() => setSelectedClient(null)}
                 className="px-4 py-2 rounded-full text-xs font-semibold text-[#6E6E73] hover:text-[#1D1D1F] dark:hover:text-white transition-colors"
               >
-                Tutup
+                {lang === 'ja' ? '閉じる' : lang === 'ar' ? 'إغلاق' : lang === 'en' ? 'Close' : 'Tutup'}
               </button>
 
               <a
@@ -286,7 +334,15 @@ export const ClientsPartners: React.FC<ClientsPartnersProps> = ({ lang }) => {
                 onClick={() => setSelectedClient(null)}
                 className="px-5 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-semibold shadow-sm hover:shadow transition-all flex items-center space-x-1.5"
               >
-                <span>Lihat Studi Kasus Terkait</span>
+                <span>
+                  {lang === 'ja'
+                    ? '関連事例・導入実績を見る'
+                    : lang === 'ar'
+                    ? 'عرض دراسة الحالة ذات الصلة'
+                    : lang === 'en'
+                    ? 'View Related Case Study'
+                    : 'Lihat Studi Kasus Terkait'}
+                </span>
                 <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>

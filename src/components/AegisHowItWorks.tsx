@@ -1,11 +1,46 @@
 import React, { useState } from 'react';
 import { Database, Network, Cpu, Brain, Workflow, CheckCircle, ChevronRight } from 'lucide-react';
-import { PIPELINE_STEPS } from '../data/aegisData';
+import type { Language } from '../i18n/translations';
+import { AEGIS_UI_TEXTS, AEGIS_PIPELINE_STEPS_I18N } from '../i18n/aegisTranslations';
 
-export const AegisHowItWorks: React.FC = () => {
+interface Props {
+  lang?: Language;
+}
+
+export const AegisHowItWorks: React.FC<Props> = ({ lang = 'id' }) => {
   const [activeStep, setActiveStep] = useState<number>(0);
-
   const stepIcons = [Database, Network, Cpu, Brain, Workflow, CheckCircle];
+
+  const t = AEGIS_UI_TEXTS[lang]?.howItWorks || AEGIS_UI_TEXTS.id.howItWorks;
+  const steps = AEGIS_PIPELINE_STEPS_I18N[lang] || AEGIS_PIPELINE_STEPS_I18N.id;
+
+  const stagePrefix = {
+    id: 'Tahap',
+    en: 'Stage',
+    ja: 'ステージ',
+    ar: 'المرحلة'
+  }[lang] || 'Tahap';
+
+  const activeLabel = {
+    id: 'Tahap Aktif',
+    en: 'Active Stage',
+    ja: '選択中ステージ',
+    ar: 'المرحلة النشطة'
+  }[lang] || 'Tahap Aktif';
+
+  const selectLabel = {
+    id: 'Pilih untuk melihat',
+    en: 'Select to view',
+    ja: '詳細を確認',
+    ar: 'اضغط للعرض'
+  }[lang] || 'Pilih untuk melihat';
+
+  const pipelineTitle = {
+    id: 'Aliran Data:',
+    en: 'Data Pipeline:',
+    ja: 'データ処理フロー:',
+    ar: 'مسار تدفق البيانات:'
+  }[lang] || 'Aliran Data:';
 
   return (
     <section id="cara-kerja" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden text-left">
@@ -14,20 +49,20 @@ export const AegisHowItWorks: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
-            <span>ALUR KERJA SISTEM</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight font-sans">
-            How It Works: Dari Data Menjadi Aksi.
+            {t.title}
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed font-sans">
-            Proses 6 langkah end-to-end yang mengubah kumpulan data mentah organisasi menjadi keputusan strategis dan otomasi operasional berkecepatan tinggi.
+            {t.subtitle}
           </p>
         </div>
 
         {/* 6 Step Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PIPELINE_STEPS.map((step, idx) => {
-            const Icon = stepIcons[idx];
+          {steps.map((step, idx) => {
+            const Icon = stepIcons[idx] || Database;
             const isSelected = activeStep === idx;
             return (
               <div
@@ -42,7 +77,7 @@ export const AegisHowItWorks: React.FC = () => {
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full bg-white/[0.06] text-[#86868B]">
-                      Tahap {step.step}
+                      {stagePrefix} {step.step}
                     </span>
                     <Icon className={`w-4 h-4 ${isSelected ? 'text-[#2997FF]' : 'text-[#6E6E73]'}`} />
                   </div>
@@ -59,7 +94,7 @@ export const AegisHowItWorks: React.FC = () => {
                 </div>
 
                 <div className="mt-5 pt-3 border-t border-white/[0.04] flex items-center justify-between text-[11px] font-sans text-[#6E6E73]">
-                  <span>{isSelected ? 'Tahap Aktif' : 'Pilih untuk melihat'}</span>
+                  <span>{isSelected ? activeLabel : selectLabel}</span>
                   <ChevronRight className={`w-3.5 h-3.5 ${isSelected ? 'text-[#2997FF]' : 'text-[#6E6E73]'}`} />
                 </div>
               </div>
@@ -69,7 +104,7 @@ export const AegisHowItWorks: React.FC = () => {
 
         {/* Apple Style Linear Summary Pill */}
         <div className="mt-12 p-4 rounded-full bg-white/[0.03] border border-white/[0.06] text-xs font-mono text-[#A1A1A6] flex flex-wrap items-center justify-center gap-3">
-          <span className="text-white font-semibold">Aliran Data:</span>
+          <span className="text-white font-semibold">{pipelineTitle}</span>
           <span>1. Ingestion</span>
           <span className="text-[#6E6E73]">→</span>
           <span>2. Integration</span>

@@ -135,7 +135,11 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Fine Print Footnote */}
             <div className="text-[11px] text-[#86868B] pt-2 space-y-1">
               <div>
-                {lang === 'en'
+                {lang === 'ja'
+                  ? '*認定ネットワークアーキテクトによる運用管理、稼働率99.9% SLA保証'
+                  : lang === 'ar'
+                  ? '*تدار بواسطة مهندسي شبكات معتمدين مع ضمان مستوى خدمة بنسبة 99.9%'
+                  : lang === 'en'
                   ? '*Operated by certified network architects with 99.9% uptime SLA guarantee'
                   : '*Dikelola langsung oleh arsitek jaringan bersertifikasi dengan jaminan SLA 99.9%'}
               </div>
@@ -144,7 +148,11 @@ export const Hero: React.FC<HeroProps> = ({
                   href="#certifications"
                   className="text-[#0071E3] dark:text-[#2997FF] hover:underline transition-colors"
                 >
-                  {lang === 'en'
+                  {lang === 'ja'
+                    ? 'MNK サービスレベル合意（SLA）および運用ガイドライン'
+                    : lang === 'ar'
+                    ? 'إرشادات التشغيل واتفاقية مستوى الخدمة لشركة MNK'
+                    : lang === 'en'
                     ? 'MNK Service Level Agreement & Operational Guidelines'
                     : 'Pedoman Kepatuhan Layanan & Standar Kelaikan MNK'}
                 </a>

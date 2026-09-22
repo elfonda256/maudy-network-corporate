@@ -40,10 +40,26 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
-            <span>{lang === 'en' ? 'VERIFIED TRACK RECORD' : 'REKAM JEJAK PROYEK STRATEGIS'}</span>
+            <span>
+              {lang === 'ja'
+                ? '公式導入実績・プロジェクト事例'
+                : lang === 'ar'
+                ? 'سجل المشاريع المعتمدة'
+                : lang === 'en'
+                ? 'VERIFIED TRACK RECORD'
+                : 'REKAM JEJAK PROYEK STRATEGIS'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
+            {lang === 'ja' ? (
+              <>
+                重要インフラを支える <span className="text-gradient-brand">導入実績・事例</span>
+              </>
+            ) : lang === 'ar' ? (
+              <>
+                سجل تنفيذ حافل عبر <span className="text-gradient-brand">البيئات الحيوية</span>
+              </>
+            ) : lang === 'en' ? (
               <>
                 Proven Delivery Across <span className="text-gradient-brand">Critical Environments</span>
               </>
@@ -54,7 +70,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             )}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
+            {lang === 'ja'
+              ? '海洋衛星通信、遠隔自動テレメトリ、重要監視保守、国家送電網解析など、国営企業・省庁での完工実績。'
+              : lang === 'ar'
+              ? 'استكشف مشاريعنا المنفذة لصالح كبرى المؤسسات الحكومية، الوزارات، وشركات القطاع الخاص في إندونيسيا.'
+              : lang === 'en'
               ? 'Explore our completed deployments for Indonesia’s most demanding state-owned enterprises, government ministries, and private corporations.'
               : 'Studi kasus implementasi sistem komunikasi satelit maritim, telemetri otomatis, pemeliharaan surveillance, hingga pemodelan transmisi daya energi nasional.'}
           </p>
@@ -178,7 +198,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
 
               {/* Card Footer */}
               <div className="px-6 py-3.5 border-t border-black/[0.06] dark:border-white/[0.08] bg-black/[0.01] dark:bg-white/[0.02] flex items-center justify-between text-xs font-semibold text-[#0071E3] dark:text-[#2997FF] group-hover:underline transition-colors">
-                <span>{lang === 'en' ? 'Deep-Dive Case Study' : 'Detail Studi Kasus'}</span>
+                <span>
+                  {lang === 'ja'
+                    ? '事例詳細・技術仕様を見る'
+                    : lang === 'ar'
+                    ? 'تفاصيل دراسة الحالة'
+                    : lang === 'en'
+                    ? 'Deep-Dive Case Study'
+                    : 'Detail Studi Kasus'}
+                </span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </div>

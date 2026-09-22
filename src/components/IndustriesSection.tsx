@@ -130,10 +130,26 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.08] dark:border-white/[0.1] text-[#0071E3] dark:text-[#2997FF] text-xs font-mono font-medium tracking-wider mb-4 shadow-xs">
-            <span>{lang === 'en' ? 'STRATEGIC SECTORS SERVED' : 'SEKTOR INDUSTRI STRATEGIS'}</span>
+            <span>
+              {lang === 'ja'
+                ? '対象産業セクター・事業領域'
+                : lang === 'ar'
+                ? 'القطاعات الصناعية الاستراتيجية'
+                : lang === 'en'
+                ? 'STRATEGIC SECTORS SERVED'
+                : 'SEKTOR INDUSTRI STRATEGIS'}
+            </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-[#1D1D1F] dark:text-white tracking-tight leading-[1.12]">
-            {lang === 'en' ? (
+            {lang === 'ja' ? (
+              <>
+                ミッションクリティカル産業に特化した <span className="text-gradient-brand">エンジニアリング</span>
+              </>
+            ) : lang === 'ar' ? (
+              <>
+                حلول هندسية مخصصة <span className="text-gradient-brand">للقطاعات الحيوية</span>
+              </>
+            ) : lang === 'en' ? (
               <>
                 Engineered for <span className="text-gradient-brand">Critical Industries</span>
               </>
@@ -144,7 +160,11 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
             )}
           </h2>
           <p className="mt-4 text-[#6E6E73] dark:text-[#A1A1A6] text-base leading-relaxed">
-            {lang === 'en'
+            {lang === 'ja'
+              ? '国家インフラ、海洋・オフショア探査、中央省庁の極めて厳格な要件に応える実証済みアーキテクチャ。'
+              : lang === 'ar'
+              ? 'تلبي تصاميمنا الهندسية المثبتة ميدانياً أدق متطلبات البنية التحتية الوطنية، التنقيب البحري، والحوكمة الحكومية.'
+              : lang === 'en'
               ? 'Our field-proven architectures meet the rigorous demands of national infrastructure, offshore exploration, and ministerial governance.'
               : 'Arsitektur kami dirancang khusus menjawab standar ketat infrastruktur nasional, pelayaran lepas pantai, dan kementerian negara.'}
           </p>
@@ -262,13 +282,27 @@ export const IndustriesSection: React.FC<IndustriesProps> = ({ lang, onExplorePr
               {/* Footer */}
               <div className="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between">
                 <span className="text-xs text-[#6E6E73] dark:text-[#A1A1A6] font-normal">
-                  {lang === 'en' ? 'Official Documentation & Contracts Available' : 'Dokumen Kontrak & SPK Resmi Terlampir'}
+                  {lang === 'ja'
+                    ? '公式契約書・作業発注書（SPK）照会可能'
+                    : lang === 'ar'
+                    ? 'العقود والوثائق الرسمية للمشاريع متاحة'
+                    : lang === 'en'
+                    ? 'Official Documentation & Contracts Available'
+                    : 'Dokumen Kontrak & SPK Resmi Terlampir'}
                 </span>
                 <button
                   onClick={onExploreProjects}
                   className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs font-medium transition-all shadow-xs cursor-pointer"
                 >
-                  <span>{lang === 'en' ? 'View Case Studies' : 'Lihat Portofolio Sektor'}</span>
+                  <span>
+                    {lang === 'ja'
+                      ? 'このセクターの事例を見る'
+                      : lang === 'ar'
+                      ? 'عرض مشاريع هذا القطاع'
+                      : lang === 'en'
+                      ? 'View Case Studies'
+                      : 'Lihat Portofolio Sektor'}
+                  </span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -310,13 +310,14 @@ export function App() {
               />
 
               {/* 3. Company Value: AI yang Dibangun untuk Dunia Nyata */}
-              <AegisCompanyValue />
+              <AegisCompanyValue lang={lang} />
 
               {/* 4. Product Ecosystem (Visual Hierarchy) */}
-              <AegisProductEcosystem />
+              <AegisProductEcosystem lang={lang} />
 
               {/* 5. Flagship Spotlight: Aegis Maritime */}
               <AegisFlagshipMaritime 
+                lang={lang}
                 onOpenDemo={(pName) => {
                   setPrefilledProduct(pName);
                   setDemoModalOpen(true);
@@ -326,6 +327,7 @@ export function App() {
 
               {/* 6. Product Portfolio: All 12 Products with Artwork & Mockups */}
               <AegisProductPortfolio 
+                lang={lang}
                 onOpenDemo={(pName) => {
                   setPrefilledProduct(pName);
                   setDemoModalOpen(true);
@@ -336,6 +338,7 @@ export function App() {
 
               {/* 7. Industry Section: AI untuk Berbagai Industri */}
               <AegisIndustrySection 
+                lang={lang}
                 onSelectProduct={(pId) => setSelectedProductId(pId)}
                 onOpenDemo={(pName) => {
                   setPrefilledProduct(pName);
@@ -344,10 +347,11 @@ export function App() {
               />
 
               {/* 8. Technology: Technology Behind the Intelligence */}
-              <AegisTechnologySection />
+              <AegisTechnologySection lang={lang} />
 
               {/* 9. Private AI: Ketika Data Adalah Aset Strategis */}
               <AegisPrivateAiSection 
+                lang={lang}
                 onOpenDemo={(pName) => {
                   setPrefilledProduct(pName);
                   setDemoModalOpen(true);
@@ -355,29 +359,30 @@ export function App() {
               />
 
               {/* 10. Security: Arsitektur Keamanan Enterprise */}
-              <AegisSecuritySection />
+              <AegisSecuritySection lang={lang} />
 
               {/* 11. How It Works: 6-Step Pipeline */}
-              <AegisHowItWorks />
+              <AegisHowItWorks lang={lang} />
 
               {/* 12. Business Benefits: Dampak Kualitatif */}
-              <AegisBenefitsSection />
+              <AegisBenefitsSection lang={lang} />
 
               {/* 13. Real Use Cases */}
-              <AegisUseCases />
+              <AegisUseCases lang={lang} />
 
               {/* 14. Company Section: Tentang Kami */}
-              <AegisCompanySection />
+              <AegisCompanySection lang={lang} />
 
               {/* 15. Contact / Request Demo Section */}
-              <AegisContactSection prefilledProduct={prefilledProduct} />
+              <AegisContactSection lang={lang} prefilledProduct={prefilledProduct} />
             </main>
 
             {/* 16. Comprehensive Footer */}
-            <AegisFooter onOpenBrochure={() => setBrochureModalOpen(true)} />
+            <AegisFooter lang={lang} onOpenBrochure={() => setBrochureModalOpen(true)} />
 
             {/* Interactive Product Deep-Dive Modal */}
             <AegisProductModal 
+              lang={lang}
               product={selectedProduct}
               onClose={() => setSelectedProductId(null)}
               onOpenDemo={(pName) => {
@@ -389,6 +394,7 @@ export function App() {
 
             {/* Interactive Global Demo Consultation Modal */}
             <AegisContactModal 
+              lang={lang}
               isOpen={demoModalOpen}
               onClose={() => setDemoModalOpen(false)}
               prefilledProduct={prefilledProduct}
@@ -396,6 +402,7 @@ export function App() {
 
             {/* Interactive Official E-Catalog & Brochure Modal */}
             <AegisBrochureCatalogModal 
+              lang={lang}
               isOpen={brochureModalOpen}
               onClose={() => setBrochureModalOpen(false)}
               onOpenDemo={(pName) => {

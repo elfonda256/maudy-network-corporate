@@ -197,7 +197,15 @@ export const ServicesSection: React.FC<ServicesProps> = ({ lang, onOpenConsultat
                     onClick={onOpenConsultation}
                     className="w-full flex items-center justify-between py-1.5 text-xs font-semibold text-[#0071E3] dark:text-[#2997FF] hover:underline transition-colors group/btn cursor-pointer"
                   >
-                    <span>{lang === 'en' ? 'Inquire Technical Scope' : 'Konsultasikan Layanan Ini'}</span>
+                    <span>
+                      {lang === 'ja'
+                        ? 'このサービス仕様について相談する'
+                        : lang === 'ar'
+                        ? 'استشارة حول نطاق هذه الخدمة'
+                        : lang === 'en'
+                        ? 'Inquire Technical Scope'
+                        : 'Konsultasikan Layanan Ini'}
+                    </span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>

@@ -1,11 +1,39 @@
 import React, { useState } from 'react';
-import { Database, Cpu, Brain, Activity, TrendingUp, CheckCircle2, ChevronRight } from 'lucide-react';
-import { VALUE_CHAIN } from '../data/aegisData';
+import { Database, Cpu, Brain, Activity, TrendingUp, CheckCircle2 } from 'lucide-react';
+import type { Language } from '../i18n/translations';
+import { AEGIS_UI_TEXTS, AEGIS_VALUE_CHAIN_I18N } from '../i18n/aegisTranslations';
 
-export const AegisCompanyValue: React.FC = () => {
+interface Props {
+  lang?: Language;
+}
+
+export const AegisCompanyValue: React.FC<Props> = ({ lang = 'id' }) => {
   const [selectedStage, setSelectedStage] = useState<number>(0);
-
   const stageIcons = [Database, Cpu, Brain, Activity, TrendingUp];
+
+  const t = AEGIS_UI_TEXTS[lang]?.companyValue || AEGIS_UI_TEXTS.id.companyValue;
+  const chainList = AEGIS_VALUE_CHAIN_I18N[lang] || AEGIS_VALUE_CHAIN_I18N.id;
+
+  const executionNotes: Record<Language, { bold: string; text: string }> = {
+    id: {
+      bold: 'Eksekusi Tanpa Kompromi: ',
+      text: 'Setiap model yang kami bangun memiliki keterkaitan langsung dengan proses bisnis nyata di lapangan—menjamin dampak operasional yang terukur dan keandalan tinggi.'
+    },
+    en: {
+      bold: 'Uncompromising Execution: ',
+      text: 'Every model we deploy is anchored to real-world physical workflows—guaranteeing measurable operational return and extreme reliability.'
+    },
+    ja: {
+      bold: '妥協なき現場実装: ',
+      text: '私たちが構築するすべてのAIモデルは、現場の実業務と直結しており、測定可能な事業成果と最高水準の信頼性を担保します。'
+    },
+    ar: {
+      bold: 'تنفيذ لا يقبل المساومة: ',
+      text: 'كل نموذج ذكاء اصطناعي نبنيه يرتبط ارتباطاً وثيقاً بمسارات العمل الميدانية الفعلية، مما يضمن أثراً تشغيلياً مقيساً وموثوقية بالغة.'
+    }
+  };
+
+  const note = executionNotes[lang] || executionNotes.id;
 
   return (
     <section id="solusi" className="relative py-24 bg-transparent border-t border-white/[0.06] overflow-hidden">
@@ -14,28 +42,19 @@ export const AegisCompanyValue: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
-            <span>FILOSOFI REKAYASA SISTEM</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight font-sans">
-            AI yang Dibangun untuk Dunia Nyata.
+            {t.title}
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed max-w-2xl mx-auto font-sans">
-            Kami tidak membangun sekadar chatbot percakapan konsumen umum. Kami memadukan 
-            <strong className="text-white font-medium"> AI Canggih</strong>, 
-            <strong className="text-white font-medium"> Data Riil</strong>, 
-            <strong className="text-white font-medium"> Otomasi Alur Kerja</strong>, serta 
-            <strong className="text-white font-medium"> Pengetahuan Khusus Industri</strong>.
+            {t.subtitle}
           </p>
         </div>
 
         {/* 4 Apple Bento Highlight Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {[
-            { title: 'AI Kognitif', tag: 'Penalaran Presisi', desc: 'Bukan sekadar mencocokkan kata kunci, melainkan memahami konteks kontrak bisnis dan blueprint teknis.' },
-            { title: 'Data Terpadu', tag: 'Multimodal Stream', desc: 'Menghubungkan arsip PDF dokumen, gambar CAD, sensor mesin SCADA, hingga database ERP.' },
-            { title: 'Otomasi Bertingkat', tag: 'Workflow Governance', desc: 'Memicu persetujuan berjenjang, pembuatan purchase order otomatis, dan peringatan dini insiden.' },
-            { title: 'Pemahaman Domain', tag: 'Spesifik Industri', desc: 'Terlatih khusus untuk maritim, konstruksi, manufaktur, dan kepatuhan regulasi nasional.' },
-          ].map((item, idx) => (
+          {t.cards.map((item: any, idx: number) => (
             <div 
               key={idx} 
               className="apple-card p-6 rounded-3xl bg-[#0F0F12]/70 border border-white/[0.08] text-left flex flex-col justify-between"
@@ -54,21 +73,21 @@ export const AegisCompanyValue: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-white/[0.06] gap-2">
             <div>
               <span className="text-[11px] font-mono uppercase tracking-wider text-[#86868B] block">
-                Alur Transformasi Nilai Bisnis
+                {t.valueChainTitle}
               </span>
               <h3 className="text-xl sm:text-2xl font-semibold text-white mt-0.5">
-                Dari Data Mentah Menjadi Tindakan Nyata
+                {t.valueChainSubtitle}
               </h3>
             </div>
             <span className="text-xs font-mono text-[#2997FF]">
-              Value Chain Architecture
+              {t.valueChainBadge}
             </span>
           </div>
 
           {/* 5 Stage Horizontal Cards */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mt-6">
-            {VALUE_CHAIN.map((item, index) => {
-              const Icon = stageIcons[index];
+            {chainList.map((item, index) => {
+              const Icon = stageIcons[index] || Database;
               const isSelected = selectedStage === index;
               return (
                 <div
@@ -106,8 +125,8 @@ export const AegisCompanyValue: React.FC = () => {
           <div className="mt-6 pt-5 border-t border-white/[0.06] flex items-start space-x-3 text-xs text-[#86868B] font-sans leading-relaxed">
             <CheckCircle2 className="w-4 h-4 text-[#2997FF] shrink-0 mt-0.5" />
             <span>
-              <strong className="text-white">Eksekusi Tanpa Kompromi: </strong>
-              Setiap model yang kami bangun memiliki keterkaitan langsung dengan proses bisnis nyata di lapangan—menjamin dampak operasional yang terukur dan keandalan tinggi.
+              <strong className="text-white">{note.bold}</strong>
+              {note.text}
             </span>
           </div>
         </div>

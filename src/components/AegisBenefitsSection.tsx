@@ -3,12 +3,20 @@ import {
   CheckCircle2, Clock, Eye, Brain, Layers, 
   Workflow, ShieldCheck 
 } from 'lucide-react';
-import { QUALITATIVE_BENEFITS } from '../data/aegisData';
+import type { Language } from '../i18n/translations';
+import { AEGIS_UI_TEXTS, AEGIS_BENEFITS_I18N } from '../i18n/aegisTranslations';
 
-export const AegisBenefitsSection: React.FC = () => {
+interface Props {
+  lang?: Language;
+}
+
+export const AegisBenefitsSection: React.FC<Props> = ({ lang = 'id' }) => {
   const benefitIcons = [
     Clock, Eye, Brain, Layers, Workflow, ShieldCheck, CheckCircle2
   ];
+
+  const t = AEGIS_UI_TEXTS[lang]?.benefits || AEGIS_UI_TEXTS.id.benefits;
+  const benefits = AEGIS_BENEFITS_I18N[lang] || AEGIS_BENEFITS_I18N.id;
 
   return (
     <section className="relative py-28 bg-[#020204] border-t border-white/[0.06] overflow-hidden text-left">
@@ -17,19 +25,19 @@ export const AegisBenefitsSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/[0.05] border border-white/[0.08] text-[#86868B] text-xs font-mono">
-            <span>DAMPAK OPERASIONAL</span>
+            <span>{t.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-semibold text-white tracking-tight font-sans">
-            Dampak Nyata yang Dapat Dirasakan.
+            {t.title}
           </h2>
           <p className="text-base sm:text-lg text-[#86868B] leading-relaxed font-sans">
-            Fokus kami adalah transformasi cara kerja tim Anda: membebaskan para ahli dari pekerjaan repetitif, mempertajam akurasi keputusan, dan menjaga integritas aset intelektual organisasi.
+            {t.subtitle}
           </p>
         </div>
 
         {/* 7 Qualitative Benefits Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {QUALITATIVE_BENEFITS.map((item, idx) => {
+          {benefits.map((item, idx) => {
             const Icon = benefitIcons[idx] || CheckCircle2;
             return (
               <div 
@@ -49,7 +57,7 @@ export const AegisBenefitsSection: React.FC = () => {
                 </div>
 
                 <div className="mt-5 pt-3 border-t border-white/[0.04] text-[10px] font-mono text-[#6E6E73]">
-                  Nilai Kualitatif Teruji
+                  {t.testedValue}
                 </div>
               </div>
             );
