@@ -231,8 +231,39 @@ const CmsContext = createContext<CmsContextType | undefined>(undefined);
 export const CmsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [projects, setProjects] = useState<Project[]>(() => {
     try {
+      const DEPRECATED_IDS = new Set([
+        'pertamina-power-digsilent',
+        'universitas-pertamina-assessment',
+        'pertamina-outdoor-monitoring',
+        'lg-videowall-noc',
+        'hytera-radio-poc',
+        'high-profile-event-it',
+      ]);
       const saved = localStorage.getItem('mnk_projects');
-      return saved ? JSON.parse(saved) : PROJECTS_LIST;
+      if (saved) {
+        const parsed: Project[] = JSON.parse(saved);
+        const merged = PROJECTS_LIST.map((def) => {
+          const match = parsed.find((p) => p.id === def.id);
+          if (!match) return def;
+          return {
+            ...match,
+            title: def.title,
+            image: def.image,
+            documentImage: def.documentImage,
+            documentRef: def.documentRef,
+            specs: def.specs,
+          };
+        });
+        const customItems = parsed.filter(
+          (p) => !PROJECTS_LIST.some((def) => def.id === p.id) && !DEPRECATED_IDS.has(p.id)
+        );
+        const finalProjects = [...merged, ...customItems];
+        try {
+          localStorage.setItem('mnk_projects', JSON.stringify(finalProjects));
+        } catch {}
+        return finalProjects;
+      }
+      return PROJECTS_LIST;
     } catch {
       return PROJECTS_LIST;
     }

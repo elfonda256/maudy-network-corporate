@@ -31,6 +31,7 @@ export interface Project {
   technologies: string[];
   specs?: string[];
   documentRef?: string;
+  documentImage?: string;
 }
 
 export interface Service {
@@ -482,30 +483,36 @@ export const PROJECTS_LIST: Project[] = [
   },
   {
     id: "pertamina-pis-monitoring-bot",
-    title: "PIS_BOT Network Monitoring & Automated Telemetry",
+    title: "PIS_BOT Network Sentinel & Telemetry Monitoring",
     client: "PT. Pertamina International Shipping",
     category: "infrastructure",
     location: "Jakarta Headquarters & Branch Offices",
     image: "/extracted/img_018.jpg",
+    documentImage: "/products/spmp-pertamina-monitoring.png",
     summary: {
       en: "Automated network health monitoring and proactive Telegram alert bot capable of immediate automated traceroute diagnostics upon packet loss.",
-      id: "Pembangunan aplikasi sistem monitoring dan alarm perangkat jaringan IT otomatis untuk meminimalisir jeda gangguan kerja.",
+      id: "Pembangunan aplikasi sistem monitoring dan bot alarm perangkat jaringan IT otomatis untuk meminimalisir jeda gangguan kerja.",
     },
     challenge: {
-      en: "Network anomalies across distributed branch offices and vessels were previously detected only after manual end-user complaints, leading to prolonged troubleshooting cycles.",
-      id: "Gangguan jaringan di kantor cabang dan armada laut sebelumnya sering terlambat diketahui, menunggu laporan manual dari staf pengguna.",
+      en: "Eliminating detection latency and blind spots across Pertamina International Shipping's critical office networks and maritime assets with strict SLA compliance.",
+      id: "Meniadakan jeda deteksi gangguan pada infrastruktur vital jaringan PIS dengan kepatuhan SLA ketat serta pelaporan insiden otomatis.",
     },
     solution: {
-      en: "Built a customized monitoring daemon (PIS_BOT) that runs sub-second ping polls, registers all critical hosts, automatically fires Telegram notifications, and executes instant traceroutes upon downtime.",
-      id: "Mengembangkan daemon monitoring mandiri (PIS_BOT) dengan layout registrasi perangkat, notifikasi alarm instan Telegram, dan auto-traceroute 15 hops.",
+      en: "Built a customized monitoring daemon (PIS_BOT) executing sub-second polling, registering critical hosts, instant automated alert dispatch, and auto-traceroute 15 hops with 12 months ongoing maintenance.",
+      id: "Mengembangkan daemon monitoring mandiri (PIS_BOT) dengan layout registrasi perangkat, notifikasi alarm instan, eksekusi auto-traceroute 15 hops, dan maintenance berkala selama 12 bulan.",
     },
     businessImpact: {
-      en: "Cut mean-time-to-detection (MTTD) to under 30 seconds with monthly uptime metrics consistently exceeding 99.91%.",
-      id: "Mempercepat waktu respon penanganan insiden hingga di bawah 30 detik dengan catatan uptime bulanan mencapai 99.91%.",
+      en: "Accelerated incident response time to under 30 seconds with monthly SLA uptime metrics consistently exceeding 99.91%.",
+      id: "Mempercepat waktu respon penanganan insiden hingga di bawah 30 detik dengan catatan uptime bulanan mencapai 99.91% dan laporan performa rutin.",
     },
-    technologies: ["Telegram Bot API", "Network Daemon", "ICMP Telemetry", "Automated Traceroute Engine"],
-    specs: ["Sub-second polling interval", "Automated 15-hop traceroute analysis", "Monthly SLA compliance reporting"],
-    documentRef: "SPMP No. 130/P15124000/2020-S0 (Monitoring & Alert System)",
+    technologies: ["Network Monitoring Engine", "Telegram Bot API", "Network Daemon", "ICMP Telemetry", "Auto Traceroute Engine"],
+    specs: [
+      "Nilai Kontrak: Rp 154.000.000 (SPMP No. 110/PIS124000/2020-S0)",
+      "Waktu Pembuatan: Maksimal 30 Hari Kalender",
+      "Maintenance Bulanan: 12 Bulan Terhitung Implementasi",
+      "Direksi Pekerjaan: Manager GA & Procurement PIS"
+    ],
+    documentRef: "SPMP No. 110/PIS124000/2020-S0 (PT Pertamina International Shipping)",
   },
   {
     id: "bumn-cctv-maintenance",
@@ -513,7 +520,8 @@ export const PROJECTS_LIST: Project[] = [
     client: "Kementerian BUMN Republik Indonesia",
     category: "government",
     location: "Kementerian BUMN Tower, 22 Floors, Jakarta",
-    image: "/extracted/img_058.jpg",
+    image: "/extracted/img_074.jpg",
+    documentImage: "/extracted/img_074.jpg",
     summary: {
       en: "Comprehensive preventive maintenance and diagnostic servicing for 180 enterprise Honeywell surveillance cameras and 14 NVR recording matrices.",
       id: "Pekerjaan pemeliharaan preventif dan perbaikan sistem CCTV keamanan sejumlah 180 titik kamera Honeywell di gedung 22 lantai.",
@@ -540,7 +548,7 @@ export const PROJECTS_LIST: Project[] = [
     client: "Kementerian PUPR Republik Indonesia",
     category: "government",
     location: "Rentang, Jatigede & Karedok Basin, West Java",
-    image: "/extracted/img_067.jpg",
+    image: "/products/dss-rentang-dashboard.png",
     summary: {
       en: "Web-based geospatial Decision Support System (DSS) integrating interactive GIS watershed mapping, hydrological sensor telemetry, and crop analytics.",
       id: "Sistem Pendukung Keputusan (DSS) Irigasi berbasis web dan geospasial untuk memantau kelancaran distribusi air dan produktivitas lahan skala regional.",
@@ -558,60 +566,13 @@ export const PROJECTS_LIST: Project[] = [
       id: "Mendukung efisiensi alokasi distribusi air irigasi, optimalisasi masa tanam petani, dan ketahanan pangan nasional.",
     },
     technologies: ["Web GIS Engine", "BMKG Weather API", "Hydrological Telemetry", "Geospatial Decision Models"],
-    specs: ["3 Major Reservoirs Integrated", "Multi-layer P3A Basin Mapping", "Real-time Precipitation Sensor Logging"],
+    specs: [
+      "3 Bendungan Terintegrasi (Jatigede, Karedok, Rentang)",
+      "Cakupan Area Irigasi: 83.452+ Hektar",
+      "Subdomain Operasional: dss-mockup.maudynetwork.id",
+      "Integrasi Telemetri Debit & API Cuaca BMKG"
+    ],
     documentRef: "Rentang Irrigation Modernization Project PUPR",
-  },
-  {
-    id: "pertamina-power-digsilent",
-    title: "Comprehensive Grid Modeling & Power Studies",
-    client: "PT. Pertamina Power Indonesia",
-    category: "energy",
-    location: "Pertamina Power Headquarters, Jakarta",
-    summary: {
-      en: "High-voltage transmission, distribution, and renewable energy modeling using DIgSILENT PowerFactory alongside solar irradiation analytics.",
-      id: "Pemodelan berbagai jenis jaringan listrik termasuk transmisi, distribusi, pembangkitan energi terbarukan, serta studi kualitas daya.",
-    },
-    challenge: {
-      en: "Assessing transient stability, load flow parameters, and harmonic distortion for complex industrial power generation facilities and solar farm interconnects.",
-      id: "Menganalisis stabilitas transien, aliran daya, tegangan kedip (voltage sag), dan harmonisa pada integrasi pembangkit energi terbarukan.",
-    },
-    solution: {
-      en: "Delivered licensed software deployments, customized modeling templates, Optimal Power Flow (OPF) unit commitment scheduling, and Solargis/PVInsight subscription provisioning.",
-      id: "Penyediaan software package DIgSILENT PowerFactory, analisis Optimal Power Flow (OPF), dan pengadaan lisensi PVInsight serta Solargis.",
-    },
-    businessImpact: {
-      en: "Enabled Pertamina Power engineers to simulate complex grid scenarios, prevent voltage sags, and optimize renewable generation yield.",
-      id: "Memberikan kepastian kelayakan teknis jaringan dan efisiensi penjadwalan pembangkit listrik ramah lingkungan.",
-    },
-    technologies: ["DIgSILENT PowerFactory", "Solargis License", "PVInsight Platform", "OPF Optimization Engine"],
-    specs: ["Load Flow & Short-Circuit Analysis", "Harmonic & Protection Studies", "Solar Resource Analytics"],
-    documentRef: "Kontrak No. SP-001/PP140010/2023-S0",
-  },
-  {
-    id: "universitas-pertamina-assessment",
-    title: "Campus-Wide IT Infrastructure Assessment & Redesign",
-    client: "Universitas Pertamina",
-    category: "enterprise",
-    location: "Simprug Campus, Gedung Pemuda MTC, Gedung Perwira KP",
-    summary: {
-      en: "Comprehensive technical audit, physical cable tracing, topology redesign, and modernization report for aging campus network systems.",
-      id: "Pengecekan kualitas perangkat dan jaringan, analisis uji kelayakan sistem IT, dan pembuatan cetak biru peta topologi efisien.",
-    },
-    challenge: {
-      en: "Legacy multi-building campus network with over 7 years of unmanaged undocumented cable sprawl, undocumented switches, and intermittent broadcast storms.",
-      id: "Jaringan kampus telah berusia lebih dari 7 tahun tanpa peta dokumentasi topologi resmi, menyebabkan kelambatan data dan kesulitan maintenance.",
-    },
-    solution: {
-      en: "Conducted physical and logical topology mapping across Simprug, Gedung Pemuda MTC, and Gedung Perwira KP, presenting an optimized modular fiber optic distribution proposal.",
-      id: "Melakukan audit menyeluruh pada 3 kompleks gedung, penelusuran jalur kabel, dan perancangan kembali arsitektur fiber optik modular.",
-    },
-    businessImpact: {
-      en: "Delivered a certified Network Assessment & Modernization Blueprint approved by university ICT leadership.",
-      id: "Memberikan panduan restrukturisasi jaringan resmi terverifikasi yang mengeliminasi bottleneck jaringan civitas akademika.",
-    },
-    technologies: ["Cisco Switching", "Fiber Optic Backbone", "Network Topology Mapping", "Fluke Cable Certification"],
-    specs: ["3 Campus Multi-Story Facilities", "Complete Cable Tracing", "Engineered Topology Redesign"],
-    documentRef: "PO-2022-12-15-2901417 & Rekomendasi Audit Jaringan",
   },
   {
     id: "airkon-pratama-erp-portal",
@@ -619,7 +580,7 @@ export const PROJECTS_LIST: Project[] = [
     client: "PT. Airkon Pratama",
     category: "enterprise",
     location: "Jakarta & National Operations",
-    image: "/extracted/img_061.jpg",
+    image: "/extracted/img_058.jpg",
     summary: {
       en: "Full-lifecycle design, engineering, and maintenance of the proprietary AP Portal ERP system for field maintenance, ticketing, and business reporting.",
       id: "Pengembangan sistem Enterprise Resource Planning (ERP) AP Portal berbasis web yang disesuaikan dengan alur proses bisnis perusahaan.",
@@ -639,113 +600,6 @@ export const PROJECTS_LIST: Project[] = [
     technologies: ["Custom Web Framework", "Relational Database", "Role-Based Access Control", "Automated Ticketing Workflow"],
     specs: ["900+ Active Service Tickets Handled", "Continuous Maintenance Contract", "Multi-Tier User Permissions"],
     documentRef: "Kontrak Pengembangan AP Portal & Maintenance",
-  },
-  {
-    id: "pertamina-outdoor-monitoring",
-    title: "Asset Security Perimeter: Trenching & Solar/FO CCTV",
-    client: "PT. Pertamina (Persero)",
-    category: "infrastructure",
-    location: "Pertamina Land Assets & Access Corridors",
-    image: "/extracted/img_029.jpg",
-    summary: {
-      en: "Heavy-duty outdoor surveillance installation including ground civil foundations, custom pole fabrication, trenching, fiber optic backhaul, and grounding rods.",
-      id: "Pemasangan tiang CCTV outdoor untuk monitoring lahan Pertamina, mulai dari survei titik, penggalian kabel, cor pondasi, hingga grounding elektrikal.",
-    },
-    challenge: {
-      en: "Harsh outdoor environment exposed to high tropical lightning strikes, vehicular road traffic, and extended distances between perimeter boundaries and monitoring centers.",
-      id: "Lokasi outdoor terbuka yang rawan sambaran petir, dilalui kendaraan berat, serta jarak kabel yang jauh dari ruang kendali.",
-    },
-    solution: {
-      en: "Engineered deep concrete foundations, industrial enclosure boxes with weatherproofing, dedicated grounding rods driven deep into soil, and single-mode fiber optic signal distribution.",
-      id: "Pembuatan pondasi beton kokoh, tiang kustom, instalasi grounding rod penangkal lonjakan listrik, serta penarikan kabel fiber optik tahan cuaca.",
-    },
-    businessImpact: {
-      en: "24/7 clear perimeter visibility protecting strategic national land assets with zero equipment damage from seasonal lightning storms.",
-      id: "Pengamanan aset lahan strategis terjaga 24 jam dengan sistem yang tahan terhadap cuaca ekstrem dan sambaran petir.",
-    },
-    technologies: ["Outdoor CCTV", "Fiber Optic Trenching", "Grounding Rod System", "Weatherproof IP66 Enclosures"],
-    specs: ["High-Impact Steel Poles", "Industrial Grounding Rods", "Direct-Burial Armored Fiber"],
-    documentRef: "Proyek Instalasi Outdoor Monitoring Lahan Pertamina",
-  },
-  {
-    id: "lg-videowall-noc",
-    title: "Command Center LG Video Wall (2x3 Matrix)",
-    client: "Corporate Command Center",
-    category: "infrastructure",
-    location: "Executive Monitoring Room",
-    image: "/extracted/img_054.jpg",
-    summary: {
-      en: "Turnkey installation of a 6-panel (2x3) LG 49VL5B commercial ultra-narrow bezel video wall driven by an iBase SI-670E digital signage processor.",
-      id: "Pemasangan video wall display ukuran 49 inch model LG 49VL5B susunan panel 2x3 dengan desktop prosesor iBase SI-670E.",
-    },
-    challenge: {
-      en: "Requiring razor-thin bezel alignment across six independent 49-inch panels on a custom acoustic partition with vibration-free stability and clean cable concealment.",
-      id: "Penyusunan 6 panel display ukuran besar dengan batas bezel ultra-tipis yang harus terpasang rata sempurna dan bebas distorsi visual.",
-    },
-    solution: {
-      en: "Deployed custom-engineered modular aluminum T-Slot mounting frames allowing millimeter-level micro-adjustments, paired with high-performance multi-head graphical processors.",
-      id: "Menggunakan mounting alumunium T-Slot presisi tinggi yang mudah dikalibrasi serta desktop prosesor matriks khusus audio video.",
-    },
-    businessImpact: {
-      en: "Flawless real-time command-and-control visualization of multi-feed security cameras and network telemetry for executive decision-makers.",
-      id: "Menghadirkan pusat kendali visual modern dengan tampilan multi-layar jernih untuk pemantauan operasional strategis.",
-    },
-    technologies: ["LG 49VL5B Commercial Displays", "iBase SI-670E Processor", "Aluminum T-Slot Rigging", "4K HDMI Matrix"],
-    specs: ["6x 49-inch Ultra-Narrow Bezel Panels", "2x3 Grid Formation", "Millimeter-Precision Aluminum Mounting"],
-    documentRef: "Work Order Instalasi Video Wall Command Center",
-  },
-  {
-    id: "hytera-radio-poc",
-    title: "Nationwide Digital PoC Tactical Radio Network",
-    client: "PT. Pertamina International Shipping",
-    category: "maritime",
-    location: "30 Branch Offices Across Indonesia",
-    summary: {
-      en: "Provisioning and software integration of 30 Hytera PNC380 Push-to-Talk Over Cellular (PoC) terminals connected via POCStars central dispatch.",
-      id: "Pengadaan hardware dan software 30 unit radio GSM Hytera PNC380 beserta pengembangan dashboard POCStars untuk komunikasi antar kantor cabang.",
-    },
-    challenge: {
-      en: "Traditional VHF/UHF marine radios could not communicate beyond coastal horizons, isolating port field coordinators from regional management offices.",
-      id: "Radio konvensional memiliki jangkauan terbatas dan tidak dapat menghubungkan petugas lapangan pelabuhan dengan manajemen di berbagai pulau.",
-    },
-    solution: {
-      en: "Supplied Hytera PNC380 GSM-enabled terminals paired with a unified POCStars web dispatcher featuring dynamic audio recording, talkgroup controls, and real-time GPS speaker mapping.",
-      id: "Menghadirkan HT Radio PoC Hytera berbasis seluler dengan dashboard POCStars yang mampu memetakan lokasi pembicara dan mengatur hak akses panggilan.",
-    },
-    businessImpact: {
-      en: "Instant zero-latency voice coordination across all 30 Indonesian shipping branches without erecting costly private radio repeater infrastructure.",
-      id: "Komunikasi taktis instan tanpa batas geografis dengan efisiensi biaya infrastruktur yang signifikan.",
-    },
-    technologies: ["Hytera PNC380 Handsets", "POCStars Web Dispatcher", "GSM Cellular Data", "GPS Geolocation Mapping"],
-    specs: ["30 Distributed Field Terminals", "Nationwide Cellular Coverage", "Instant Voice Logging & Geofencing"],
-    documentRef: "Kontrak Berlangganan Radio PoC No. 0101/KONTRAK/I/2023",
-  },
-  {
-    id: "high-profile-event-it",
-    title: "High-Availability Event IT for Strategic Summits",
-    client: "PT. Pertamina (Persero) Holding",
-    category: "enterprise",
-    location: "Various Venues (Pertamina Economic Outlook, VLCC Ceremony)",
-    image: "/extracted/img_038.jpg",
-    summary: {
-      en: "Mission-critical dual-ISP active-backup network connectivity and on-site engineering support for high-stakes corporate ceremonies.",
-      id: "Penyediaan koneksi internet dual-provider (master dan backup) untuk High Availability serta penjagaan teknisi siaga di lokasi selama acara.",
-    },
-    challenge: {
-      en: "Live-streamed corporate summits attended by national ministers and Pertamina executive boards where any packet loss or latency spike would disrupt global broadcasts.",
-      id: "KTT bergengsi yang disiarkan langsung secara nasional dan dihadiri direksi BUMN, di mana gangguan koneksi sedetik pun tidak dapat ditoleransi.",
-    },
-    solution: {
-      en: "Engineered dual-WAN routing with instantaneous sub-second failover between separate fiber ISPs, isolated VIP presentation VLANs, and active live traffic monitoring.",
-      id: "Instalasi 2 provider internet terpisah dengan sistem failover otomatis, pemisahan VLAN khusus streaming, dan teknisi bersertifikat siaga 24 jam.",
-    },
-    businessImpact: {
-      en: "100% uninterrupted broadcast uptime and flawless VIP connectivity across all supported events (ECO Run, Synergy Forum, Ceremony VLCC, Pertamina Economic Outlook).",
-      id: "Kelancaran penuh tanpa jeda pada seluruh rangkaian perhelatan akbar Pertamina dengan laporan performa resmi (Connection Report).",
-    },
-    technologies: ["Dual-ISP Active/Backup Failover", "Enterprise Managed Switches", "Dedicated On-Site Engineering", "QoS Priority Bandwidth"],
-    specs: ["Sub-second automatic failover", "Zero dropped broadcast packets", "Connection Report verified"],
-    documentRef: "Connection Report Pertamina Economic Outlook & Ceremony VLCC",
   },
 ];
 
@@ -831,7 +685,8 @@ export const PRODUCTS_LIST = [
     name: "Molinar.id",
     tagline: "Proprietary End-to-End Industrial IoT & Telemetry Platform",
     category: "Industrial IoT",
-    image: "/extracted/img_068.jpg",
+    image: "/products/molinar-dashboard.png",
+    gallery: ["/products/molinar-dashboard.png"],
     description: {
       en: "An integrated hardware-software ecosystem engineered by MNK to deliver absolute control over distributed physical infrastructure, remote shelters, and network assets.",
       id: "Ekosistem terpadu rancangan mandiri MNK yang memadukan keandalan hardware industri dengan kecerdasan software telemetri jarak jauh.",
@@ -864,7 +719,8 @@ export const PRODUCTS_LIST = [
     name: "AP Portal",
     tagline: "Intelligent Enterprise Resource Planning & Field Ops WebApp",
     category: "Enterprise Software",
-    image: "/extracted/img_061.jpg",
+    image: "/extracted/img_058.jpg",
+    gallery: ["/extracted/img_058.jpg"],
     description: {
       en: "Purpose-built modular ERP web application automating maintenance service tickets, equipment lifecycles, and SLA compliance tracking for commercial clients.",
       id: "Aplikasi portal bisnis ERP kustom untuk mengotomasi penanganan tiket servis, jadwal teknisi, dan pemantauan SLA sistem tata udara komersial.",
@@ -890,12 +746,14 @@ export const PRODUCTS_LIST = [
       activeEnterprises: "45+"
     }
   },
+
   {
     id: "dss-irigasi",
     name: "GIS Decision Support System (DSS)",
     tagline: "Strategic Water Resource & Irrigation Management Platform",
     category: "Public Infrastructure & GIS",
-    image: "/extracted/img_067.jpg",
+    image: "/products/dss-rentang-dashboard.png",
+    gallery: ["/products/dss-rentang-dashboard.png"],
     description: {
       en: "Geospatial intelligence platform designed for national river basin authorities and public works ministries to optimize reservoir discharge and crop yields.",
       id: "Platform digital geospasial strategis kementerian untuk memantau kelancaran pasokan air bendungan utama dan analitik produktivitas pertanian.",
@@ -916,7 +774,7 @@ export const PRODUCTS_LIST = [
     ],
     liveMetrics: {
       damsMonitored: "3 Major",
-      hectaresCovered: "90,000+ Ha",
+      hectaresCovered: "83,452+ Ha",
       weatherSyncInterval: "15 min",
       telemetryReliability: "99.9%"
     }
@@ -927,6 +785,7 @@ export const PRODUCTS_LIST = [
     tagline: "Automated Proactive NOC Telemetry & Incident Auto-Diagnostics",
     category: "Network Monitoring",
     image: "/extracted/img_018.jpg",
+    gallery: ["/extracted/img_018.jpg", "/products/spmp-pertamina-monitoring.png"],
     description: {
       en: "Mission-critical network daemon and bot developed by MNK to eliminate detection latency across corporate and maritime network topologies.",
       id: "Aplikasi sistem monitoring dan bot alarm mandiri yang aktif 24/7 mendeteksi anomali jaringan dan menjalankan diagnosa otomatis.",
@@ -959,13 +818,13 @@ export const CONTRACT_EVIDENCE = [
     id: "spk-monitoring",
     title: { en: "Work Order - Develop System Monitoring & Alert", id: "Surat Perintah Kerja Sistem Monitoring & Alert" },
     client: "PT. Pertamina International Shipping",
-    code: "SPMP No. 130/P15124000/2020-S0",
-    date: "15 September 2020",
+    code: "SPMP No. 110/PIS124000/2020-S0",
+    date: "31 Juli 2020",
     description: {
-      en: "Official contract mandate for the architecture, deployment, and 24/7 maintenance of network monitoring and bot alerting.",
-      id: "Surat perintah resmi perancangan dan pemeliharaan sistem pemantauan jaringan PIS_BOT."
+      en: "Official SPMP work order for developing network monitoring & maintenance application with 12 months ongoing support (Contract: Rp 154.000.000).",
+      id: "Surat Perintah Memulai Pekerjaan (SPMP) resmi pembuatan aplikasi Network Monitoring & Maintenance dengan pemeliharaan bulanan 12 bulan (Nilai: Rp 154.000.000)."
     },
-    image: "/extracted/img_071.jpg"
+    image: "/products/spmp-pertamina-monitoring.png"
   },
   {
     id: "kontrak-core-network",
@@ -988,18 +847,6 @@ export const CONTRACT_EVIDENCE = [
     description: {
       en: "Official order covering comprehensive maintenance of 180 Honeywell camera units across 22 floors and 14 NVR servers.",
       id: "Surat perintah kerja pemeliharaan berkala sistem keamanan 180 titik CCTV dan ruang server NVR di Kementerian BUMN."
-    },
-    image: "/extracted/img_074.jpg"
-  },
-  {
-    id: "kontrak-power-factory",
-    title: { en: "Contract - DIgSILENT PowerFactory & Solargis", id: "Pokok Perjanjian Pembelian Software PowerFactory & Solargis" },
-    client: "PT. Pertamina Power Indonesia",
-    code: "No. SP-001/PP140010/2023-S0",
-    date: "19 Mei 2023",
-    description: {
-      en: "Contract for electrical grid simulation software and renewable solar resource license subscriptions.",
-      id: "Perjanjian pengadaan software simulasi jaringan transmisi kelistrikan dan lisensi analitik Solargis."
     },
     image: "/extracted/img_074.jpg"
   }

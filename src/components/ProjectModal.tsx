@@ -198,6 +198,42 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </span>
             </div>
           )}
+
+          {/* Official Scanned Document Attachment Preview */}
+          {project.documentImage && (
+            <div className="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-black/[0.02] dark:bg-white/[0.02] p-4 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2 text-xs font-mono text-[#0071E3] dark:text-[#2997FF] font-semibold uppercase tracking-wider">
+                  <FileCheck className="w-4 h-4" />
+                  <span>
+                    {lang === 'ja'
+                      ? '添付公式書類（発注書・契約スキャン）'
+                      : lang === 'ar'
+                      ? 'نسخة الوثيقة الرسمية المعتمدة'
+                      : lang === 'en'
+                      ? 'Authentic Work Order Document Attached'
+                      : 'Lampiran Dokumen Resmi Terverifikasi (SPMP)'}
+                  </span>
+                </div>
+                <a
+                  href={project.documentImage}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-[11px] font-mono text-[#0071E3] dark:text-[#2997FF] hover:underline flex items-center gap-1"
+                >
+                  <span>{lang === 'en' ? 'Open Full Scan' : 'Buka Dokumen Asli'}</span>
+                  <span>↗</span>
+                </a>
+              </div>
+              <div className="relative rounded-xl overflow-hidden border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-black/40 max-h-80 flex items-center justify-center p-2 group">
+                <img
+                  src={project.documentImage}
+                  alt={project.documentRef || "Official Document Scan"}
+                  className="max-h-72 w-auto object-contain transition-transform duration-300 group-hover:scale-102"
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Modal Footer */}
